@@ -1,0 +1,92 @@
+---
+---
+
+<div class="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-[#1e2226]/40 border border-white/5 rounded-2xl p-6 md:p-8 backdrop-blur-md">
+  
+  <!-- Left Side: Complex Lab PDF Mockup -->
+  <div class="bg-white/3 border border-white/5 rounded-xl p-5 relative overflow-hidden flex flex-col gap-4">
+    <!-- Header simulation -->
+    <div class="flex items-center justify-between border-b border-white/5 pb-3">
+      <div class="flex flex-col">
+        <span class="text-[9px] uppercase tracking-wider text-gray-500 font-semibold">Source Document</span>
+        <span class="text-xs font-bold text-gray-300 font-display">LabReport_2026_06.pdf</span>
+      </div>
+      <div class="px-2 py-0.5 bg-red-500/10 border border-red-500/20 rounded text-[9px] font-semibold text-red-400 uppercase tracking-wider">
+        Raw Data
+      </div>
+    </div>
+
+    <!-- Lab table replica -->
+    <div class="flex flex-col gap-3.5 text-xs">
+      <!-- Row 1 -->
+      <div class="flex items-center justify-between border-b border-white/3 pb-2.5">
+        <span class="text-gray-400 font-medium">CHOLESTEROL, TOTAL</span>
+        <div class="text-right">
+          <span class="text-white font-bold">224 <span class="text-[10px] text-gray-500 font-normal">mg/dL</span></span>
+          <span class="text-red-400 text-[10px] font-semibold block uppercase">High (&gt;200)</span>
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div class="flex items-center justify-between border-b border-white/3 pb-2.5">
+        <span class="text-gray-400 font-medium">TRIGLYCERIDES</span>
+        <div class="text-right">
+          <span class="text-white font-bold">140 <span class="text-[10px] text-gray-500 font-normal">mg/dL</span></span>
+          <span class="text-green-400 text-[10px] font-semibold block uppercase">Optimal (&lt;150)</span>
+        </div>
+      </div>
+      <!-- Row 3 -->
+      <div class="flex items-center justify-between border-b border-white/3 pb-2.5">
+        <span class="text-gray-400 font-medium">HDL CHOLESTEROL</span>
+        <div class="text-right">
+          <span class="text-white font-bold">48 <span class="text-[10px] text-gray-500 font-normal">mg/dL</span></span>
+          <span class="text-gray-400 text-[10px] font-semibold block uppercase">Acceptable (&gt;40)</span>
+        </div>
+      </div>
+      <!-- Row 4 -->
+      <div class="flex items-center justify-between">
+        <span class="text-gray-400 font-medium">LDL-C (CALCULATED)</span>
+        <div class="text-right">
+          <span class="text-white font-bold">148 <span class="text-[10px] text-gray-500 font-normal">mg/dL</span></span>
+          <span class="text-red-400 text-[10px] font-semibold block uppercase">High (&gt;100)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PDF overlay icon watermark -->
+    <div class="absolute bottom-2 right-2 opacity-5 pointer-events-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Right Side: Plain-English explanation from Kira -->
+  <div class="flex flex-col gap-4">
+    <div class="flex items-center gap-2">
+      <!-- Kira's glowing logo -->
+      <div class="w-8 h-8 rounded-full bg-green-accent/15 border border-green-accent/30 flex items-center justify-center text-green-accent font-display font-bold text-sm shadow-[0_0_15px_rgba(63,209,122,0.2)]">
+        K
+      </div>
+      <div>
+        <h4 class="text-sm font-display font-bold text-white leading-none">Kira</h4>
+        <span class="text-[10px] text-green-accent font-semibold tracking-wider uppercase">Health Assistant</span>
+      </div>
+    </div>
+
+    <!-- Explanation Box -->
+    <div class="bg-green-accent/5 border border-green-accent/10 rounded-xl p-5 relative">
+      <p class="text-sm text-gray-200 leading-relaxed mb-4">
+        "Your total cholesterol and LDL ('bad' cholesterol) are slightly high, but your triglycerides and HDL ('good' cholesterol) are in a solid range. 
+      </p>
+      <p class="text-sm text-gray-200 leading-relaxed mb-4">
+        This isn't cause for concern, but it is a helpful signal. Instead of drastic changes, let's focus on adding more <strong>soluble fiber</strong> (like our chickpea pancake or oats) to your breakfast. This acts like a natural sponge in your gut to clear LDL cholesterol before it gets absorbed."
+      </p>
+      
+      <!-- Kira tagline / medical disclaimer notice -->
+      <div class="border-t border-white/5 pt-3 mt-3 flex items-center justify-between text-[10px] text-gray-500">
+        <span class="font-medium italic">"A knowledgeable friend, not a doctor."</span>
+        <span class="uppercase tracking-widest text-green-accent/70 font-bold">Informational Only</span>
+      </div>
+    </div>
+  </div>
+</div>

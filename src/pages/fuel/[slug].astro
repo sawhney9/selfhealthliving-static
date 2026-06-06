@@ -1,0 +1,18 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const postsMap = import.meta.glob('../../content/fuel/*.md', { eager: true });
+  const posts = Object.values(postsMap);
+  return posts.map(post => ({
+    params: { slug: post.frontmatter.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<ArticleLayout frontmatter={post.frontmatter}>
+  <post.Content />
+</ArticleLayout>
