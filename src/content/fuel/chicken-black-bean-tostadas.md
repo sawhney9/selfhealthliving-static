@@ -1,7 +1,7 @@
 ---
 title: "Fiery Chicken and Black Bean Tostadas"
 date: "2025-05-01"
-featured_image: "/images/uploads/rimas4real_a_chicken_black_bean_tostada_with_some_red_onions_av_acd22fea-2cc7-4956-b893-51e2a8284efb.png"
+featured_image: "/images/food/a_chicken_black_bean_tostada_with_some_red_onions_av_acd22fea_2cc7_4956_b893_51e2a8284efb.png"
 pillar: "fuel"
 slug: "chicken-black-bean-tostadas"
 recipe:
@@ -86,7 +86,7 @@ recipe:
 	<div class="wprm-fallback-recipe-instructions">
 		<ol><li><p><strong>Cook the Chicken:</strong> Heat the avocado oil in a skillet over medium heat. Add the chicken breast and season with chili powder, taco seasoning (it’s just so convenient), salt, and black pepper. Cook for about 6-8 minutes per side, or until cooked through and the internal temperature reaches 165°F (74°C). Once cooked, you can shred the chicken or just chop it up like at Chipotle. <strong>Shortcut: Use leftover cooked or rotisserie chicken!</strong></p></li><li><p><strong>Warm the Black Beans: </strong>In the same skillet (or a separate one), gently heat the rinsed and drained black beans over low heat. You can mash some of the beans with a fork for a creamier texture if desired. Stir in the salsa and heat through.</p></li><li><p><strong>Prepare the Tostadas: You have a few options here:</strong></p><p><strong>Bake: </strong>Preheat your oven to 350°F (175°C). Lightly brush the corn tortillas with a little avocado oil (optional) and bake for 8-10 minutes, or until crispy.</p><p><strong>Broil: </strong>Place the corn tortillas on a baking sheet and broil for 1-2 minutes per side, watching carefully to prevent burning.</p><p><strong>Pan-fry: </strong>Heat a thin layer of oil in a skillet over medium heat. Fry the corn tortillas for 1-2 minutes per side until golden and crispy. Drain on paper towels.</p></li><li><p><strong>Assemble Your Tostadas: </strong>Once the tostadas are crispy, it&#039;s time to build!</p><p>Spoon a generous amount of the warm black bean mixture onto each tostada</p><p>Top with the chicken</p><p>Add a layer of shredded lettuce and chopped red onion and tomatoes</p><p>Finish with diced or sliced avocado (for the added flavor I typically just make some guac and add on top).</p></li><li><p><strong>Add Your Favorite Flair: </strong>Sprinkle with fresh cilantro or jalapeños, add a dollop of sour cream and a squeeze of fresh lime juice for a zesty finish.</p></li></ol>	</div>
 	<div class="wprm-fallback-recipe-notes">
-		<p><img class="alignnone size-medium wp-image-605" src="/images/uploads/rimas4real_a_chicken_black_bean_tostada_with_some_red_onions_av_acd22fea-2cc7-4956-b893-51e2a8284efb-300x300.png" alt="Black Bean Chicken Tostadas" width="300" height="300" /></p>
+		<p><img class="alignnone size-medium wp-image-605" src="/images/food/a_chicken_black_bean_tostada_with_some_red_onions_av_acd22fea_2cc7_4956_b893_51e2a8284efb.png" alt="Black Bean Chicken Tostadas" width="300" height="300" /></p>
 <p><b>Why We Love These Healthy Chicken and Black Bean Tostadas:</b></p>
 <ul>
 <li style="font-weight: 400"><b>Lean Protein Power:</b><span style="font-weight: 400"> Chicken provides essential protein for muscle health and satiety.</span></li>

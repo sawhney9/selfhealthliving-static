@@ -19,7 +19,7 @@ slug: "year-of-fiber-2026"
 
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 
-<figure class="wp-block-image size-full is-resized"><img src="/images/uploads/fiber_rich_foods.png" alt="" class="wp-image-712" style="width:388px;height:auto"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/images/food/fiber_rich_foods.png" alt="" class="wp-image-712" style="width:388px;height:auto"/></figure>
 
 <h3 class="wp-block-heading"><strong>The Fiber Gap: Where Do You Stand?</strong></h3>
 

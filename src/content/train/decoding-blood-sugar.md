@@ -1,7 +1,7 @@
 ---
 title: "Decoding Your Blood Sugar: A New Path to Peak Health &amp; Longevity"
 date: "2026-04-14"
-featured_image: "/images/uploads/rimas4real_a_image_of_a_healthy_person_with_a_breakfast_with_eg_54e80a0f-2767-434e-a948-6d3374ff90e5.png"
+featured_image: "/images/food/a_image_of_a_healthy_person_with_a_breakfast_with_eg_54e80a0f_2767_434e_a948_6d3374ff90e5.png"
 pillar: "train"
 slug: "decoding-blood-sugar"
 ---

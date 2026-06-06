@@ -3,11 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import CTAWaitlistToggle from '../components/CTAWaitlistToggle.astro';
 import VitalsDashboard from '../components/VitalsDashboard.astro';
 import AliyaDemo from '../components/AliyaDemo.astro';
+import AppShowcase from '../components/AppShowcase.astro';
 ---
 
 <Layout>
   <!-- Hero Section -->
-  <section class="relative pt-20 pb-16 md:pt-32 md:pb-28 overflow-hidden">
+  <section class="relative pt-20 pb-16 md:pt-32 md:pb-28 overflow-hidden bg-grid-pattern">
     <!-- Ambient glow lights in background -->
     <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
 
@@ -40,7 +41,7 @@ import AliyaDemo from '../components/AliyaDemo.astro';
   </section>
 
   <!-- Interactive Mockups Centerpiece Section -->
-  <section class="py-16 md:py-24 border-y border-white/5 bg-[#0d0f11]/30">
+  <section class="py-16 md:py-24 border-y border-white/5 bg-[#0e1114]/40 bg-grid-pattern relative">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
         <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mb-4">
@@ -52,12 +53,17 @@ import AliyaDemo from '../components/AliyaDemo.astro';
       </div>
 
       <!-- Vitals Dashboard Mockup -->
-      <div class="mb-20">
+      <div class="mb-24">
         <div class="text-center mb-6">
-          <span class="text-[10px] uppercase font-bold tracking-widest text-green-accent">App Preview</span>
-          <h3 class="text-lg font-bold text-white mt-1">Universal Vitals Scoring</h3>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-green-accent">Live Dashboard Widget</span>
+          <h3 class="text-lg font-bold text-white mt-1 font-display">Universal Vitals Scoring</h3>
         </div>
         <VitalsDashboard />
+      </div>
+
+      <!-- App Showcase Section -->
+      <div class="mt-28 mb-16 border-t border-white/5 pt-20">
+        <AppShowcase />
       </div>
 
       <!-- Content Pillars Showcase -->

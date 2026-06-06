@@ -31,7 +31,7 @@ slug: "strength-training-after-40"
 <li >Higher body fat percentage<br></li>
 </ul>
 
-<figure class="wp-block-image size-full is-resized"><img src="/images/uploads/rimas4real_a_woman_walking_up_stairs_at_home_but_is_struggling__d98055bd-3f90-4ffe-aead-cd6c918d230c.png" alt="" class="wp-image-681" style="width:223px;height:auto"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/images/people/a_woman_walking_up_stairs_at_home_but_is_struggling__d98055bd_3f90_4ffe_aead_cd6c918d230c.png" alt="" class="wp-image-681" style="width:223px;height:auto"/></figure>
 
 <p >And here’s the kicker: <strong>muscle loss is preventable.</strong> It’s not just due to “aging”. We have the ability to build back muscle well into our golden years if we stay consistent. This doesn’t mean you have to spend hours in the gym, but it does require some consistency to dedicate some time 2-3 times a week to strength training. This can be at your local gym, at home with some small weights or with resistance bands, the key is to start and once you build the habit you then focus on growth.</p>
 
@@ -147,7 +147,7 @@ slug: "strength-training-after-40"
 <li >Farmers walk</li>
 </ul>
 
-<figure class="wp-block-image size-full is-resized"><img src="/images/uploads/download.png" alt="" class="wp-image-679" style="width:258px;height:auto"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/images/people/download.png" alt="" class="wp-image-679" style="width:258px;height:auto"/></figure>
 
 <p ><strong>Lower body: </strong>Don’t skip leg day, especially if you want to build those strong legs for climbing stairs, or if you enjoy those long walks down the boardwalk or trail. This is a good area to start and as it gets easier increase your weight or add additional reps.</p>
 

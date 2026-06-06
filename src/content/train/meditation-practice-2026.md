@@ -85,7 +85,7 @@ slug: "meditation-practice-2026"
 <li ><strong>The Benefit:</strong> It "forces" your nervous system into balance and stabilizes the heart rate within 3-4 cycles.</li>
 </ul>
 
-<figure class="wp-block-image size-full is-resized"><img src="/images/uploads/box-breathing.jpg" alt="box breathing" class="wp-image-699" style="aspect-ratio:1.158095238095238;object-fit:cover;width:349px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/images/people/box_breathing.jpg" alt="box breathing" class="wp-image-699" style="aspect-ratio:1.158095238095238;object-fit:cover;width:349px"/></figure>
 
 <h3 class="wp-block-heading"><strong>2. Transcendental Meditation (The Deep Dive)</strong></h3>
 
@@ -103,7 +103,7 @@ slug: "meditation-practice-2026"
 <li ><strong>The Benefit:</strong> Stimulates the Vagus nerve, telling your brain to stop producing cortisol and start preparing for sleep.</li>
 </ul>
 
-<figure class="wp-block-image size-full is-resized"><img src="/images/uploads/woman_getting_ready_for_bed_medidation_.png" alt="" class="wp-image-700" style="width:349px;height:auto"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/images/people/woman_getting_ready_for_bed_medidation_.png" alt="" class="wp-image-700" style="width:349px;height:auto"/></figure>
 
 <h3 class="wp-block-heading"><strong>4. The "In-Between" Moments (Finding Time Anywhere)</strong></h3>
 
@@ -113,7 +113,7 @@ slug: "meditation-practice-2026"
 
 <p ><strong>What about you? Do you have a favorite way to clear your head before a big day, or a specific metric you watch on your health tracker? I’d love to hear your experiences in the comments below!</strong></p>
 
-<figure class="wp-block-image size-full is-resized"><img src="/images/uploads/a_woman_commuting_to_work_medidative.png" alt="" class="wp-image-701" style="width:349px"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="/images/people/a_woman_commuting_to_work_medidative.png" alt="" class="wp-image-701" style="width:349px"/></figure>
 
 <p ></p>
 

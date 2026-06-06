@@ -37,7 +37,7 @@ const getCategoriesForPost = (post) => {
 
     <!-- Interactive Category Filter Tabs -->
     <div class="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/5" id="train-filters">
-      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-[#14171a] border border-green-accent cursor-pointer transition-all duration-300">
+      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-slate-950 border border-green-accent cursor-pointer transition-all duration-300">
         All Articles
       </button>
       <button data-filter="strength" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
@@ -128,7 +128,7 @@ const getCategoriesForPost = (post) => {
         });
         
         if (filter === 'all') {
-          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-[#14171a] border border-green-accent cursor-pointer transition-all duration-300';
+          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-slate-950 border border-green-accent cursor-pointer transition-all duration-300';
         } else {
           btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent/20 text-green-accent border border-green-accent/30 cursor-pointer transition-all duration-300';
         }

@@ -1,0 +1,214 @@
+---
+// src/components/AppShowcase.astro
+
+const screens = [
+  {
+    id: "vitals",
+    label: "Biometric Dashboard",
+    title: "Universal Vitals Scoring",
+    description: "Sync all your wearables (HRV, Sleep, Resting HR) into one unified recovery score. No complex spreadsheets, just clear, actionable guidance.",
+    image: "/images/app/app_screen_1.png",
+    glowClass: "from-green-accent/20 to-green-accent/5 shadow-green-glow/10",
+    glowColor: "rgba(0, 245, 155, 0.2)"
+  },
+  {
+    id: "strength",
+    label: "Strength Signal",
+    title: "Biomechanical Output Tracking",
+    description: "Keep track of your strength capacity signals. Estimate muscle retention and fatigue levels so you can adjust your sets for longevity.",
+    image: "/images/app/app_screen_6.png",
+    glowClass: "from-cyan-accent/20 to-cyan-accent/5 shadow-cyan-glow/10",
+    glowColor: "rgba(0, 210, 255, 0.2)"
+  },
+  {
+    id: "aliya",
+    label: "Aliya AI Assistant",
+    title: "Your Plain-English Health Translator",
+    description: "Upload laboratory PDFs or raw biomarker logs. Aliya translates clinical jargon into simple, supportive feedback on what to change next.",
+    image: "/images/app/app_screen_9.png",
+    glowClass: "from-green-accent/20 to-cyan-accent/20 shadow-green-glow/5",
+    glowColor: "rgba(79, 209, 197, 0.2)"
+  },
+  {
+    id: "nutrition",
+    label: "Fuel Planner",
+    title: "Biochemically-Synced Recipes",
+    description: "Browse high-protein, fiber-rich meals tailored to your health biomarkers. Cook with built-in culinary instructions optimized for muscle retention.",
+    image: "/images/app/app_screen_12.png",
+    glowClass: "from-cyan-accent/20 to-green-accent/20 shadow-cyan-glow/5",
+    glowColor: "rgba(79, 209, 197, 0.2)"
+  },
+  {
+    id: "paywall",
+    label: "Premium Access",
+    title: "Unlock Deep Longevity Tools",
+    description: "Direct biomarker history logs, continuous glucose monitor sync, DNA methylation tracking, and personalized weekly wellness summaries.",
+    image: "/images/app/paywall.png",
+    glowClass: "from-amber-500/20 to-red-500/5 shadow-red-500/10",
+    glowColor: "rgba(239, 68, 68, 0.2)"
+  }
+];
+---
+
+<div class="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+  <!-- Left Side: Interactive Device Showcase -->
+  <div class="lg:col-span-5 flex justify-center relative py-8">
+    <!-- Dynamic Ambient Glow Backdrop (controlled via JS) -->
+    <div 
+      id="showcase-ambient-glow" 
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-[420px] rounded-full blur-[80px] opacity-70 transition-all duration-700 bg-green-accent/20 z-0"
+    ></div>
+
+    <!-- iPhone 17 Pro Max CSS Mockup -->
+    <div class="relative z-10 mx-auto border-[10px] border-[#1f242c] rounded-[3rem] w-[280px] h-[570px] sm:w-[300px] sm:h-[610px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] bg-black overflow-hidden transition-transform duration-500 hover:scale-[1.02] border-t-[8px]">
+      <!-- Dynamic Island Notch -->
+      <div class="absolute top-3.5 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-30 flex items-center justify-between px-3">
+        <div class="w-1.5 h-1.5 rounded-full bg-slate-900"></div>
+        <div class="w-8 h-1 bg-slate-900 rounded-full"></div>
+      </div>
+      
+      <!-- Side buttons simulation -->
+      <div class="absolute top-28 -left-[11px] w-[2px] h-10 bg-slate-800 rounded-r z-20"></div>
+      <div class="absolute top-44 -left-[11px] w-[2px] h-14 bg-slate-800 rounded-r z-20"></div>
+      <div class="absolute top-60 -left-[11px] w-[2px] h-14 bg-slate-800 rounded-r z-20"></div>
+      <div class="absolute top-36 -right-[11px] w-[2px] h-18 bg-slate-800 rounded-l z-20"></div>
+
+      <!-- Screenshot Display -->
+      <div class="w-full h-full relative overflow-hidden bg-slate-950">
+        <img 
+          id="showcase-screen-img" 
+          src={screens[0].image} 
+          alt={screens[0].title} 
+          class="w-full h-full object-cover transition-opacity duration-300 opacity-100" 
+        />
+        
+        <!-- Screen glare overlay -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/[0.03] to-white/0 pointer-events-none z-20"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side: Interactive Feature Selector -->
+  <div class="lg:col-span-7 flex flex-col gap-6 text-left">
+    <div class="mb-4">
+      <span class="text-[10px] uppercase font-bold tracking-widest text-green-accent">App Interface</span>
+      <h3 class="text-2xl sm:text-3xl font-display font-extrabold text-white mt-1">
+        Experience SelfHealth
+      </h3>
+      <p class="text-xs sm:text-sm text-gray-400 mt-2 max-w-lg">
+        Take a tour through our iOS application. Select a feature below to view the actual app interfaces designed to translate your metrics into longevity.
+      </p>
+    </div>
+
+    <!-- Tab Buttons List -->
+    <div class="flex flex-col gap-3" id="showcase-tabs">
+      {screens.map((screen, index) => (
+        <button
+          data-id={screen.id}
+          data-image={screen.image}
+          data-glow={screen.glowColor}
+          class={`tab-row w-full p-4 rounded-xl text-left border cursor-pointer transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4 ${
+            index === 0
+              ? "bg-[#0e1114] border-green-accent/30 shadow-[0_0_15px_rgba(0,245,155,0.03)]"
+              : "bg-white/[0.01] border-white/5 hover:border-white/10 hover:bg-white/[0.02]"
+          }`}
+        >
+          <div class="max-w-md">
+            <span class={`text-[10px] uppercase font-bold tracking-wider block mb-1 ${
+              index === 0 ? "text-green-accent" : "text-gray-500"
+            } tab-badge`}>
+              {screen.label}
+            </span>
+            <h4 class="font-display font-bold text-white text-sm sm:text-base leading-snug">
+              {screen.title}
+            </h4>
+            <p class={`text-xs text-gray-400 mt-1.5 leading-relaxed transition-all duration-300 ${
+              index === 0 ? "opacity-100 max-h-24" : "opacity-0 max-h-0 overflow-hidden md:opacity-100 md:max-h-none"
+            } tab-desc`}>
+              {screen.description}
+            </p>
+          </div>
+          
+          <div class="hidden md:flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/5 text-gray-400 group-hover:text-white group-hover:bg-white/10 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  function initShowcase() {
+    const tabsContainer = document.getElementById('showcase-tabs');
+    const screenImg = document.getElementById('showcase-screen-img') as HTMLImageElement;
+    const ambientGlow = document.getElementById('showcase-ambient-glow');
+
+    if (!tabsContainer || !screenImg || !ambientGlow) return;
+
+    const tabs = tabsContainer.querySelectorAll('.tab-row');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const imageSrc = tab.getAttribute('data-image');
+        const glowColor = tab.getAttribute('data-glow');
+        
+        // 1. Fade image out, change src, fade image in
+        screenImg.style.opacity = '0';
+        setTimeout(() => {
+          screenImg.src = imageSrc;
+          screenImg.style.opacity = '1';
+        }, 150);
+
+        // 2. Transition ambient background glow color
+        ambientGlow.style.backgroundColor = glowColor;
+
+        // 3. Update tab styling classes
+        tabs.forEach(t => {
+          t.className = "tab-row w-full p-4 rounded-xl text-left border border-white/5 bg-white/[0.01] hover:border-white/10 hover:bg-white/[0.02] cursor-pointer transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4";
+          
+          // Reset child badges and descriptions
+          const badge = t.querySelector('.tab-badge');
+          if (badge) badge.className = "text-[10px] uppercase font-bold tracking-wider block mb-1 text-gray-500 tab-badge";
+          
+          const desc = t.querySelector('.tab-desc');
+          if (desc) desc.className = "text-xs text-gray-400 mt-1.5 leading-relaxed opacity-0 max-h-0 overflow-hidden md:opacity-100 md:max-h-none tab-desc";
+        });
+
+        // Activate clicked tab
+        const isGreen = glowColor.includes('245');
+        const isCyan = glowColor.includes('210');
+        
+        let borderClass = 'border-green-accent/30';
+        let badgeColor = 'text-green-accent';
+        let shadowClass = 'shadow-[0_0_15px_rgba(0,245,155,0.03)]';
+        
+        if (isCyan) {
+          borderClass = 'border-cyan-accent/30';
+          badgeColor = 'text-cyan-accent';
+          shadowClass = 'shadow-[0_0_15px_rgba(0,210,255,0.03)]';
+        } else if (!isGreen && !isCyan) {
+          // Paywall / red
+          borderClass = 'border-red-500/30';
+          badgeColor = 'text-red-400';
+          shadowClass = 'shadow-[0_0_15px_rgba(239,68,68,0.03)]';
+        }
+
+        tab.className = `tab-row w-full p-4 rounded-xl text-left border bg-[#0e1114] ${borderClass} ${shadowClass} cursor-pointer transition-all duration-300 flex flex-col md:flex-row md:items-center justify-between gap-4`;
+        
+        const activeBadge = tab.querySelector('.tab-badge');
+        if (activeBadge) activeBadge.className = `text-[10px] uppercase font-bold tracking-wider block mb-1 ${badgeColor} tab-badge`;
+        
+        const activeDesc = tab.querySelector('.tab-desc');
+        if (activeDesc) activeDesc.className = "text-xs text-gray-400 mt-1.5 leading-relaxed opacity-100 max-h-24 transition-all duration-300 tab-desc";
+      });
+    });
+  }
+
+  // Run on initial load
+  initShowcase();
+  // Run on view transition page loads
+  document.addEventListener('astro:page-load', initShowcase);
+</script>

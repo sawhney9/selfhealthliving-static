@@ -1,7 +1,7 @@
 ---
 title: "Spiced Up Lunch: Chipotle Chicken Salad Bowl"
 date: "2025-05-04"
-featured_image: "/images/uploads/rimas4real_a_chipotle_chicken_salad_bowl_with_a_chipolte_dressi_f8c2d0ab-a8aa-413a-a7cf-fa6378c6bcab.png"
+featured_image: "/images/food/a_chipotle_chicken_salad_bowl_with_a_chipolte_dressi_f8c2d0ab_a8aa_413a_a7cf_fa6378c6bcab.png"
 pillar: "fuel"
 slug: "chipotle-chicken-salad-bowl"
 recipe:
@@ -97,7 +97,7 @@ recipe:
 	<div class="wprm-fallback-recipe-instructions">
 		<ol><li><p><strong>Cook the Chipotle Chicken: </strong>Heat the olive oil in a skillet over medium heat. Add the chicken breasts and season with the chopped chipotle peppers, adobo sauce, 1 teaspoon of lime juice, cumin, garlic powder, salt, and black pepper. Cook for about 6-8 minutes per side, or until cooked through and the <strong>internal temperature reaches 165°F (74°C)</strong></p></li><li><p><strong>Cut up the Chicken: </strong>Once cooked, let the chicken rest for a few minutes, then slice or dice it up</p></li><li><p><strong>Combine the Goodness: </strong>In a large bowl, combine the shredded chipotle chicken, corn kernels, black beans, chopped red onion, diced tomatoes and chopped red bell pepper.</p></li><li><p><strong>Add the Fresh Herbs: </strong>Stir in the chopped fresh cilantro.</p></li><li><p><strong>Make the Creamy Chipotle Dressing: </strong>In a small bowl, whisk together the mayonnaise (or Greek yogurt for a great alternative), 1-2 tablespoons of fresh lime juice (to taste), and a pinch of salt and black pepper. Taste and adjust lime juice or seasoning as needed, add a little bit of the adobo sauce for that kick.</p></li><li><p><strong>Dress the Salad: </strong>Pour the creamy chipotle dressing over the chicken and vegetable mixture. Stir well to ensure everything is evenly coated.</p></li><li><p><strong>Chill (Optional but Recommended): </strong>For the best flavor, cover the salad and refrigerate for at least 15-20 minutes to allow the flavors to meld.</p></li><li><p><strong>Serve &amp; Enjoy! </strong>Serve your Amazing Chipotle Chicken Salad on its own, over a bed of your favorite greens, in lettuce wraps, or topped with sliced avocado for extra creaminess.</p></li></ol>	</div>
 	<div class="wprm-fallback-recipe-notes">
-		<p><img class="alignnone size-medium wp-image-615" src="/images/uploads/rimas4real_a_chipotle_chicken_salad_bowl_with_a_chipolte_dressi_f8c2d0ab-a8aa-413a-a7cf-fa6378c6bcab-300x300.png" alt="Chipotle Chick Salad" width="300" height="300" /></p>
+		<p><img class="alignnone size-medium wp-image-615" src="/images/food/a_chipotle_chicken_salad_bowl_with_a_chipolte_dressi_f8c2d0ab_a8aa_413a_a7cf_fa6378c6bcab.png" alt="Chipotle Chick Salad" width="300" height="300" /></p>
 <p><b>Why This Chipotle Chicken Salad Bowl is a Game Changer:</b></p>
 <ul>
 <li style="font-weight: 400"><b>Bold &amp; Smoky Flavor:</b><span style="font-weight: 400"> Chipotle peppers bring a unique depth and a touch of heat that elevates this salad beyond the ordinary but be careful they can have a kick.</span></li>

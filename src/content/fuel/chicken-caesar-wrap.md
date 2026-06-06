@@ -1,7 +1,7 @@
 ---
 title: "Healthy Quick Chicken Caesar Wrap"
 date: "2025-04-17"
-featured_image: "/images/uploads/rimas4real_Ultra-realistic_chicken_Caesar_wrap_cut_in_half_to_s_73c2f470-bdb3-4173-8051-609cf28d3f62.png"
+featured_image: "/images/food/ultra_realistic_chicken_caesar_wrap_cut_in_half_to_s_73c2f470_bdb3_4173_8051_609cf28d3f62.png"
 pillar: "fuel"
 slug: "chicken-caesar-wrap"
 recipe:
@@ -70,7 +70,7 @@ recipe:
 	<div class="wprm-fallback-recipe-notes">
 		<h2><b>Fuel Your Day the Healthy Way: Lean &amp; Green Chicken Caesar Wrap Recipe</b></h2>
 <p><span style="font-weight: 400">Looking for a </span><b>healthy and delicious lunch recipe</b><span style="font-weight: 400"> that won't derail your wellness goals? We have you covered! Our </span><b>Lean &amp; Green Chicken Caesar Wrap</b><span style="font-weight: 400"> delivers all the satisfying flavors of a classic Caesar salad in a convenient, </span><b>low-carb</b><span style="font-weight: 400"> package. Whether you are running back from a lunch gym session or just have non stop meetings and need a quick meal we got your covered. Packed with </span><b>lean protein</b><span style="font-weight: 400">, vibrant veggies, and healthy fats, this wrap is your new go-to for a guilt-free lunch. </span></p>
-<p><img class="alignnone size-medium wp-image-599" src="/images/uploads/rimas4real_Ultra-realistic_top-down_photo_of_a_clear_glass_bowl_bd93583b-6e8b-4fe8-8788-c4a77a0b24ba-240x300.png" alt="Ceasar Wrap Bowl" width="240" height="300" /></p>
+<p><img class="alignnone size-medium wp-image-599" src="/images/food/ultra_realistic_top_down_photo_of_a_clear_glass_bowl_bd93583b_6e8b_4fe8_8788_c4a77a0b24ba.png" alt="Ceasar Wrap Bowl" width="240" height="300" /></p>
 <p><b>Why This Lean Chicken Caesar Wrap is Your New Lunch Hero:</b></p>
 <ul>
 <li style="font-weight: 400"><b>High in Lean Protein:</b><span style="font-weight: 400"> Grilled chicken breast fuels your muscles and keeps you feeling full longer.</span></li>
