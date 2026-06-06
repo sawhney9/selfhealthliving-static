@@ -1,7 +1,5 @@
 ---
-import '../../styles/global.css';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
+import Layout from '../../layouts/Layout.astro';
 
 // Fetch all markdown posts under src/content/fuel
 const fuelPostsMap = import.meta.glob('../../content/fuel/*.md', { eager: true });
@@ -18,94 +16,181 @@ const allPosts = [...fuelPosts, ...chillaPost];
 const sortedPosts = allPosts.sort((a, b) => {
   return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
 });
+
+// Categories mapper for clientside filtering
+const getCategoriesForPost = (post) => {
+  const slug = post.frontmatter.slug;
+  const categories = [];
+  
+  if (post.frontmatter.recipe) {
+    categories.push('recipes');
+  }
+  
+  const slugLower = slug.toLowerCase();
+  if (slugLower.includes('smoothie')) {
+    categories.push('smoothies');
+    categories.push('breakfast');
+  } else if (slugLower.includes('pancake') || slugLower.includes('toast') || slugLower.includes('eggs')) {
+    categories.push('breakfast');
+  } else if (slugLower.includes('wrap') || slugLower.includes('tostadas') || slugLower.includes('salad')) {
+    categories.push('lunch');
+  } else if (slugLower.includes('cod') || slugLower.includes('curry') || slugLower.includes('bowl')) {
+    categories.push('dinner');
+  } else {
+    categories.push('nutrition');
+  }
+  return categories;
+};
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    
-    <title>Fuel: Nutrition, Smoothies & Recipes | Self Health Living</title>
-    <meta name="description" content="Wholesome and delicious recipes optimized for high-protein intake, fiber, gut health, and post-workout recovery." />
-    <meta name="color-scheme" content="light dark" />
-  </head>
-  <body class="light-room min-h-screen flex flex-col selection:bg-green-accent selection:text-[#14171a]">
-    <Header currentPillar="fuel" />
-    
-    <main class="flex-grow py-12 px-6 md:px-12 max-w-6xl mx-auto w-full">
-      <!-- Header Section -->
-      <div class="border-b border-gray-200 pb-8 mb-12 text-center md:text-left">
-        <span class="text-xs font-bold uppercase tracking-widest text-green-accent">Content Pillar</span>
-        <h1 class="font-display font-extrabold text-4xl sm:text-5xl text-[#1e2226] mt-2 mb-4">
-          Fuel Your Body. Nourish Your Vitality.
-        </h1>
-        <p class="text-gray-500 text-sm sm:text-base max-w-xl leading-relaxed">
-          High-protein breakfast, lunch, and dinner recipes, power smoothies, and gut-healthy dietary guides to sustain energy and fuel growth.
-        </p>
-      </div>
+<Layout title="Fuel: Nutrition & Recipes | Self Health Living" currentPillar="fuel">
+  <div class="py-12 px-6 md:px-12 max-w-6xl mx-auto w-full">
+    <!-- Header Section -->
+    <div class="border-b border-white/5 pb-8 mb-12 text-center md:text-left relative">
+      <div class="absolute -top-12 -left-12 w-24 h-24 bg-green-accent/5 rounded-full blur-2xl"></div>
+      <span class="text-xs font-bold uppercase tracking-widest text-green-accent">Content Pillar</span>
+      <h1 class="font-display font-extrabold text-4xl sm:text-5xl text-white mt-2 mb-4">
+        Fuel Your Body & Vitality.
+      </h1>
+      <p class="text-gray-400 text-sm sm:text-base max-w-xl leading-relaxed">
+        High-protein meals, recovery smoothies, gut-health guides, and dietitian-approved culinary protocols.
+      </p>
+    </div>
 
-      <!-- Articles Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {sortedPosts.map((post) => {
-          const { title, date, featured_image, slug } = post.frontmatter;
-          const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          }) : '';
-          
-          // Determine the correct route link (chilla recipe serves at root, others under /fuel)
-          const isChilla = slug === 'besan-pancake-indian-style-chickpea-pancake';
-          const href = isChilla ? `/${slug}/` : `/fuel/${slug}/`;
-          
-          return (
-            <a 
-              href={href}
-              class="group flex flex-col bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:border-gray-200 transition-all duration-300 hover:-translate-y-1"
-            >
-              {/* Image */}
-              <div class="w-full aspect-[16/10] overflow-hidden bg-gray-50 border-b border-gray-100 relative">
-                {featured_image ? (
-                  <img 
-                    src={featured_image} 
-                    alt={title} 
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div class="w-full h-full flex items-center justify-center text-gray-300 bg-gray-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                )}
-              </div>
-              
-              {/* Content */}
-              <div class="p-6 flex-grow flex flex-col justify-between">
-                <div>
-                  <time datetime={date} class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-2">
-                    {formattedDate}
-                  </time>
-                  <h2 class="font-display font-bold text-lg text-gray-800 leading-snug group-hover:text-green-accent transition-colors duration-200 mb-3">
-                    {title}
-                  </h2>
-                </div>
-                <span class="text-xs font-semibold text-[#2cb563] group-hover:underline flex items-center gap-1 mt-4">
-                  Read Article
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    <!-- Category Filters -->
+    <div class="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/5" id="fuel-filters">
+      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-[#14171a] border border-green-accent cursor-pointer transition-all duration-300">
+        All Articles
+      </button>
+      <button data-filter="recipes" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+        Recipes
+      </button>
+      <button data-filter="smoothies" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+        Smoothies
+      </button>
+      <button data-filter="breakfast" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+        Breakfast
+      </button>
+      <button data-filter="lunch" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+        Lunch
+      </button>
+      <button data-filter="dinner" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+        Dinner
+      </button>
+      <button data-filter="nutrition" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+        Nutrition Science
+      </button>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+      {sortedPosts.map((post) => {
+        const { title, date, featured_image, slug } = post.frontmatter;
+        const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }) : '';
+        
+        const isChilla = slug === 'besan-pancake-indian-style-chickpea-pancake';
+        const href = isChilla ? `/${slug}/` : `/fuel/${slug}/`;
+        const cats = getCategoriesForPost(post);
+        
+        return (
+          <a 
+            href={href}
+            data-categories={cats.join(',')}
+            class="article-card group flex flex-col glass-card overflow-hidden hover:border-green-accent/30 transition-all duration-300 hover:-translate-y-1 transform opacity-100 scale-100"
+          >
+            {/* Image */}
+            <div class="w-full aspect-[16/10] overflow-hidden bg-[#1e2226]/50 border-b border-white/5 relative">
+              {featured_image ? (
+                <img 
+                  src={featured_image} 
+                  alt={title} 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center text-gray-600 bg-[#1e2226]">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                </span>
+                </div>
+              )}
+            </div>
+            
+            {/* Content */}
+            <div class="p-6 flex-grow flex flex-col justify-between">
+              <div>
+                <time datetime={date} class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-2">
+                  {formattedDate}
+                </time>
+                <h2 class="font-display font-bold text-base sm:text-lg text-white leading-snug group-hover:text-green-accent transition-colors duration-200 mb-3">
+                  {title}
+                </h2>
               </div>
-            </a>
-          );
-        })}
-      </div>
-    </main>
+              <span class="text-xs font-semibold text-green-accent group-hover:underline flex items-center gap-1 mt-4">
+                Read Article
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</Layout>
 
-    <Footer />
-  </body>
-</html>
+<script>
+  function initFilters() {
+    const filterContainer = document.getElementById('fuel-filters');
+    if (!filterContainer) return;
+    
+    const buttons = filterContainer.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.article-card');
+    
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        
+        // Update button styles
+        buttons.forEach(b => {
+          b.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300';
+        });
+        
+        if (filter === 'all') {
+          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-[#14171a] border border-green-accent cursor-pointer transition-all duration-300';
+        } else {
+          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent/20 text-green-accent border border-green-accent/30 cursor-pointer transition-all duration-300';
+        }
+        
+        // Filter cards with animations
+        cards.forEach(card => {
+          const cardCats = card.getAttribute('data-categories').split(',');
+          const matches = filter === 'all' || cardCats.includes(filter);
+          
+          if (matches) {
+            card.classList.remove('hidden');
+            setTimeout(() => {
+              card.classList.remove('opacity-0', 'scale-95');
+              card.classList.add('opacity-100', 'scale-100');
+            }, 10);
+          } else {
+            card.classList.add('opacity-0', 'scale-95');
+            card.classList.remove('opacity-100', 'scale-100');
+            setTimeout(() => {
+              card.classList.add('hidden');
+            }, 300);
+          }
+        });
+      });
+    });
+  }
+
+  // Run on initial load
+  initFilters();
+  // Run on view transition page loads
+  document.addEventListener('astro:page-load', initFilters);
+</script>
