@@ -1,7 +1,7 @@
 ---
 title: "Smoked Salmon Power Bowl: Flavor meets Quick"
 date: "2025-07-13"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_thinly_sliced_smoked_salmon_avocado_bowl_with_some_a2f498a9-b5a6-4048-a259-65b7e966f119.png"
 pillar: "fuel"
 slug: "smoked-salmon-power-bowl"
 recipe:

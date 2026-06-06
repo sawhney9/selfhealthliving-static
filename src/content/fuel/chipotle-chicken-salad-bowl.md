@@ -1,7 +1,7 @@
 ---
 title: "Spiced Up Lunch: Chipotle Chicken Salad Bowl"
 date: "2025-05-04"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_chipotle_chicken_salad_bowl_with_a_chipolte_dressi_f8c2d0ab-a8aa-413a-a7cf-fa6378c6bcab.png"
 pillar: "fuel"
 slug: "chipotle-chicken-salad-bowl"
 recipe:

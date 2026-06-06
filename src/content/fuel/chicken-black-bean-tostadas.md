@@ -1,7 +1,7 @@
 ---
 title: "Fiery Chicken and Black Bean Tostadas"
 date: "2025-05-01"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_chicken_black_bean_tostada_with_some_red_onions_av_acd22fea-2cc7-4956-b893-51e2a8284efb.png"
 pillar: "fuel"
 slug: "chicken-black-bean-tostadas"
 recipe:

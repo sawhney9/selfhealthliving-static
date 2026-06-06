@@ -1,7 +1,7 @@
 ---
 title: "Gut and Glow Power Smoothie"
 date: "2024-11-04"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_smoothie_in_a_retro_glass_with_Sauerkraut_carrots__7ada5709-ffcf-491a-a87e-49d4b0d30357.png"
 pillar: "fuel"
 slug: "gut-and-glow-smoothie"
 recipe:

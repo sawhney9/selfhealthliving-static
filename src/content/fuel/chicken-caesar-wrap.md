@@ -1,7 +1,7 @@
 ---
 title: "Healthy Quick Chicken Caesar Wrap"
 date: "2025-04-17"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_Ultra-realistic_chicken_Caesar_wrap_cut_in_half_to_s_73c2f470-bdb3-4173-8051-609cf28d3f62.png"
 pillar: "fuel"
 slug: "chicken-caesar-wrap"
 recipe:

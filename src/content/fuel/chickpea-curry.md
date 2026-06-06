@@ -1,7 +1,7 @@
 ---
 title: "Healthy Chickpea Curry: High-Protein, Vegan Dinner"
 date: "2025-07-13"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_rustic_bowl_with_punjabi_chole_in_it_with_some_sli_dce0aeed-faf8-4070-a965-b48ccd037373-e1752434966833.png"
 pillar: "fuel"
 slug: "chickpea-curry"
 recipe:

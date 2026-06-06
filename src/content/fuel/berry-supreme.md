@@ -1,7 +1,7 @@
 ---
 title: "Berry Supreme: A Fortifying Blend for Peak Performance"
 date: "2024-06-22"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_fancy_glass_with_a_smoothie_made_of_mixed_berries__6c808861-5bcf-4773-8735-f6451cf01f5f.png"
 pillar: "fuel"
 slug: "berry-supreme"
 recipe:

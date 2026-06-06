@@ -104,7 +104,8 @@ for item in items:
             'servings_unit': meta_data.get('wprm_servings_unit', 'servings'),
             'ingredients': ingredients_list,
             'instructions': instructions_list,
-            'parent_post_id': meta_data.get('wprm_parent_post_id', '')
+            'parent_post_id': meta_data.get('wprm_parent_post_id', ''),
+            'thumbnail_id': meta_data.get('_thumbnail_id')
         }
 
 print(f"Parsed {len(recipes)} recipes.")
@@ -227,6 +228,14 @@ for item in items:
         featured_image_url = None
         if thumbnail_id and thumbnail_id in attachments:
             featured_image_url = attachments[thumbnail_id]
+        elif post_id in post_recipes:
+            # Fallback: check if the linked recipe has a thumbnail
+            r_data = post_recipes[post_id]
+            r_thumb_id = r_data.get('thumbnail_id')
+            if r_thumb_id and r_thumb_id in attachments:
+                featured_image_url = attachments[r_thumb_id]
+                
+        if featured_image_url:
             image_urls.add(featured_image_url)
             
         # Extract inline images

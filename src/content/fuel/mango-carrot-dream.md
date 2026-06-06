@@ -1,7 +1,7 @@
 ---
 title: "Mango Carrot Dream Smoothie"
 date: "2024-11-10"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_smoothie_in_a_glass_for_a_blog_post_with_mango_str_0cb6d440-3a0b-450d-b639-a95ddef8c1a8.png"
 pillar: "fuel"
 slug: "mango-carrot-dream"
 recipe:

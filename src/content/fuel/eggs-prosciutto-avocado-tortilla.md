@@ -1,7 +1,7 @@
 ---
 title: "Eggs with Prosciutto and Avocado on a Almond Tortilla"
 date: "2024-12-02"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_breakfast_burrito_wrapped_with_scrambled_eggs_pris_9e310210-c0b4-4439-8859-870857868756.png"
 pillar: "fuel"
 slug: "eggs-prosciutto-avocado-tortilla"
 recipe:

@@ -2,7 +2,7 @@
 layout: ../layouts/ArticleLayout.astro
 title: "Besan Pancake (Indian-Style chickpea pancake)"
 date: "2024-10-13"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_image_of_a_indian_style_besan_chilla_crepe_with_to_42a106dd-de61-4f14-86ff-86e4900f5e20.png"
 pillar: "fuel"
 slug: "besan-pancake-indian-style-chickpea-pancake"
 recipe:

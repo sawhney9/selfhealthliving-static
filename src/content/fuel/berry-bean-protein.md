@@ -1,7 +1,7 @@
 ---
 title: "Berry Bean Protein Smoothie"
 date: "2024-11-10"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_smoothie_with_the_following_ingredients_1_cup_mixe_9a16695d-d4f5-4780-b413-3f1002ada3f8.png"
 pillar: "fuel"
 slug: "berry-bean-protein"
 recipe:
