@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page Not Found | Self Health Living">
+  <section class="min-h-[70vh] flex flex-col items-center justify-center px-6 text-center py-24">
+    <span class="text-[11px] font-bold uppercase tracking-wider text-green-accent mb-4 block">404</span>
+    <h1 class="font-display font-black text-5xl sm:text-6xl text-slate-900 tracking-tighter leading-tight mb-6">
+      This page doesn't exist
+    </h1>
+    <p class="text-slate-500 text-base sm:text-lg max-w-md leading-relaxed mb-10">
+      It may have moved, or the link might be off. Try heading back to one of these:
+    </p>
+
+    <div class="flex flex-wrap gap-3 justify-center mb-12">
+      <a href="/" class="px-6 py-3 bg-green-accent hover:bg-green-accent-hover text-white font-bold rounded-full text-sm transition-all duration-300 hover:-translate-y-0.5 shadow-sm">
+        Home
+      </a>
+      <a href="/train" class="px-6 py-3 bg-white border border-black/10 hover:border-green-accent/40 text-slate-700 font-semibold rounded-full text-sm transition-all duration-300">
+        Train
+      </a>
+      <a href="/fuel" class="px-6 py-3 bg-white border border-black/10 hover:border-green-accent/40 text-slate-700 font-semibold rounded-full text-sm transition-all duration-300">
+        Fuel
+      </a>
+      <a href="/support" class="px-6 py-3 bg-white border border-black/10 hover:border-green-accent/40 text-slate-700 font-semibold rounded-full text-sm transition-all duration-300">
+        Support
+      </a>
+    </div>
+
+    <p class="text-xs text-slate-400">
+      Still stuck? Email us at <a href="mailto:support@selfhealthliving.com" class="text-green-accent hover:underline">support@selfhealthliving.com</a>
+    </p>
+  </section>
+</Layout>

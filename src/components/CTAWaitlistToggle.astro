@@ -1,134 +1,98 @@
 ---
-// Status prop can be 'waitlist' or 'released'
-const { status = "waitlist" } = Astro.props;
+// src/components/CTAWaitlistToggle.astro
 ---
 
-<div class="w-full max-w-md mx-auto" id="cta-block">
-  <!-- Interactive State Selector (for demonstration & easy testing) -->
-  <div class="flex justify-end mb-4">
-    <div class="inline-flex rounded-full p-1 bg-white/5 border border-white/10 text-xs">
-      <button 
-        id="btn-state-waitlist" 
-        class="px-3 py-1 rounded-full text-white bg-green-accent/20 border border-green-accent/30 font-semibold cursor-pointer transition-all duration-300"
-      >
-        Waitlist Mode
-      </button>
-      <button 
-        id="btn-state-store" 
-        class="px-3 py-1 rounded-full text-gray-400 hover:text-white cursor-pointer transition-all duration-300"
-      >
-        App Store Mode
-      </button>
+<div class="w-full max-w-xl mx-auto" id="cta-block">
+  <div class="bg-white border border-black/7 rounded-2xl p-6 sm:p-8 shadow-[0_8px_40px_-8px_rgba(0,0,0,0.1)] relative overflow-hidden">
+    <!-- Subtle green glow inside card -->
+    <div class="absolute -right-16 -bottom-16 w-48 h-48 rounded-full bg-green-accent/6 blur-3xl pointer-events-none"></div>
+
+    <div class="flex flex-col gap-5 relative">
+      <div class="text-left">
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-[11px] font-bold text-green-accent mb-3 uppercase tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-accent animate-pulse"></span>
+          Early Access
+        </div>
+        <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 mb-2 leading-snug">
+          Be among the first to join
+        </h3>
+        <p class="text-sm text-slate-500 leading-relaxed">
+          Get early access to Aliya, biometric sync, and intelligent training guidance built for your biology.
+        </p>
+      </div>
+
+      <!-- Email Capture Form -->
+      <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-grow">
+          <input
+            type="email"
+            required
+            placeholder="Enter your email address"
+            class="w-full px-5 py-3.5 rounded-full bg-white border border-black/10 focus:border-green-accent focus:outline-none text-slate-900 text-sm placeholder-slate-400 transition-colors duration-200"
+          />
+        </div>
+        <button
+          type="submit"
+          class="px-7 py-3.5 bg-green-accent hover:bg-green-accent-hover text-white font-bold rounded-full text-sm shadow-sm hover:shadow-[0_4px_16px_rgba(0,163,108,0.3)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer whitespace-nowrap"
+        >
+          Request Access
+        </button>
+      </form>
+
+      <!-- Success Message -->
+      <p id="waitlist-success" class="text-xs text-green-accent flex items-center gap-1.5 hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        You're on the list! Check your inbox to confirm.
+      </p>
+
+      <!-- Bottom row: Coming Soon badge + Privacy note -->
+      <div class="border-t border-black/5 pt-4 mt-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+
+        <!-- iOS Coming Soon Badge -->
+        <div class="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl w-fit">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" viewBox="0 0 814 1000" fill="currentColor">
+            <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.5 135.4-317.3 269-317.3 71 0 130.5 46.4 174.9 46.4 42.7 0 109.2-49.7 188.3-49.7zm-130.5-295.8c31.2-35 52.6-83.8 52.6-132.6 0-6.5-.6-13.1-1.9-18.4-49.1 1.9-107.9 32.4-143.6 74-27.9 31.8-53.1 80.6-53.1 130.6 0 7.1 1.3 14.2 1.9 16.5 3.2.6 8.4 1.3 13.6 1.3 43.9 0 97.2-29.2 130.5-71.4z"/>
+          </svg>
+          <div class="flex flex-col text-left">
+            <span class="text-[9px] text-slate-400 font-normal leading-none">Coming soon to</span>
+            <span class="text-sm font-bold leading-tight">App Store</span>
+          </div>
+        </div>
+
+        <!-- Privacy note -->
+        <div class="flex items-center gap-1.5 text-slate-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span class="text-[11px] font-medium tracking-wide">No spam. Unsubscribe anytime.</span>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <!-- STATE 1: Email Waitlist Capture -->
-  <div id="waitlist-container" class="transition-all duration-300 transform scale-100 opacity-100">
-    <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3">
-      <div class="relative flex-grow">
-        <input 
-          type="email" 
-          required 
-          placeholder="Enter your email address" 
-          class="w-full px-5 py-3.5 rounded-full bg-[#1e2226]/80 border border-white/10 focus:border-green-accent focus:outline-none text-white text-sm placeholder-gray-500 transition-colors duration-200"
-        />
-      </div>
-      <button 
-        type="submit" 
-        class="px-6 py-3.5 bg-green-accent hover:bg-green-accent-hover text-[#14171a] font-semibold rounded-full text-sm shadow-[0_0_20px_rgba(63,209,122,0.25)] hover:shadow-[0_0_25px_rgba(63,209,122,0.45)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer whitespace-nowrap"
-      >
-        Join the Waitlist
-      </button>
-    </form>
-    <p id="waitlist-success" class="text-xs text-green-accent mt-3 hidden flex items-center gap-1.5 justify-center sm:justify-start">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      You have successfully joined the waitlist! We will notify you on launch.
-    </p>
-  </div>
-
-  <!-- STATE 2: App Store Download Badges -->
-  <div id="store-container" class="hidden transition-all duration-300 transform scale-95 opacity-0 flex flex-row items-center justify-center gap-4">
-    <!-- App Store Badge -->
-    <a 
-      href="#" 
-      class="flex items-center gap-3 px-5 py-2.5 bg-black hover:bg-black/90 border border-white/10 rounded-xl hover:border-green-accent transition-all duration-300 group hover:-translate-y-0.5 shadow-lg"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white group-hover:text-green-accent transition-colors duration-300" viewBox="0 0 305 305" fill="currentColor">
-        <path d="M150.7 0C67.5 0 0 67.5 0 150.7c0 83.3 67.5 150.7 150.7 150.7 83.3 0 150.7-67.5 150.7-150.7C301.4 67.5 233.9 0 150.7 0zm43.3 227c-3.1 5.3-7.5 10.4-12.7 14.8-10.9 9.1-23.7 13.9-38.3 14-14.7.1-28.7-4.8-41.9-14.8-13.2-10-21-22.9-23.4-38.6-2.4-15.6.8-30.8 9.5-45.5 8.7-14.8 21.6-25 38.6-30.4 17-5.4 33.7-4.1 49.8 3.9 16.1 8.1 26.8 20.3 32 36.8-16 6.7-28.2 16.9-36.5 30.6-8.3 13.7-11 28.5-8.1 44.4 2.9 15.9 10.1 27.5 21 34.8zm2.2-123c-8.9.2-17.3-3.1-25.1-10-7.8-6.9-12.2-15.3-13.1-25.2-.9-9.9 2-19.1 8.7-27.6 6.7-8.5 15.2-14.1 25.5-16.7 10.3-2.6 19.8-1.5 28.5 3.3 8.7 4.8 14.9 11.7 18.6 20.7 3.7 9 3.6 18.2-.3 27.6-3.9 9.4-10.7 17.1-20.3 23-8.6 5.3-15.9 7.7-22.5 7.9z"/>
-      </svg>
-      <div class="text-left leading-none">
-        <span class="text-[9px] uppercase tracking-wider text-gray-500 block mb-0.5">Download on the</span>
-        <span class="text-sm font-semibold font-display text-white">App Store</span>
-      </div>
-    </a>
-
-    <!-- Google Play Badge -->
-    <a 
-      href="#" 
-      class="flex items-center gap-3 px-5 py-2.5 bg-black hover:bg-black/90 border border-white/10 rounded-xl hover:border-green-accent transition-all duration-300 group hover:-translate-y-0.5 shadow-lg"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white group-hover:text-green-accent transition-colors duration-300" viewBox="0 0 512 512" fill="currentColor">
-        <path d="M325.3 234.3L104.6 14l280.8 161.2-60.1 59.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58 33.3-60.1-59.1L472.2 286c12.3-7 19.8-19.5 19.8-35.3s-7.5-28.3-19.8-35.3zM325.3 277.7l60.1 59.1L104.6 498l220.7-220.3z"/>
-      </svg>
-      <div class="text-left leading-none">
-        <span class="text-[9px] uppercase tracking-wider text-gray-500 block mb-0.5">Get it on</span>
-        <span class="text-sm font-semibold font-display text-white">Google Play</span>
-      </div>
-    </a>
   </div>
 </div>
 
 <script>
-  const btnWaitlist = document.getElementById('btn-state-waitlist');
-  const btnStore = document.getElementById('btn-state-store');
-  const containerWaitlist = document.getElementById('waitlist-container');
-  const containerStore = document.getElementById('store-container');
-  const form = document.getElementById('waitlist-form');
-  const successMsg = document.getElementById('waitlist-success');
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
+    const successMsg = document.getElementById('waitlist-success');
+    if (!form || !successMsg) return;
 
-  if (btnWaitlist && btnStore && containerWaitlist && containerStore) {
-    btnWaitlist.addEventListener('click', () => {
-      // Toggle button active styling
-      btnWaitlist.className = 'px-3 py-1 rounded-full text-white bg-green-accent/20 border border-green-accent/30 font-semibold cursor-pointer transition-all duration-300';
-      btnStore.className = 'px-3 py-1 rounded-full text-gray-400 hover:text-white cursor-pointer transition-all duration-300';
-      
-      // Animate transition
-      containerStore.classList.add('hidden', 'scale-95', 'opacity-0');
-      containerWaitlist.classList.remove('hidden');
-      setTimeout(() => {
-        containerWaitlist.classList.remove('scale-95', 'opacity-0');
-        containerWaitlist.classList.add('scale-100', 'opacity-100');
-      }, 50);
-    });
-
-    btnStore.addEventListener('click', () => {
-      // Toggle button active styling
-      btnStore.className = 'px-3 py-1 rounded-full text-white bg-green-accent/20 border border-green-accent/30 font-semibold cursor-pointer transition-all duration-300';
-      btnWaitlist.className = 'px-3 py-1 rounded-full text-gray-400 hover:text-white cursor-pointer transition-all duration-300';
-      
-      // Animate transition
-      containerWaitlist.classList.add('hidden', 'scale-95', 'opacity-0');
-      containerStore.classList.remove('hidden');
-      setTimeout(() => {
-        containerStore.classList.remove('scale-95', 'opacity-0');
-        containerStore.classList.add('scale-100', 'opacity-100');
-      }, 50);
-    });
-  }
-
-  if (form && successMsg) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const input = form.querySelector('input');
-      if (input && input.value) {
-        successMsg.classList.remove('hidden');
-        input.value = '';
-        setTimeout(() => {
-          successMsg.classList.add('hidden');
-        }, 5000);
-      }
+      const input = form.querySelector('input[type="email"]') as HTMLInputElement;
+      const email = input?.value?.trim();
+      if (!email) return;
+
+      // Open Beehiiv subscribe page with email pre-filled
+      window.open(
+        `https://embeds.beehiiv.com/7c7a5bfe-4254-4d81-8cc8-c3b90420e1bf?email=${encodeURIComponent(email)}`,
+        '_blank'
+      );
+
+      form.classList.add('hidden');
+      successMsg.classList.remove('hidden');
     });
-  }
+  });
 </script>

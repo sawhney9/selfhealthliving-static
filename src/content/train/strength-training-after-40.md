@@ -1,7 +1,7 @@
 ---
 title: "Why Strength Training After 40 Isn’t Optional: It’s Essential"
 date: "2025-09-14"
-featured_image: ""
+featured_image: "/images/uploads/Goblet-Squat-1.png"
 pillar: "train"
 slug: "strength-training-after-40"
 ---

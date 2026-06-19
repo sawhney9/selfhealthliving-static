@@ -1,7 +1,7 @@
 ---
 title: "Vitamin D: The Super Nutrient You Get for Free"
 date: "2024-11-21"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_image_of_a_vitamin_d_supplements_in_a_small_bowl_o_78ae6aca-abeb-4c68-a297-3d0c0208777d.png"
 pillar: "fuel"
 slug: "vitamin-d-the-super-nutrient-you-get-for-free"
 ---

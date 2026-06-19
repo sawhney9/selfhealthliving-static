@@ -76,17 +76,8 @@ recipe:
     - "<strong>Add Your Favorite Flair: </strong>Sprinkle with fresh cilantro or jalapeños, add a dollop of sour cream and a squeeze of fresh lime juice for a zesty finish."
 ---
 
-
 <p >Are you craving a meal that's both delicious and good for you? Look no further! Today, we're bringing you a recipe for <strong>Chicken and Black Bean Tostadas</strong> – a fiesta of flavor and nutrients that's easy to make and perfect for a light lunch or dinner. Get ready for crispy tostadas piled high with savory chicken, hearty black beans, and fresh, vibrant toppings!<br></p>
 
-<!--WPRM Recipe 607-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-		<ul><li>1 6-8 Oz Chicken Breast</li><li>1 tbsp Avocado or Olive Oil</li><li>1/2 tsp chilli powder</li><li>2 tsp Taco Seasoning (I love the Siete Spicy)</li><li>1 tsp garlic powder</li><li>1 tsp Salt and peper (Adjust to your taste)</li><li>4 Corn Tortillas</li><li>1 15 Oz Can of Black Beans (Rinsed and Drained)</li><li>1/4 cup Salsa</li><li>1/2 cup Shredded Lettuce</li><li>1/4 cup Red Onions</li><li>1/2 Ripe Avocado</li><li>1/4 cup  Diced Tomatoes</li><li>Fresh cilantro, a dollop of sour cream, a squeeze of lime juice or some fresh jalapeños for a little kick.</li></ul>	</div>
-	<div class="wprm-fallback-recipe-instructions">
-		<ol><li><p><strong>Cook the Chicken:</strong> Heat the avocado oil in a skillet over medium heat. Add the chicken breast and season with chili powder, taco seasoning (it’s just so convenient), salt, and black pepper. Cook for about 6-8 minutes per side, or until cooked through and the internal temperature reaches 165°F (74°C). Once cooked, you can shred the chicken or just chop it up like at Chipotle. <strong>Shortcut: Use leftover cooked or rotisserie chicken!</strong></p></li><li><p><strong>Warm the Black Beans: </strong>In the same skillet (or a separate one), gently heat the rinsed and drained black beans over low heat. You can mash some of the beans with a fork for a creamier texture if desired. Stir in the salsa and heat through.</p></li><li><p><strong>Prepare the Tostadas: You have a few options here:</strong></p><p><strong>Bake: </strong>Preheat your oven to 350°F (175°C). Lightly brush the corn tortillas with a little avocado oil (optional) and bake for 8-10 minutes, or until crispy.</p><p><strong>Broil: </strong>Place the corn tortillas on a baking sheet and broil for 1-2 minutes per side, watching carefully to prevent burning.</p><p><strong>Pan-fry: </strong>Heat a thin layer of oil in a skillet over medium heat. Fry the corn tortillas for 1-2 minutes per side until golden and crispy. Drain on paper towels.</p></li><li><p><strong>Assemble Your Tostadas: </strong>Once the tostadas are crispy, it&#039;s time to build!</p><p>Spoon a generous amount of the warm black bean mixture onto each tostada</p><p>Top with the chicken</p><p>Add a layer of shredded lettuce and chopped red onion and tomatoes</p><p>Finish with diced or sliced avocado (for the added flavor I typically just make some guac and add on top).</p></li><li><p><strong>Add Your Favorite Flair: </strong>Sprinkle with fresh cilantro or jalapeños, add a dollop of sour cream and a squeeze of fresh lime juice for a zesty finish.</p></li></ol>	</div>
-	<div class="wprm-fallback-recipe-notes">
-		<p><img class="alignnone size-medium wp-image-605" src="/images/food/a_chicken_black_bean_tostada_with_some_red_onions_av_acd22fea_2cc7_4956_b893_51e2a8284efb.png" alt="Black Bean Chicken Tostadas" width="300" height="300" /></p>
 <p><b>Why We Love These Healthy Chicken and Black Bean Tostadas:</b></p>
 <ul>
 <li style="font-weight: 400"><b>Lean Protein Power:</b><span style="font-weight: 400"> Chicken provides essential protein for muscle health and satiety.</span></li>
@@ -104,9 +95,3 @@ recipe:
 <li style="font-weight: 400"><b>Control the Sodium:</b><span style="font-weight: 400"> Rinse your canned black beans thoroughly to reduce sodium content.</span></li>
 </ul>
 <p><span style="font-weight: 400">These </span><b>Healthy Chicken and Black Bean Tostadas</b><span style="font-weight: 400"> are a delicious and nutritious way to enjoy a satisfying meal. They're packed with protein, fiber, and healthy fats, keeping you feeling energized and happy. So, gather your ingredients, get creative with your toppings, and enjoy this flavorful fiesta on a crispy tortilla!</span></p>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-		<div class="wprm-fallback-recipe-meta-course">Dinner, Lunch</div><div class="wprm-fallback-recipe-meta-cuisine">Mexican</div><div class="wprm-fallback-recipe-meta-keyword">Healthy and Delicious</div>	</div>
-</div>
-<!--End WPRM Recipe-->
-

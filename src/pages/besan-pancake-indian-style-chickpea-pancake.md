@@ -65,22 +65,8 @@ recipe:
     - "<strong>Step 5:</strong> <strong>Serve</strong>Serve the chickpea pancake hot with a side of yogurt, mint chutney, or pickles for extra flavor. I like to eat it like a crepe, where I could saute some veggies and add it inside for the extra fiber for the slow weekends when I have more time. Otherwise they can be a quick pancake you could make and head out the door."
 ---
 
-
 <p ></p>
 
 <p ></p>
 
-<!--WPRM Recipe 434-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-			</div>
-	<div class="wprm-fallback-recipe-instructions">
-			</div>
-	<div class="wprm-fallback-recipe-notes">
-		<p>[gallery ids="433"]</p>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-		<div class="wprm-fallback-recipe-meta-course">Breakfast</div><div class="wprm-fallback-recipe-meta-cuisine">Indian</div>	</div>
-</div>
-<!--End WPRM Recipe-->
-
+<p>[gallery ids="433"]</p>

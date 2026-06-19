@@ -87,17 +87,8 @@ recipe:
     - "<strong>Serve &amp; Enjoy! </strong>Serve your Amazing Chipotle Chicken Salad on its own, over a bed of your favorite greens, in lettuce wraps, or topped with sliced avocado for extra creaminess."
 ---
 
-
 <p >Are you ready to inject some serious flavor into your midday meal? Forget those bland, boring salads! Today, we're diving headfirst into a recipe for an <strong>Amazing Chipotle Chicken Salad</strong> that's smoky, zesty, and packed with healthy goodness. <br></p>
 
-<!--WPRM Recipe 616-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-		<ul><li>1.5 lbs Chicken breasts (boneless, skinless )</li><li>1 tbsp Olive Oil</li><li>1-2 Canned chipotle peppers in adobo sauce (finely chopped (start with 1 for less heat, add more to taste))</li><li>1 tbsp Adobo sauce (from the can of chipotle peppers)</li><li>1 tsp Lime juice</li><li>1.2 tsp Cumin</li><li>1 tsp Garlic powder</li><li>1 tsp Salt (Adjust to taste)</li><li>1/2 tsp Black pepper</li><li>1  cup Corn kernels (fresh or frozen, thawed)</li><li>1 cup Black beans (rinsed and drained)</li><li>1/2 cup Chopped red onion</li><li>1/2 cup Chopped tomatoes</li><li>1/4 cup Chopped red bell peppers</li><li>1 tbsp Chopped fresh cilantro</li><li>1/4  cup Mayonnaise  (Greek yogurt for a lighter option)</li></ul>	</div>
-	<div class="wprm-fallback-recipe-instructions">
-		<ol><li><p><strong>Cook the Chipotle Chicken: </strong>Heat the olive oil in a skillet over medium heat. Add the chicken breasts and season with the chopped chipotle peppers, adobo sauce, 1 teaspoon of lime juice, cumin, garlic powder, salt, and black pepper. Cook for about 6-8 minutes per side, or until cooked through and the <strong>internal temperature reaches 165°F (74°C)</strong></p></li><li><p><strong>Cut up the Chicken: </strong>Once cooked, let the chicken rest for a few minutes, then slice or dice it up</p></li><li><p><strong>Combine the Goodness: </strong>In a large bowl, combine the shredded chipotle chicken, corn kernels, black beans, chopped red onion, diced tomatoes and chopped red bell pepper.</p></li><li><p><strong>Add the Fresh Herbs: </strong>Stir in the chopped fresh cilantro.</p></li><li><p><strong>Make the Creamy Chipotle Dressing: </strong>In a small bowl, whisk together the mayonnaise (or Greek yogurt for a great alternative), 1-2 tablespoons of fresh lime juice (to taste), and a pinch of salt and black pepper. Taste and adjust lime juice or seasoning as needed, add a little bit of the adobo sauce for that kick.</p></li><li><p><strong>Dress the Salad: </strong>Pour the creamy chipotle dressing over the chicken and vegetable mixture. Stir well to ensure everything is evenly coated.</p></li><li><p><strong>Chill (Optional but Recommended): </strong>For the best flavor, cover the salad and refrigerate for at least 15-20 minutes to allow the flavors to meld.</p></li><li><p><strong>Serve &amp; Enjoy! </strong>Serve your Amazing Chipotle Chicken Salad on its own, over a bed of your favorite greens, in lettuce wraps, or topped with sliced avocado for extra creaminess.</p></li></ol>	</div>
-	<div class="wprm-fallback-recipe-notes">
-		<p><img class="alignnone size-medium wp-image-615" src="/images/food/a_chipotle_chicken_salad_bowl_with_a_chipolte_dressi_f8c2d0ab_a8aa_413a_a7cf_fa6378c6bcab.png" alt="Chipotle Chick Salad" width="300" height="300" /></p>
 <p><b>Why This Chipotle Chicken Salad Bowl is a Game Changer:</b></p>
 <ul>
 <li style="font-weight: 400"><b>Bold &amp; Smoky Flavor:</b><span style="font-weight: 400"> Chipotle peppers bring a unique depth and a touch of heat that elevates this salad beyond the ordinary but be careful they can have a kick.</span></li>
@@ -119,9 +110,3 @@ recipe:
 <p><span style="font-weight: 400">This </span><b>Amazing Chipotle Chicken Salad</b><span style="font-weight: 400"> is a vibrant, flavorful, and healthy way to enjoy a satisfying meal. It’s packed with protein, fiber, and those incredible smoky chipotle notes that will keep you coming back for more. So, ditch the dull salads and fire up your lunch with this fantastic recipe!</span></p>
 <p> </p>
 <p><span style="font-weight: 400">Share your delicious </span><b>Chipotle Chicken Salad</b><span style="font-weight: 400"> creations with us using </span><b>#SelfHealthLivingEats</b><span style="font-weight: 400"> – we can't wait to see your spicy and healthy bowls!</span></p>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-		<div class="wprm-fallback-recipe-meta-course">Lunch</div><div class="wprm-fallback-recipe-meta-cuisine">Mexican</div><div class="wprm-fallback-recipe-meta-keyword">Healthy</div>	</div>
-</div>
-<!--End WPRM Recipe-->
-

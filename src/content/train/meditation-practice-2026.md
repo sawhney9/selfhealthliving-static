@@ -1,7 +1,7 @@
 ---
 title: "Why 2026 Is the Year to Start a Meditation Practice"
 date: "2026-01-04"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_person_mediating_as_a_sketch_with_the_following_wr_7cb7332c-3953-45a8-a035-2b33fdbbfefb.png"
 pillar: "train"
 slug: "meditation-practice-2026"
 ---

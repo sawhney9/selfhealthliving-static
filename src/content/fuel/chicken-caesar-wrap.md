@@ -60,15 +60,7 @@ recipe:
     - "<strong>Serve and Savor:</strong> Slice your Lean &amp; Green Chicken Caesar Wrap in half and enjoy immediately!"
 ---
 
-
-<!--WPRM Recipe 600-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-		<ul><li>1 (4-6 oz)  boneless, skinless chicken breast (A quick alternative is to purchase fajita chicken in your deli section)</li><li>1-2 tbsp Olive Oil (For grilling the Chicken)</li><li>Salt and Pepper to taste for the chicken</li><li>1 Low Carb Tortilla (I have been loving the stone milled tortillas with 4 grams of plant protein.)</li><li>1/2 cup Cup chopped Romaine Lettuce (Substitute with spinach or whatever greens you love)</li><li>1/4 Sliced Tomato</li><li>1/4 Ripe Avocado (Sliced or Smashed)</li><li>1-2 tbsp Tablespoons of your Favorite Mayo</li><li>Sprinkle some Parmesan Cheese</li></ul>	</div>
-	<div class="wprm-fallback-recipe-instructions">
-		<ol><li><p><strong>Grill Your Chicken: </strong>Season the chicken breast with salt and pepper. Grill over medium heat until fully cooked (internal temperature of 165°F/74°C). Let rest, then slice into strips. Pro Tip: Use leftover cooked chicken for an even faster lunch!</p><p><em> For those days I really don’t have time, you can buy precooked fajita or grilled chicken, usually found near the salad and dressing aisle.</em></p></li><li><p><strong>Prep the Freshness: </strong>Wash and chop the romaine lettuce. Slice the tomato and avocado.</p></li><li><p><strong>Lay the Foundation:</strong> Place your low-carb wrap flat on a clean surface.</p></li><li><p><strong>Add the Creamy Base:</strong> Spread the mayonnaise (or avocado mayo) evenly in the center of the wrap.</p></li><li><p><strong>Layer in the Veggies:</strong> Top the mayo with the chopped romaine lettuce and sliced tomato.</p></li><li><p><strong>Pile on the Protein:</strong> Arrange the sliced grilled chicken over the vegetables.</p></li><li><p><strong>(Optional) Cheese Touch:</strong> Sprinkle a small amount of Parmesan cheese for added flavor.</p></li><li><p><strong>Wrap it Right:</strong> Fold in the sides of the low-carb tortilla, then roll it up tightly from the bottom.</p></li><li><p><strong>Serve and Savor:</strong> Slice your Lean &amp; Green Chicken Caesar Wrap in half and enjoy immediately!</p></li></ol>	</div>
-	<div class="wprm-fallback-recipe-notes">
-		<h2><b>Fuel Your Day the Healthy Way: Lean &amp; Green Chicken Caesar Wrap Recipe</b></h2>
+<h2><b>Fuel Your Day the Healthy Way: Lean &amp; Green Chicken Caesar Wrap Recipe</b></h2>
 <p><span style="font-weight: 400">Looking for a </span><b>healthy and delicious lunch recipe</b><span style="font-weight: 400"> that won't derail your wellness goals? We have you covered! Our </span><b>Lean &amp; Green Chicken Caesar Wrap</b><span style="font-weight: 400"> delivers all the satisfying flavors of a classic Caesar salad in a convenient, </span><b>low-carb</b><span style="font-weight: 400"> package. Whether you are running back from a lunch gym session or just have non stop meetings and need a quick meal we got your covered. Packed with </span><b>lean protein</b><span style="font-weight: 400">, vibrant veggies, and healthy fats, this wrap is your new go-to for a guilt-free lunch. </span></p>
 <p><img class="alignnone size-medium wp-image-599" src="/images/food/ultra_realistic_top_down_photo_of_a_clear_glass_bowl_bd93583b_6e8b_4fe8_8788_c4a77a0b24ba.png" alt="Ceasar Wrap Bowl" width="240" height="300" /></p>
 <p><b>Why This Lean Chicken Caesar Wrap is Your New Lunch Hero:</b></p>
@@ -89,9 +81,3 @@ recipe:
 <p><span style="font-weight: 400">This </span><b>Lean &amp; Green Chicken Caesar Wrap</b><span style="font-weight: 400"> is more than just a lunch; it's a step towards a healthier you! It's quick, easy, and packed with the good stuff your body craves. So, ditch the carb-heavy options and embrace this flavorful, </span><b>low-carb lunch</b><span style="font-weight: 400"> today!</span></p>
 <p><span style="font-weight: 400">Share your delicious creations with us using </span><b>#SelfHealthLivingLunch</b><span style="font-weight: 400"> – we love seeing your healthy eating wins!</span></p>
 <p> </p>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-		<div class="wprm-fallback-recipe-meta-course">Lunch</div><div class="wprm-fallback-recipe-meta-keyword">Quick and Healthy</div>	</div>
-</div>
-<!--End WPRM Recipe-->
-

@@ -7,149 +7,404 @@ import AppShowcase from '../components/AppShowcase.astro';
 ---
 
 <Layout>
-  <!-- Hero Section -->
-  <section class="relative pt-20 pb-16 md:pt-32 md:pb-28 overflow-hidden bg-grid-pattern">
-    <!-- Ambient glow lights in background -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+  <!-- ══════════════════════════════════════
+       HERO — Aurora background, 3-phone spread
+       ══════════════════════════════════════ -->
+  <section class="relative pt-24 pb-28 md:pt-36 md:pb-40 overflow-hidden aurora-hero bg-grid-pattern flex flex-col items-center">
+    <div class="max-w-5xl mx-auto text-center px-6 relative z-10 flex flex-col items-center">
 
-    <div class="max-w-4xl mx-auto text-center px-6 relative z-10 flex flex-col items-center">
-      <!-- Tag badge -->
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold text-gray-300 mb-6 uppercase tracking-wider">
-        <span class="w-1.5 h-1.5 rounded-full bg-green-accent"></span>
-        SelfHealth App Launch
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-semibold text-green-accent mb-8 uppercase tracking-wider" data-reveal="fade">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-accent animate-pulse"></span>
+        SelfHealth Early Access
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="font-display font-extrabold text-4xl sm:text-6xl text-white tracking-tight leading-[1.1] mb-6">
-        Train smarter. <br class="sm:hidden" />
-        Age stronger. <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-accent to-[#4fd1c5] drop-shadow-[0_0_15px_rgba(63,209,122,0.2)]">
-          Know what's working.
-        </span>
+      <!-- Headline -->
+      <h1 class="font-display font-black text-5xl sm:text-7xl lg:text-8xl text-slate-900 tracking-tighter leading-[1.05] mb-8 max-w-4xl" data-reveal="fade" data-reveal-delay="100">
+        Train smarter.<br />
+        Age <span class="font-serif italic font-normal text-green-accent">stronger</span>.<br />
+        Know what's working.
       </h1>
 
       <!-- Subheadline -->
-      <p class="font-sans text-gray-400 text-base sm:text-xl leading-relaxed max-w-2xl mb-10">
-        Stop guessing. SelfHealth decodes your raw health metrics—blood panels, biomarkers, sleep consistency, and strength output—into actionable, daily feedback to build and retain muscle, recover faster, and age with strength.
+      <p class="font-sans text-slate-500 text-base sm:text-xl leading-relaxed max-w-2xl mb-12" data-reveal="fade" data-reveal-delay="200">
+        Stop guessing. SelfHealth decodes your raw health metrics — blood panels, sleep consistency, and strength output — into daily, plain-English guidance to build muscle and extend your healthspan.
       </p>
 
-      <!-- CTA Toggle Block -->
-      <div id="waitlist" class="w-full mb-16">
+      <!-- 3-Phone Floating Hero -->
+      <div class="relative w-full max-w-4xl h-[420px] sm:h-[580px] flex items-center justify-center mt-6 mb-16" data-reveal="scale" data-reveal-delay="300">
+        <!-- Soft glow behind phones -->
+        <div class="absolute w-[420px] h-[420px] bg-green-accent/8 rounded-full blur-[120px] pointer-events-none animate-drift"></div>
+
+        <div class="relative w-full h-full flex items-center justify-center">
+          <!-- Left Phone: Fitness Workouts -->
+          <div class="absolute left-[4%] sm:left-[15%] w-[140px] sm:w-[210px] h-[280px] sm:h-[420px] z-10 origin-bottom-right rotate-[-12deg] -translate-y-4 hover:translate-x-[-8px] hover:rotate-[-6deg] transition-all duration-500 phone-frame phone-frame-sm animate-float-slow">
+            <div class="phone-glare"></div>
+            <img src="/images/app/fitness_workouts.png" alt="SelfHealth Fitness Screen" class="w-full h-full object-cover" />
+          </div>
+
+          <!-- Right Phone: Blood Cholesterol -->
+          <div class="absolute right-[4%] sm:right-[15%] w-[140px] sm:w-[210px] h-[280px] sm:h-[420px] z-10 origin-bottom-left rotate-[12deg] -translate-y-4 hover:translate-x-[8px] hover:rotate-[6deg] transition-all duration-500 phone-frame phone-frame-sm animate-float-slow">
+            <div class="phone-glare"></div>
+            <img src="/images/app/blood_cholesterol.png" alt="SelfHealth Bloodwork Screen" class="w-full h-full object-cover" />
+          </div>
+
+          <!-- Center Phone: Core Dashboard -->
+          <div class="absolute w-[160px] sm:w-[240px] h-[320px] sm:h-[480px] z-20 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)] hover:scale-105 hover:-translate-y-2 transition-all duration-500 phone-frame animate-float">
+            <div class="phone-glare"></div>
+            <div class="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3.5 bg-black rounded-full z-30 flex items-center justify-between px-2">
+              <div class="w-0.5 h-0.5 rounded-full bg-slate-900"></div>
+              <div class="w-5 h-0.5 bg-slate-900 rounded-full"></div>
+            </div>
+            <img src="/images/app/app_screen_1.png" alt="SelfHealth Core Dashboard" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Waitlist CTA -->
+      <div id="waitlist" class="w-full max-w-xl" data-reveal="fade" data-reveal-delay="400">
         <CTAWaitlistToggle />
       </div>
     </div>
   </section>
 
-  <!-- Interactive Mockups Centerpiece Section -->
-  <section class="py-16 md:py-24 border-y border-white/5 bg-[#0e1114]/40 bg-grid-pattern relative">
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════
+       VITALS SYNC SECTION
+       ══════════════════════════════════════ -->
+  <section class="py-24 md:py-40 bg-[#F0F4F1]/60 bg-grid-pattern relative">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mb-4">
-          All your vitals. Translated in real-time.
+      <VitalsDashboard />
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════
+       BIOMETRIC SYNERGY — Sleep + Cycle Cards
+       ══════════════════════════════════════ -->
+  <section class="py-24 md:py-40 bg-white relative overflow-hidden">
+    <div class="absolute top-1/2 right-0 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-accent/5 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16" data-reveal="fade">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-cyan-accent/10 border border-cyan-accent/20 rounded-full text-xs font-bold text-cyan-accent uppercase tracking-wider mb-4">
+          Advanced Analytics
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
+          Engineered for your daily biology
         </h2>
-        <p class="text-sm sm:text-base text-gray-400 max-w-xl mx-auto">
-          We bring together lab results, sleep data, and workouts. Then we explain exactly what your body is trying to tell you.
+        <p class="text-sm sm:text-base text-slate-500 max-w-xl mx-auto mt-4">
+          Go beyond basic counts. SelfHealth correlates sleep, muscle capacity, and hormonal cycles to tell you exactly how to train and fuel today.
         </p>
       </div>
 
-      <!-- Vitals Dashboard Mockup -->
-      <div class="mb-24">
-        <div class="text-center mb-6">
-          <span class="text-[10px] uppercase font-bold tracking-widest text-green-accent">Live Dashboard Widget</span>
-          <h3 class="text-lg font-bold text-white mt-1 font-display">Universal Vitals Scoring</h3>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto text-left">
+        <!-- Card 1: Sleep Recovery -->
+        <div class="glass-card p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6" data-reveal="fade" data-reveal-delay="0">
+          <div class="sm:w-3/5 flex flex-col justify-between h-full">
+            <div>
+              <div class="w-10 h-10 rounded-xl bg-cyan-accent/10 text-cyan-accent flex items-center justify-center mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2" />
+                </svg>
+              </div>
+              <h4 class="text-lg font-display font-bold text-slate-900 mb-2">Sleep, Recovery &amp; Workouts</h4>
+              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed mb-6">
+                Connect your workouts directly to your autonomic recovery. SelfHealth pulls sleep architecture, HRV, and resting heart rate to calculate your daily training load and workout targets. Learn when to push for PRs and when to prioritize active recovery.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-black/5">
+              <span class="text-[9px] font-semibold text-cyan-accent bg-cyan-accent/8 px-2 py-0.5 rounded-full border border-cyan-accent/15">HRV Correlation</span>
+              <span class="text-[9px] font-semibold text-cyan-accent bg-cyan-accent/8 px-2 py-0.5 rounded-full border border-cyan-accent/15">Sleep Architecture</span>
+            </div>
+          </div>
+          <div class="sm:w-2/5 flex justify-center w-full">
+            <div class="w-[125px] h-[250px] relative rounded-2xl border-[5px] border-[#1c1e22] overflow-hidden bg-black shadow-[0_20px_40px_rgba(0,0,0,0.18)] flex-shrink-0 animate-float">
+              <div class="phone-glare"></div>
+              <img src="/images/app/sleep_quality.png" alt="Sleep quality app view" class="w-full h-full object-cover" />
+            </div>
+          </div>
         </div>
-        <VitalsDashboard />
+
+        <!-- Card 2: Cycle Sync -->
+        <div class="glass-card p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6" data-reveal="fade" data-reveal-delay="150">
+          <div class="sm:w-3/5 flex flex-col justify-between h-full">
+            <div>
+              <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-500 flex items-center justify-center mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h4 class="text-lg font-display font-bold text-slate-900 mb-2">Menstrual Cycle &amp; Hormone Sync</h4>
+              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed mb-6">
+                Train with your hormones, not against them. Track your cycle phases — follicular, ovulatory, luteal — to optimize strength training loads, cardiovascular targets, and nutritional needs across the month.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-4 border-t border-black/5">
+              <span class="text-[9px] font-semibold text-pink-500 bg-pink-50 px-2 py-0.5 rounded-full border border-pink-200">Phase Optimization</span>
+              <span class="text-[9px] font-semibold text-pink-500 bg-pink-50 px-2 py-0.5 rounded-full border border-pink-200">Hormonal Fueling</span>
+            </div>
+          </div>
+          <div class="sm:w-2/5 flex justify-center w-full">
+            <div class="w-[125px] h-[250px] relative rounded-2xl border-[5px] border-[#1c1e22] overflow-hidden bg-black shadow-[0_20px_40px_rgba(0,0,0,0.18)] flex-shrink-0 animate-float-slow">
+              <div class="phone-glare"></div>
+              <img src="/images/app/cycle_calendar.png" alt="Cycle tracking app view" class="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════
+       APP FEATURE TOUR  (id="features" for nav)
+       ══════════════════════════════════════ -->
+  <section id="features" class="py-24 md:py-40 bg-[#F0F4F1]/60 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16" data-reveal="fade">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-4">
+          Inside the App
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 mb-4 tracking-tight">
+          Everything you need for vital longevity
+        </h2>
+        <p class="text-sm sm:text-base text-slate-500 max-w-xl mx-auto">
+          Explore the tools engineered to help you decode sleep stability, retain lean muscle, and translate complex lab reports.
+        </p>
       </div>
 
-      <!-- App Showcase Section -->
-      <div class="mt-28 mb-16 border-t border-white/5 pt-20">
+      <div data-reveal="fade" data-reveal-delay="100">
         <AppShowcase />
       </div>
+    </div>
+  </section>
 
-      <!-- Content Pillars Showcase -->
-      <div class="mt-28 mb-20">
-        <div class="text-center mb-12">
-          <span class="text-[10px] uppercase font-bold tracking-widest text-green-accent">Core Pillars</span>
-          <h3 class="text-xl sm:text-2xl font-bold text-white mt-1">Activity & Nutrition Research</h3>
-          <p class="text-xs sm:text-sm text-gray-400 mt-2 max-w-md mx-auto">
-            Beyond tracking, we maintain an active database of scientific literature and healthy recipes to fuel your daily routine.
-          </p>
-        </div>
+  <hr class="section-divider" />
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto text-left">
-          <!-- Pillar 1: Activity (Train) -->
-          <div class="glass-card p-8 flex flex-col justify-between hover:border-green-accent/30 transition-all duration-300">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-green-accent/10 text-green-accent flex items-center justify-center mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h4 class="text-lg font-display font-bold text-white mb-2">Activity & Strength (Train)</h4>
-              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">
-                Resistance training and muscle retention are essential as we age. Explore our scientific protocols on grip strength, glute activation, joint recovery, and tracking your physical metrics.
-              </p>
-            </div>
-            <a href="/train" class="text-xs sm:text-sm font-semibold text-green-accent hover:text-green-accent-hover flex items-center gap-1">
-              Explore Training Guides &rarr;
-            </a>
-          </div>
-
-          <!-- Pillar 2: Nutrition & Recipes (Fuel) -->
-          <div class="glass-card p-8 flex flex-col justify-between hover:border-green-accent/30 transition-all duration-300">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-green-accent/10 text-green-accent flex items-center justify-center mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h4 class="text-lg font-display font-bold text-white mb-2">Nutrition & Recipes (Fuel)</h4>
-              <p class="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">
-                Fuel your muscles and optimize metabolic health. Learn about the importance of dietary fiber, protein synthesis, and try our high-protein recipes (like the chickpea pancake) and mineral smoothies.
-              </p>
-            </div>
-            <a href="/fuel" class="text-xs sm:text-sm font-semibold text-green-accent hover:text-green-accent-hover flex items-center gap-1">
-              Explore Nutrition & Recipes &rarr;
-            </a>
-          </div>
-        </div>
+  <!-- ══════════════════════════════════════
+       ALIYA AI SECTION (moved above content pillars)
+       ══════════════════════════════════════ -->
+  <section class="py-24 md:py-40 bg-white relative">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-accent/4 rounded-full blur-[140px] pointer-events-none animate-pulse-glow"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16 max-w-2xl mx-auto" data-reveal="fade">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-4">
+          AI Translation
+        </span>
+        <h3 class="text-3xl sm:text-5xl font-extrabold font-display text-slate-900 tracking-tight">Meet Aliya: Your Health Translator</h3>
+        <p class="text-sm sm:text-base text-slate-500 mt-4 leading-relaxed">
+          No more medical jargon or anxiety-inducing search results. Upload any blood test PDF and get plain-English, supportive guidance on what to adjust.
+        </p>
       </div>
 
-      <!-- Aliya AI Assistant Section -->
-      <div class="mt-28">
-        <div class="text-center mb-8 max-w-lg mx-auto">
-          <span class="text-[10px] uppercase font-bold tracking-widest text-green-accent">AI Translation</span>
-          <h3 class="text-xl sm:text-2xl font-bold text-white mt-1">Meet Aliya: Your Health Translator</h3>
-          <p class="text-xs sm:text-sm text-gray-400 mt-2">
-            No more medical jargon or anxiety-inducing search results. Upload any blood test PDF and get plain-English guidance instantly.
-          </p>
-        </div>
+      <div data-reveal="scale" data-reveal-delay="100">
         <AliyaDemo />
       </div>
     </div>
   </section>
 
-  <!-- Privacy Guarantee Section -->
-  <section class="py-16 md:py-24 relative overflow-hidden">
-    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-      <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/3 border border-white/5 text-green-accent mb-6">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════
+       HOW IT WORKS — 3-Step Process
+       ══════════════════════════════════════ -->
+  <section class="py-24 md:py-36 bg-[#F0F4F1]/60 bg-grid-pattern relative">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-16" data-reveal="fade">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-4">
+          Simple Setup
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight">
+          From day one to day one hundred
+        </h2>
+        <p class="text-slate-500 text-base max-w-xl mx-auto mt-4">
+          SelfHealth takes the data you already have and turns it into a clear, daily action plan.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-start text-left" data-reveal="fade" data-reveal-delay="0">
+          <div class="w-12 h-12 rounded-2xl bg-green-accent/10 text-green-accent flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+          </div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-green-accent mb-2">Step 01</span>
+          <h3 class="text-xl font-display font-bold text-slate-900 mb-3">Connect Your Data</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">
+            Sync Apple Health in one tap or upload any blood panel PDF. SelfHealth automatically imports your wearable data, sleep stages, and lab results — no manual entry required.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex flex-col items-start text-left" data-reveal="fade" data-reveal-delay="100">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-accent/10 text-cyan-accent flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-accent mb-2">Step 02</span>
+          <h3 class="text-xl font-display font-bold text-slate-900 mb-3">Aliya Reads Your Signals</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">
+            Our AI health assistant translates your biomarkers, HRV trends, and sleep data into plain English — no medical jargon, no anxiety. Just clear context and actionable next steps.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex flex-col items-start text-left" data-reveal="fade" data-reveal-delay="200">
+          <div class="w-12 h-12 rounded-2xl bg-amber-accent/10 text-amber-accent flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-amber-accent mb-2">Step 03</span>
+          <h3 class="text-xl font-display font-bold text-slate-900 mb-3">Train &amp; Fuel With Precision</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">
+            Get a daily, personalized action plan — when to push hard in the gym, when to recover, and exactly what to eat to support your biology on any given day.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════
+       CONTENT PILLARS — Train & Fuel
+       ══════════════════════════════════════ -->
+  <section class="py-24 md:py-40 bg-white relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16" data-reveal="fade">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-4">
+          Research Library
+        </span>
+        <h3 class="text-2xl sm:text-4xl font-extrabold font-display text-slate-900 tracking-tight">Activity &amp; Nutrition Research</h3>
+        <p class="text-sm sm:text-base text-slate-500 mt-4 max-w-md mx-auto">
+          Beyond tracking, we maintain an active library of science-backed protocols and healthy recipes to fuel your daily routine.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto text-left">
+        <!-- Train Pillar -->
+        <div class="glass-card p-8 flex flex-col justify-between" data-reveal="fade" data-reveal-delay="0">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-green-accent/10 text-green-accent flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-display font-bold text-slate-900 mb-3">Activity &amp; Strength (Train)</h4>
+            <p class="text-sm text-slate-500 leading-relaxed mb-8">
+              Resistance training and muscle retention are essential as we age. Explore scientific protocols on grip strength, glute activation, joint recovery, and tracking your physical metrics over time.
+            </p>
+          </div>
+          <a href="/train" class="text-sm font-semibold text-green-accent hover:text-green-accent-hover flex items-center gap-1 transition-colors">
+            Explore Training Guides &rarr;
+          </a>
+        </div>
+
+        <!-- Fuel Pillar -->
+        <div class="glass-card p-8 flex flex-col justify-between" data-reveal="fade" data-reveal-delay="150">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-green-accent/10 text-green-accent flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-display font-bold text-slate-900 mb-3">Nutrition &amp; Recipes (Fuel)</h4>
+            <p class="text-sm text-slate-500 leading-relaxed mb-8">
+              Fuel your muscles and optimize metabolic health. Learn about dietary fiber, protein synthesis, and try our high-protein recipes and mineral smoothies designed for longevity.
+            </p>
+          </div>
+          <a href="/fuel" class="text-sm font-semibold text-green-accent hover:text-green-accent-hover flex items-center gap-1 transition-colors">
+            Explore Nutrition &amp; Recipes &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════
+       PRIVACY GUARANTEE
+       ══════════════════════════════════════ -->
+  <section class="py-24 md:py-36 bg-[#F0F4F1]/60 bg-grid-pattern relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-green-accent/5 rounded-full blur-[120px] pointer-events-none animate-pulse-glow"></div>
+
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10 flex flex-col items-center" data-reveal="fade">
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white border border-black/7 shadow-sm text-green-accent mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
       </div>
 
-      <h2 class="font-display font-bold text-2xl sm:text-4xl text-white mb-4">
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 mb-6 tracking-tight">
         Your data. Fully in your control.
       </h2>
 
-      <!-- Privacy statement -->
-      <p class="text-sm sm:text-base text-gray-300 max-w-xl mx-auto leading-relaxed mb-6">
-        Processes on-device wherever possible, and we tell you clearly any time something needs the cloud.
+      <p class="text-sm sm:text-base text-slate-500 max-w-xl mx-auto leading-relaxed mb-4">
+        SelfHealth processes metrics on-device wherever possible, notifying you clearly if secure cloud synchronization is required. We do not sell your health data, and we do not store your private laboratory credentials.
       </p>
 
-      <p class="text-xs text-gray-500 max-w-md mx-auto">
-        We do not sell your health data, and we do not store your private credentials. Security is baked in from the foundation.
+      <p class="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
+        End-to-end security is baked in from the foundation. <a href="/privacy-policy/" class="text-green-accent hover:underline">Read our Privacy Policy &rarr;</a>
       </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FEATURE REQUEST CALLOUT
+       ══════════════════════════════════════ -->
+  <section class="py-10 px-6 bg-white" data-reveal="fade">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-5 bg-[#F7FAF8] border border-green-accent/20 rounded-2xl px-7 py-6 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-green-accent/10 text-green-accent flex items-center justify-center flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <div class="text-left">
+            <p class="font-display font-bold text-slate-900 text-sm sm:text-base leading-snug">Have a feature idea?</p>
+            <p class="text-xs text-slate-500 mt-0.5">Tell us what you'd love to see in SelfHealth. We build what our community asks for.</p>
+          </div>
+        </div>
+        <a
+          href="/support#feature-request"
+          class="flex-shrink-0 px-5 py-2.5 bg-green-accent hover:bg-green-accent-hover text-white text-xs font-bold rounded-full transition-all duration-300 whitespace-nowrap shadow-sm"
+        >
+          Share Your Idea →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ══════════════════════════════════════
+       FINAL CTA
+       ══════════════════════════════════════ -->
+  <section class="py-24 md:py-36 aurora-hero relative overflow-hidden">
+    <div class="max-w-3xl mx-auto px-6 text-center flex flex-col items-center" data-reveal="fade">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-6">
+        Limited Early Access
+      </span>
+      <h2 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tighter mb-6 leading-[1.08]">
+        Ready to know what's<br />
+        <span class="font-serif italic font-normal text-green-accent">actually</span> working?
+      </h2>
+      <p class="text-slate-500 text-base sm:text-lg mb-10 max-w-xl leading-relaxed">
+        Join the waitlist and be among the first to get access when we launch on iOS.
+      </p>
+      <div class="w-full max-w-xl">
+        <CTAWaitlistToggle />
+      </div>
     </div>
   </section>
 </Layout>

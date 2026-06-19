@@ -51,15 +51,6 @@ recipe:
   instructions:
 ---
 
-
-<!--WPRM Recipe 527-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-		<ul><li>1 cup <strong> M</strong>ixed berries  ((fresh or frozen))</li><li>1/2 cup Greek yogurt</li><li>1/3 Sliced and cored apple</li><li>1/2 cup Spinach ((fresh or frozen))</li><li>1/4 cup Garbanzo Beans ((soaked or canned will work))</li><li>1 tbsp Fine Flaxseed Powder</li><li>2 tbsp Almond Butter</li><li>1 Protein Powder</li><li>1 cup Water</li></ul>	</div>
-	<div class="wprm-fallback-recipe-instructions">
-			</div>
-	<div class="wprm-fallback-recipe-notes">
-		<p><img class="alignnone size-medium wp-image-508" src="/images/uploads/rimas4real_a_smoothie_with_the_following_ingredients_1_cup_mixe_9a16695d-d4f5-4780-b413-3f1002ada3f8-300x300.png" alt="Berry Bean Smoothie" width="300" height="300" /></p>
 <p><b>Health Benefits:</b></p>
 <ul>
 <li><b>Spinach:</b><span style="font-weight: 400"> Packed with vitamins A, C, K, folate, iron, and calcium. It supports eye health, boosts immune function.</span></li>
@@ -99,9 +90,3 @@ recipe:
 <p><strong>1 Teaspoon of Fine Flaxseed Powder </strong></p>
 <p><span style="font-weight: 400">   – Benefits: Flaxseed oil is rich in omega-3 fatty acids, which support heart health, reduce inflammation, and promote brain function. It also provides fiber that aids in digestion.</span></p>
 <p><span style="font-weight: 400">   – Studies: Flaxseed oil consumption is associated with improved cardiovascular health and </span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10353157/"><span style="font-weight: 400">anti-inflammatory effects</span></a><span style="font-weight: 400">.</span></p>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-		<div class="wprm-fallback-recipe-meta-course">Smoothies</div><div class="wprm-fallback-recipe-meta-keyword">Healthy and Delicious</div>	</div>
-</div>
-<!--End WPRM Recipe-->
-

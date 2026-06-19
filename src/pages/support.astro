@@ -1,0 +1,751 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// src/pages/support.astro
+---
+
+<Layout title="Support & FAQ | Self Health Living" description="Frequently asked questions and support guides for SelfHealth Living. Connect Apple Health, manage subscriptions, and import lab results.">
+  <!-- Hero Section -->
+  <section class="relative pt-24 pb-16 md:pt-36 md:pb-24 overflow-hidden aurora-hero bg-grid-pattern">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-accent/5 rounded-full blur-[140px] pointer-events-none animate-pulse-glow"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div class="max-w-2xl text-left">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-6" data-reveal="fade">
+          Help Center
+        </span>
+        <h1 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tighter leading-[1.05] mb-6" data-reveal="fade" data-reveal-delay="100">
+          How can we <span class="font-serif italic font-light text-green-accent">help</span> you?
+        </h1>
+        <p class="font-sans text-slate-500 text-sm sm:text-base leading-relaxed mb-8" data-reveal="fade" data-reveal-delay="200">
+          Everything you need to get the most out of SelfHealth Living — from connecting Apple Health and wearables to understanding your bloodwork, tracking cycles, and managing your subscription.
+        </p>
+        
+        <!-- Quick links -->
+        <div class="flex flex-wrap gap-2.5" data-reveal="fade" data-reveal-delay="250">
+          <a class="shl-hero-link px-4 py-2 bg-white border border-black/8 hover:border-green-accent/30 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-900 transition-all duration-300" href="#healthkit">↓ HealthKit Sync</a>
+          <a class="shl-hero-link px-4 py-2 bg-white border border-black/8 hover:border-green-accent/30 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-900 transition-all duration-300" href="#troubleshooting">↓ Troubleshooting</a>
+          <a class="shl-hero-link px-4 py-2 bg-white border border-black/8 hover:border-green-accent/30 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-900 transition-all duration-300" href="#premium">↓ Go Pro</a>
+          <a class="shl-hero-link px-4 py-2 bg-white border border-black/8 hover:border-green-accent/30 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-900 transition-all duration-300" href="#labs">↓ Lab Import</a>
+          <a class="shl-hero-link px-4 py-2 bg-white border border-black/8 hover:border-green-accent/30 rounded-full text-xs font-semibold text-slate-500 hover:text-slate-900 transition-all duration-300" href="#backup">↓ Storage & Backup</a>
+        </div>
+      </div>
+      
+      <!-- Phone Mockup -->
+      <div class="hidden lg:block relative z-10 w-[200px] h-[400px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] phone-frame animate-float-slow" data-reveal="scale" data-reveal-delay="300">
+        <div class="phone-glare"></div>
+        <img src="/images/app/app_screen_1.png" alt="SelfHealth App Dashboard" class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Gradient Divider -->
+  <hr class="section-divider" />
+
+  <!-- Support Body Content -->
+  <section class="py-16 md:py-24 relative">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Left Sticky Sidebar Sidebar (Anchors) -->
+      <div class="lg:col-span-4 lg:sticky lg:top-24 h-fit flex flex-col gap-1">
+        <span class="text-[10px] uppercase font-bold tracking-widest text-green-accent mb-3 block">Categories</span>
+        <nav class="flex flex-col gap-1 border-l border-black/5 pl-2" id="sidebar-nav">
+          <a href="#healthkit" class="sidebar-link py-2 px-3 rounded-lg text-xs font-semibold text-slate-500 hover:text-slate-950 hover:bg-black/5 transition-all duration-200 border-l-2 border-transparent -ml-[9px] data-[active=true]:border-green-accent data-[active=true]:text-green-accent data-[active=true]:font-bold data-[active=true]:bg-green-accent/5">HealthKit & Data Sync</a>
+          <a href="#troubleshooting" class="sidebar-link py-2 px-3 rounded-lg text-xs font-semibold text-slate-500 hover:text-slate-950 hover:bg-black/5 transition-all duration-200 border-l-2 border-transparent -ml-[9px] data-[active=true]:border-green-accent data-[active=true]:text-green-accent data-[active=true]:font-bold data-[active=true]:bg-green-accent/5">Troubleshooting</a>
+          <a href="#premium" class="sidebar-link py-2 px-3 rounded-lg text-xs font-semibold text-slate-500 hover:text-slate-950 hover:bg-black/5 transition-all duration-200 border-l-2 border-transparent -ml-[9px] data-[active=true]:border-green-accent data-[active=true]:text-green-accent data-[active=true]:font-bold data-[active=true]:bg-green-accent/5">Pro Subscription</a>
+          <a href="#labs" class="sidebar-link py-2 px-3 rounded-lg text-xs font-semibold text-slate-500 hover:text-slate-950 hover:bg-black/5 transition-all duration-200 border-l-2 border-transparent -ml-[9px] data-[active=true]:border-green-accent data-[active=true]:text-green-accent data-[active=true]:font-bold data-[active=true]:bg-green-accent/5">Lab Results</a>
+          <a href="#backup" class="sidebar-link py-2 px-3 rounded-lg text-xs font-semibold text-slate-500 hover:text-slate-950 hover:bg-black/5 transition-all duration-200 border-l-2 border-transparent -ml-[9px] data-[active=true]:border-green-accent data-[active=true]:text-green-accent data-[active=true]:font-bold data-[active=true]:bg-green-accent/5">Privacy & Storage</a>
+          <a href="#platform" class="sidebar-link py-2 px-3 rounded-lg text-xs font-semibold text-slate-500 hover:text-slate-950 hover:bg-black/5 transition-all duration-200 border-l-2 border-transparent -ml-[9px] data-[active=true]:border-green-accent data-[active=true]:text-green-accent data-[active=true]:font-bold data-[active=true]:bg-green-accent/5">Platform Availability</a>
+        </nav>
+      </div>
+
+      <!-- Right Column: Accordion Lists -->
+      <div class="lg:col-span-8 flex flex-col gap-16 text-left">
+
+        <!-- Section:  -->
+        <div id="healthkit" class="scroll-mt-28 support-section">
+          <div class="mb-6">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-green-accent block mb-1">HealthKit & Data Sync</span>
+            <h2 class="font-display font-extrabold text-2xl text-white tracking-tight"></h2>
+          </div>
+
+          <div class="flex flex-col gap-4">
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>How do I connect SelfHealth to Apple Health?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>SelfHealth reads your data directly from Apple Health. On first launch you'll see a permissions prompt — tap <strong>Allow All</strong> to give the app access to everything it needs.</p>
+        <p>To review or fix permissions later:</p>
+        <ol>
+          <li>Open the iPhone <strong>Settings</strong> app</li>
+          <li>Tap <strong>Privacy & Security → Health</strong></li>
+          <li>Tap <strong>SelfHealth Living</strong></li>
+          <li>Turn on all categories — especially Heart, Activity, Sleep, Nutrition, and Body Measurements</li>
+        </ol>
+        <div class="shl-tip">SelfHealth never writes to Apple Health. It only reads data that other apps and your Apple Watch have already logged there.
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>What devices and apps does SelfHealth support?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>Any device or app that syncs to Apple Health automatically appears in SelfHealth:</p>
+        <ul>
+          <li><strong>Apple Watch</strong> — heart rate, HRV, VO₂ max, sleep, workouts, ECG</li>
+          <li><strong>Oura Ring</strong> — sleep stages, readiness, body temperature</li>
+          <li><strong>Whoop</strong> — strain, recovery, sleep</li>
+          <li><strong>Garmin, Fitbit, Polar</strong> — workouts and activity via their companion apps</li>
+          <li><strong>MyFitnessPal, Cronometer, Lose It</strong> — nutrition and calories</li>
+          <li><strong>Withings, Renpho</strong> — weight and body composition</li>
+        </ul>
+        <p>Enable Apple Health sync inside each device's companion app and the data flows into SelfHealth automatically.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>My dashboard looks empty — why isn't my data showing?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>This is almost always a permissions issue. Work through these steps:</p>
+        <ol>
+          <li>Check HealthKit permissions — make sure <em>all</em> categories are turned on (see above)</li>
+          <li>Force-close SelfHealth (swipe up from the app switcher) and reopen it</li>
+          <li>Open the <strong>Health</strong> app and confirm your data is present in the Browse tab</li>
+          <li>If using Oura or Whoop, open their app and force a sync first</li>
+        </ol>
+        <div class="shl-tip">The dashboard shows today's data. If you just installed the app mid-day, metrics like HRV and sleep score only appear after your next full night's sleep is recorded.
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>My heart rate / HRV / VO₂ max isn't showing up</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>These metrics require an Apple Watch or compatible wearable.</p>
+        <ul>
+          <li><strong>HRV</strong> — recorded automatically during sleep by Apple Watch (watchOS 7+). Won't appear if you didn't wear your watch overnight.</li>
+          <li><strong>VO₂ max</strong> — estimated during outdoor walks, runs, or hikes (10+ minutes with GPS).</li>
+          <li><strong>Resting heart rate</strong> — takes 3–5 days after first setup to appear.</li>
+        </ul>
+        <p>If the data is in the Apple Health app but not in SelfHealth, double-check HealthKit permissions for the Heart category.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section:  -->
+        <div id="troubleshooting" class="scroll-mt-28 support-section">
+          <div class="mb-6">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-green-accent block mb-1">Troubleshooting</span>
+            <h2 class="font-display font-extrabold text-2xl text-white tracking-tight"></h2>
+          </div>
+
+          <div class="flex flex-col gap-4">
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>The app is slow or freezing</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <ol>
+          <li>Force-close the app and reopen it</li>
+          <li>Restart your iPhone</li>
+          <li>Check the App Store for a SelfHealth update</li>
+          <li>If the problem persists, go to <strong>Settings → Reset App Data</strong> inside SelfHealth — this won't affect your Apple Health data</li>
+        </ol>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>I can't sign in or I'm stuck on the login screen</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <ol>
+          <li>Check your internet connection</li>
+          <li>Tap <strong>Forgot Password</strong> to reset via email</li>
+          <li>If you signed up with Apple, tap <strong>Sign in with Apple</strong> — use the same Apple ID you registered with</li>
+          <li>Still stuck? Email <a href="mailto:support@selfhealthliving.com">support@selfhealthliving.com</a> with your account email</li>
+        </ol>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>Notifications aren't coming through</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <ol>
+          <li>Go to <strong>iPhone Settings → Notifications → SelfHealth Living</strong> and confirm notifications are enabled</li>
+          <li>Check that Focus / Do Not Disturb isn't silencing the app</li>
+          <li>Inside SelfHealth, go to <strong>Settings</strong> and confirm reminders are turned on</li>
+        </ol>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>My bloodwork results aren't appearing after import</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>SelfHealth uses AI to parse lab PDFs but formats vary by lab. Here's what helps:</p>
+        <ul>
+          <li>Use the original PDF from your lab's patient portal — scanned photos are less accurate</li>
+          <li>Make sure the PDF is not password-protected</li>
+          <li>If a marker is missing, tap <strong>+ Add Marker</strong> on the Bloodwork screen to enter it manually</li>
+        </ul>
+        <div class="shl-tip">Email us your lab name if imports consistently fail — we'll add support for it.
+                </div>
+              </div>
+            </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section:  -->
+        <div id="premium" class="scroll-mt-28 support-section">
+          <div class="mb-6">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-green-accent block mb-1">Pro Subscription</span>
+            <h2 class="font-display font-extrabold text-2xl text-white tracking-tight"></h2>
+          </div>
+
+          <div class="flex flex-col gap-4">
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>What's included in SelfHealth Pro?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <ul>
+          <li>Unlimited AI health assistant queries</li>
+          <li>Full bloodwork history, trend analysis, and AI interpretation</li>
+          <li>Advanced health score breakdown with weekly trends</li>
+          <li>Detailed protocol and supplement tracking</li>
+          <li>Coach commands and personalised health insights</li>
+          <li>Cloud backup and sync across devices</li>
+        </ul>
+        <p>The free tier lets you view your dashboard and basic metrics with no time limit.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>How do I upgrade to Pro?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <ol>
+          <li>Tap any Pro-locked feature inside SelfHealth, <strong>or</strong> go to <strong>Settings → Upgrade to Pro</strong></li>
+          <li>Choose <strong>Monthly</strong> ($9.99/month) or <strong>Annual</strong> ($99.99/year — best value)</li>
+          <li>Confirm with Face ID / Touch ID</li>
+        </ol>
+        <p>Billing is handled by Apple. Cancel any time from <strong>iPhone Settings → [Your Name] → Subscriptions</strong>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>I subscribed but the app still shows as free</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>Go to <strong>Settings → Restore Purchases</strong> inside SelfHealth. This re-checks your subscription with Apple and unlocks Pro immediately.</p>
+        <div class="shl-warn">Restore Purchases only works if you're signed in with the Apple ID that made the original purchase.
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>How do I cancel my subscription?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <ol>
+          <li>Open <strong>iPhone Settings → [Your Name] → Subscriptions</strong></li>
+          <li>Tap <strong>SelfHealth Living</strong></li>
+          <li>Tap <strong>Cancel Subscription</strong></li>
+        </ol>
+        <p>You keep Pro access until the end of your current billing period.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section:  -->
+        <div id="labs" class="scroll-mt-28 support-section">
+          <div class="mb-6">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-green-accent block mb-1">Lab Results</span>
+            <h2 class="font-display font-extrabold text-2xl text-white tracking-tight"></h2>
+          </div>
+
+          <div class="flex flex-col gap-4">
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>What's the best way to import my lab results?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>The fastest method is importing a PDF directly from your lab's patient portal:</p>
+        <ol>
+          <li>Log into <strong>Quest MyQuest</strong>, <strong>LabCorp Patient</strong>, or your lab's portal on your phone</li>
+          <li>Download your results as a PDF</li>
+          <li>In SelfHealth, tap <strong>Bloodwork → Import → PDF</strong></li>
+          <li>Select the file from Files or your Downloads folder</li>
+          <li>Review the AI-parsed markers and confirm</li>
+        </ol>
+        <div class="shl-tip">PDFs from lab portals are far more accurate than photos. If you only have a paper copy, use good lighting and keep the camera parallel to the page.
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>Which labs are supported?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <ul>
+          <li>Quest Diagnostics</li>
+          <li>LabCorp</li>
+          <li>BioReference</li>
+          <li>Sonora Quest</li>
+          <li>Cleveland HeartLab</li>
+          <li>Any lab that exports a standard PDF with marker name, value, unit, and reference range</li>
+        </ul>
+        <p>Try importing even if your lab isn't listed. If it consistently fails, email us the lab name and we'll add support.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>Can I add results manually?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>Yes — on the <strong>Bloodwork</strong> screen tap <strong>+</strong> → <strong>Add Manually</strong>. Enter the marker name, value, unit, and test date. Useful for individual markers missed by the PDF parser or printed reports.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>How do I get AI interpretation of my results?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>Tap any marker to open its detail view, then tap <strong>Ask AI</strong>. You can also open the <strong>Health Assistant</strong> (the ✦ button on the dashboard) and ask "What do my latest cholesterol results mean?" for a full analysis.</p>
+        <div class="shl-warn">SelfHealth's AI is educational only. Always discuss your lab results with your doctor before making health decisions.
+                </div>
+              </div>
+            </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section:  -->
+        <div id="backup" class="scroll-mt-28 support-section">
+          <div class="mb-6">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-green-accent block mb-1">Privacy & Storage</span>
+            <h2 class="font-display font-extrabold text-2xl text-white tracking-tight"></h2>
+          </div>
+
+          <div class="flex flex-col gap-4">
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>What does On-Device storage mean?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>All your SelfHealth data — bloodwork, notes, supplements, health scores — stays only on your iPhone. Nothing is sent to our servers.</p>
+        <p><strong>Pros:</strong> maximum privacy, works offline, no account required.<br>
+        <strong>Cons:</strong> if you lose your phone without a backup, SelfHealth data is gone; no cross-device sync.</p>
+        <div class="shl-tip">On-Device data is included in your iCloud Backup. As long as iPhone backups are on, your data is safe when switching phones.
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>What does Cloud Backup mean?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>Your SelfHealth data syncs securely to our servers (encrypted in transit and at rest). Requires a SelfHealth account.</p>
+        <p><strong>Pros:</strong> safe even if your phone is lost; restore everything by signing in on a new device.<br>
+        <strong>Cons:</strong> requires internet to sync; data lives on our servers — see our <a href="https://www.selfhealthliving.com/privacy-policy/">Privacy Policy</a>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>Which option should I choose?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <ul>
+          <li>Privacy first + regular iPhone backups → choose <strong>On-Device</strong></li>
+          <li>Peace of mind + plan to switch phones → choose <strong>Cloud Backup</strong></li>
+        </ul>
+        <p>Change it any time in <strong>SelfHealth → Settings → Data Storage</strong>. Switching to Cloud uploads your existing on-device data; switching to On-Device stops syncing but doesn't delete server data.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>Is my health data encrypted?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>Yes. All data in transit uses TLS encryption. Data on our servers is encrypted at rest. We never sell your data or share it for advertising. Full details in our <a href="https://www.selfhealthliving.com/privacy-policy/">Privacy Policy</a>.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section:  -->
+        <div id="platform" class="scroll-mt-28 support-section">
+          <div class="mb-6">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-green-accent block mb-1">Platform & Availability</span>
+            <h2 class="font-display font-extrabold text-2xl text-white tracking-tight"></h2>
+          </div>
+
+          <div class="flex flex-col gap-4">
+
+            <div class="faq-item glass-card p-5 border border-black/5 hover:border-green-accent/20 transition-all duration-300 relative overflow-hidden group">
+              <button class="faq-trigger flex items-center justify-between w-full text-left font-display font-bold text-slate-900 pr-4 cursor-pointer text-sm sm:text-base focus:outline-none">
+                <span>Is Android supported?</span>
+                <span class="faq-icon text-slate-400 font-bold transition-transform duration-300 text-lg sm:text-xl group-hover:text-green-accent">+</span>
+              </button>
+              <div class="faq-content overflow-hidden transition-all duration-300 max-h-0 opacity-0">
+                <div class="faq-answer-inner mt-4 text-xs sm:text-sm text-slate-500 space-y-3 pt-3 border-t border-black/5">
+                  <p>SelfHealth Living is currently available on <strong>iPhone only</strong>. An Android version is actively in development and we're working hard to bring it to you.</p>
+        <p>Sign up for our newsletter to be the first to know when Android launches and stay up to date on all new features.</p>
+        <div class="shl-tip">Join the newsletter at <a href="https://selfhealthliving.com/app/">selfhealthliving.com/app</a> to get notified the moment Android is available.
+                </div>
+              </div>
+            </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Still Need Help Contact Section -->
+        <div class="glass-card p-8 border border-black/7 bg-slate-50/80 text-center flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+          <div class="w-12 h-12 rounded-full bg-green-accent/10 text-green-accent flex items-center justify-center mb-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-extrabold text-xl text-slate-900">Still need help?</h3>
+          <p class="text-xs sm:text-sm text-slate-500 max-w-md">
+            Can't find what you're looking for? Email our support team directly. We typically reply within one business day.
+          </p>
+          <a
+            href="mailto:support@selfhealthliving.com"
+            class="mt-2 px-6 py-2.5 bg-green-accent hover:bg-green-accent-hover text-white font-bold rounded-full text-xs shadow-md transition-all duration-300"
+          >
+            Email Support
+          </a>
+        </div>
+
+        <!-- Feature Request Card -->
+        <div id="feature-request" class="glass-card p-8 border border-green-accent/20 bg-green-accent/3 text-center flex flex-col items-center justify-center gap-4 relative overflow-hidden mt-6 scroll-mt-28">
+          <div class="w-12 h-12 rounded-full bg-green-accent/10 text-green-accent flex items-center justify-center mb-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-extrabold text-xl text-slate-900">Shape what comes next</h3>
+          <p class="text-xs sm:text-sm text-slate-500 max-w-md">
+            Have an idea for a feature? Tell us what you'd love to see. Every suggestion goes directly to the product team.
+          </p>
+          <form id="feature-request-form" class="w-full max-w-md flex flex-col gap-3 text-left">
+            <input
+              type="text"
+              id="feature-name"
+              placeholder="Your name (optional)"
+              class="w-full px-4 py-2.5 bg-white border border-black/10 focus:border-green-accent focus:outline-none rounded-xl text-sm text-slate-700 placeholder-slate-400 transition-colors duration-200"
+            />
+            <textarea
+              id="feature-idea"
+              required
+              rows="3"
+              placeholder="Describe your feature idea..."
+              class="w-full px-4 py-2.5 bg-white border border-black/10 focus:border-green-accent focus:outline-none rounded-xl text-sm text-slate-700 placeholder-slate-400 transition-colors duration-200 resize-none"
+            ></textarea>
+            <button
+              type="submit"
+              class="w-full px-6 py-2.5 bg-green-accent hover:bg-green-accent-hover text-white font-bold rounded-full text-xs shadow-md transition-all duration-300 cursor-pointer"
+            >
+              Send Idea →
+            </button>
+          </form>
+          <p id="feature-success-msg" class="hidden text-xs text-green-accent font-semibold flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Got it — your idea goes straight to the team. Thank you!
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CSS Custom Styling for inner HTML -->
+  <style is:global>
+    /* Styling for classes injected via inner HTML */
+    .faq-answer-inner p {
+      line-height: 1.7;
+      margin-bottom: 0.85rem;
+    }
+    .faq-answer-inner p:last-child {
+      margin-bottom: 0;
+    }
+    .faq-answer-inner strong {
+      color: #1C1F22 !important;
+      font-weight: 600;
+    }
+    .faq-answer-inner ul,
+    .faq-answer-inner ol {
+      padding-left: 1.25rem;
+      margin-bottom: 0.85rem;
+      space-y: 0.35rem;
+    }
+    .faq-answer-inner ul {
+      list-style-type: disc;
+    }
+    .faq-answer-inner ol {
+      list-style-type: decimal;
+    }
+    .faq-answer-inner li {
+      margin-bottom: 0.25rem;
+    }
+    .faq-answer-inner li:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Support custom callout boxes (Tip & Warning) */
+    .shl-tip,
+    .shl-warn {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 0.8rem;
+      sm:font-size: 0.875rem;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+    
+    .shl-tip {
+      background: rgba(0, 163, 108, 0.04) !important;
+      border: 1px solid rgba(0, 163, 108, 0.1) !important;
+      color: #00734c !important;
+    }
+    .shl-tip::before {
+      content: "💡";
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+    
+    .shl-warn {
+      background: rgba(214, 158, 46, 0.04) !important;
+      border: 1px solid rgba(214, 158, 46, 0.1) !important;
+      color: #8c6000 !important;
+    }
+    .shl-warn::before {
+      content: "⚠️";
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+  </style>
+
+  <!-- JavaScript Accordion & Scroll spy logic -->
+  <script>
+    function initSupport() {
+      // 1. Accordion Toggle
+      const items = document.querySelectorAll('.faq-item');
+      items.forEach(item => {
+        const trigger = item.querySelector('.faq-trigger');
+        const content = item.querySelector('.faq-content') as HTMLElement;
+        const icon = item.querySelector('.faq-icon');
+        
+        if (!trigger || !content || !icon) return;
+        
+        trigger.addEventListener('click', () => {
+          const isOpen = item.classList.contains('faq-open');
+          
+          // Close all other items (accordion behavior)
+          items.forEach(other => {
+            if (other !== item && other.classList.contains('faq-open')) {
+              other.classList.remove('faq-open');
+              const otherContent = other.querySelector('.faq-content') as HTMLElement;
+              const otherIcon = other.querySelector('.faq-icon');
+              if (otherContent) {
+                otherContent.style.maxHeight = '0px';
+                otherContent.style.opacity = '0';
+              }
+              if (otherIcon) {
+                otherIcon.textContent = '+';
+                otherIcon.classList.remove('rotate-45', 'text-green-accent');
+              }
+            }
+          });
+          
+          if (isOpen) {
+            item.classList.remove('faq-open');
+            content.style.maxHeight = '0px';
+            content.style.opacity = '0';
+            icon.textContent = '+';
+            icon.classList.remove('rotate-45', 'text-green-accent');
+          } else {
+            item.classList.add('faq-open');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.style.opacity = '1';
+            icon.textContent = '×';
+            icon.classList.add('rotate-45', 'text-green-accent');
+          }
+        });
+      });
+
+      // 2. Smooth Scroll for hero and sidebar quick links
+      const scrollLinks = document.querySelectorAll('.shl-hero-link, .sidebar-link');
+      scrollLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (!href || !href.startsWith('#')) return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Push state to address bar
+            history.pushState(null, '', href);
+          }
+        });
+      });
+
+      // 3. Scroll spy highlight for sidebar link active status
+      const sections = document.querySelectorAll('.support-section');
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+      function scrollSpy() {
+        let currentSectionId = '';
+        const scrollPosition = window.scrollY + 120; // offset
+
+        sections.forEach(section => {
+          const secEl = section as HTMLElement;
+          const top = secEl.offsetTop;
+          const height = secEl.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            currentSectionId = section.getAttribute('id') || '';
+          }
+        });
+
+        sidebarLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === '#' + currentSectionId) {
+            link.setAttribute('data-active', 'true');
+          } else {
+            link.removeAttribute('data-active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', scrollSpy);
+      scrollSpy(); // Initial call
+    }
+
+    // astro:page-load fires on initial load AND view transitions — use it exclusively
+    // (calling initSupport() directly too would double-bind every listener, making
+    // accordions open then instantly close on the same click)
+    document.addEventListener('astro:page-load', initSupport);
+
+    // Feature request form
+    function initFeatureRequest() {
+      const form = document.getElementById('feature-request-form') as HTMLFormElement | null;
+      const successMsg = document.getElementById('feature-success-msg');
+      if (!form || !successMsg) return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = (document.getElementById('feature-name') as HTMLInputElement)?.value.trim();
+        const idea = (document.getElementById('feature-idea') as HTMLTextAreaElement)?.value.trim();
+        if (!idea) return;
+
+        const subject = encodeURIComponent('Feature Request: SelfHealth App');
+        const body = encodeURIComponent(`${name ? 'From: ' + name + '\n\n' : ''}Feature idea:\n${idea}`);
+        window.location.href = `mailto:support@selfhealthliving.com?subject=${subject}&body=${body}`;
+
+        form.classList.add('hidden');
+        successMsg.classList.remove('hidden');
+      });
+    }
+
+    document.addEventListener('astro:page-load', initFeatureRequest);
+  </script>
+</Layout>

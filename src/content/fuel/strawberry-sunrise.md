@@ -1,7 +1,7 @@
 ---
 title: "Strawberry Sunrise: Blend for Peak Performance"
 date: "2024-06-16"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_strawberry_with_almond_butter_beets_apple_collagen_9159cde1-24cf-4123-9c3c-bb1e88b390ed.png"
 pillar: "fuel"
 slug: "strawberry-sunrise"
 recipe:
@@ -48,15 +48,6 @@ recipe:
     - "Step 1 : Add all the ingredients into a blender, I prefer a Vitamix as it is able to blend all ingredients very smoothly and no one really likes chunks in a smoothie.Step 2 : Top with sliced strawberries or a sliced apple if you want it to look pretty, but if your throwing it into a shaker bottle, i would just skip this step.Step 3 : Enjoy a nutrient dense and probiotic packed beverage you just created."
 ---
 
-
-<!--WPRM Recipe 250-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-		<ul><li>1 cup Strawberries (Frozen or Fresh)</li><li>2/3 cup Kale (If you decide to go fresh make it a cup)</li><li>4-5 Baby Carrots</li><li>1/3 Apple (Sliced)</li><li>2 tbsp Greek Yogurt</li><li>1 serving Collagen Powder</li><li>1 tsp Flaxseed Oil (Can use actual flaxseed, but make sure its fine )</li><li>1 cup Water</li></ul>	</div>
-	<div class="wprm-fallback-recipe-instructions">
-		<ol><li><p>Step 1 : Add all the ingredients into a blender, I prefer a Vitamix as it is able to blend all ingredients very smoothly and no one really likes chunks in a smoothie.</p><p>Step 2 : Top with sliced strawberries or a sliced apple if you want it to look pretty, but if your throwing it into a shaker bottle, i would just skip this step.</p><p>Step 3 : Enjoy a nutrient dense and probiotic packed beverage you just created.</p></li></ol>	</div>
-	<div class="wprm-fallback-recipe-notes">
-		<p><img class="alignnone size-medium wp-image-68" src="/images/uploads/rimas4real_a_strawberry_with_almond_butter_beets_apple_collagen_9159cde1-24cf-4123-9c3c-bb1e88b390ed-300x300.png" alt="" width="300" height="300" /></p>
 <p><span style="font-weight: 400"><strong>Strawberry Sunrise Smoothie</strong>: A Heart and Gut Healthy Explosion of Flavors</span></p>
 <p><span style="font-weight: 400">This smoothie is a heart and gut healthy explosion of flavors, providing a balanced mix of vitamins, minerals, antioxidants, fiber, and probiotics. It's excellent for supporting immune health, enhancing energy levels, promoting skin rejuvenation, and overall wellness. Each ingredient contributes unique benefits, making this smoothie a fantastic choice for a nutritious start to your day.</span></p>
 <p><strong>Ingredients and Health Benefits:</strong></p>
@@ -104,9 +95,3 @@ recipe:
 </ol>
 <p><strong>Conclusion</strong></p>
 <p><span style="font-weight: 400">Incorporating this Strawberry Sunrise Smoothie into your diet is a delicious way to boost your intake of essential nutrients. The combination of fruits, vegetables, protein, healthy fats, and probiotics provides a balanced meal that supports heart health, gut health, and overall wellness. Enjoy it as a refreshing breakfast or a nutrient-packed snack to keep you energized and nourished throughout the day.</span></p>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-		<div class="wprm-fallback-recipe-meta-course">Breakfast, Smoothies, Snack</div><div class="wprm-fallback-recipe-meta-keyword">Nutricius</div>	</div>
-</div>
-<!--End WPRM Recipe-->
-

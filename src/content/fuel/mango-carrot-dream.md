@@ -47,15 +47,7 @@ recipe:
   instructions:
 ---
 
-
-<!--WPRM Recipe 525-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-		<ul><li>1/2 cup mangoes ((prefer frozen))</li><li>5-6 Baby carrots</li><li>1/2 cup Strawberries</li><li>1 tbsp Fine Flaxseed Powder</li><li>1 tsbp Almond Butter</li><li>4-5 florets Frozen Cauliflower (Frozen will add texture and keep the strong flavors at bay.)</li><li>1 serving Collagen</li><li>1 cup Water ((Adjust based on thickness your desire))</li></ul>	</div>
-	<div class="wprm-fallback-recipe-instructions">
-			</div>
-	<div class="wprm-fallback-recipe-notes">
-		<p><b>Health Benefits:</b></p>
+<p><b>Health Benefits:</b></p>
 <ul>
 <li style="font-weight: 400"><b>Mangoes:</b><span style="font-weight: 400"> High vitamin A and C, anti inflammatory, amazing for your digestion and gut microbes.</span></li>
 <li style="font-weight: 400"><b>Carrots:</b><span style="font-weight: 400"> High in beta-carotene, supports your eye and skin health.</span></li>
@@ -87,9 +79,3 @@ recipe:
 <p><strong>1 Teaspoon of Fine Flaxseed Powder </strong></p>
 <p><span style="font-weight: 400">   – Benefits: Flaxseed oil is rich in omega-3 fatty acids, which support heart health, reduce inflammation, and promote brain function. It also provides fiber that aids in digestion.</span></p>
 <p><span style="font-weight: 400">   – Studies: Flaxseed oil consumption is associated with improved cardiovascular health and </span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10353157/"><span style="font-weight: 400">anti-inflammatory effects</span></a><span style="font-weight: 400">.</span></p>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-		<div class="wprm-fallback-recipe-meta-course">Smoothies</div><div class="wprm-fallback-recipe-meta-keyword">Quick and Healthy</div>	</div>
-</div>
-<!--End WPRM Recipe-->
-

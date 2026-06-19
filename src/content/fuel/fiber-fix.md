@@ -1,7 +1,7 @@
 ---
 title: "Fiber Fix: Why Your Body Needs This Secret Superfood for a Healthy Gut"
 date: "2024-09-28"
-featured_image: ""
+featured_image: "/images/uploads/fiber_rich_foods.png"
 pillar: "fuel"
 slug: "fiber-fix"
 ---

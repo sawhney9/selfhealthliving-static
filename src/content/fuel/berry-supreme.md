@@ -48,15 +48,6 @@ recipe:
     - "Step 1 : Add all the ingredients into a blender, I prefer a Vitamix as it is able to blend all ingredients very smoothly and no one really likes chunks in a smoothie.Step 2 : Top with berries if you want it to look pretty, but if your throwing it into a shaker bottle, i would just skip this step.Step 3 : Enjoy a nutrient dense, protein packed beverage you just created."
 ---
 
-
-<!--WPRM Recipe 176-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-		<ul><li>1 cup Mixed berries (I prefer frozen)</li><li>2/3 cup Spinach (Fresh or frozen)</li><li>4-5 Baby Carrots</li><li>1/3 Apple (Sliced)</li><li>1 tbsp Almond Butter (Splurge on the good stuff)</li><li>1 serving Protein Powder (Your preference but I prefer Whey)</li><li>1 tsp Curcumin (Prefer the extract)</li><li>1.5 cups Water (Adjust the water depending on how thick you want it to be)</li></ul>	</div>
-	<div class="wprm-fallback-recipe-instructions">
-		<ol><li><p>Step 1 : Add all the ingredients into a blender, I prefer a Vitamix as it is able to blend all ingredients very smoothly and no one really likes chunks in a smoothie.</p><p>Step 2 : Top with berries if you want it to look pretty, but if your throwing it into a shaker bottle, i would just skip this step.</p><p>Step 3 : Enjoy a nutrient dense, protein packed beverage you just created.</p></li></ol>	</div>
-	<div class="wprm-fallback-recipe-notes">
-		<p><img class="alignnone size-medium wp-image-26" src="/images/uploads/rimas4real_a_fancy_glass_with_a_smoothie_made_of_mixed_berries__6c808861-5bcf-4773-8735-f6451cf01f5f-300x300.png" alt="" width="300" height="300" /></p>
 <p><b>The Berry Supreme Smoothie: A Fortifying Blend for Peak Performance</b></p>
 <p><span style="font-weight: 400">The Berry Supreme Smoothie is a vibrantly colored and nutrient-rich beverage designed to provide a powerful start to your day. This meticulously crafted blend boasts a wealth of antioxidants, fiber, and protein, all working synergistically to support optimal health and sustained energy levels.</span></p>
 <ol>
@@ -103,9 +94,3 @@ recipe:
 </ol>
 <p><strong>Conclusion:</strong></p>
 <p><span style="font-weight: 400">Incorporating the Berry Supreme Smoothie into your daily diet is a delicious and convenient way to boost your intake of essential nutrients. The combination of fruits, vegetables, protein, and healthy fats provides a balanced meal that supports sustained energy, immune health, and overall wellness. Enjoy this smoothie as a nutritious breakfast or a refreshing snack to keep you energized throughout the day.</span></p>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-			</div>
-</div>
-<!--End WPRM Recipe-->
-

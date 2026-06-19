@@ -1,40 +1,42 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-// Fetch all markdown posts under src/content/fuel
 const fuelPostsMap = import.meta.glob('../../content/fuel/*.md', { eager: true });
 const fuelPosts = Object.values(fuelPostsMap);
 
-// Fetch the chilla recipe at the root of pages to list it in the fuel index
 const chillaPostMap = import.meta.glob('../besan-pancake-indian-style-chickpea-pancake.md', { eager: true });
 const chillaPost = Object.values(chillaPostMap);
 
-// Combine posts
 const allPosts = [...fuelPosts, ...chillaPost];
 
-// Sort posts by date descending
 const sortedPosts = allPosts.sort((a, b) => {
   return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
 });
 
-// Categories mapper for clientside filtering
+const smoothieSlugs = new Set([
+  'gut-and-glow-smoothie',
+  'purple-protein-smoothie',
+  'mango-carrot-dream',
+  'berry-bean-protein',
+  'strawberry-sunrise',
+  'berry-supreme',
+]);
+
 const getCategoriesForPost = (post) => {
   const slug = post.frontmatter.slug;
   const categories = [];
-  
-  if (post.frontmatter.recipe) {
-    categories.push('recipes');
-  }
-  
+
+  if (post.frontmatter.recipe) categories.push('recipes');
+
   const slugLower = slug.toLowerCase();
-  if (slugLower.includes('smoothie')) {
+  if (slugLower.includes('smoothie') || smoothieSlugs.has(slugLower)) {
     categories.push('smoothies');
     categories.push('breakfast');
-  } else if (slugLower.includes('pancake') || slugLower.includes('toast') || slugLower.includes('eggs')) {
+  } else if (slugLower.includes('pancake') || slugLower.includes('toast') || slugLower.includes('eggs') || slugLower.includes('parfait')) {
     categories.push('breakfast');
   } else if (slugLower.includes('wrap') || slugLower.includes('tostadas') || slugLower.includes('salad')) {
     categories.push('lunch');
-  } else if (slugLower.includes('cod') || slugLower.includes('curry') || slugLower.includes('bowl')) {
+  } else if (slugLower.includes('cod') || slugLower.includes('curry') || slugLower.includes('bowl') || slugLower.includes('chili') || slugLower.includes('soup')) {
     categories.push('dinner');
   } else {
     categories.push('nutrition');
@@ -44,88 +46,87 @@ const getCategoriesForPost = (post) => {
 ---
 
 <Layout title="Fuel: Nutrition & Recipes | Self Health Living" currentPillar="fuel">
-  <div class="py-12 px-6 md:px-12 max-w-6xl mx-auto w-full">
-    <!-- Header Section -->
-    <div class="border-b border-white/5 pb-8 mb-12 text-center md:text-left relative">
-      <div class="absolute -top-12 -left-12 w-24 h-24 bg-green-accent/5 rounded-full blur-2xl"></div>
-      <span class="text-xs font-bold uppercase tracking-widest text-green-accent">Content Pillar</span>
-      <h1 class="font-display font-extrabold text-4xl sm:text-5xl text-white mt-2 mb-4">
-        Fuel Your Body & Vitality.
+  <div class="py-14 px-6 md:px-12 max-w-6xl mx-auto w-full relative">
+    <!-- Ambient glow -->
+    <div class="absolute top-10 left-10 w-48 h-48 bg-green-accent/5 rounded-full blur-[80px] pointer-events-none animate-pulse-glow"></div>
+
+    <!-- Header -->
+    <div class="pb-8 mb-10 text-center md:text-left relative border-b border-black/6" data-reveal="fade">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-4">
+        Content Pillar
+      </span>
+      <h1 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tighter mt-2 mb-4">
+        Fuel Your Body &amp; <span class="font-serif italic font-normal text-green-accent">Vitality</span>.
       </h1>
-      <p class="text-gray-400 text-sm sm:text-base max-w-xl leading-relaxed">
-        High-protein meals, recovery smoothies, gut-health guides, and dietitian-approved culinary protocols.
+      <p class="text-slate-500 text-base leading-relaxed max-w-2xl">
+        High-protein meals, recovery smoothies, gut-health guides, and science-backed culinary protocols.
       </p>
     </div>
 
     <!-- Category Filters -->
-    <div class="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-white/5" id="fuel-filters">
-      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-slate-950 border border-green-accent cursor-pointer transition-all duration-300">
+    <div class="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-black/6" id="fuel-filters" data-reveal="fade" data-reveal-delay="100">
+      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-white border border-green-accent cursor-pointer transition-all duration-300">
         All Articles
       </button>
-      <button data-filter="recipes" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+      <button data-filter="recipes" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300">
         Recipes
       </button>
-      <button data-filter="smoothies" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+      <button data-filter="smoothies" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300">
         Smoothies
       </button>
-      <button data-filter="breakfast" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+      <button data-filter="breakfast" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300">
         Breakfast
       </button>
-      <button data-filter="lunch" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+      <button data-filter="lunch" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300">
         Lunch
       </button>
-      <button data-filter="dinner" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+      <button data-filter="dinner" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300">
         Dinner
       </button>
-      <button data-filter="nutrition" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300">
+      <button data-filter="nutrition" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300">
         Nutrition Science
       </button>
     </div>
 
     <!-- Articles Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-grid" data-reveal="fade" data-reveal-delay="200">
       {sortedPosts.map((post) => {
         const { title, date, featured_image, slug } = post.frontmatter;
         const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
+          year: 'numeric', month: 'long', day: 'numeric'
         }) : '';
-        
+
         const isChilla = slug === 'besan-pancake-indian-style-chickpea-pancake';
         const href = isChilla ? `/${slug}/` : `/fuel/${slug}/`;
         const cats = getCategoriesForPost(post);
-        
+
         return (
-          <a 
+          <a
             href={href}
             data-categories={cats.join(',')}
-            class="article-card group flex flex-col glass-card overflow-hidden hover:border-green-accent/30 transition-all duration-300 hover:-translate-y-1 transform opacity-100 scale-100"
+            class="article-card group flex flex-col glass-card overflow-hidden transition-all duration-300 hover:-translate-y-1 transform opacity-100 scale-100"
           >
-            {/* Image */}
-            <div class="w-full aspect-[16/10] overflow-hidden bg-[#1e2226]/50 border-b border-white/5 relative">
+            <div class="w-full h-44 overflow-hidden bg-slate-100 border-b border-black/5 relative">
               {featured_image ? (
-                <img 
-                  src={featured_image} 
-                  alt={title} 
+                <img
+                  src={featured_image}
+                  alt={title}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               ) : (
-                <div class="w-full h-full flex items-center justify-center text-gray-600 bg-[#1e2226]">
+                <div class="w-full h-full flex items-center justify-center text-slate-300 bg-slate-100">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </div>
               )}
             </div>
-            
-            {/* Content */}
-            <div class="p-6 flex-grow flex flex-col justify-between">
+            <div class="p-5 flex-grow flex flex-col justify-between">
               <div>
-                <time datetime={date} class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-2">
+                <time datetime={date} class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">
                   {formattedDate}
                 </time>
-                <h2 class="font-display font-bold text-base sm:text-lg text-white leading-snug group-hover:text-green-accent transition-colors duration-200 mb-3">
+                <h2 class="font-display font-bold text-base sm:text-lg text-slate-900 leading-snug group-hover:text-green-accent transition-colors duration-200 mb-3">
                   {title}
                 </h2>
               </div>
@@ -147,30 +148,28 @@ const getCategoriesForPost = (post) => {
   function initFilters() {
     const filterContainer = document.getElementById('fuel-filters');
     if (!filterContainer) return;
-    
+
     const buttons = filterContainer.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.article-card');
-    
+
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         const filter = btn.getAttribute('data-filter');
-        
-        // Update button styles
+
         buttons.forEach(b => {
-          b.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 text-gray-400 border border-white/5 hover:text-white cursor-pointer transition-all duration-300';
+          b.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300';
         });
-        
+
         if (filter === 'all') {
-          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-slate-950 border border-green-accent cursor-pointer transition-all duration-300';
+          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-white border border-green-accent cursor-pointer transition-all duration-300';
         } else {
-          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent/20 text-green-accent border border-green-accent/30 cursor-pointer transition-all duration-300';
+          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent/10 text-green-accent border border-green-accent/30 cursor-pointer transition-all duration-300';
         }
-        
-        // Filter cards with animations
+
         cards.forEach(card => {
           const cardCats = card.getAttribute('data-categories').split(',');
           const matches = filter === 'all' || cardCats.includes(filter);
-          
+
           if (matches) {
             card.classList.remove('hidden');
             setTimeout(() => {
@@ -180,17 +179,13 @@ const getCategoriesForPost = (post) => {
           } else {
             card.classList.add('opacity-0', 'scale-95');
             card.classList.remove('opacity-100', 'scale-100');
-            setTimeout(() => {
-              card.classList.add('hidden');
-            }, 300);
+            setTimeout(() => { card.classList.add('hidden'); }, 300);
           }
         });
       });
     });
   }
 
-  // Run on initial load
   initFilters();
-  // Run on view transition page loads
   document.addEventListener('astro:page-load', initFilters);
 </script>

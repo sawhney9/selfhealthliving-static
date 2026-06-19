@@ -1,19 +1,22 @@
 ---
+// src/components/Footer.astro
 ---
 
-<footer class="w-full bg-[#070809] py-12 px-6 md:px-12 border-t border-white/5 text-gray-500 text-sm">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:justify-between items-start gap-8">
-    <div class="max-w-xs">
-      <div class="flex items-center gap-2.5 mb-4">
-        <div class="w-7 h-7 rounded-md bg-[#0e1114] border border-white/10 flex items-center justify-center overflow-hidden">
-          <img src="/images/brand/logo-loop.png" alt="SelfHealth Living Logo" class="w-full h-full object-cover" />
+<footer class="w-full bg-[#070809] py-16 px-6 md:px-12 border-t border-white/5 text-gray-500 text-sm dark-block">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+    
+    <!-- Left Column: Brand & Logo -->
+    <div class="md:col-span-4 flex flex-col gap-4">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-[#0e1114] border border-white/10 flex items-center justify-center overflow-hidden">
+          <img src="/images/brand/logo-actual.png" alt="SelfHealth Living Logo" class="w-full h-full object-cover" />
         </div>
         <span class="font-display font-bold text-white text-md tracking-tight">
           SelfHealth<span class="text-green-accent">Living</span>
         </span>
       </div>
-      <p class="text-xs text-gray-600 leading-relaxed mb-5">
-        Train smarter. Age stronger. Know what's working. We decode health metrics to help you live a longer, vital life.
+      <p class="text-xs text-gray-400 leading-relaxed max-w-sm">
+        Train smarter. Age stronger. Know what's working. We decode biomarker signals to help you extend your physical and mental healthspan.
       </p>
       
       <!-- Social Media Handles -->
@@ -40,10 +43,10 @@
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
           </svg>
         </a>
-        <a 
-          href="https://www.pinterest.com/selfhealthliving" 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        <a
+          href="https://www.pinterest.com/selfhealthliving"
+          target="_blank"
+          rel="noopener noreferrer"
           class="text-gray-500 hover:text-green-accent transition-colors duration-300"
           aria-label="Pinterest"
         >
@@ -51,26 +54,82 @@
             <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.72-.359-1.781c0-1.663.967-2.902 2.167-2.902 1.021 0 1.517.769 1.517 1.689 0 1.029-.656 2.562-.991 3.981-.283 1.195.597 2.169 1.777 2.169 2.137 0 3.774-2.257 3.774-5.513 0-2.881-2.07-4.896-5.029-4.896-3.429 0-5.445 2.568-5.445 5.228 0 1.039.399 2.152.9 2.762.1.12.11.223.08.349-.09.369-.289 1.183-.329 1.349-.05.21-.18.26-.41.15-1.529-.709-2.484-2.932-2.484-4.719 0-3.84 2.793-7.369 8.044-7.369 4.223 0 7.508 3.01 7.508 7.032 0 4.195-2.647 7.571-6.321 7.571-1.233 0-2.397-.64-2.793-1.398l-.759 2.892c-.272 1.039-1.014 2.339-1.511 3.149 1.12.349 2.3.538 3.52.538 6.62 0 11.988-5.367 11.988-11.987C24.007 5.367 18.636 0 12.017 0z"/>
           </svg>
         </a>
+        <a
+          href="https://www.youtube.com/@SelfHealth-living"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-500 hover:text-green-accent transition-colors duration-300"
+          aria-label="YouTube"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+        <a
+          href="https://www.tiktok.com/@selfhealthliving"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-500 hover:text-green-accent transition-colors duration-300"
+          aria-label="TikTok"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/>
+          </svg>
+        </a>
       </div>
     </div>
 
-    <div class="flex gap-16">
+    <!-- Center Column: Navigation Columns -->
+    <div class="md:col-span-4 flex gap-16 md:justify-around w-full">
       <div class="flex flex-col gap-3">
         <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Pillars</span>
         <a href="/train" class="text-xs hover:text-white transition-colors duration-200">Train</a>
         <a href="/fuel" class="text-xs hover:text-white transition-colors duration-200">Fuel</a>
       </div>
+      
       <div class="flex flex-col gap-3">
         <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Company</span>
         <a href="/" class="text-xs hover:text-white transition-colors duration-200">App</a>
         <a href="/about" class="text-xs hover:text-white transition-colors duration-200">About</a>
+        <a href="/support" class="text-xs hover:text-white transition-colors duration-200">Support</a>
+        <a href="/privacy-policy/" class="text-xs hover:text-white transition-colors duration-200">Privacy Policy</a>
         <a href="#waitlist" class="text-xs hover:text-white transition-colors duration-200">Waitlist</a>
       </div>
     </div>
+
+    <!-- Right Column: Footer Waitlist / Newsletter CTA -->
+    <div class="md:col-span-4 flex flex-col gap-4 w-full">
+      <span class="text-xs font-semibold text-gray-300 uppercase tracking-wider">Stay Informed</span>
+      <p class="text-xs text-gray-400 leading-relaxed">
+        Receive our monthly longevity research summaries and healthy recipe digests directly to your inbox.
+      </p>
+      
+      <form id="footer-newsletter-form" class="flex gap-2 w-full mt-1">
+        <input
+          type="email"
+          required
+          placeholder="Email address"
+          class="flex-grow px-4 py-2.5 rounded-full bg-[#101214] border border-white/10 focus:border-green-accent focus:outline-none text-white text-xs placeholder-gray-500 transition-colors duration-200"
+        />
+        <button
+          type="submit"
+          class="px-4 py-2.5 bg-green-accent hover:bg-green-accent-hover text-[#070809] font-bold rounded-full text-xs shadow-md transition-all duration-300 cursor-pointer whitespace-nowrap"
+        >
+          Subscribe
+        </button>
+      </form>
+      <p id="footer-success-msg" class="text-[11px] text-green-accent flex items-center gap-1 hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        You're in! Check your inbox to confirm.
+      </p>
+    </div>
+
   </div>
 
   <!-- Divider -->
-  <div class="max-w-6xl mx-auto my-8 border-t border-white/5"></div>
+  <div class="max-w-6xl mx-auto my-10 border-t border-white/5"></div>
 
   <!-- Medical Disclaimer -->
   <div class="max-w-6xl mx-auto">
@@ -86,7 +145,31 @@
     <p>&copy; {new Date().getFullYear()} Self Health Living. All rights reserved.</p>
     <div class="flex gap-4">
       <a href="/privacy-policy/" class="hover:underline">Privacy Policy</a>
-      <a href="#" class="hover:underline">Terms of Service</a>
+      <a href="/support" class="hover:underline">Support</a>
     </div>
   </div>
 </footer>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById('footer-newsletter-form') as HTMLFormElement | null;
+    const successMsg = document.getElementById('footer-success-msg');
+    if (!form || !successMsg) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input[type="email"]') as HTMLInputElement;
+      const email = input?.value?.trim();
+      if (!email) return;
+
+      window.open(
+        `https://embeds.beehiiv.com/7c7a5bfe-4254-4d81-8cc8-c3b90420e1bf?email=${encodeURIComponent(email)}`,
+        '_blank'
+      );
+
+      successMsg.classList.remove('hidden');
+      input.value = '';
+    });
+  });
+</script>
+

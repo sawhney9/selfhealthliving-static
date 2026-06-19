@@ -1,7 +1,7 @@
 ---
 title: "Unlocking Your Best Years: Why Genetics Aren't the Whole Story for Longevity"
 date: "2026-04-16"
-featured_image: ""
+featured_image: "/images/uploads/longevity-active-aging.jpg"
 pillar: "train"
 slug: "genetics-longevity"
 ---

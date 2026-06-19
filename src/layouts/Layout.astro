@@ -19,13 +19,31 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- SEO Optimization -->
+    <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="color-scheme" content="dark" />
-    
+    <meta name="color-scheme" content="light" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://selfhealthliving.com${Astro.url.pathname}`} />
+    <meta property="og:image" content="https://selfhealthliving.com/images/brand/og-image.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://selfhealthliving.com/images/brand/og-image.jpg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Cloudflare Web Analytics — replace token after deploying to Cloudflare Pages -->
+    <!-- Dashboard → Web Analytics → your site → Get your token -->
+    <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PASTE_YOUR_TOKEN_HERE"}'></script> -->
+
     <ClientRouter />
   </head>
   <body class="dark-room min-h-screen flex flex-col selection:bg-green-accent selection:text-[#14171a]">
@@ -34,5 +52,76 @@ const {
       <slot />
     </main>
     <Footer />
+
+    <script>
+      function setupScrollReveals() {
+        const reveals = document.querySelectorAll('[data-reveal]');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const target = entry.target as HTMLElement;
+              const delay = target.getAttribute('data-reveal-delay');
+              if (delay) {
+                target.style.transitionDelay = `${delay}ms`;
+              }
+              target.classList.add('revealed');
+              observer.unobserve(target);
+            }
+          });
+        }, {
+          threshold: 0.05,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        reveals.forEach((el) => observer.observe(el));
+      }
+
+      function setupCounters() {
+        const counters = document.querySelectorAll('.counter-animate');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const target = entry.target as HTMLElement;
+              const targetVal = parseInt(target.getAttribute('data-target') || '0', 10);
+              const duration = parseInt(target.getAttribute('data-duration') || '1500', 10);
+              let start = 0;
+              const startTime = performance.now();
+
+              const animate = (currentTime: number) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out quad
+                const ease = progress * (2 - progress);
+                const currentVal = Math.floor(ease * targetVal);
+                target.textContent = currentVal.toString();
+
+                if (progress < 1) {
+                  requestAnimationFrame(animate);
+                } else {
+                  target.textContent = targetVal.toString();
+                }
+              };
+
+              requestAnimationFrame(animate);
+              observer.unobserve(target);
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+
+        counters.forEach((el) => observer.observe(el));
+      }
+
+      // Run on initial load
+      setupScrollReveals();
+      setupCounters();
+
+      // Run on page transitions
+      document.addEventListener('astro:page-load', () => {
+        setupScrollReveals();
+        setupCounters();
+      });
+    </script>
   </body>
 </html>

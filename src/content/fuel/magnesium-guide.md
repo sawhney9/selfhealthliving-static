@@ -1,7 +1,7 @@
 ---
 title: "Unlock the Power of Magnesium: Why This Mighty Mineral Is Key to Better Health"
 date: "2024-09-28"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_image_of_spinach_kale_and_other_green_leafy_vegata_346a6189-175f-435f-a735-52184067a230.png"
 pillar: "fuel"
 slug: "magnesium-guide"
 ---

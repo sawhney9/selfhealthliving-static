@@ -51,15 +51,7 @@ recipe:
   instructions:
 ---
 
-
-<!--WPRM Recipe 488-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-		<ul><li>1/4 Cup sauerkraut</li><li>4-5 Baby carrots</li><li>1/3 Medium Apple</li><li>1 Cup Strawberries</li><li>2 tsp Fine Flaxseed Powder</li><li>2 tbsp Almond Butter</li><li>1 serving Protein Powder</li><li>4-5 Florets Frozen Cauliflower </li><li>1 1/2 cup Water (Add less or more based on how thick you want your smoothie to be)</li></ul>	</div>
-	<div class="wprm-fallback-recipe-instructions">
-			</div>
-	<div class="wprm-fallback-recipe-notes">
-		<p><strong><img class="alignnone size-medium wp-image-492" src="/images/uploads/rimas4real_a_smoothie_in_a_retro_glass_with_Sauerkraut_carrots__7ada5709-ffcf-491a-a87e-49d4b0d30357-300x300.png" alt="" width="300" height="300" /></strong></p>
+<p><strong><img class="alignnone size-medium wp-image-492" src="/images/uploads/rimas4real_a_smoothie_in_a_retro_glass_with_Sauerkraut_carrots__7ada5709-ffcf-491a-a87e-49d4b0d30357-300x300.png" alt="" width="300" height="300" /></strong></p>
 <p><b>Health Benefits:</b></p>
 <ul>
 <li><b>Strawberries:</b><span style="font-weight: 400"> Packed with vitamin C and antioxidants, good for immunity.</span></li>
@@ -101,9 +93,3 @@ recipe:
 <p><strong>1 Teaspoon of Fine Flaxseed Powder </strong></p>
 <p><span style="font-weight: 400">   – Benefits: Flaxseed oil is rich in omega-3 fatty acids, which support heart health, reduce inflammation, and promote brain function. It also provides fiber that aids in digestion.</span></p>
 <p><span style="font-weight: 400">   – Studies: Flaxseed oil consumption is associated with improved cardiovascular health and </span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10353157/"><span style="font-weight: 400">anti-inflammatory effects</span></a><span style="font-weight: 400">.</span></p>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-		<div class="wprm-fallback-recipe-meta-course">Smoothies</div><div class="wprm-fallback-recipe-meta-keyword">Healthy</div>	</div>
-</div>
-<!--End WPRM Recipe-->
-

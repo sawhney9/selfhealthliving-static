@@ -91,15 +91,7 @@ recipe:
     - "<strong>Veggie Swap-Out: </strong>No bok choy? Try spinach, asparagus, or green beans! Any quick-cooking green vegetable will work beautifully with the soy glaze."
 ---
 
-
-<!--WPRM Recipe 644-->
-
-	<div class="wprm-fallback-recipe-ingredients">
-		<h4><strong>For the Miso-Glazed Cod:</strong></h4><ul><li>2 6 Oz Cod Filets (or other flaky white fish like halibut, black cod)</li><li>2 tbsp white miso paste </li><li>1 tbsp mirin</li><li>1 tsp low-sodium soy sauce or tamari</li><li>1 tsp fresh ginger, grated</li><li>1 tsp maple syrup or honey  ((adjust sweetness to taste))</li><li>1/2 tsp sesame oil</li></ul><h4><strong>For the Bok Choy &amp; Shiitake Sauté:</strong></h4><ul><li>1 tbsp avocado oil or extra virgin olive oil</li><li>6-8 oz baby bok choy, washed and halved or quartered lengthwise</li><li>4-5 oz shiitake mushrooms, stemmed and sliced</li><li>1 clove garlic, minced</li><li>1 tsp fresh ginger, grated</li><li>1 tsp low-sodium soy sauce or tamari</li><li>1 tsp mirin (optional, for extra glaze)</li></ul><h4>Garnish <strong>(Optional):</strong></h4><ul><li>Sesame seeds (white or black)</li><li>1-2 Chopped green onions</li></ul>	</div>
-	<div class="wprm-fallback-recipe-instructions">
-		<ol><li><p><strong>Flavor Miso Magic (Marinate): </strong>In a small bowl, whisk together the white miso paste, mirin, soy sauce, grated ginger, maple syrup (or honey), and sesame oil until smooth.</p></li><li><p><strong>Cod Marinate Time: </strong>Pat the cod fillets dry with a paper towel. Place them in a shallow dish or a zip-top bag. Pour the miso glaze over the cod, ensuring both sides are coated. Marinate in the refrigerator for at least 30 minutes, or up to 1 hour (longer can make it too salty).</p></li><li><p><strong>Preheat &amp; Prep: </strong>Preheat your oven to 400°F (200°C). Line a baking sheet with parchment paper for easy cleanup.</p></li><li><p><strong>Cod Bake Off: </strong>Remove the cod from the marinade (discard excess marinade). Place the cod fillets skin-side down (if skin-on) on the prepared baking sheet.</p></li><li><p><strong>Bake Beautifully: </strong>Bake for 10-12 minutes, or until the fish is flaky and cooked through. For an extra caramelized glaze, you can briefly broil for the last 1-2 minutes, watching carefully to prevent burning.</p></li><li><p><strong>Veggie Time: </strong>While the cod bakes, heat the avocado oil in a large skillet or wok over medium-high heat. Add the sliced shiitake mushrooms and sauté for 3-4 minutes until softened and slightly browned.</p></li><li><p><strong>Bok Choy Brilliance: </strong>Add the bok choy (cut-side down first for a nice sear) to the skillet. Cook for 2-3 minutes, then add the minced garlic and grated ginger. Sauté for another minute until fragrant.</p></li><li><p><strong>Soy Glaze Finish: </strong>Pour in the soy sauce (and mirin/red pepper flakes if using) over the vegetables. Toss quickly to coat and cook for just another minute until the bok choy is tender-crisp.</p></li><li><p><strong>Assemble Your Plate: </strong>Carefully transfer the Miso-Glazed Cod to serving plates. Arrange the sautéed bok choy and shiitake mushrooms alongside.</p></li><li><p><strong>Garnish &amp; Glow: </strong>Sprinkle with sesame seeds and chopped green onions or cilantro for a beautiful finish. Serve immediately and prepare for pure culinary bliss!</p></li></ol><h4><strong>Chef&#039;s Wisdom &amp; Flavor Finessing Tips:</strong></h4><ol><li><p><strong>Make it Crispy: </strong>For an extra textural contrast, pan-sear your cod for 2-3 minutes per side in a hot, non-stick pan before baking. This gives it a lovely crust!</p></li><li><p><strong>Veggie Swap-Out: </strong>No bok choy? Try spinach, asparagus, or green beans! Any quick-cooking green vegetable will work beautifully with the soy glaze.</p></li></ol>	</div>
-	<div class="wprm-fallback-recipe-notes">
-		<p><span style="font-weight: 400">This Miso-Glazed Cod with Bok Choy and Shiitake isn't just a meal; it's an experience that nourishes your body and delights your senses. It's healthy, it's flavorful, and it brings a little piece of Asian-inspired culinary magic right to your table. Enjoy every delicious, glowing bite!</span></p>
+<p><span style="font-weight: 400">This Miso-Glazed Cod with Bok Choy and Shiitake isn't just a meal; it's an experience that nourishes your body and delights your senses. It's healthy, it's flavorful, and it brings a little piece of Asian-inspired culinary magic right to your table. Enjoy every delicious, glowing bite!</span></p>
 <p> </p>
 <h3><b>Why Miso Glazed Cod with Bok Choy and Shiitake Mushrooms is So Healthy</b></h3>
 <h4><b>Lean, high-quality protein from cod</b></h4>
@@ -134,11 +126,5 @@ recipe:
 <p></span></li>
 <li style="font-weight: 400"><span style="font-weight: 400">They also provide B vitamins and minerals like copper and selenium.</span></li>
 </ul>
-	</div>
-	<div class="wprm-fallback-recipe-meta">
-		<div class="wprm-fallback-recipe-meta-course">Dinner</div><div class="wprm-fallback-recipe-meta-cuisine">Japanese</div><div class="wprm-fallback-recipe-meta-keyword">Heart Healthy</div>	</div>
-</div>
-<!--End WPRM Recipe-->
-
 <p ></p>
 

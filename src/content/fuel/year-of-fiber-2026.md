@@ -1,7 +1,7 @@
 ---
 title: "Beyond the Hype: Why 2026 is the Year of Fiber"
 date: "2026-01-19"
-featured_image: ""
+featured_image: "/images/uploads/rimas4real_a_image_of_a_table_with_lots_of_whole_grains_and_fru_1e37bd24-d55b-4ea1-b9ae-4c48717d3df5.png"
 pillar: "fuel"
 slug: "year-of-fiber-2026"
 ---

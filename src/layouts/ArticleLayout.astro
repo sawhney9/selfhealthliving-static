@@ -4,7 +4,6 @@ import Layout from './Layout.astro';
 const { frontmatter } = Astro.props;
 const { title, date, featured_image, pillar, slug, recipe } = frontmatter;
 
-// Formatted Date
 const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -18,15 +17,15 @@ const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
     <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-green-accent mb-4">
       <a href={`/${pillar}`} class="hover:underline">{pillar}</a>
       <span>&bull;</span>
-      <span class="text-gray-400">article</span>
+      <span class="text-slate-400">article</span>
     </div>
 
     <!-- Article Header -->
-    <h1 class="font-display font-extrabold text-3xl md:text-5xl text-white leading-tight mb-4">
+    <h1 class="font-display font-extrabold text-3xl md:text-5xl text-slate-900 leading-tight mb-4">
       {title}
     </h1>
 
-    <div class="flex items-center gap-3 text-sm text-gray-400 mb-8">
+    <div class="flex items-center gap-3 text-sm text-slate-500 mb-8">
       <span>By Self Health Insights</span>
       <span>&bull;</span>
       <time datetime={date}>{formattedDate}</time>
@@ -34,10 +33,10 @@ const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
 
     <!-- Featured Image -->
     {featured_image && (
-      <div class="w-full mb-10 overflow-hidden rounded-2xl shadow-2xl border border-white/5">
-        <img 
-          src={featured_image} 
-          alt={title} 
+      <div class="w-full mb-10 overflow-hidden rounded-2xl shadow-md border border-black/8">
+        <img
+          src={featured_image}
+          alt={title}
           class="w-full h-auto object-cover max-h-[450px]"
         />
       </div>
@@ -50,38 +49,38 @@ const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
 
     <!-- Recipe Block (if exists) -->
     {recipe && (
-      <div class="mt-16 glass-card p-6 md:p-10 shadow-2xl relative overflow-hidden border border-white/5">
+      <div class="mt-16 bg-white border border-black/8 rounded-2xl p-6 md:p-10 shadow-sm relative overflow-hidden">
         <div class="absolute -top-16 -right-16 w-32 h-32 rounded-full bg-green-accent/5 blur-3xl"></div>
-        
-        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-white/5 pb-6 mb-8 gap-4">
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-black/8 pb-6 mb-8 gap-4">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-green-accent block mb-1">Recipe Collection</span>
-            <h2 class="font-display font-bold text-2xl md:text-3xl text-white m-0">{recipe.title}</h2>
+            <h2 class="font-display font-bold text-2xl md:text-3xl text-slate-900 m-0">{recipe.title}</h2>
           </div>
-          
-          <div class="flex flex-wrap items-center gap-6 text-sm text-gray-300">
+
+          <div class="flex flex-wrap items-center gap-6 text-sm text-slate-500">
             {recipe.prep_time && recipe.prep_time !== 0 && recipe.prep_time !== '0' && (
               <div class="flex flex-col">
-                <span class="text-xs uppercase text-gray-500 font-semibold">Prep</span>
-                <span class="font-semibold text-white">{recipe.prep_time}m</span>
+                <span class="text-xs uppercase text-slate-400 font-semibold">Prep</span>
+                <span class="font-semibold text-slate-900">{recipe.prep_time}m</span>
               </div>
             )}
             {recipe.cook_time && recipe.cook_time !== 0 && recipe.cook_time !== '0' && (
               <div class="flex flex-col">
-                <span class="text-xs uppercase text-gray-500 font-semibold">Cook</span>
-                <span class="font-semibold text-white">{recipe.cook_time}m</span>
+                <span class="text-xs uppercase text-slate-400 font-semibold">Cook</span>
+                <span class="font-semibold text-slate-900">{recipe.cook_time}m</span>
               </div>
             )}
             {recipe.total_time && recipe.total_time !== 0 && recipe.total_time !== '0' && (
               <div class="flex flex-col">
-                <span class="text-xs uppercase text-gray-500 font-semibold">Total</span>
-                <span class="font-semibold text-white">{recipe.total_time}m</span>
+                <span class="text-xs uppercase text-slate-400 font-semibold">Total</span>
+                <span class="font-semibold text-slate-900">{recipe.total_time}m</span>
               </div>
             )}
             {recipe.servings && (
               <div class="flex flex-col">
-                <span class="text-xs uppercase text-gray-500 font-semibold">Yield</span>
-                <span class="font-semibold text-white">{recipe.servings} {recipe.servings_unit || 'servings'}</span>
+                <span class="text-xs uppercase text-slate-400 font-semibold">Yield</span>
+                <span class="font-semibold text-slate-900">{recipe.servings} {recipe.servings_unit || 'servings'}</span>
               </div>
             )}
           </div>
@@ -91,19 +90,19 @@ const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
         <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
           <!-- Ingredients -->
           <div class="md:col-span-2">
-            <h3 class="font-display font-bold text-md text-white border-b border-white/5 pb-2 mb-4 uppercase tracking-wider">Ingredients</h3>
+            <h3 class="font-display font-bold text-md text-slate-900 border-b border-black/8 pb-2 mb-4 uppercase tracking-wider">Ingredients</h3>
             <ul class="space-y-3 pl-0 list-none!">
               {recipe.ingredients && recipe.ingredients.map((ing) => (
-                <li class="flex items-start gap-2.5 text-sm text-gray-300 m-0">
-                  <input 
-                    type="checkbox" 
-                    class="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-green-accent focus:ring-green-accent accent-green-accent cursor-pointer"
+                <li class="flex items-start gap-2.5 text-sm text-slate-600 m-0">
+                  <input
+                    type="checkbox"
+                    class="mt-1 h-4 w-4 rounded border-slate-200 bg-slate-50 text-green-accent focus:ring-green-accent accent-green-accent cursor-pointer"
                   />
                   <span>
-                    {ing.amount && <strong class="text-white font-semibold">{ing.amount} </strong>}
-                    {ing.unit && <span class="text-gray-300">{ing.unit} </span>}
-                    <span class="text-gray-300">{ing.name}</span>
-                    {ing.notes && <span class="text-gray-400 text-xs block italic mt-0.5">{ing.notes}</span>}
+                    {ing.amount && <strong class="text-slate-800 font-semibold">{ing.amount} </strong>}
+                    {ing.unit && <span class="text-slate-600">{ing.unit} </span>}
+                    <span class="text-slate-600">{ing.name}</span>
+                    {ing.notes && <span class="text-slate-400 text-xs block italic mt-0.5">{ing.notes}</span>}
                   </span>
                 </li>
               ))}
@@ -112,14 +111,14 @@ const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
 
           <!-- Instructions -->
           <div class="md:col-span-3">
-            <h3 class="font-display font-bold text-md text-white border-b border-white/5 pb-2 mb-4 uppercase tracking-wider">Instructions</h3>
+            <h3 class="font-display font-bold text-md text-slate-900 border-b border-black/8 pb-2 mb-4 uppercase tracking-wider">Instructions</h3>
             <ol class="space-y-6 pl-0 list-none!">
               {recipe.instructions && recipe.instructions.map((step, index) => (
                 <li class="flex gap-4 m-0">
                   <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-accent/10 text-green-accent flex items-center justify-center font-bold text-sm border border-green-accent/20">
                     {index + 1}
                   </div>
-                  <div class="text-sm text-gray-300 leading-relaxed pt-1" set:html={step}>
+                  <div class="text-sm text-slate-600 leading-relaxed pt-1" set:html={step}>
                   </div>
                 </li>
               ))}
@@ -130,7 +129,7 @@ const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
     )}
 
     <!-- Navigation back -->
-    <div class="mt-12 pt-6 border-t border-white/5 flex justify-between items-center text-sm">
+    <div class="mt-12 pt-6 border-t border-black/8 flex justify-between items-center text-sm">
       <a href={`/${pillar}`} class="text-green-accent hover:text-green-accent-hover hover:underline flex items-center gap-1 font-semibold">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />

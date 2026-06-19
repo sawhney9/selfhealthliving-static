@@ -2,85 +2,235 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="About Us | Self Health Living">
-  <!-- Hero Section -->
-  <section class="relative pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+<Layout title="About Us | Self Health Living" currentPillar="about">
 
+  <!-- Hero -->
+  <section class="relative pt-24 pb-20 md:pt-36 md:pb-28 overflow-hidden aurora-hero bg-grid-pattern">
     <div class="max-w-4xl mx-auto text-center px-6 relative z-10 flex flex-col items-center">
-      <span class="text-xs font-bold uppercase tracking-widest text-green-accent mb-4">Our Philosophy</span>
-      <h1 class="font-display font-extrabold text-4xl sm:text-6xl text-white tracking-tight leading-none mb-6">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-6" data-reveal="fade">
+        Our Philosophy
+      </span>
+      <h1 class="font-display font-black text-5xl sm:text-7xl text-slate-900 tracking-tighter leading-[1.05] mb-8" data-reveal="fade" data-reveal-delay="100">
         Moving From <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-accent to-[#4fd1c5]">
-          Data to Direction
-        </span>
+        <span class="font-serif italic font-normal text-green-accent">Data</span> to <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-accent to-cyan-accent">Direction</span>
       </h1>
-      <p class="font-sans text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mb-8">
-        We are living in an era of unprecedented health information. Smart rings track our sleep, watches count our steps, and blood panels list hundreds of biomarkers. Yet, we have never had less direction.
+      <p class="font-sans text-slate-500 text-base sm:text-xl leading-relaxed max-w-2xl" data-reveal="fade" data-reveal-delay="200">
+        We have more health data than ever before. Smart rings, step counters, blood panels with hundreds of numbers. But having all that data doesn't help much if nobody shows you what to actually do with it.
       </p>
     </div>
   </section>
 
-  <!-- Mission Statement & Story -->
-  <section class="py-16 border-t border-white/5 bg-[#0d0f11]/20">
-    <div class="max-w-3xl mx-auto px-6">
-      <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mb-6">Why We Built SelfHealth</h2>
-      <div class="space-y-6 text-gray-300 text-sm sm:text-base leading-relaxed">
+  <hr class="section-divider" />
+
+  <!-- Founder Story -->
+  <section class="py-24 md:py-36 bg-white relative">
+    <div class="max-w-3xl mx-auto px-6" data-reveal="fade">
+      <span class="text-[11px] font-bold uppercase tracking-wider text-green-accent">Why This Exists</span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight mt-3 mb-10">
+        It started with watching my parents
+      </h2>
+
+      <div class="space-y-6 text-slate-500 text-base leading-relaxed">
         <p>
-          SelfHealth was born out of frustration. When looking at laboratory blood test results, we are met with obscure abbreviations and reference ranges that induce anxiety rather than action. When we check our sleep stats, we see charts but no guidelines on how to sleep deeper to support muscle synthesis.
+          My mother had a stroke. Before that she was already dealing with carotid artery disease, a family history of diabetes and high cholesterol, all at the same time. My father went through dual knee replacements, open-heart surgery to repair a heart valve, and eventually a pacemaker for a heart condition he had carried his whole life without even knowing about it.
         </p>
         <p>
-          We set out to build a platform that acts as a <strong>knowledgeable friend, not a doctor</strong>. Through our static guides and our iOS app assistant, <strong>Aliya</strong>, we translate complex health metrics into simple, plain-English steps.
+          Watching your parents go through the healthcare system is one of the hardest things. You sit in waiting rooms. You Google terms you don't understand. You watch people you love walk out with a diagnosis and a prescription but no real explanation of what comes next or how to actually change anything.
         </p>
         <p>
-          Whether it is resistance training to retain muscle mass after 40 (our <strong>Train</strong> pillar) or adding soluble fiber and protein pancakes to your breakfast (our <strong>Fuel</strong> pillar), we focus on actionable science that keeps you vital and strong as you age.
+          Today my father is living with dementia. That one is hard to put into words. But it has made one thing really clear to me. <strong class="text-slate-900">You can't wait until something goes wrong to start paying attention to your health.</strong> The healthcare system is great at treating a crisis. It's not built for prevention. That part is on you.
         </p>
+        <p>
+          That's really why SelfHealth Living exists. Not because we have all the answers, but because the information that could genuinely help most people is already out there. It's just buried in medical jargon, scattered across research papers, and sitting inside bloodwork reports that read like a foreign language. We built this to make that information actually usable.
+        </p>
+      </div>
+
+      <div class="mt-12 pt-10 border-t border-black/8 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+        <div>
+          <p class="font-display font-black text-3xl text-slate-900">40+</p>
+          <p class="text-xs text-slate-400 mt-1 leading-snug">The decade when prevention becomes urgent</p>
+        </div>
+        <div>
+          <p class="font-display font-black text-3xl text-slate-900">80%</p>
+          <p class="text-xs text-slate-400 mt-1 leading-snug">Of chronic disease is driven by lifestyle, not genetics</p>
+        </div>
+        <div>
+          <p class="font-display font-black text-3xl text-slate-900">1</p>
+          <p class="text-xs text-slate-400 mt-1 leading-snug">Knowledgeable friend is all most people need to start</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Core Values -->
-  <section class="py-16 border-t border-white/5">
+  <hr class="section-divider" />
+
+  <!-- Why We Built It -->
+  <section class="py-24 md:py-36 bg-[#F0F4F1]/60 bg-grid-pattern relative">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div class="lg:col-span-7 flex flex-col gap-6 text-left" data-reveal="fade">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-green-accent">What We Built</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 tracking-tight">
+          A knowledgeable friend, not a doctor
+        </h2>
+
+        <div class="space-y-5 text-slate-500 text-sm sm:text-base leading-relaxed">
+          <p>
+            When you get a blood test back, it's a page full of abbreviations and reference ranges that honestly just stresses you out more than it helps. When you check your sleep on your watch, you see charts. But nothing tells you what to actually do about it.
+          </p>
+          <p>
+            Through our content and our iOS app assistant, <strong class="text-slate-900">Aliya</strong>, we take those confusing numbers and turn them into plain-English steps you can actually start with today.
+          </p>
+          <p>
+            Whether that's resistance training to hold onto your muscle mass after 40 (that's our <strong class="text-slate-900">Train</strong> pillar) or building meals that actually work for your body (our <strong class="text-slate-900">Fuel</strong> pillar), everything we do is grounded in real science aimed at keeping you strong and sharp as you get older.
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 flex justify-center relative" data-reveal="scale" data-reveal-delay="150">
+        <div class="absolute w-[250px] h-[250px] bg-green-accent/6 rounded-full blur-[80px] pointer-events-none animate-drift"></div>
+        <div class="relative w-[230px] h-[470px] z-10 shadow-[0_30px_60px_rgba(0,0,0,0.15)] phone-frame animate-float">
+          <div class="phone-glare"></div>
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3 bg-black rounded-full z-30 flex items-center justify-between px-1.5">
+            <div class="w-0.5 h-0.5 rounded-full bg-slate-900"></div>
+            <div class="w-4 h-0.5 bg-slate-900 rounded-full"></div>
+          </div>
+          <img src="/images/app/app_screen_3.png" alt="SelfHealth Bloodwork Analysis" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Milestones / Timeline -->
+  <section class="py-24 md:py-36 bg-[#F0F4F1]/60 bg-grid-pattern relative">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16" data-reveal="fade">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-green-accent">Milestones</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2">Our Journey &amp; Roadmap</h2>
+      </div>
+
+      <div class="relative border-l-2 border-black/6 pl-8 ml-4 sm:ml-8 flex flex-col gap-12 text-left">
+        <!-- Milestone 1 -->
+        <div class="relative" data-reveal="fade">
+          <div class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-white border-2 border-green-accent flex items-center justify-center shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-green-accent"></span>
+          </div>
+          <span class="text-xs font-bold text-green-accent uppercase tracking-widest block mb-1">Q2 2024</span>
+          <h3 class="text-lg font-bold text-slate-900 font-display mb-2">The Genesis</h3>
+          <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-2xl">
+            We started building the SelfHealth framework, motivated by one big frustration: your wearable data and your blood work were living in completely separate worlds with no way to connect them.
+          </p>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="relative" data-reveal="fade" data-reveal-delay="100">
+          <div class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-white border-2 border-cyan-accent flex items-center justify-center shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-cyan-accent"></span>
+          </div>
+          <span class="text-xs font-bold text-cyan-accent uppercase tracking-widest block mb-1">Q1 2025</span>
+          <h3 class="text-lg font-bold text-slate-900 font-display mb-2">Engineering Aliya</h3>
+          <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-2xl">
+            Built and trained Aliya, our on-device AI assistant, to read your lab results and actually explain what those numbers mean for your health in plain English.
+          </p>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="relative" data-reveal="fade" data-reveal-delay="200">
+          <div class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-white border-2 border-amber-500 flex items-center justify-center shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+          </div>
+          <span class="text-xs font-bold text-amber-500 uppercase tracking-widest block mb-1">Mid 2026</span>
+          <h3 class="text-lg font-bold text-slate-900 font-display mb-2">Private Release &amp; Launch</h3>
+          <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-2xl">
+            Opening early access and welcoming the first group of members into the iOS app. If you're reading this, that could be you.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Testimonials -->
+  <section class="py-24 md:py-36 bg-white relative">
     <div class="max-w-5xl mx-auto px-6">
-      <h2 class="font-display font-bold text-2xl sm:text-3xl text-white text-center mb-12">Our Core Standards</h2>
-      
+      <div class="text-center mb-16" data-reveal="fade">
+        <span class="text-[11px] font-bold uppercase tracking-wider text-green-accent">Beta Feedback</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2">What Early Users Are Saying</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
+        <div class="glass-card p-6 sm:p-8 flex flex-col justify-between" data-reveal="fade" data-reveal-delay="0">
+          <p class="text-sm text-slate-600 italic leading-relaxed mb-6 font-serif">
+            "Aliya explained my high LDL cholesterol without the usual medical panic. I immediately added the fiber recommendations to my diet and felt in control instead of anxious."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-slate-100 border border-black/7 flex items-center justify-center text-[10px] font-bold text-slate-500">MS</div>
+            <div>
+              <span class="text-xs font-bold text-slate-900 block font-display">Mark S.</span>
+              <span class="text-[10px] text-slate-400">Early Member, 43</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 sm:p-8 flex flex-col justify-between" data-reveal="fade" data-reveal-delay="150">
+          <p class="text-sm text-slate-600 italic leading-relaxed mb-6 font-serif">
+            "Finally, an app that connects my sleep stages directly to my daily training load. I've been following the grip strength protocols and my joint recovery has improved dramatically."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-slate-100 border border-black/7 flex items-center justify-center text-[10px] font-bold text-slate-500">SL</div>
+            <div>
+              <span class="text-xs font-bold text-slate-900 block font-display">Sarah L.</span>
+              <span class="text-[10px] text-slate-400">Early Member, 38</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Core Standards -->
+  <section class="py-24 md:py-36 bg-[#F0F4F1]/60 bg-grid-pattern relative">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 text-center mb-16" data-reveal="fade">Our Core Standards</h2>
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Standard 1 -->
-        <div class="glass-card p-6 border border-white/5">
-          <div class="w-10 h-10 rounded-lg bg-green-accent/10 text-green-accent flex items-center justify-center mb-4">
+        <div class="glass-card p-6" data-reveal="fade" data-reveal-delay="0">
+          <div class="w-10 h-10 rounded-lg bg-green-accent/10 text-green-accent flex items-center justify-center mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
           </div>
-          <h3 class="text-md font-bold text-white mb-2">On-Device Privacy First</h3>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            Your medical records are yours. The SelfHealth app processes health metrics on-device wherever possible, keeping your credentials secure and telling you clearly if something needs the cloud.
+          <h3 class="text-base font-bold font-display text-slate-900 mb-2">On-Device Privacy First</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Your health data stays yours. SelfHealth processes everything on-device wherever we can, so your most sensitive information never has to leave your phone.
           </p>
         </div>
 
-        <!-- Standard 2 -->
-        <div class="glass-card p-6 border border-white/5">
-          <div class="w-10 h-10 rounded-lg bg-green-accent/10 text-green-accent flex items-center justify-center mb-4">
+        <div class="glass-card p-6" data-reveal="fade" data-reveal-delay="100">
+          <div class="w-10 h-10 rounded-lg bg-green-accent/10 text-green-accent flex items-center justify-center mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
           </div>
-          <h3 class="text-md font-bold text-white mb-2">Science-Backed Content</h3>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            We ignore fitness fads and quick-fix diets. Every protocol inside our Train and Fuel pillars is backed by clinical peer-reviewed research and translated into clear guidance.
+          <h3 class="text-base font-bold font-display text-slate-900 mb-2">Science-Backed Content</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            We don't chase trends or quick fixes. Everything in our Train and Fuel sections is grounded in peer-reviewed research, not whatever is popular on social media this week.
           </p>
         </div>
 
-        <!-- Standard 3 -->
-        <div class="glass-card p-6 border border-white/5">
-          <div class="w-10 h-10 rounded-lg bg-green-accent/10 text-green-accent flex items-center justify-center mb-4">
+        <div class="glass-card p-6" data-reveal="fade" data-reveal-delay="200">
+          <div class="w-10 h-10 rounded-lg bg-green-accent/10 text-green-accent flex items-center justify-center mb-5">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
           </div>
-          <h3 class="text-md font-bold text-white mb-2">Physician Collaboration</h3>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            We don't replace doctors; we help you talk to them. Aliya compiles your biomarkers into clear, summarized PDFs that you can take straight to your next annual checkup.
+          <h3 class="text-base font-bold font-display text-slate-900 mb-2">Physician Collaboration</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            We're not trying to replace your doctor. We help you have better conversations with them. Aliya can pull together your biomarker trends so you walk into your next checkup actually prepared.
           </p>
         </div>
       </div>
