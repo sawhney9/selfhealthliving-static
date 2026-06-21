@@ -41,7 +41,13 @@ export async function fetchStockImage(query, slug) {
 
 async function commitImageToGitHub(localPath, repoPath) {
   const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO } = process.env
-  if (!GITHUB_TOKEN || !GITHUB_OWNER || !GITHUB_REPO) return
+  if (!GITHUB_TOKEN || !GITHUB_OWNER || !GITHUB_REPO) {
+    const missing = ['GITHUB_TOKEN', 'GITHUB_OWNER', 'GITHUB_REPO'].filter(k => !process.env[k])
+    throw new Error(
+      `Cannot commit image to GitHub — missing ${missing.join(', ')}. ` +
+      `Without this the published post's featured image will 404 once CI deploys from GitHub.`
+    )
+  }
 
   const content = readFileSync(localPath).toString('base64')
   const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${repoPath}`
@@ -74,6 +80,6 @@ async function commitImageToGitHub(localPath, repoPath) {
 
   if (!put.ok) {
     const err = await put.text()
-    console.warn(`  Image commit warning: ${err}`)
+    throw new Error(`Image commit to GitHub failed (HTTP ${put.status}) for ${repoPath}: ${err}`)
   }
 }

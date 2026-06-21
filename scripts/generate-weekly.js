@@ -8,7 +8,12 @@ import { fetchStockImage } from './lib/pexels.js'
 import { saveDraft } from './lib/draft-store.js'
 import { sendDraftReview } from './lib/email.js'
 
-const REQUIRED_VARS = ['ANTHROPIC_API_KEY', 'RESEND_API_KEY', 'PEXELS_API_KEY', 'REVIEW_EMAIL']
+const REQUIRED_VARS = [
+  'ANTHROPIC_API_KEY', 'RESEND_API_KEY', 'PEXELS_API_KEY', 'REVIEW_EMAIL',
+  // Needed so each post's image is committed to GitHub before approval —
+  // otherwise the featured image 404s once CI deploys from GitHub.
+  'GITHUB_TOKEN', 'GITHUB_OWNER', 'GITHUB_REPO',
+]
 
 function checkEnv() {
   const missing = REQUIRED_VARS.filter(v => !process.env[v])
