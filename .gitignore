@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # local scratch folder
 scratch/
+
+# wrangler local state
+.wrangler/
+
+# local build/source archives
+shl-src.zip
