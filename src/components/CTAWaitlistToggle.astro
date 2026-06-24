@@ -10,10 +10,15 @@ const APP_STORE_URL = 'https://apps.apple.com/app/id6760236670';
 
     <div class="flex flex-col gap-5 relative">
       <div class="text-left">
-        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-[11px] font-bold text-green-accent mb-3 uppercase tracking-wider">
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-accent/10 hover:bg-green-accent/20 border border-green-accent/20 rounded-full text-[11px] font-bold text-green-accent mb-3 uppercase tracking-wider transition-colors duration-200"
+        >
           <span class="w-1.5 h-1.5 rounded-full bg-green-accent animate-pulse"></span>
           Now Available on iOS
-        </div>
+        </a>
         <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 mb-2 leading-snug">
           Download SelfHealth today
         </h3>
