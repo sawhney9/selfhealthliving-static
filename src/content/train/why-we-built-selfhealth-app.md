@@ -19,7 +19,7 @@ slug: "why-we-built-selfhealth-app"
 
 <p >We are drowning in data, but we are completely lacking direction, it really doesn't need to be so complicated.</p>
 
-<p >That is why we built the <a href="http://www.selfhealthliving.com/app" data-type="link" data-id="http://www.selfhealthliving.com/app">SelfHealth App</a>. We didn’t want to build another passive dashboard full of graphs you have to decode. We wanted a central, intelligent tool that answers the only question that matters when you wake up: <em>What is the best course of action for my body today?</em></p>
+<p >That is why we built the <a href="https://apps.apple.com/app/id6760236670" target="_blank" rel="noopener">SelfHealth App</a>. We didn’t want to build another passive dashboard full of graphs you have to decode. We wanted a central, intelligent tool that answers the only question that matters when you wake up: <em>What is the best course of action for my body today?</em></p>
 
 <h2 class="wp-block-heading">Why This Matters As We Age</h2>
 
@@ -232,10 +232,10 @@ html,body{width:100%;min-height:100vh;background:#060606;font-family:"DM Sans",s
         <div class="stat"><span class="stat-v" style="color:#63b3ed;">94</span><span class="stat-l">Sleep</span></div>
         <div class="stat"><span class="stat-v" style="color:#fb923c;">Recovery</span><span class="stat-l">Mode Active</span></div>
       </div>
-      <button class="s-cta" style="background:linear-gradient(135deg,#7c3aed,#6366f1);box-shadow:0 8px 22px rgba(124,58,237,.38);">
+      <a href="https://apps.apple.com/app/id6760236670" target="_blank" rel="noopener" class="s-cta" style="background:linear-gradient(135deg,#7c3aed,#6366f1);box-shadow:0 8px 22px rgba(124,58,237,.38);">
         <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         Download Free
-      </button>
+      </a>
       <div class="s-sub2">Free · Premium upgrades available</div>
     </div>
   </div>
@@ -265,10 +265,10 @@ html,body{width:100%;min-height:100vh;background:#060606;font-family:"DM Sans",s
         <div class="stat"><span class="stat-v" style="color:#68d391;">76</span><span class="stat-l">HDL mg/dL</span></div>
         <div class="stat"><span class="stat-v" style="color:#fbbf24;">5.7%</span><span class="stat-l">HbA1c</span></div>
       </div>
-      <button class="s-cta" style="background:linear-gradient(135deg,#ef4444,#f97316);box-shadow:0 8px 22px rgba(239,68,68,.32);">
+      <a href="https://apps.apple.com/app/id6760236670" target="_blank" rel="noopener" class="s-cta" style="background:linear-gradient(135deg,#ef4444,#f97316);box-shadow:0 8px 22px rgba(239,68,68,.32);">
         <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         Download Free
-      </button>
+      </a>
       <div class="s-sub2">OCR import · Quest · LabCorp · Any PDF</div>
     </div>
   </div>
@@ -298,10 +298,10 @@ html,body{width:100%;min-height:100vh;background:#060606;font-family:"DM Sans",s
         <div class="stat"><span class="stat-v" style="color:#68d391;">78 min</span><span class="stat-l">Exercise</span></div>
         <div class="stat"><span class="stat-v" style="color:#a78bfa;">Optimal</span><span class="stat-l">Load Status</span></div>
       </div>
-      <button class="s-cta" style="background:linear-gradient(135deg,#f97316,#eab308);box-shadow:0 8px 22px rgba(249,115,22,.32);">
+      <a href="https://apps.apple.com/app/id6760236670" target="_blank" rel="noopener" class="s-cta" style="background:linear-gradient(135deg,#f97316,#eab308);box-shadow:0 8px 22px rgba(249,115,22,.32);">
         <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         Download Free
-      </button>
+      </a>
       <div class="s-sub2">Zone 2 · Zone 3 · Strength · Templates</div>
     </div>
   </div>
@@ -331,10 +331,10 @@ html,body{width:100%;min-height:100vh;background:#060606;font-family:"DM Sans",s
         <div class="stat"><span class="stat-v" style="color:#c4b5fd;">Day 1</span><span class="stat-l">Cycle Day</span></div>
         <div class="stat"><span class="stat-v" style="color:#86efac;">Low</span><span class="stat-l">Energy Mode</span></div>
       </div>
-      <button class="s-cta" style="background:linear-gradient(135deg,#ec4899,#a78bfa);box-shadow:0 8px 22px rgba(236,72,153,.32);">
+      <a href="https://apps.apple.com/app/id6760236670" target="_blank" rel="noopener" class="s-cta" style="background:linear-gradient(135deg,#ec4899,#a78bfa);box-shadow:0 8px 22px rgba(236,72,153,.32);">
         <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         Download Free
-      </button>
+      </a>
       <div class="s-sub2">Syncs with Apple Health · Oura Ring</div>
     </div>
   </div>
@@ -364,10 +364,10 @@ html,body{width:100%;min-height:100vh;background:#060606;font-family:"DM Sans",s
         <div class="stat"><span class="stat-v" style="color:#6ee7b7;">Calm</span><span class="stat-l">Today's Mood</span></div>
         <div class="stat"><span class="stat-v" style="color:#93c5fd;">75%</span><span class="stat-l">Consistency</span></div>
       </div>
-      <button class="s-cta" style="background:linear-gradient(135deg,#10b981,#3b82f6);box-shadow:0 8px 22px rgba(16,185,129,.3);">
+      <a href="https://apps.apple.com/app/id6760236670" target="_blank" rel="noopener" class="s-cta" style="background:linear-gradient(135deg,#10b981,#3b82f6);box-shadow:0 8px 22px rgba(16,185,129,.3);">
         <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         Download Free
-      </button>
+      </a>
       <div class="s-sub2">HRV · RHR · Wrist temp · Mindfulness</div>
     </div>
   </div>
@@ -394,10 +394,10 @@ html,body{width:100%;min-height:100vh;background:#060606;font-family:"DM Sans",s
       </div>
     </div>
     <div class="s6-cta">
-      <button class="s-cta" style="background:linear-gradient(135deg,#7c3aed,#ec4899);box-shadow:0 8px 26px rgba(124,58,237,.4);padding:15px;">
+      <a href="https://apps.apple.com/app/id6760236670" target="_blank" rel="noopener" class="s-cta" style="background:linear-gradient(135deg,#7c3aed,#ec4899);box-shadow:0 8px 26px rgba(124,58,237,.4);padding:15px;">
         <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         Download Free on App Store
-      </button>
+      </a>
       <div class="s-sub2" style="margin-top:5px;">Free to start · <span style="color:rgba(167,139,250,.65);">selfhealthliving.com</span></div>
     </div>
   </div>

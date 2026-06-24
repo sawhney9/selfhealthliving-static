@@ -1,5 +1,6 @@
 ---
 // src/components/CTAWaitlistToggle.astro
+const APP_STORE_URL = 'https://apps.apple.com/app/id6760236670';
 ---
 
 <div class="w-full max-w-xl mx-auto" id="cta-block">
@@ -11,88 +12,53 @@
       <div class="text-left">
         <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-[11px] font-bold text-green-accent mb-3 uppercase tracking-wider">
           <span class="w-1.5 h-1.5 rounded-full bg-green-accent animate-pulse"></span>
-          Early Access
+          Now Available on iOS
         </div>
         <h3 class="font-display font-extrabold text-xl sm:text-2xl text-slate-900 mb-2 leading-snug">
-          Be among the first to join
+          Download SelfHealth today
         </h3>
         <p class="text-sm text-slate-500 leading-relaxed">
-          Get early access to Aliya, biometric sync, and intelligent training guidance built for your biology.
+          Meet Aliya, sync your biometrics, and get intelligent training guidance built for your biology — free on the App Store.
         </p>
       </div>
 
-      <!-- Email Capture Form -->
-      <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3">
-        <div class="relative flex-grow">
-          <input
-            type="email"
-            required
-            placeholder="Enter your email address"
-            class="w-full px-5 py-3.5 rounded-full bg-white border border-black/10 focus:border-green-accent focus:outline-none text-slate-900 text-sm placeholder-slate-400 transition-colors duration-200"
-          />
-        </div>
-        <button
-          type="submit"
-          class="px-7 py-3.5 bg-green-accent hover:bg-green-accent-hover text-white font-bold rounded-full text-sm shadow-sm hover:shadow-[0_4px_16px_rgba(0,163,108,0.3)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer whitespace-nowrap"
-        >
-          Request Access
-        </button>
-      </form>
+      <!-- Primary download CTA -->
+      <a
+        href={APP_STORE_URL}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center justify-center px-7 py-3.5 bg-green-accent hover:bg-green-accent-hover text-white font-bold rounded-full text-sm shadow-sm hover:shadow-[0_4px_16px_rgba(0,163,108,0.3)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer whitespace-nowrap"
+      >
+        Download Now
+      </a>
 
-      <!-- Success Message -->
-      <p id="waitlist-success" class="text-xs text-green-accent flex items-center gap-1.5 hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        You're on the list! Check your inbox to confirm.
-      </p>
-
-      <!-- Bottom row: Coming Soon badge + Privacy note -->
+      <!-- Bottom row: App Store badge (link) + note -->
       <div class="border-t border-black/5 pt-4 mt-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
 
-        <!-- iOS Coming Soon Badge -->
-        <div class="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl w-fit">
+        <!-- Download on the App Store badge -->
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl w-fit transition-colors duration-200"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" viewBox="0 0 814 1000" fill="currentColor">
             <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.5 135.4-317.3 269-317.3 71 0 130.5 46.4 174.9 46.4 42.7 0 109.2-49.7 188.3-49.7zm-130.5-295.8c31.2-35 52.6-83.8 52.6-132.6 0-6.5-.6-13.1-1.9-18.4-49.1 1.9-107.9 32.4-143.6 74-27.9 31.8-53.1 80.6-53.1 130.6 0 7.1 1.3 14.2 1.9 16.5 3.2.6 8.4 1.3 13.6 1.3 43.9 0 97.2-29.2 130.5-71.4z"/>
           </svg>
           <div class="flex flex-col text-left">
-            <span class="text-[9px] text-slate-400 font-normal leading-none">Coming soon to</span>
+            <span class="text-[9px] text-slate-400 font-normal leading-none">Download on the</span>
             <span class="text-sm font-bold leading-tight">App Store</span>
           </div>
-        </div>
+        </a>
 
-        <!-- Privacy note -->
+        <!-- Note -->
         <div class="flex items-center gap-1.5 text-slate-400">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
-          <span class="text-[11px] font-medium tracking-wide">No spam. Unsubscribe anytime.</span>
+          <span class="text-[11px] font-medium tracking-wide">Free to start · Premium available</span>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
-    const successMsg = document.getElementById('waitlist-success');
-    if (!form || !successMsg) return;
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const input = form.querySelector('input[type="email"]') as HTMLInputElement;
-      const email = input?.value?.trim();
-      if (!email) return;
-
-      // Open Beehiiv subscribe page with email pre-filled
-      window.open(
-        `https://embeds.beehiiv.com/7c7a5bfe-4254-4d81-8cc8-c3b90420e1bf?email=${encodeURIComponent(email)}`,
-        '_blank'
-      );
-
-      form.classList.add('hidden');
-      successMsg.classList.remove('hidden');
-    });
-  });
-</script>
