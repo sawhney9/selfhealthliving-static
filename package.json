@@ -12,9 +12,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.110.0",
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.4",
-    "tailwindcss": "^4.3.0"
+    "marked": "^15.0.12",
+    "resend": "^4.8.0",
+    "tailwindcss": "^4.3.0",
+    "wrangler": "^4.107.1"
   }
 }
