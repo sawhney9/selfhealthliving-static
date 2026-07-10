@@ -36,6 +36,15 @@ export function buildMarkdown(pillar, post, imagePath) {
       .join('\n')
     const instructions = r.instructions.map(s => `    - "${s}"`).join('\n')
 
+    // Omit the key entirely when nothing special is needed, so the recipe card
+    // doesn't render an empty Equipment row on the many dishes that need none.
+    const equipment = r.equipment?.length
+      ? '\n  equipment:\n' +
+        r.equipment
+          .map(e => `    - name: "${e.name}"\n      required: ${e.required === true}\n      note: "${e.note || ''}"`)
+          .join('\n')
+      : ''
+
     return `---
 title: "${post.title}"
 date: "${date}"
@@ -52,7 +61,7 @@ recipe:
   ingredients:
 ${ingredients}
   instructions:
-${instructions}
+${instructions}${equipment}
 ---
 
 ${post.content}

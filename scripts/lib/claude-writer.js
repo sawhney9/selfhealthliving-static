@@ -37,7 +37,26 @@ Include a benchmark table when values vary by age or sex.
 Link to related SHL posts with relative URLs like /train/slug or /fuel/slug where genuinely relevant.
 End on something true and useful, not a recap.`
 
-const FUEL_GUIDANCE = `For recipe posts: open with the nutritional hook in one punchy sentence. Explain the science behind four to six key ingredients, each with a real PubMed citation. Give approximate nutrition per serving. Cover storage, reheating, and variations. Not diet culture, not calorie-obsessed.`
+const FUEL_GUIDANCE = `RECIPES
+
+Flavor is not a garnish on top of the nutrition, it is the reason the recipe gets cooked twice. A healthy dish nobody wants to eat again has failed, whatever its macros say. Write the recipe you would actually make on a Tuesday.
+
+Cook from a real culinary tradition rather than the generic wellness bowl. Rotate widely: Indian, Japanese, Korean, Thai, Vietnamese, Sichuan, Mexican, Levantine, Persian, Ethiopian, Southern Italian. Name the dish honestly. If it is a chilla, call it a chilla.
+
+Build flavor with technique, not fat and sugar:
+bloom whole spices in hot fat (tadka) before they hit the pan;
+brown the aromatics properly instead of sweating them pale;
+lean on fermented depth (miso, gochujang, doubanjiang, fish sauce, tamarind, preserved lemon, anchovy);
+finish with acid and a raw herb, which is what makes a dish taste finished;
+toast, char, and sear where a lesser recipe would boil.
+
+Protein is a flavor problem as much as a nutrition one. Cottage cheese, Greek yogurt, paneer, tofu, tempeh, lentils, and dal all carry spice well. Blended cottage cheese is a legitimate creamy base and belongs in more places than people expect. Say what a swap does to the texture, not just to the protein count.
+
+Assume a normal kitchen: pan, pot, sheet tray, knife, blender. If the recipe genuinely needs anything beyond that, name it in "equipment" and say plainly whether it is required or a shortcut. A Ninja Creami, a high-speed blender, an air fryer, a spice grinder, and a fine strainer are all fair game when the dish is better for it. Never invent an equipment need to sound sophisticated, and never quietly assume gear the reader may not own.
+
+Structure a recipe post as: the nutritional hook in one punchy sentence, then what four to six key ingredients are doing (each with a real PubMed citation), approximate nutrition per serving, and finally storage, reheating, and the variations worth making.
+
+Not diet culture. Not calorie-obsessed. Never apologize for butter or salt where the dish needs them.`
 
 // Shared by both post types. Structured outputs guarantee schema-valid JSON, so
 // there is no fenced-markdown stripping or control-character repair to do.
@@ -85,10 +104,24 @@ const FUEL_SCHEMA = {
           },
         },
         instructions: { type: 'array', items: { type: 'string' } },
+        // Empty when a pan, pot, sheet tray, knife and blender will do.
+        equipment: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              name: { type: 'string' },
+              required: { type: 'boolean' },
+              note: { type: 'string' },
+            },
+            required: ['name', 'required', 'note'],
+            additionalProperties: false,
+          },
+        },
       },
       required: [
         'title', 'prep_time', 'cook_time', 'total_time',
-        'servings', 'servings_unit', 'ingredients', 'instructions',
+        'servings', 'servings_unit', 'ingredients', 'instructions', 'equipment',
       ],
       additionalProperties: false,
     },
@@ -136,12 +169,13 @@ export async function generateFuelPost(existingTitles) {
 
 ${FUEL_GUIDANCE}
 
-Already published, so pick a different dish: ${existingTitles.join(', ')}
+Already published, so pick a different dish and a different cuisine: ${existingTitles.join(', ')}
 
-High-protein, high-fiber, anti-inflammatory, longevity-supporting. Real food. Practical for meal prep.
+High-protein, high-fiber, anti-inflammatory, longevity-supporting. Real food. Practical for meal prep, or worth the effort when it isn't.
 
 "title" should be the recipe name plus a short hook.
 "pexels_query" is a two or three word stock image search.
+"equipment" lists only gear beyond a pan, pot, sheet tray, knife and blender. Leave it empty if none is needed. Set "required" to false for anything a reader could work around, and use "note" to say what the workaround is.
 "content" is the full markdown body with no frontmatter, using ## headings.`,
     FUEL_SCHEMA
   )

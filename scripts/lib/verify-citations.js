@@ -5,7 +5,7 @@
 // A published post cited PMID 32266987 (a COVID corticosteroid paper) as evidence
 // for a grip-strength/cognition claim. Hence this file.
 
-const ESUMMARY = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi'
+const EFETCH = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi'
 const PMID_LINK = /\[([^\]]*)\]\(https:\/\/pubmed\.ncbi\.nlm\.nih\.gov\/(\d+)\/?\)/g
 
 const STOPWORDS = new Set([
@@ -45,13 +45,39 @@ export function extractCitations(markdown) {
   return found
 }
 
+const tag = (xml, name) =>
+  [...xml.matchAll(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`, 'g'))]
+    .map(m => m[1].replace(/<[^>]+>/g, ' ').trim())
+
+// Titles alone are not enough to judge relevance. The Lancet fibre meta-analysis
+// is titled "Carbohydrate quality and human health" and never says "fiber", so a
+// title-only match strips it as unrelated. Score against the abstract too.
 async function lookup(pmids) {
   if (!pmids.length) return {}
-  const url = `${ESUMMARY}?db=pubmed&retmode=json&id=${pmids.join(',')}`
+  const url = `${EFETCH}?db=pubmed&retmode=xml&id=${pmids.join(',')}`
   const res = await fetch(url, { headers: { 'User-Agent': 'selfhealthliving-agent' } })
-  if (!res.ok) throw new Error(`NCBI esummary returned ${res.status}`)
-  const { result } = await res.json()
-  return result || {}
+  if (!res.ok) throw new Error(`NCBI efetch returned ${res.status}`)
+  const xml = await res.text()
+
+  const records = {}
+  for (const article of xml.split('</PubmedArticle>')) {
+    const pmid = article.match(/<PMID[^>]*>(\d+)<\/PMID>/)?.[1]
+    if (!pmid) continue
+    const title = tag(article, 'ArticleTitle')[0]
+    if (!title) continue
+    records[pmid] = {
+      title,
+      journal: tag(article, 'ISOAbbreviation')[0] || tag(article, 'Title')[0] || '',
+      year: article.match(/<PubDate>[\s\S]*?<Year>(\d{4})<\/Year>/)?.[1] || '',
+      // Abstract sections and author keywords carry the subject terms a title omits.
+      haystack: [
+        title,
+        ...tag(article, 'AbstractText'),
+        ...tag(article, 'Keyword'),
+      ].join(' '),
+    }
+  }
+  return records
 }
 
 /**
@@ -71,7 +97,7 @@ export async function verifyCitations(markdown, postTitle = '') {
 
   for (const c of citations) {
     const rec = records[c.pmid]
-    if (!rec || rec.error || !rec.title) {
+    if (!rec) {
       c.status = 'not_found'
       c.detail = 'No PubMed record for this PMID'
       content = content.replaceAll(c.raw, c.linkText) // strip the fabricated link
@@ -79,24 +105,25 @@ export async function verifyCitations(markdown, postTitle = '') {
     }
 
     c.title = rec.title.replace(/\.$/, '')
-    c.journal = rec.source
-    c.year = (rec.pubdate || '').split(' ')[0]
+    c.journal = rec.journal
+    c.year = rec.year
 
-    const paper = terms(c.title)
-    const overlap = [...terms(c.claim)].filter(t => paper.has(t))
-    const topical = [...titleTerms].filter(t => paper.has(t))
-    const score = new Set([...overlap, ...topical]).size
+    const paper = terms(rec.haystack)
+    const shared = new Set(
+      [...terms(c.claim), ...titleTerms].filter(t => paper.has(t))
+    )
+    c.shared = [...shared]
 
-    if (score === 0) {
+    if (shared.size === 0) {
       c.status = 'mismatch'
-      c.detail = 'Cited paper shares no subject terms with the claim'
+      c.detail = 'Paper shares no subject terms with the claim or the article'
       content = content.replaceAll(c.raw, c.linkText)
-    } else if (score === 1) {
+    } else if (shared.size === 1) {
       c.status = 'weak'
-      c.detail = `Only one shared term (${[...new Set([...overlap, ...topical])][0]})`
+      c.detail = `Only one shared term (${c.shared[0]})`
     } else {
       c.status = 'verified'
-      c.detail = `${score} shared subject terms`
+      c.detail = `${shared.size} shared terms: ${c.shared.slice(0, 4).join(', ')}`
     }
   }
 

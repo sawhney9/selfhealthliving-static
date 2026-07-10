@@ -86,6 +86,23 @@ const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
           </div>
         </div>
 
+        {recipe.equipment && recipe.equipment.length > 0 && (
+          <div class="mb-8">
+            <h3 class="font-display font-bold text-md text-slate-900 border-b border-black/8 pb-2 mb-4 uppercase tracking-wider">Equipment</h3>
+            <ul class="space-y-2 pl-0 list-none!">
+              {recipe.equipment.map((item) => (
+                <li class="text-sm text-slate-600 m-0">
+                  <span class="font-semibold text-slate-900">{item.name}</span>
+                  {item.required === false && (
+                    <span class="ml-2 text-xs uppercase tracking-wider text-slate-400 font-semibold">optional</span>
+                  )}
+                  {item.note && <span class="block text-slate-500">{item.note}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <!-- Recipe Body -->
         <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
           <!-- Ingredients -->
