@@ -38,7 +38,7 @@ The evidence here is deep and it's consistent.
 
 **UK Biobank (2018):** In over 500,000 adults, lower grip strength meant higher risk of death, cardiovascular disease, respiratory disease, and cancer ([BMJ](https://pubmed.ncbi.nlm.nih.gov/29739772/)).
 
-**The brain connection:** Grip strength tracks with brain volume and cognitive performance, and a weaker grip predicts faster cognitive decline in older adults ([study](https://pubmed.ncbi.nlm.nih.gov/32266987/)).
+**The brain connection:** Grip strength tracks with cognitive performance, and a weaker grip is associated with higher risk of cognitive decline and dementia in older adults ([Frontiers in Aging Neuroscience, 2021](https://pubmed.ncbi.nlm.nih.gov/33613270/)).
 
 What gets me is how well a simple hand squeeze holds up against expensive, invasive tests. It competes with a full cardiac workup for predictive power, and it costs almost nothing.
 
