@@ -13,7 +13,48 @@ function actionButtons(token) {
 </div>`
 }
 
-export async function sendDraftReview(pillar, post, imagePath, token) {
+const STATUS = {
+  verified: { bg: '#f0fdf4', fg: '#166534', label: 'verified' },
+  weak: { bg: '#fefce8', fg: '#854d0e', label: 'weak match' },
+  mismatch: { bg: '#fef2f2', fg: '#991b1b', label: 'WRONG PAPER — link removed' },
+  not_found: { bg: '#fef2f2', fg: '#991b1b', label: 'NO SUCH PMID — link removed' },
+}
+
+// Sits above the action buttons on purpose: approving a post without having seen
+// its citation report is how a COVID paper ended up sourcing a cognition claim.
+function citationPanel(citations) {
+  if (!citations?.length) {
+    return `<div style="background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#854d0e;">No PubMed citations in this draft. Check that its claims don't need any.</div>`
+  }
+
+  const bad = citations.filter(c => c.status === 'mismatch' || c.status === 'not_found').length
+  const header = bad
+    ? `<div style="font-weight:700;color:#991b1b;margin-bottom:10px;font-size:14px;">${bad} citation${bad > 1 ? 's' : ''} failed verification and ${bad > 1 ? 'were' : 'was'} removed. Read the claim${bad > 1 ? 's' : ''} below before approving.</div>`
+    : `<div style="font-weight:700;color:#166534;margin-bottom:10px;font-size:14px;">All ${citations.length} citations resolved against PubMed.</div>`
+
+  const rows = citations
+    .map(c => {
+      const s = STATUS[c.status]
+      return `<tr>
+  <td style="padding:7px 10px;border-bottom:1px solid #eee;white-space:nowrap;vertical-align:top;">
+    <span style="background:${s.bg};color:${s.fg};font-size:11px;font-weight:700;padding:2px 7px;border-radius:10px;">${s.label}</span>
+  </td>
+  <td style="padding:7px 10px;border-bottom:1px solid #eee;font-size:12px;line-height:1.5;">
+    <a href="https://pubmed.ncbi.nlm.nih.gov/${c.pmid}/" style="color:#0080B0;">${c.pmid}</a>
+    ${c.title ? `<div style="color:#444;">${c.title}${c.journal ? ` <em>(${c.journal}, ${c.year})</em>` : ''}</div>` : ''}
+    <div style="color:#888;margin-top:3px;">cites: “${c.claim.trim().slice(0, 110)}…”</div>
+  </td>
+</tr>`
+    })
+    .join('')
+
+  return `<div style="border:1px solid ${bad ? '#fecaca' : '#dcfce7'};border-radius:10px;padding:14px 16px;margin-bottom:24px;background:#fff;">
+  ${header}
+  <table style="border-collapse:collapse;width:100%;">${rows}</table>
+</div>`
+}
+
+export async function sendDraftReview(pillar, post, imagePath, token, citations = []) {
   const label = pillar === 'train' ? 'Health Post' : 'Recipe'
   const contentHtml = marked.parse(post.content)
 
@@ -41,6 +82,8 @@ export async function sendDraftReview(pillar, post, imagePath, token) {
   <div class="title">${post.title}</div>
   <div class="meta">/${pillar}/${post.slug}</div>
 </div>
+
+${citationPanel(citations)}
 
 ${actionButtons(token)}
 

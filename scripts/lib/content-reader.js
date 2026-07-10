@@ -1,12 +1,25 @@
 import { readdir, readFile } from 'fs/promises'
 import { join } from 'path'
+import { fileURLToPath } from 'url'
 
-const CONTENT_ROOT = new URL('../../src/content/', import.meta.url).pathname
+// fileURLToPath, not .pathname: the latter percent-encodes, so a repo checked out
+// to a directory containing a space yields "SHL%20Website" and every read fails.
+const CONTENT_ROOT = fileURLToPath(new URL('../../src/content/', import.meta.url))
+
+// An unreadable content directory used to be swallowed into an empty list, which
+// tells the model nothing has been published and quietly produces duplicate posts.
+async function listPosts(pillar) {
+  try {
+    return await readdir(join(CONTENT_ROOT, pillar))
+  } catch (err) {
+    throw new Error(`Cannot read ${join(CONTENT_ROOT, pillar)}: ${err.message}`)
+  }
+}
 
 export async function getExistingTopics() {
   const [trainFiles, fuelFiles] = await Promise.all([
-    readdir(join(CONTENT_ROOT, 'train')).catch(() => []),
-    readdir(join(CONTENT_ROOT, 'fuel')).catch(() => []),
+    listPosts('train'),
+    listPosts('fuel'),
   ])
 
   const trainTitles = await extractTitles('train', trainFiles)

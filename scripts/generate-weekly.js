@@ -4,6 +4,7 @@
 
 import { getExistingTopics } from './lib/content-reader.js'
 import { generateTrainPost, generateFuelPost } from './lib/claude-writer.js'
+import { verifyCitations, summarize } from './lib/verify-citations.js'
 import { fetchStockImage } from './lib/pexels.js'
 import { saveDraft } from './lib/draft-store.js'
 import { sendDraftReview } from './lib/email.js'
@@ -24,6 +25,25 @@ function checkEnv() {
   }
 }
 
+// Runs before the review email so the editor never sees a citation we haven't
+// resolved. Rewrites post.content in place: bad links become plain text.
+async function checkCitations(post) {
+  const { citations, ok, content } = await verifyCitations(post.content, post.title)
+  post.content = content
+
+  if (!citations.length) {
+    console.log('  Citations: none')
+    return citations
+  }
+  console.log(`  Citations: ${citations.length} checked`)
+  console.log(summarize(citations))
+  if (!ok) {
+    const bad = citations.filter(c => c.status === 'mismatch' || c.status === 'not_found')
+    console.log(`  ${bad.length} unusable citation(s) stripped — flagged in the review email`)
+  }
+  return citations
+}
+
 async function run() {
   checkEnv()
 
@@ -36,6 +56,8 @@ async function run() {
   const trainPost = await generateTrainPost(existing.train)
   console.log(`  "${trainPost.title}"`)
 
+  const trainCitations = await checkCitations(trainPost)
+
   console.log('  Fetching stock image...')
   const trainImage = await fetchStockImage(trainPost.pexels_query, trainPost.slug)
   console.log(`  Image: ${trainImage.publicPath} (by ${trainImage.credit.photographer})`)
@@ -44,7 +66,7 @@ async function run() {
   console.log('  Draft saved.')
 
   console.log('  Sending review email...')
-  await sendDraftReview('train', trainPost, trainImage.publicPath, trainToken)
+  await sendDraftReview('train', trainPost, trainImage.publicPath, trainToken, trainCitations)
 
   // Small delay so emails don't arrive simultaneously
   await new Promise(r => setTimeout(r, 5000))
@@ -54,6 +76,8 @@ async function run() {
   const fuelPost = await generateFuelPost(existing.fuel)
   console.log(`  "${fuelPost.title}"`)
 
+  const fuelCitations = await checkCitations(fuelPost)
+
   console.log('  Fetching stock image...')
   const fuelImage = await fetchStockImage(fuelPost.pexels_query, fuelPost.slug)
   console.log(`  Image: ${fuelImage.publicPath} (by ${fuelImage.credit.photographer})`)
@@ -62,7 +86,7 @@ async function run() {
   console.log('  Draft saved.')
 
   console.log('  Sending review email...')
-  await sendDraftReview('fuel', fuelPost, fuelImage.publicPath, fuelToken)
+  await sendDraftReview('fuel', fuelPost, fuelImage.publicPath, fuelToken, fuelCitations)
 
   console.log('\nDone. Check selfhealthliving@gmail.com for 2 review emails.')
 }
