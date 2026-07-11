@@ -2,12 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 
 const fuelPostsMap = import.meta.glob('../../content/fuel/*.md', { eager: true });
-const fuelPosts = Object.values(fuelPostsMap);
-
-const chillaPostMap = import.meta.glob('../besan-pancake-indian-style-chickpea-pancake.md', { eager: true });
-const chillaPost = Object.values(chillaPostMap);
-
-const allPosts = [...fuelPosts, ...chillaPost];
+const allPosts = Object.values(fuelPostsMap);
 
 const sortedPosts = allPosts.sort((a, b) => {
   return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
@@ -96,8 +91,7 @@ const getCategoriesForPost = (post) => {
           year: 'numeric', month: 'long', day: 'numeric'
         }) : '';
 
-        const isChilla = slug === 'besan-pancake-indian-style-chickpea-pancake';
-        const href = isChilla ? `/${slug}/` : `/fuel/${slug}/`;
+        const href = `/fuel/${slug}/`;
         const cats = getCategoriesForPost(post);
 
         return (
