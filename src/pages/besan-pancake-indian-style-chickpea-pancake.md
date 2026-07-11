@@ -65,8 +65,3 @@ recipe:
     - "<strong>Step 5:</strong> <strong>Serve</strong>Serve the chickpea pancake hot with a side of yogurt, mint chutney, or pickles for extra flavor. I like to eat it like a crepe, where I could saute some veggies and add it inside for the extra fiber for the slow weekends when I have more time. Otherwise they can be a quick pancake you could make and head out the door."
 ---
 
-<p ></p>
-
-<p ></p>
-
-<p>[gallery ids="433"]</p>
