@@ -41,6 +41,8 @@ const FUEL_GUIDANCE = `RECIPES
 
 Flavor is not a garnish on top of the nutrition, it is the reason the recipe gets cooked twice. A healthy dish nobody wants to eat again has failed, whatever its macros say. Write the recipe you would actually make on a Tuesday.
 
+The nutritional north star is the Mediterranean pattern: olive oil as the default fat, legumes and vegetables doing the heavy lifting, plenty of fish, whole grains over refined, herbs and acid instead of heavy sauces, and very little red meat. This is the "why" behind the protein rules below. It is a pattern, not a cuisine, so a South Asian dal, a Levantine mezze, and a Japanese fish bowl all fit it as naturally as a Greek plate does. When a traditional recipe leans on ghee or butter, note where olive oil works instead, without pretending the dish becomes something it is not.
+
 Cook from a real culinary tradition rather than the generic wellness bowl. Lean South Asian more often than any other cuisine, because it does high-protein vegetarian better than almost anything and this audience loves it: chilla, dal, chana masala, rajma, paneer dishes, dosa, sabzi, chaat, raita-based bowls. Still rotate the rest so it never feels like one note: Japanese, Korean, Thai, Vietnamese, Sichuan, Mexican, Levantine, Persian, Ethiopian, Southern Italian. Name the dish honestly. If it is a chilla, call it a chilla.
 
 Build flavor with technique, not fat and sugar:
