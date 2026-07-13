@@ -1,0 +1,4 @@
+{
+  "_comment": "Optional per-slug accent color override [r,g,b]. Use only when the hero photo's auto-detected color is wrong (e.g. a low-res hero where garnish greens crowd the glass). Omit a slug to let render_scenes.py pick the color automatically from the smoothie.",
+  "purple-protein-smoothie": [168, 85, 247]
+}

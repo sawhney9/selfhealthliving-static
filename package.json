@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "reel": "node --env-file=.env scripts/reel/generate-reel.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",

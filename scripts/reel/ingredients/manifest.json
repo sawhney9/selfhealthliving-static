@@ -1,0 +1,22 @@
+{
+  "_comment": "Maps a recipe ingredient name to a vetted library photo. Matching is case-insensitive substring: the first entry whose any alias appears in the ingredient name wins. 'skip' ingredients get no card. Add a new entry (and photo) when a recipe introduces an ingredient not covered here.",
+  "images": {
+    "blueberries":  ["blueberr"],
+    "mixedberries": ["mixed berr", "mixed berries", "assorted berr"],
+    "strawberries": ["strawberr"],
+    "beetroot":     ["beet"],
+    "spinach":      ["spinach"],
+    "kale":         ["kale"],
+    "carrots":      ["carrot"],
+    "apple":        ["apple"],
+    "cauliflower":  ["cauliflower"],
+    "sauerkraut":   ["sauerkraut", "fermented cabbage"],
+    "almondbutter": ["almond butter", "nut butter", "peanut butter"],
+    "protein":      ["protein"],
+    "collagen":     ["collagen"],
+    "greekyogurt":  ["greek yogurt", "yogurt", "yoghurt"],
+    "flaxseed":     ["flax"],
+    "turmeric":     ["turmeric", "curcumin"]
+  },
+  "skip": ["water", "ice", "almond milk", "milk", "honey", "cinnamon"]
+}

@@ -29,6 +29,16 @@ export default {
   },
 }
 
+// TODO(reel automation): auto-generate a social reel when a recipe is approved.
+// After the fuel commit succeeds below, fire a GitHub Action that runs the reel
+// generator and emails the download link. Steps:
+//   1. Add a `workflow_dispatch`/`repository_dispatch` workflow (e.g. .github/workflows/reel.yml)
+//      that installs ffmpeg + Pillow, then runs: node scripts/reel/generate-reel.js <slug> --email
+//   2. Here, only when pillar === 'fuel', POST to the GitHub dispatch API with { slug: post.slug }
+//      using env.GITHUB_TOKEN (needs `workflow`/`actions:write` scope — verify the token has it).
+//   3. The workflow needs ANTHROPIC_API_KEY, RESEND_API_KEY, REVIEW_EMAIL as repo secrets (already set),
+//      and a place to host the mp4 (upload as a workflow artifact, or push to R2, then link it in the email).
+// See scripts/reel/README.md ("Auto-trigger"). Kept manual for now: run `npm run reel -- <slug>` by hand.
 async function handleApprove(draft, token, env) {
   const { pillar, post, imagePath } = draft
   const markdown = buildMarkdown(pillar, post, imagePath)
