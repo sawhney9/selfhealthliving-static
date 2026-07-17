@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { stripToText } from '../../lib/seo.js';
 
 export async function getStaticPaths() {
   const postsMap = import.meta.glob('../../content/train/*.md', { eager: true });
@@ -11,8 +12,10 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const raw = typeof post.rawContent === 'function' ? post.rawContent() : '';
+const description = post.frontmatter.description || stripToText(raw, 155);
 ---
 
-<ArticleLayout frontmatter={post.frontmatter}>
+<ArticleLayout frontmatter={post.frontmatter} description={description}>
   <post.Content />
 </ArticleLayout>

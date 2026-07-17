@@ -4,11 +4,18 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
 
-const { 
+const {
   title = "Self Health Living | Train smarter. Age stronger. Know what's working.",
   description = "Decode your sleep, fitness, lab tests, and vitals using the SelfHealth iOS app. Processes on-device, explaining trends in plain English.",
-  currentPillar = ""
+  currentPillar = "",
+  ogType = "website",
+  image = "https://selfhealthliving.com/images/brand/og-image.jpg",
+  jsonLd = []
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = image?.startsWith("http") ? image : new URL(image, Astro.site).href;
+const schemas = Array.isArray(jsonLd) ? jsonLd.filter(Boolean) : [jsonLd].filter(Boolean);
 ---
 
 <!DOCTYPE html>
@@ -23,19 +30,24 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light" />
+    <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={`https://selfhealthliving.com${Astro.url.pathname}`} />
-    <meta property="og:image" content="https://selfhealthliving.com/images/brand/og-image.jpg" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://selfhealthliving.com/images/brand/og-image.jpg" />
+    <meta name="twitter:image" content={ogImage} />
+
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, "\\u003c")} />
+    ))}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
