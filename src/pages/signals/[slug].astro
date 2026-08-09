@@ -1,0 +1,21 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { stripToText } from '../../lib/seo.js';
+
+export async function getStaticPaths() {
+  const postsMap = import.meta.glob('../../content/signals/*.md', { eager: true });
+  const posts = Object.values(postsMap);
+  return posts.map(post => ({
+    params: { slug: post.frontmatter.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const raw = typeof post.rawContent === 'function' ? post.rawContent() : '';
+const description = post.frontmatter.description || stripToText(raw, 155);
+---
+
+<ArticleLayout frontmatter={post.frontmatter} description={description}>
+  <post.Content />
+</ArticleLayout>

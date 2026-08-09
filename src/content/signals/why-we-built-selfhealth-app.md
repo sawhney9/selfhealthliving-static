@@ -2,7 +2,7 @@
 title: "Why We Built The SelfHealth App: Moving From Data to Direction"
 date: "2026-05-25"
 featured_image: "/images/uploads/health-app-lifestyle.jpg"
-pillar: "train"
+pillar: "signals"
 slug: "why-we-built-selfhealth-app"
 ---
 
