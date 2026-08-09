@@ -16,6 +16,13 @@ const { currentPillar } = Astro.props;
 
   <nav class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide">
     <a
+      href="/app"
+      data-astro-reload
+      class={`transition-colors duration-200 ${currentPillar === 'app' ? 'text-green-accent font-bold' : 'text-slate-500 hover:text-slate-900'}`}
+    >
+      App
+    </a>
+    <a
       href="/about"
       class={`transition-colors duration-200 ${currentPillar === 'about' ? 'text-green-accent font-bold' : 'text-slate-500 hover:text-slate-900'}`}
     >
@@ -69,6 +76,7 @@ const { currentPillar } = Astro.props;
   id="mobile-menu-overlay"
   class="fixed inset-0 bg-[#F7FAF8]/98 z-40 flex flex-col items-center justify-center gap-8 text-2xl font-display font-medium translate-x-full transition-transform duration-300 md:hidden"
 >
+  <a href="/app" data-astro-reload class="text-slate-700 hover:text-slate-950 transition-colors duration-200 mobile-nav-link">App</a>
   <a href="/about" class="text-slate-700 hover:text-slate-950 transition-colors duration-200 mobile-nav-link">About</a>
   <a href="/signals" class="text-slate-700 hover:text-slate-950 transition-colors duration-200 mobile-nav-link">Signals</a>
   <a href="/train" class="text-slate-700 hover:text-slate-950 transition-colors duration-200 mobile-nav-link">Train</a>
