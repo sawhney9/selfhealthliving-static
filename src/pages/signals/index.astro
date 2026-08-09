@@ -1,0 +1,148 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const postsMap = import.meta.glob('../../content/signals/*.md', { eager: true });
+const posts = Object.values(postsMap);
+
+const sortedPosts = posts.sort((a, b) => {
+  return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
+});
+
+const getCategoriesForPost = (post) => {
+  const slug = post.frontmatter.slug;
+  if (slug === 'why-we-built-selfhealth-app') return ['ai'];
+  if (slug.includes('ai')) return ['ai'];
+  if (slug.includes('blood-sugar') || slug.includes('cgm')) return ['biomarkers'];
+  return ['biomarkers'];
+};
+---
+
+<Layout title="Signals: Health Tech & Biomarkers | Self Health Living" currentPillar="signals">
+  <div class="py-14 px-6 md:px-12 max-w-6xl mx-auto w-full relative">
+    <!-- Ambient glow -->
+    <div class="absolute top-10 left-10 w-48 h-48 bg-green-accent/5 rounded-full blur-[80px] pointer-events-none animate-pulse-glow"></div>
+
+    <!-- Header -->
+    <div class="pb-8 mb-10 text-center md:text-left relative border-b border-black/6" data-reveal="fade">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-4">
+        Content Pillar
+      </span>
+      <h1 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tighter mt-2 mb-4">
+        Read Your Own <span class="font-serif italic font-normal text-green-accent">Data</span>.
+      </h1>
+      <p class="text-slate-500 text-base leading-relaxed max-w-2xl">
+        CGMs, wearables, lab panels, and AI — what the numbers actually mean and how to act on them without a medical degree.
+      </p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-black/6" id="signals-filters" data-reveal="fade" data-reveal-delay="100">
+      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-white border border-green-accent cursor-pointer transition-all duration-300">
+        All Articles
+      </button>
+      <button data-filter="biomarkers" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300">
+        Biomarkers &amp; Devices
+      </button>
+      <button data-filter="ai" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300">
+        AI &amp; Health
+      </button>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-grid" data-reveal="fade" data-reveal-delay="200">
+      {sortedPosts.map((post) => {
+        const { title, date, featured_image, slug } = post.frontmatter;
+        const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        }) : '';
+        const cats = getCategoriesForPost(post);
+
+        return (
+          <a
+            href={`/signals/${slug}/`}
+            data-categories={cats.join(',')}
+            class="article-card group flex flex-col glass-card overflow-hidden transition-all duration-300 hover:-translate-y-1 transform opacity-100 scale-100"
+          >
+            <div class="w-full h-44 overflow-hidden bg-slate-100 border-b border-black/5 relative">
+              {featured_image ? (
+                <img
+                  src={featured_image}
+                  alt={title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center text-slate-300 bg-slate-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+              )}
+            </div>
+            <div class="p-5 flex-grow flex flex-col justify-between">
+              <div>
+                <time datetime={date} class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">
+                  {formattedDate}
+                </time>
+                <h2 class="font-display font-bold text-base sm:text-lg text-slate-900 leading-snug group-hover:text-green-accent transition-colors duration-200 mb-3">
+                  {title}
+                </h2>
+              </div>
+              <span class="text-xs font-semibold text-green-accent group-hover:underline flex items-center gap-1 mt-4">
+                Read Article
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  function initFilters() {
+    const filterContainer = document.getElementById('signals-filters');
+    if (!filterContainer) return;
+
+    const buttons = filterContainer.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.article-card');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        buttons.forEach(b => {
+          b.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/70 text-slate-500 border border-black/8 hover:text-slate-900 cursor-pointer transition-all duration-300';
+        });
+
+        if (filter === 'all') {
+          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent text-white border border-green-accent cursor-pointer transition-all duration-300';
+        } else {
+          btn.className = 'filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-green-accent/10 text-green-accent border border-green-accent/30 cursor-pointer transition-all duration-300';
+        }
+
+        cards.forEach(card => {
+          const cardCats = card.getAttribute('data-categories').split(',');
+          const matches = filter === 'all' || cardCats.includes(filter);
+
+          if (matches) {
+            card.classList.remove('hidden');
+            setTimeout(() => {
+              card.classList.remove('opacity-0', 'scale-95');
+              card.classList.add('opacity-100', 'scale-100');
+            }, 10);
+          } else {
+            card.classList.add('opacity-0', 'scale-95');
+            card.classList.remove('opacity-100', 'scale-100');
+            setTimeout(() => { card.classList.add('hidden'); }, 300);
+          }
+        });
+      });
+    });
+  }
+
+  initFilters();
+  document.addEventListener('astro:page-load', initFilters);
+</script>
