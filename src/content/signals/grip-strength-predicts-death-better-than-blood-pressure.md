@@ -1,8 +1,8 @@
 ---
 title: "Grip Strength Predicts Death Better Than Blood Pressure — Here's What Yours Should Be"
 date: "2026-07-10"
-featured_image: "/images/uploads/grip-strength-longevity-predictor.jpg"
-pillar: "train"
+featured_image: "/images/uploads/grip-strength-trainer.jpg"
+pillar: "signals"
 slug: "grip-strength-predicts-death-better-than-blood-pressure"
 ---
 

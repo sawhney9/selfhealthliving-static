@@ -1,8 +1,8 @@
 ---
 title: "Fish Oil Works, But Almost Nobody Takes It the Way the Evidence Says To"
 date: "2026-07-27"
-featured_image: "/images/uploads/fish-oil-omega-3-dose-that-actually-works.jpg"
-pillar: "train"
+featured_image: "/images/uploads/fish-oil-capsules.jpg"
+pillar: "signals"
 slug: "fish-oil-omega-3-dose-that-actually-works"
 ---
 
