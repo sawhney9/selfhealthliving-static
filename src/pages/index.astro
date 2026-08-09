@@ -41,7 +41,7 @@ const featuredPosts = featuredSlugs.map((slug) => bySlug[slug]).filter(Boolean);
           <a href="/signals" class="inline-flex items-center gap-2 px-7 py-3.5 bg-green-accent hover:bg-green-accent-hover text-white text-sm font-bold rounded-full transition-all duration-300 shadow-sm hover:shadow-[0_8px_20px_rgba(0,163,108,0.35)] hover:-translate-y-0.5">
             Start with Signals →
           </a>
-          <a href="/app" class="text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">
+          <a href="/app" data-astro-reload class="text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">
             or see what the app automates ↓
           </a>
         </div>
@@ -229,7 +229,7 @@ const featuredPosts = featuredSlugs.map((slug) => bySlug[slug]).filter(Boolean);
        ══════════════════════════════════════ -->
   <section class="py-20 md:py-28 bg-white">
     <div class="max-w-4xl mx-auto px-6">
-      <a href="/app" class="glass-card flex flex-col sm:flex-row items-center gap-6 p-7 sm:p-8" data-reveal="fade">
+      <a href="/app" data-astro-reload class="glass-card flex flex-col sm:flex-row items-center gap-6 p-7 sm:p-8" data-reveal="fade">
         <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-sm flex-shrink-0 border border-black/8">
           <img src="/images/brand/app-icon.jpg" alt="SelfHealth app icon" class="w-full h-full object-cover" />
         </div>
