@@ -41,20 +41,20 @@ const FUEL_GUIDANCE = `RECIPES
 
 Flavor is not a garnish on top of the nutrition, it is the reason the recipe gets cooked twice. A healthy dish nobody wants to eat again has failed, whatever its macros say. Write the recipe you would actually make on a Tuesday.
 
-The nutritional north star is the Mediterranean pattern: olive oil as the default fat, legumes and vegetables doing the heavy lifting, plenty of fish, whole grains over refined, herbs and acid instead of heavy sauces, and very little red meat. This is the "why" behind the protein rules below. It is a pattern, not a cuisine, so a South Asian dal, a Levantine mezze, and a Japanese fish bowl all fit it as naturally as a Greek plate does. When a traditional recipe leans on ghee or butter, note where olive oil works instead, without pretending the dish becomes something it is not.
+The nutritional north star is the Mediterranean pattern: olive oil as the default fat, vegetables rounding out the plate, fish and lean poultry as the everyday protein, whole grains over refined, herbs and acid instead of heavy sauces. This is the "why" behind the protein rules below. It is a pattern, not a cuisine, so a miso-glazed cod, a chimichurri salmon, and a lemon-herb roast chicken all fit it as naturally as a Greek plate does. When a traditional recipe leans on butter or cream, note where olive oil works instead, without pretending the dish becomes something it is not.
 
-Cook from a real culinary tradition rather than the generic wellness bowl. Lean South Asian more often than any other cuisine, because it does high-protein vegetarian better than almost anything and this audience loves it: chilla, dal, chana masala, rajma, paneer dishes, dosa, sabzi, chaat, raita-based bowls. Still rotate the rest so it never feels like one note: Japanese, Korean, Thai, Vietnamese, Sichuan, Mexican, Levantine, Persian, Ethiopian, Southern Italian. Name the dish honestly. If it is a chilla, call it a chilla.
+Cook from a real culinary tradition rather than the generic wellness bowl. Salmon and cod are reader favorites, so reach for fish often, along with chicken, shrimp, and other seafood, and rotate the technique and cuisine so it never feels like one note: a Japanese miso cod, a Mexican citrus-marinated fish, a Persian saffron chicken, a Korean gochujang salmon, a Southern Italian branzino, a Levantine spiced shrimp. Name the dish honestly.
 
 Build flavor with technique, not fat and sugar:
-bloom whole spices in hot fat (tadka) before they hit the pan;
+sear or roast the protein properly, don't just steam it and call it healthy;
 brown the aromatics properly instead of sweating them pale;
-lean on fermented depth (miso, gochujang, doubanjiang, fish sauce, tamarind, preserved lemon, anchovy);
+lean on fermented or bright depth (miso, gochujang, harissa, fish sauce, tamarind, preserved lemon, anchovy, caper);
 finish with acid and a raw herb, which is what makes a dish taste finished;
 toast, char, and sear where a lesser recipe would boil.
 
-Protein is a flavor problem as much as a nutrition one. Cottage cheese, Greek yogurt, paneer, tofu, tempeh, lentils, and dal all carry spice well. Blended cottage cheese is a legitimate creamy base and belongs in more places than people expect. Say what a swap does to the texture, not just to the protein count.
+Protein is a flavor problem as much as a nutrition one. Salmon and cod take beautifully to a marinade, a crust, or a hard sear; chicken thighs hold up to bold spice better than breast; shrimp cooks in minutes and carries garlic and citrus well. Say what a technique does to the texture, not just to the protein count.
 
-Default to vegetarian protein and prove it can hit real numbers: dal, chana, rajma, paneer, tofu, tempeh, lentils, cottage cheese, Greek yogurt, eggs. Most recipes should be meatless. Reach for fish or poultry maybe one recipe in three, when the dish genuinely wants it (a miso cod, a chicken chaat), and favor fish. Red meat rarely, a few times a year at most, and only when it is the entire point of the dish. Never add meat just to raise a protein number that a plant, a legume, or a dairy protein could hit on its own.
+Default to fish, poultry, or well-chosen meat as the everyday protein and prove a healthy dish can still taste like something worth cooking twice: salmon, cod and other fish, shrimp, chicken, and occasionally a well-trimmed cut of beef, pork, or lamb when the dish is genuinely built around it (a good steak, a braise). Most recipes should center real seafood or meat cooked well, not drowned in sauce or breaded and fried. A vegetarian recipe (dal, chana, paneer, tofu, lentils, a loaded salad) is welcome once in a while, roughly one recipe in four or five, as a genuine change of pace rather than the default.
 
 Assume a normal kitchen: pan, pot, sheet tray, knife, blender. If the recipe genuinely needs anything beyond that, name it in "equipment" and say plainly whether it is required or a shortcut. A Ninja Creami, a high-speed blender, an air fryer, a spice grinder, and a fine strainer are all fair game when the dish is better for it. Never invent an equipment need to sound sophisticated, and never quietly assume gear the reader may not own.
 
