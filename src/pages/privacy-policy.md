@@ -24,12 +24,12 @@ To provide a personalized health experience, we collect data in the following wa
 
 SelfHealth utilizes Large Language Models (LLMs) to provide automated health coaching and lab analysis.
 
-- **Providers:** We currently use **Google Gemini** (operated by Google LLC) and **Anthropic Claude**. The AI provider we use may change over time and this policy will be updated to reflect any such changes.
+- **Providers:** We currently use **Google Gemini** (operated by Google LLC). The AI provider we use may change over time and this policy will be updated to reflect any such changes.
 - **What data is sent:** When you use an AI feature, the following data may be transmitted to the AI provider: your health metrics and scores (e.g., HRV, sleep, vitals score), lab result values, biomarker data, workout and exercise history (e.g., exercises performed, weights, repetitions, and dates) and recovery indicators, and the text of your query. Raw HealthKit sensor data is never sent.
 - **Your consent:** We will always ask for your explicit permission before sending any personal health data to a third-party AI service. You can review or revoke this consent at any time via Settings &rarr; AI & Data Usage.
 - **Security:** Data is sent via encrypted Enterprise APIs. Your data is **never** used to train the public models of these providers.
 - **Retention:** Personal data sent to AI providers is typically deleted within 30 days.
-- **Third-party privacy policies:** [Google Privacy Policy](https://policies.google.com/privacy) &middot; [Anthropic Privacy Policy](https://www.anthropic.com/privacy)
+- **Third-party privacy policies:** [Google Privacy Policy](https://policies.google.com/privacy)
 
 *You may opt out of AI features at any time via Settings &rarr; AI & Data Usage, though this will limit personalized coaching functionality.*
 
@@ -44,7 +44,16 @@ SelfHealth utilizes Large Language Models (LLMs) to provide automated health coa
 - **Data Control:** You can delete your account at any time via *Settings &rarr; Delete Account*. This permanently and irreversibly wipes all your data from our servers.
 - **Third-Party Sales:** We never sell your health data to advertisers or third-party data brokers.
 
-## 5. Contact Us
+## 5. Family & Managed Profiles
+
+- **Managed Profiles:** Account owners can create additional profiles within their own account for a minor child or another individual in their care (e.g. an aging parent) — these are called "Managed Profiles." Managed profiles have no separate login or account of their own; all data is entered, viewed, and controlled solely by the account owner.
+- **Managed profiles for minors:** For a managed profile representing a minor child, the account owner is the child's parent or legal guardian and provides consent on the child's behalf. SelfHealth does not knowingly collect personal information directly from children under 13 — all data about a managed child profile is entered by the parent/guardian, not the child.
+- **Managed profiles for other adults:** For a managed profile representing another adult, SelfHealth sends a one-time email notice to that person's contact email when the profile is created, as a record that they were informed.
+- **Linked Adult accounts:** Separately, SelfHealth supports "Linked Adult" accounts, where two independent adult account holders can invite each other to share visibility into their own health data. This requires the invited person to accept using their own SelfHealth account, and is never available for minors.
+- **Applicable practices:** All data practices described elsewhere in this policy (AI usage, storage, deletion) apply equally to managed-profile and linked data.
+- **Account deletion:** Deleting your account permanently deletes all of your managed profiles' data as well.
+
+## 6. Contact Us
 
 Questions regarding your privacy? Reach out at:
 
