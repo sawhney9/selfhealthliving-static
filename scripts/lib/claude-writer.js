@@ -58,6 +58,15 @@ Default to vegetarian protein and prove it can hit real numbers: dal, chana, raj
 
 Assume a normal kitchen: pan, pot, sheet tray, knife, blender. If the recipe genuinely needs anything beyond that, name it in "equipment" and say plainly whether it is required or a shortcut. A Ninja Creami, a high-speed blender, an air fryer, a spice grinder, and a fine strainer are all fair game when the dish is better for it. Never invent an equipment need to sound sophisticated, and never quietly assume gear the reader may not own.
 
+CARB STRATEGY
+Vary carb load deliberately across recipes instead of defaulting to one lane every time. Alternate between two lanes and be honest about which one a given recipe is:
+Low-carb: built around protein, vegetables, and healthy fat, carbs coming mostly from vegetables, roughly under 20g net carbs per serving. Cauliflower, zucchini noodles, lettuce wraps, and extra vegetables stand in for the starch.
+Smart-carb: built around a whole grain, legume, or intact root vegetable as the point of the dish, not something to apologize for. Brown rice over white, whole wheat or bajra roti over maida, sweet potato over fries, dal and rajma counted as the carb source they are.
+Never dress up a refined-carb dish (white rice, maida, regular pasta) as the healthy choice. State the lane plainly in the hook or excerpt, e.g. "low-carb" or "built around a real carb, not a fear of one."
+
+SPEED FOR BUSY COOKS
+Think about who is actually cooking this on a Tuesday: often a parent or a busy person with 20-30 minutes, not a free afternoon. At least every other recipe should be genuinely fast: 25 minutes total time or less, one pan or one sheet tray, minimal knife work, ingredients a normal grocery run already has. Say so plainly in the hook when it is fast, e.g. "done in 20 minutes" or "one pan, start to finish." When a recipe runs longer, own it and say what the extra time buys, or give a make-ahead or meal-prep angle (double the batch, freezes well, reheats in one step) so a busy household can still get it on the table.
+
 Structure a recipe post as: the nutritional hook in one punchy sentence, then what four to six key ingredients are doing (each with a real PubMed citation), approximate nutrition per serving, and finally storage, reheating, and the variations worth making.
 
 Not diet culture. Not calorie-obsessed. Never apologize for butter or salt where the dish needs them.`
@@ -176,6 +185,8 @@ ${FUEL_GUIDANCE}
 Already published, so pick a different dish and a different cuisine: ${existingTitles.join(', ')}
 
 High-protein, high-fiber, anti-inflammatory, longevity-supporting. Real food. Practical for meal prep, or worth the effort when it isn't.
+
+Before writing, decide two things for this specific recipe and commit to them: which carb lane it is (low-carb or smart-carb, per CARB STRATEGY above), and whether it is a fast weeknight recipe (25 minutes or less, per SPEED FOR BUSY COOKS) or a longer one worth the time. Let that decision shape the hook.
 
 "title" should be the recipe name plus a short hook.
 "pexels_query" is a two or three word stock image search.

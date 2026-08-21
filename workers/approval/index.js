@@ -29,16 +29,10 @@ export default {
   },
 }
 
-// TODO(reel automation): auto-generate a social reel when a recipe is approved.
-// After the fuel commit succeeds below, fire a GitHub Action that runs the reel
-// generator and emails the download link. Steps:
-//   1. Add a `workflow_dispatch`/`repository_dispatch` workflow (e.g. .github/workflows/reel.yml)
-//      that installs ffmpeg + Pillow, then runs: node scripts/reel/generate-reel.js <slug> --email
-//   2. Here, only when pillar === 'fuel', POST to the GitHub dispatch API with { slug: post.slug }
-//      using env.GITHUB_TOKEN (needs `workflow`/`actions:write` scope — verify the token has it).
-//   3. The workflow needs ANTHROPIC_API_KEY, RESEND_API_KEY, REVIEW_EMAIL as repo secrets (already set),
-//      and a place to host the mp4 (upload as a workflow artifact, or push to R2, then link it in the email).
-// See scripts/reel/README.md ("Auto-trigger"). Kept manual for now: run `npm run reel -- <slug>` by hand.
+// Reel generation is NOT triggered from here. A daily scheduled workflow
+// (.github/workflows/reel.yml) scans src/content/fuel/*.md for posts dated the
+// previous day and generates+emails a reel for each — so an approval here today
+// gets its reel tomorrow. See scripts/reel/README.md.
 async function handleApprove(draft, token, env) {
   const { pillar, post, imagePath } = draft
   const markdown = buildMarkdown(pillar, post, imagePath)
@@ -102,6 +96,20 @@ function serveEditForm(draft, token) {
   )
 }
 
+// Kept in sync by hand with scripts/lib/claude-writer.js's FUEL_GUIDANCE — this
+// Worker can't import that module (it constructs an Anthropic client from
+// process.env at import time, which doesn't exist in the Workers runtime), so
+// the recipe rules are duplicated here in condensed form for revisions.
+const FUEL_SYSTEM_PROMPT = `You write recipe content for SelfHealth Living. Direct, evidence-based, personal voice. No AI-speak. No filler.
+
+Flavor first: a healthy recipe nobody wants to eat again has failed. Mediterranean-pattern nutrition (olive oil, legumes, vegetables, fish, whole grains, little red meat), built with real technique (blooming spices, browning aromatics, fermented depth, a finishing acid), not just swapped ingredients.
+
+Vary carb load deliberately: a recipe is either low-carb (protein, vegetables, healthy fat, carbs mostly from vegetables) or smart-carb (a whole grain, legume, or intact root vegetable as the point of the dish, never refined starch dressed up as healthy). Know which lane this recipe is in and stay honest about it.
+
+Respect the reader's time: many are a busy parent with 20-30 minutes, not a free afternoon. If editor notes ask to make a recipe faster or simpler, actually cut prep/cook time and steps, don't just add a sentence claiming it's quick.
+
+If the editor's notes require changing ingredients, amounts, or steps, update the "recipe" object's fields to match — do not leave stale ingredients/instructions that contradict the revised text.`
+
 async function handleEditPost(request, draft, token, env) {
   const formData = await request.formData()
   const notes = formData.get('notes')?.trim()
@@ -109,6 +117,15 @@ async function handleEditPost(request, draft, token, env) {
 
   const { pillar, post, imagePath } = draft
   const revisionNumber = (draft.revisionNumber || 0) + 1
+  const isFuel = pillar === 'fuel' && post.recipe
+
+  const system = isFuel
+    ? FUEL_SYSTEM_PROMPT
+    : `You write health content for SelfHealth Living. Direct, evidence-based, personal voice. No AI-speak. No filler.`
+
+  const userContent = isFuel
+    ? `Here is a recipe post draft:\n\nTitle: ${post.title}\n\n${post.content}\n\nCurrent recipe data: ${JSON.stringify(post.recipe)}\n\nEditor notes: "${notes}"\n\nReturn ONLY a JSON object with updated "title", "slug", "content", and "recipe" fields (recipe keeps the same shape: title, prep_time, cook_time, total_time, servings, servings_unit, ingredients, instructions, equipment).`
+    : `Here is a health article draft:\n\nTitle: ${post.title}\n\n${post.content}\n\nEditor notes: "${notes}"\n\nReturn ONLY a JSON object with updated "title", "slug", and "content" fields.`
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -120,13 +137,8 @@ async function handleEditPost(request, draft, token, env) {
     body: JSON.stringify({
       model: 'claude-opus-4-8',
       max_tokens: 4000,
-      system: `You write health content for SelfHealth Living. Direct, evidence-based, personal voice. No AI-speak. No filler.`,
-      messages: [
-        {
-          role: 'user',
-          content: `Here is a health article draft:\n\nTitle: ${post.title}\n\n${post.content}\n\nEditor notes: "${notes}"\n\nReturn ONLY a JSON object with updated "title", "slug", and "content" fields.`,
-        },
-      ],
+      system,
+      messages: [{ role: 'user', content: userContent }],
     }),
   })
 
