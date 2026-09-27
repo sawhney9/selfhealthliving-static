@@ -1,12 +1,12 @@
 ---
 layout: ../layouts/ArticleLayout.astro
 title: "Privacy Policy"
-date: "2026-06-06"
+date: "2026-09-27"
 pillar: "about"
 slug: "privacy-policy"
 ---
 
-**Effective Date:** May 9, 2026
+**Effective Date:** September 27, 2026
 
 Self Health Living ("we", "us", or "our") operates the **SelfHealth** iOS application (the "App"). This Privacy Policy explains how we collect, use, store, and protect your personal information. By using the App, you agree to the collection and use of information in accordance with this policy.
 
@@ -18,6 +18,7 @@ To provide a personalized health experience, we collect data in the following wa
 - **User-Entered Health Data:** Lab result values (e.g., cholesterol, glucose), cycle tracking entries, and personal health notes.
 - **HealthKit Integration:** With your permission, we read metrics like heart rate, HRV, and sleep. This data is processed locally to generate health scores and shared with AI providers only when you request specific coaching insights.
   - *HealthKit data is never used for advertising or shared with third parties for purposes unrelated to health and fitness.*
+- **Food Logging Data:** Meals and foods you log, including photos of meals or nutrition labels and meal descriptions you type. When you scan a barcode or search for a food by name, the barcode digits or search term you enter are sent to **Open Food Facts** and **USDA FoodData Central** to look up nutrition information — no account or health data is included in these lookups.
 - **Usage Data:** App interaction logs (e.g., screens visited, errors) collected anonymously for debugging and improvement.
 
 ## 2. Artificial Intelligence (AI) Features
@@ -25,9 +26,9 @@ To provide a personalized health experience, we collect data in the following wa
 SelfHealth utilizes Large Language Models (LLMs) to provide automated health coaching and lab analysis.
 
 - **Providers:** We currently use **Google Gemini** (operated by Google LLC). The AI provider we use may change over time and this policy will be updated to reflect any such changes.
-- **What data is sent:** When you use an AI feature, the following data may be transmitted to the AI provider: your health metrics and scores (e.g., HRV, sleep, vitals score), lab result values, biomarker data, workout and exercise history (e.g., exercises performed, weights, repetitions, and dates) and recovery indicators, and the text of your query. Raw HealthKit sensor data is never sent.
-- **Your consent:** We will always ask for your explicit permission before sending any personal health data to a third-party AI service. You can review or revoke this consent at any time via Settings &rarr; AI & Data Usage.
-- **Security:** Data is sent via encrypted Enterprise APIs. Your data is **never** used to train the public models of these providers.
+- **What data is sent:** When you use an AI feature, the following data may be transmitted to the AI provider: your health metrics and scores (e.g., HRV, sleep, vitals score), lab result values, biomarker data, workout and exercise history (e.g., exercises performed, weights, repetitions, and dates) and recovery indicators, your self-reported mood or soreness when it factors into a fitness recommendation, photos of meals or nutrition labels, meal descriptions you type, and the text of your query. Raw HealthKit sensor data is never sent.
+- **Your consent:** We will always ask for your explicit permission — via an in-app consent screen — before sending any personal health or food data to a third-party AI service, the first time you use any AI feature. You can review or revoke this consent at any time via Settings &rarr; AI & Data Usage.
+- **Security:** Requests to Google Gemini run under Google's **paid API service tier**, not the free/unpaid tier. Your prompts and Google's responses are **never used to train Google's models** and are handled under Google's Data Processing Addendum for paid services.
 - **Retention:** Personal data sent to AI providers is typically deleted within 30 days.
 - **Third-party privacy policies:** [Google Privacy Policy](https://policies.google.com/privacy)
 
