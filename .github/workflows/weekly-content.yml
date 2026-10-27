@@ -9,7 +9,13 @@ on:
     # ~09:00 America/New_York. GitHub cron is UTC and has no TZ, so this is
     # 13:00 UTC (9am EDT); it drifts to 8am during EST. Fine for a weekly email.
     - cron: '0 13 * * 1'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      roots_mode:
+        description: 'Roots post: auto (every other week), only (Roots alone), force (all three)'
+        type: choice
+        options: [auto, only, force]
+        default: auto
 
 permissions:
   contents: write # the generate script commits Pexels images into this repo
@@ -39,6 +45,7 @@ jobs:
         run: node scripts/generate-weekly.js
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ROOTS_MODE: ${{ inputs.roots_mode || 'auto' }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           REVIEW_EMAIL: ${{ secrets.REVIEW_EMAIL }}

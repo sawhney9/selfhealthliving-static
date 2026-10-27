@@ -1,0 +1,110 @@
+{
+  "_note": "Vetted facts for Roots posts. Every fact carries an evidence tag that sets how strongly the article may state it. A pmid, when present, is the only PubMed link the article may use for that fact; facts without one are stated without a link. Add facts only with a source you have read.",
+  "evidence_levels": {
+    "guideline": "Stated by a major clinical guideline or scientific statement. State plainly.",
+    "observational": "Found in cohort or cross-sectional studies. Say 'associated with', 'on average', 'studies of X found'. Never imply cause.",
+    "hypothesis": "A leading explanation that is not proven in humans. Say 'a leading theory', 'researchers think', 'may help explain'. Never state as fact."
+  },
+  "groups": [
+    {
+      "group": "South Asian ancestry (India, Pakistan, Bangladesh, Sri Lanka, Nepal)",
+      "angles": [
+        "Why diabetes shows up earlier and at a lower weight",
+        "The lipid pattern a standard cholesterol panel can miss (triglycerides, HDL, particle count, Lp(a))",
+        "Why standard heart-risk calculators underestimate risk",
+        "The thin-fat baby and the developmental-origins theory"
+      ],
+      "facts": [
+        {
+          "level": "guideline",
+          "fact": "The 2018 AHA/ACC cholesterol guideline lists South Asian ancestry as a risk-enhancing factor when deciding on cholesterol treatment.",
+          "pmid": "30586774",
+          "source": "https://acc.org/latest-in-cardiology/ten-points-to-remember/2018/11/09/14/28/2018-guideline-on-management-of-blood-cholesterol"
+        },
+        {
+          "level": "guideline",
+          "fact": "The same guideline also lists apoB of 130 mg/dL or more and lipoprotein(a) of 50 mg/dL (125 nmol/L) or more as risk-enhancing factors when measured.",
+          "pmid": "30586774",
+          "source": "https://acc.org/latest-in-cardiology/ten-points-to-remember/2018/11/09/14/28/2018-guideline-on-management-of-blood-cholesterol"
+        },
+        {
+          "level": "guideline",
+          "fact": "An American Heart Association scientific statement reviewed the higher burden of atherosclerotic heart disease in South Asians living in the United States.",
+          "pmid": "29794080",
+          "source": "https://professional.heart.org/en/science-news/atherosclerotic-cardiovascular-disease-in-south-asians-in-the-united-states-epidemiology"
+        },
+        {
+          "level": "observational",
+          "fact": "Standard US risk calculators (the pooled cohort equations and Framingham score) tend to underestimate heart-disease risk in South Asians.",
+          "source": "https://www.lipid.org/lipid-spin/fall-2021/lipid-luminations-understanding-differences-ascvd-risk-and-outcomes-south"
+        },
+        {
+          "level": "observational",
+          "fact": "In the INTERHEART study, the average age at first heart attack was about 53 in South Asian countries versus about 59 in other countries, and higher risk-factor levels at younger ages explained most of the gap.",
+          "pmid": "17227980",
+          "source": "https://mitofit.org/index.php/Joshi_2007_JAMA"
+        },
+        {
+          "level": "observational",
+          "fact": "In the US MASALA study, South Asians had lower HDL, higher triglycerides and more small, dense LDL particles than other groups.",
+          "source": "https://www.lipid.org/lipid-spin/fall-2021/lipid-luminations-understanding-differences-ascvd-risk-and-outcomes-south"
+        },
+        {
+          "level": "observational",
+          "fact": "In UK Biobank, median lipoprotein(a) was about 31 nmol/L in South Asians versus 19 in white participants (and 75 in Black participants), and higher Lp(a) carried similar added heart risk across groups.",
+          "pmid": "33115266",
+          "source": "https://www.ukbiobank.ac.uk/publications/lpa-lipoproteina-concentrations-and-incident-atherosclerotic-cardiovascular-disease-new-insights-from-a-large-national-biobank/"
+        },
+        {
+          "level": "observational",
+          "fact": "In US national data (NHANES 2011 to 2016), diabetes prevalence was about 23% in South Asian Americans versus about 12% in white Americans.",
+          "source": "https://www.adameetingnews.org/kelly-west-award-lecture-highlights-novel-diabetes-risk-factors-in-south-asian-population/"
+        },
+        {
+          "level": "observational",
+          "fact": "Type 2 diabetes tends to appear up to a decade earlier in South Asians and at a lower BMI, alongside more visceral and liver fat and less muscle mass.",
+          "source": "https://www.lipid.org/lipid-spin/fall-2021/lipid-luminations-understanding-differences-ascvd-risk-and-outcomes-south"
+        },
+        {
+          "level": "guideline",
+          "fact": "The American Diabetes Association recommends diabetes screening for Asian Americans starting at a BMI of 23 rather than 25.",
+          "source": "https://aadi.joslin.org/en/Pages/Screen-at-23-Campaign.aspx"
+        },
+        {
+          "level": "observational",
+          "fact": "Screening Asian Americans only at BMI 25 or above would miss about 36% of those with type 2 diabetes.",
+          "pmid": "25665815",
+          "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4407753"
+        },
+        {
+          "level": "observational",
+          "fact": "The Pune Maternal Nutrition Study found Indian newborns were smaller than UK babies but carried relatively more body fat, especially central fat: the 'thin-fat' baby.",
+          "pmid": "12586996",
+          "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC218801"
+        },
+        {
+          "level": "observational",
+          "fact": "In the same Pune study, about two-thirds of mothers had low vitamin B12 in pregnancy, and children of mothers with low B12 and high folate were the most insulin resistant at age 6.",
+          "source": "https://eprints.soton.ac.uk/61622"
+        },
+        {
+          "level": "hypothesis",
+          "fact": "The thrifty phenotype hypothesis (Hales and Barker, 1992) proposes that a fetus facing scarce nutrition adapts to store fat and conserve energy, which raises metabolic disease risk when food later becomes plentiful.",
+          "pmid": "1644236",
+          "source": "https://en.wikipedia.org/wiki/Developmental_origins_of_health_and_disease"
+        },
+        {
+          "level": "observational",
+          "fact": "People exposed to the Dutch Hunger Winter famine around conception still showed different DNA methylation of the IGF2 gene about 60 years later, compared with their unexposed siblings.",
+          "pmid": "18955703",
+          "source": "https://molepi.nl/2021/06/persistent-epigenetic-differences-associated-with-prenatal-exposure-to-famine-in-humans"
+        },
+        {
+          "level": "hypothesis",
+          "fact": "Generations of undernutrition in South Asia may help explain the population's tendency toward insulin resistance through developmental and epigenetic programming, but this is not proven in humans and genetics, diet and activity also play a role.",
+          "source": "https://en.wikipedia.org/wiki/Developmental_origins_of_health_and_disease"
+        }
+      ]
+    }
+  ]
+}

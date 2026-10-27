@@ -54,8 +54,40 @@ function citationPanel(citations) {
 </div>`
 }
 
-export async function sendDraftReview(pillar, post, imagePath, token, citations = []) {
-  const label = pillar === 'train' ? 'Health Post' : 'Recipe'
+const SAFETY_LABELS = {
+  overstated_evidence: 'Overstates evidence',
+  unvetted_population_fact: 'Population fact not in vetted list',
+  dose_or_medication: 'Dose or medication',
+  diagnosis_or_target: 'Diagnosis or personal target',
+  stereotype_or_fatalism: 'Stereotype or fatalism',
+}
+
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
+function safetyPanel(safety) {
+  if (!safety) return ''
+  if (!safety.ran && !safety.flags.length) {
+    return `<div style="background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#854d0e;"><strong>Safety review did not run.</strong> Read every claim, suggestion and evidence word yourself before approving.</div>`
+  }
+  if (!safety.flags.length) {
+    return `<div style="background:#f0fdf4;border:1px solid #dcfce7;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#166534;"><strong>Safety review: no flags.</strong> No doses, medications, overstated evidence, unvetted population facts or diagnosis language found.</div>`
+  }
+  const rows = safety.flags
+    .map(f => `<tr>
+  <td style="padding:7px 10px;border-bottom:1px solid #eee;white-space:nowrap;vertical-align:top;"><span style="background:#fef2f2;color:#991b1b;font-size:11px;font-weight:700;padding:2px 7px;border-radius:10px;">${SAFETY_LABELS[f.type] || esc(f.type)}</span></td>
+  <td style="padding:7px 10px;border-bottom:1px solid #eee;font-size:12px;line-height:1.5;">“${esc(f.quote.slice(0, 220))}”<div style="color:#888;margin-top:3px;">${esc(f.note)}</div></td>
+</tr>`)
+    .join('')
+  return `<div style="border:1px solid #fecaca;border-radius:10px;padding:14px 16px;margin-bottom:24px;background:#fff;">
+  <div style="font-weight:700;color:#991b1b;margin-bottom:10px;font-size:14px;">Safety review: ${safety.flags.length} flag${safety.flags.length > 1 ? 's' : ''}. Fix or confirm each before approving.${safety.ran ? '' : ' (AI review failed; pattern checks only.)'}</div>
+  <table style="border-collapse:collapse;width:100%;">${rows}</table>
+</div>`
+}
+
+export async function sendDraftReview(pillar, post, imagePath, token, citations = [], { label: labelOverride, safety } = {}) {
+  const label = labelOverride || (pillar === 'train' ? 'Health Post' : 'Recipe')
   const contentHtml = marked.parse(post.content)
 
   const html = `<!DOCTYPE html>
@@ -83,6 +115,8 @@ export async function sendDraftReview(pillar, post, imagePath, token, citations 
   <div class="meta">/${pillar}/${post.slug}</div>
 </div>
 
+${safetyPanel(safety)}
+
 ${citationPanel(citations)}
 
 ${actionButtons(token)}
@@ -95,7 +129,7 @@ ${actionButtons(token)}
   await resend.emails.send({
     from: 'SHL Content <content@selfhealthliving.com>',
     to: process.env.REVIEW_EMAIL,
-    subject: `[SHL Review] ${label}: ${post.title}`,
+    subject: `[SHL Review] ${label}: ${post.title}${safety?.flags?.length ? ` (⚠️ ${safety.flags.length} safety flag${safety.flags.length > 1 ? 's' : ''})` : ''}`,
     html,
   })
 

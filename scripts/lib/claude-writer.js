@@ -1,4 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk'
+import { readFileSync } from 'fs'
+import { fileURLToPath } from 'url'
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
@@ -194,6 +196,144 @@ Before writing, decide two things for this specific recipe and commit to them: w
 "content" is the full markdown body with no frontmatter, using ## headings.`,
     FUEL_SCHEMA
   )
+}
+
+const ROOTS_FACTS = JSON.parse(
+  readFileSync(fileURLToPath(new URL('./roots-facts.json', import.meta.url)), 'utf-8')
+)
+
+function rootsFactsBlock() {
+  const levels = Object.entries(ROOTS_FACTS.evidence_levels)
+    .map(([k, v]) => `  ${k}: ${v}`)
+    .join('\n')
+  const groups = ROOTS_FACTS.groups
+    .map(g => {
+      const facts = g.facts
+        .map(f => `  - [${f.level}] ${f.fact}${f.pmid ? ` (PMID ${f.pmid})` : ' (no PMID: state without a link)'}`)
+        .join('\n')
+      return `GROUP: ${g.group}\nANGLES:\n${g.angles.map(a => `  - ${a}`).join('\n')}\nFACTS:\n${facts}`
+    })
+    .join('\n\n')
+  return `EVIDENCE LEVELS (how strongly each fact may be stated):\n${levels}\n\n${groups}`
+}
+
+export const ROOTS_DISCLAIMER =
+  '> **For education only, not medical advice.** Risk patterns describe population averages, not you. ' +
+  'Talk to your doctor before changing your diet, exercise, supplements or medications, or before ordering tests.'
+
+const ROOTS_GUIDANCE = `ROOTS: WHY SOME PEOPLE CARRY CERTAIN RISKS
+
+This series explains why certain populations, on average, carry higher risk for specific health markers, using history, development and biology, and then what a reader can reasonably do about it.
+
+VETTED FACTS
+Population-specific facts (prevalence, risk levels, guideline statements, history) must come ONLY from the VETTED FACTS below.
+For those facts, cite only the PMID listed next to the fact. If a fact has no PMID, state it without a link. Never attach a different PMID to a vetted fact.
+State each fact exactly as strongly as its evidence level allows: "guideline" plainly, "observational" as an association or average, "hypothesis" as a leading theory that is not proven in humans.
+Do not add population-specific numbers that are not in the vetted facts.
+
+FRAMING
+Risk is a population average, never destiny. Say "on average" and "at the same BMI". Never say or imply that a reader of this ancestry has a condition.
+Do not rank or compare groups as better or worse. Do not use ancestry as a stand-in for behavior.
+Say plainly that lifestyle shifts risk, and that ancestry is one input among genetics, diet, activity, sleep and environment.
+
+WHAT TO DO (three tiers, all three required)
+1. Things that help on average, stated directly: resistance training and building muscle, walking after meals, more fiber and fewer refined carbs, sleep, tracking waist size rather than weight alone. General lifestyle evidence here follows the normal citation rules.
+2. A section titled around what to ask your doctor: tests or screenings worth raising (for example apoB, a one-time Lp(a), A1c or fasting glucose, whether earlier diabetes screening or a coronary calcium scan makes sense). Phrase every item as a question to bring to a doctor, not an instruction.
+3. Never include: supplement or medication names with doses, any medication recommendation (at most: "your doctor may discuss treatment options"), personal numeric targets ("get your apoB under X"), or anything that reads as a diagnosis.
+
+Do not write your own disclaimer; one is added automatically after the article.`
+
+const ROOTS_SAFETY_SCHEMA = {
+  type: 'object',
+  properties: {
+    flags: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          type: { type: 'string', enum: ['overstated_evidence', 'unvetted_population_fact', 'dose_or_medication', 'diagnosis_or_target', 'stereotype_or_fatalism'] },
+          quote: { type: 'string' },
+          note: { type: 'string' },
+        },
+        required: ['type', 'quote', 'note'],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: ['flags'],
+  additionalProperties: false,
+}
+
+export async function generateRootsPost(existingTitles) {
+  const post = await write(
+    `Write one Roots article for SelfHealth Living. At least 900 words.
+
+${ROOTS_GUIDANCE}
+
+VETTED FACTS
+${rootsFactsBlock()}
+
+Already published, so choose an angle from the list above that these titles do not already cover: ${existingTitles.join(', ')}
+
+"pexels_query" is a two or three word stock image search. Avoid images of identifiable people's faces; prefer food, landscapes, or abstract health imagery.
+"excerpt" is one sentence for the meta description.
+"content" is the full markdown body with no frontmatter, using ## headings.`,
+    TRAIN_SCHEMA
+  )
+  post.content = `${post.content.trimEnd()}\n\n${ROOTS_DISCLAIMER}\n`
+  return post
+}
+
+// Deterministic first pass: anything that looks like a dose or a named drug.
+// mg/dL and nmol/L are lab units, not doses, so they're excluded.
+const DOSE_RE = /\b\d+(?:[.,]\d+)?\s?(?:mg|mcg|µg|IU|grams?)\b(?!\s*\/\s*d?l)/gi
+const MED_RE = /\b(statins?|atorvastatin|rosuvastatin|metformin|ezetimibe|semaglutide|ozempic|wegovy|tirzepatide|mounjaro|zepbound|glp-1|sglt2|pcsk9|inclisiran|niacin|berberine|aspirin)\b/gi
+
+export async function checkRootsSafety(post) {
+  const flags = []
+  const text = post.content.replace(ROOTS_DISCLAIMER, '')
+  for (const re of [DOSE_RE, MED_RE]) {
+    for (const m of new Set(text.match(re) || [])) {
+      const i = text.search(new RegExp(m.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'))
+      flags.push({
+        type: 'dose_or_medication',
+        quote: text.slice(Math.max(0, i - 60), i + m.length + 60).replace(/\s+/g, ' ').trim(),
+        note: `Mentions "${m}" (pattern match). Check it is not a recommendation.`,
+      })
+    }
+  }
+
+  try {
+    const response = await client.messages.create({
+      model: MODEL,
+      max_tokens: 8000,
+      system: 'You are a strict medical-content safety reviewer. You flag problems; you never rewrite.',
+      output_config: { format: { type: 'json_schema', schema: ROOTS_SAFETY_SCHEMA } },
+      messages: [{
+        role: 'user',
+        content: `Review this Roots article against its rules and vetted facts. Flag every:
+- overstated_evidence: a vetted fact stated more strongly than its evidence level (e.g. a hypothesis stated as fact, an association stated as cause)
+- unvetted_population_fact: a population-specific number, prevalence, or historical claim that is not in the vetted facts
+- dose_or_medication: any supplement or drug recommendation, or any dose
+- diagnosis_or_target: language implying the reader has a condition, or a personal numeric target
+- stereotype_or_fatalism: ranking groups, ancestry treated as destiny, or ancestry used as a stand-in for behavior
+Return an empty list if there are none. Quote the exact sentence.
+
+${rootsFactsBlock()}
+
+ARTICLE:
+${post.title}
+
+${text}`,
+      }],
+    })
+    const out = response.content.find(b => b.type === 'text')?.text
+    flags.push(...JSON.parse(out).flags)
+    return { ran: true, flags }
+  } catch (err) {
+    console.log(`  Safety review failed: ${err.message}`)
+    return { ran: false, flags }
+  }
 }
 
 // Used by the approval Worker's "Request Changes" flow once it is migrated to
