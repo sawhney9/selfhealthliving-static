@@ -251,7 +251,7 @@ ${block('TIKTOK CAPTION', c.tiktok_caption)}
 </div>`
 
   const resend = new Resend(process.env.RESEND_API_KEY)
-  const { error } = await resend.emails.send({
+  const { data, error } = await resend.emails.send({
     from: 'SHL Content <content@selfhealthliving.com>',
     to: process.env.REVIEW_EMAIL,
     subject: `[SHL Social] Reel ready: ${post.title}${flags.length ? ` (⚠️ check ${flags.length} number${flags.length > 1 ? 's' : ''})` : ''}`,
@@ -259,7 +259,19 @@ ${block('TIKTOK CAPTION', c.tiktok_caption)}
     attachments: files.map(f => ({ filename: f.split('/').pop(), content: readFileSync(f) })),
   })
   if (error) throw new Error(`Email failed: ${error.message || JSON.stringify(error)}`)
-  console.log(`  ✓ Emailed ${process.env.REVIEW_EMAIL}`)
+  console.log(`  ✓ Emailed ${process.env.REVIEW_EMAIL} (id ${data?.id})`)
+
+  // Report delivery so a bounce or block shows up in the Actions log.
+  for (let i = 0; i < 6 && data?.id; i++) {
+    await new Promise(r => setTimeout(r, 10000))
+    const { data: info } = await resend.emails.get(data.id)
+    const status = info?.last_event
+    if (status && status !== 'sent' && status !== 'queued') {
+      console.log(`::notice::Email ${data.id}: ${status} (to domain ${String(info.to).split('@').pop()})`)
+      return
+    }
+  }
+  console.log(`::notice::Email ${data?.id}: still sending after 60s`)
 }
 
 // ---- main ----------------------------------------------------------------------
