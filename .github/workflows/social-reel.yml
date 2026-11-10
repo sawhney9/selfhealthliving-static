@@ -26,6 +26,7 @@ concurrency:
 jobs:
   reel:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -60,11 +61,14 @@ jobs:
 
       - if: steps.detect.outputs.slugs != ''
         name: Install tools
+        # No apt: the runner's package mirror can take 10+ minutes. ffmpeg comes
+        # from the imageio-ffmpeg wheel (static build with libx264), and the
+        # runner image already has Chromium's system libraries.
         run: |
           npm ci
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install -q playwright pillow
-          python -m playwright install --with-deps chromium
+          pip install -q playwright pillow imageio-ffmpeg
+          python -m playwright install chromium
+          echo "REEL_FFMPEG=$(python -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" >> "$GITHUB_ENV"
 
       - if: steps.detect.outputs.slugs != ''
         name: Build reels and email
