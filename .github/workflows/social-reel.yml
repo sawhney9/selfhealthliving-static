@@ -1,0 +1,84 @@
+name: Social reel for new posts
+
+# When a new post lands on main (the approval Worker's "content: publish"
+# commit), build a reel + captions for it and email them for manual posting.
+# Edits to existing posts don't trigger it; only newly added post files.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/train/**.md'
+      - 'src/content/fuel/**.md'
+  workflow_dispatch:
+    inputs:
+      slugs:
+        description: 'Post slug(s), space-separated (e.g. thin-fat-baby-metabolism-before-birth)'
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: social-reel
+  cancel-in-progress: false
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find new posts
+        id: detect
+        env:
+          INPUT_SLUGS: ${{ inputs.slugs }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          if [ -n "$INPUT_SLUGS" ]; then
+            slugs="$INPUT_SLUGS"
+          elif [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            slugs=""
+          else
+            git fetch --no-tags --depth=1 origin "$BEFORE"
+            slugs=$(git diff --name-only --diff-filter=A "$BEFORE" HEAD -- src/content/train src/content/fuel \
+              | grep '\.md$' | xargs -r -n1 basename | sed 's/\.md$//' | tr '\n' ' ')
+          fi
+          echo "slugs=$slugs" >> "$GITHUB_OUTPUT"
+          echo "New posts: ${slugs:-none}"
+
+      - if: steps.detect.outputs.slugs != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - if: steps.detect.outputs.slugs != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - if: steps.detect.outputs.slugs != ''
+        name: Install tools
+        run: |
+          npm ci
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -q playwright pillow
+          python -m playwright install --with-deps chromium
+
+      - if: steps.detect.outputs.slugs != ''
+        name: Build reels and email
+        run: node scripts/social/generate-social.js $SLUGS --out social-out
+        env:
+          SLUGS: ${{ steps.detect.outputs.slugs }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REVIEW_EMAIL: ${{ secrets.REVIEW_EMAIL }}
+
+      - if: always() && steps.detect.outputs.slugs != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: social-reels
+          path: social-out
+          retention-days: 14
+          if-no-files-found: ignore
