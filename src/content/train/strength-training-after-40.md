@@ -1,5 +1,6 @@
 ---
 title: "Why Strength Training After 40 Isn’t Optional: It’s Essential"
+description: "Muscle loss starts in your 30s and speeds up after 40. Why strength training protects your independence, bones, and metabolism as you age."
 date: "2025-09-14"
 featured_image: "/images/uploads/Goblet-Squat-1.png"
 pillar: "train"

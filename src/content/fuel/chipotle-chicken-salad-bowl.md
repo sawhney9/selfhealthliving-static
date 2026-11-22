@@ -1,5 +1,6 @@
 ---
 title: "Spiced Up Lunch: Chipotle Chicken Salad Bowl"
+description: "A smoky chipotle chicken salad bowl with lean protein, crunchy vegetables, and a zesty dressing. A high-protein lunch that's anything but bland."
 date: "2025-05-04"
 featured_image: "/images/food/a_chipotle_chicken_salad_bowl_with_a_chipolte_dressi_f8c2d0ab_a8aa_413a_a7cf_fa6378c6bcab.png"
 pillar: "fuel"

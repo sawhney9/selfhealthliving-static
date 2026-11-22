@@ -1,5 +1,6 @@
 ---
 title: "Mango Carrot Dream Smoothie"
+description: "A mango, carrot, and strawberry smoothie with collagen and flaxseed. Vitamins A and C, fiber, and healthy fats for skin, gut, and joint health."
 date: "2024-11-10"
 featured_image: "/images/uploads/rimas4real_a_smoothie_in_a_glass_for_a_blog_post_with_mango_str_0cb6d440-3a0b-450d-b639-a95ddef8c1a8.png"
 pillar: "fuel"

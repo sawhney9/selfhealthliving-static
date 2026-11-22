@@ -1,5 +1,6 @@
 ---
 title: "Gut and Glow Power Smoothie"
+description: "A gut-friendly smoothie with strawberries, sauerkraut, carrot, and flaxseed for probiotics, fiber, and protein, plus the studies behind each ingredient."
 date: "2024-11-04"
 featured_image: "/images/uploads/rimas4real_a_smoothie_in_a_retro_glass_with_Sauerkraut_carrots__7ada5709-ffcf-491a-a87e-49d4b0d30357.png"
 pillar: "fuel"

@@ -1,5 +1,6 @@
 ---
 title: "Eggs with Prosciutto and Avocado on a Almond Tortilla"
+description: "Eggs, prosciutto, and avocado on an almond-flour tortilla: a quick, gluten-free, high-protein breakfast that kids love and beats pancakes."
 date: "2024-12-02"
 featured_image: "/images/uploads/rimas4real_a_breakfast_burrito_wrapped_with_scrambled_eggs_pris_9e310210-c0b4-4439-8859-870857868756.png"
 pillar: "fuel"

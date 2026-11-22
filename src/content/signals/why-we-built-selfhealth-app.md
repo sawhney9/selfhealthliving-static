@@ -1,5 +1,6 @@
 ---
 title: "Why We Built The SelfHealth App: Moving From Data to Direction"
+description: "Sleep scores, HRV, and lab panels live in different apps. Why we built SelfHealth to turn scattered health data into one clear daily plan."
 date: "2026-05-25"
 featured_image: "/images/uploads/health-app-lifestyle.jpg"
 pillar: "signals"

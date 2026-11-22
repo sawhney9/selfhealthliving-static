@@ -1,6 +1,6 @@
 ---
 import Layout from './Layout.astro';
-import { articleJsonLd, recipeJsonLd, absoluteUrl, stripToText } from '../lib/seo.js';
+import { articleJsonLd, recipeJsonLd, breadcrumbJsonLd, pageTitle, absoluteUrl, stripToText } from '../lib/seo.js';
 
 const { frontmatter, description } = Astro.props;
 const { title, date, featured_image, pillar, slug, recipe } = frontmatter;
@@ -26,14 +26,27 @@ const metaDescription =
   `${title} — ${pillar} insights from Self Health Living.`;
 const ogImage = absoluteUrl(featured_image, site);
 
-const jsonLd = [
-  articleJsonLd(frontmatter, { url, site, description: metaDescription }),
-  recipeJsonLd(frontmatter, { url, site, description: metaDescription }),
-].filter(Boolean);
+// Static pages (privacy policy) reuse this layout but aren't articles.
+const isPost = pillar !== 'about';
+const pillarName = pillar ? pillar.charAt(0).toUpperCase() + pillar.slice(1) : '';
+const jsonLd = isPost
+  ? [
+      articleJsonLd(frontmatter, { url, site, description: metaDescription }),
+      recipeJsonLd(frontmatter, { url, site, description: metaDescription }),
+      breadcrumbJsonLd(
+        [
+          { name: 'Home', path: '/' },
+          { name: pillarName, path: `/${pillar}/` },
+          { name: title, path: Astro.url.pathname },
+        ],
+        site
+      ),
+    ].filter(Boolean)
+  : [];
 ---
 
 <Layout
-  title={`${title} | Self Health Living`}
+  title={pageTitle(title)}
   description={metaDescription}
   currentPillar={pillar}
   ogType="article"

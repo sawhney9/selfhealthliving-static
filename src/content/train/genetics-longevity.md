@@ -1,5 +1,6 @@
 ---
 title: "Unlocking Your Best Years: Why Genetics Aren't the Whole Story for Longevity"
+description: "New research says genes shape lifespan more than we thought. Here's why exercise, sleep, and diet still decide how many of those years are healthy."
 date: "2026-04-16"
 featured_image: "/images/uploads/longevity-active-aging.jpg"
 pillar: "train"

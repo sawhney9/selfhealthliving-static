@@ -1,5 +1,6 @@
 ---
 title: "Protein: The Body's Building Block:"
+description: "Why protein matters more as you age: its role in muscle, bone, hormones, and immunity, plus easy ways to add more to every meal and snack."
 date: "2024-09-28"
 featured_image: "/images/uploads/rimas4real_a_image_of_different_seafood_and_lean_meats_9b1dd317-b434-4911-a6e4-4d1d5b1885dd.png"
 pillar: "fuel"

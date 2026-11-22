@@ -1,5 +1,6 @@
 ---
 title: "Fiery Chicken and Black Bean Tostadas"
+description: "Crispy chicken and black bean tostadas: lean protein and fiber in an easy, customizable dinner that's lighter than takeout and big on flavor."
 date: "2025-05-01"
 featured_image: "/images/food/a_chicken_black_bean_tostada_with_some_red_onions_av_acd22fea_2cc7_4956_b893_51e2a8284efb.png"
 pillar: "fuel"

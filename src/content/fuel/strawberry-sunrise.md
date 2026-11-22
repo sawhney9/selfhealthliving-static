@@ -1,5 +1,6 @@
 ---
 title: "Strawberry Sunrise: Blend for Peak Performance"
+description: "A strawberry smoothie for heart and gut health, with antioxidants, fiber, and probiotics, plus the research behind every ingredient."
 date: "2024-06-16"
 featured_image: "/images/uploads/rimas4real_a_strawberry_with_almond_butter_beets_apple_collagen_9159cde1-24cf-4123-9c3c-bb1e88b390ed.png"
 pillar: "fuel"
