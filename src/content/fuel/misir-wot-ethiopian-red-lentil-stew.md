@@ -11,6 +11,15 @@ recipe:
   total_time: 55
   servings: "4"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "Ethiopian"
+  keywords: "misir wot, Ethiopian red lentils, red lentil stew, vegan high-fiber dinner"
+  nutrition:
+    calories: 330
+    protein: 18
+    fat: 10
+    carbs: 45
+    fiber: 15
   ingredients:
     - name: "Red lentils (masoor dal)"
       amount: "1.5"

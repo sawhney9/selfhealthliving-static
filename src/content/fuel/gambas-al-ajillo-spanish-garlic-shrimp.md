@@ -11,6 +11,14 @@ recipe:
   total_time: 15
   servings: "3"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "Spanish"
+  keywords: "gambas al ajillo, Spanish garlic shrimp, tapas, low-carb shrimp"
+  nutrition:
+    calories: 330
+    protein: 38
+    fat: 18
+    fiber: 1
   ingredients:
     - name: "Large raw shrimp, peeled and deveined"
       amount: "1.5"

@@ -104,6 +104,21 @@ const FUEL_SCHEMA = {
         total_time: { type: 'integer' },
         servings: { type: 'string' },
         servings_unit: { type: 'string' },
+        category: { type: 'string', enum: ['Breakfast', 'Lunch', 'Dinner', 'Soup', 'Smoothie', 'Snack', 'Side Dish'] },
+        cuisine: { type: 'string' },
+        keywords: { type: 'string' },
+        nutrition: {
+          type: 'object',
+          properties: {
+            calories: { type: 'integer' },
+            protein: { type: 'integer' },
+            fat: { type: 'integer' },
+            carbs: { type: 'integer' },
+            fiber: { type: 'integer' },
+          },
+          required: ['calories', 'protein', 'fat', 'carbs', 'fiber'],
+          additionalProperties: false,
+        },
         ingredients: {
           type: 'array',
           items: {
@@ -136,7 +151,8 @@ const FUEL_SCHEMA = {
       },
       required: [
         'title', 'prep_time', 'cook_time', 'total_time',
-        'servings', 'servings_unit', 'ingredients', 'instructions', 'equipment',
+        'servings', 'servings_unit', 'category', 'cuisine', 'keywords', 'nutrition',
+        'ingredients', 'instructions', 'equipment',
       ],
       additionalProperties: false,
     },
@@ -192,6 +208,9 @@ Before writing, decide two things for this specific recipe and commit to them: w
 
 "title" should be the recipe name plus a short hook.
 "pexels_query" is a two or three word stock image search.
+"cuisine" is the dish's culinary tradition, e.g. "Korean" or "Southern Italian".
+"keywords" is four or five comma-separated search phrases a cook would type to find this dish, e.g. "gochujang salmon, Korean glazed salmon, 20-minute dinner".
+"nutrition" is the per-serving estimate in grams (calories in kcal), and must match the numbers you state in the post.
 "equipment" lists only gear beyond a pan, pot, sheet tray, knife and blender. Leave it empty if none is needed. Set "required" to false for anything a reader could work around, and use "note" to say what the workaround is.
 "content" is the full markdown body with no frontmatter, using ## headings.`,
     FUEL_SCHEMA

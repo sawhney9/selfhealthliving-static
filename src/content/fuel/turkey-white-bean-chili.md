@@ -11,6 +11,14 @@ recipe:
   total_time: 40
   servings: "4"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "American"
+  keywords: "turkey chili, white bean chili, high-protein chili, meal prep"
+  nutrition:
+    protein: 38
+    fat: 8
+    carbs: 30
+    fiber: 14
   ingredients:
     - name: "Lean Ground Turkey (93%)"
       amount: "1"

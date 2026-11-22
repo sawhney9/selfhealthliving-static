@@ -12,6 +12,8 @@ recipe:
   total_time: 3
   servings: "0"
   servings_unit: "None"
+  category: "Smoothie"
+  keywords: "high-protein smoothie, berry smoothie, chickpea smoothie, spinach smoothie"
   ingredients:
     - name: "Mixed berries"
       amount: "1"
@@ -50,6 +52,9 @@ recipe:
       unit: "cup"
       notes: ""
   instructions:
+    - "Add all of the ingredients to a blender, liquids first so the blades catch."
+    - "Blend on high for 45 to 60 seconds, until completely smooth. Add a splash more liquid if it is too thick to pour."
+    - "Pour into a glass and drink right away, while it is cold and the texture is at its best."
 ---
 
 <p><b>Health Benefits:</b></p>

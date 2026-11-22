@@ -12,6 +12,8 @@ recipe:
   total_time: 5
   servings: "2"
   servings_unit: "servings"
+  category: "Smoothie"
+  keywords: "strawberry smoothie, gut health smoothie, protein smoothie"
   ingredients:
     - name: "Strawberries"
       amount: "1"

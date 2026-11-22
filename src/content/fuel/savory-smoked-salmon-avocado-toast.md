@@ -12,6 +12,8 @@ recipe:
   total_time: 0
   servings: "2"
   servings_unit: "None"
+  category: "Breakfast"
+  keywords: "smoked salmon avocado toast, omega-3 breakfast, quick breakfast"
   ingredients:
     - name: "Slices of sourdough or whole grain bread"
       amount: "2"

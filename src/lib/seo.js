@@ -46,6 +46,23 @@ function recipeYield(r) {
   return `${r.servings} ${unit}`.trim();
 }
 
+/**
+ * NutritionInformation from per-serving numbers in frontmatter. Only values the
+ * post actually states are present, so missing keys are simply left out.
+ */
+function nutritionInfo(n) {
+  if (!n) return undefined;
+  const g = (v) => (Number(v) > 0 ? `${v} g` : undefined);
+  const info = {
+    ...(Number(n.calories) > 0 && { calories: `${n.calories} calories` }),
+    ...(g(n.protein) && { proteinContent: g(n.protein) }),
+    ...(g(n.fat) && { fatContent: g(n.fat) }),
+    ...(g(n.carbs) && { carbohydrateContent: g(n.carbs) }),
+    ...(g(n.fiber) && { fiberContent: g(n.fiber) }),
+  };
+  return Object.keys(info).length ? { '@type': 'NutritionInformation', ...info } : undefined;
+}
+
 /** Recipe schema, or null when the post has no recipe. */
 export function recipeJsonLd(fm, { url, site, description } = {}) {
   const r = fm.recipe;
@@ -68,6 +85,10 @@ export function recipeJsonLd(fm, { url, site, description } = {}) {
     ...(cook && { cookTime: cook }),
     ...(total && { totalTime: total }),
     ...(recipeYield(r) && { recipeYield: recipeYield(r) }),
+    ...(r.category && { recipeCategory: r.category }),
+    ...(r.cuisine && { recipeCuisine: r.cuisine }),
+    ...(r.keywords && { keywords: r.keywords }),
+    ...(nutritionInfo(r.nutrition) && { nutrition: nutritionInfo(r.nutrition) }),
     ...(url && { mainEntityOfPage: url }),
   };
 
@@ -77,9 +98,13 @@ export function recipeJsonLd(fm, { url, site, description } = {}) {
     );
   }
   if (Array.isArray(r.instructions) && r.instructions.length) {
-    obj.recipeInstructions = r.instructions.map((step) => ({
+    // name + url per step lets Google link straight to a step; the layout
+    // renders matching id="step-N" anchors.
+    obj.recipeInstructions = r.instructions.map((step, i) => ({
       '@type': 'HowToStep',
+      name: `Step ${i + 1}`,
       text: stripToText(step, 0),
+      ...(url && { url: `${url}#step-${i + 1}` }),
     }));
   }
   return obj;

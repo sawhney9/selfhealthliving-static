@@ -11,6 +11,15 @@ recipe:
   total_time: 23
   servings: "2"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "Italian"
+  keywords: "branzino, acqua pazza, sea bass recipe, low-carb fish, one-pan dinner"
+  nutrition:
+    calories: 380
+    protein: 35
+    fat: 24
+    carbs: 11
+    fiber: 2
   ingredients:
     - name: "Branzino fillets, skin-on"
       amount: "2"

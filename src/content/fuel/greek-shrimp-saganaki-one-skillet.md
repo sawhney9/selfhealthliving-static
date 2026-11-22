@@ -11,6 +11,14 @@ recipe:
   total_time: 25
   servings: "4"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "Greek"
+  keywords: "shrimp saganaki, Greek shrimp with feta, high-protein dinner, one-skillet dinner"
+  nutrition:
+    calories: 380
+    protein: 35
+    fat: 22
+    fiber: 3
   ingredients:
     - name: "Large shrimp, peeled and deveined"
       amount: "1.5"

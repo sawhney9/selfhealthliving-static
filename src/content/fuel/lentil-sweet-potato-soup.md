@@ -11,6 +11,13 @@ recipe:
   total_time: 40
   servings: "4"
   servings_unit: "servings"
+  category: "Soup"
+  keywords: "lentil soup, sweet potato soup, high-fiber soup, vegan soup"
+  nutrition:
+    protein: 18
+    fat: 9
+    carbs: 45
+    fiber: 16
   ingredients:
     - name: "Red Lentils"
       amount: "1.5"

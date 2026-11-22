@@ -11,6 +11,13 @@ recipe:
   total_time: 95
   servings: "4"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "Persian"
+  keywords: "joojeh kabab, saffron chicken, Persian chicken kebab, low-carb chicken"
+  nutrition:
+    calories: 390
+    protein: 43
+    fat: 20
   ingredients:
     - name: "Boneless skinless chicken thighs"
       amount: "1.5"

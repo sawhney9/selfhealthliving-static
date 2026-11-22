@@ -11,6 +11,13 @@ recipe:
   total_time: 50
   servings: "4"
   servings_unit: "servings"
+  category: "Lunch"
+  keywords: "black lentil bowl, roasted beet bowl, plant protein, meal prep bowl"
+  nutrition:
+    protein: 22
+    fat: 24
+    carbs: 38
+    fiber: 15
   ingredients:
     - name: "Black beluga lentils"
       amount: "1.5"

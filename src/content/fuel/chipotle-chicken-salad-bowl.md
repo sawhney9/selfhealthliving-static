@@ -12,6 +12,9 @@ recipe:
   total_time: 0
   servings: "2"
   servings_unit: "People"
+  category: "Lunch"
+  cuisine: "Mexican"
+  keywords: "chipotle chicken salad, high-protein salad, healthy lunch bowl"
   ingredients:
     - name: "Chicken breasts"
       amount: "1.5"

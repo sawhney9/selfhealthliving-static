@@ -11,6 +11,15 @@ recipe:
   total_time: 18
   servings: "3"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "Thai"
+  keywords: "pad krapow gai, Thai basil chicken, high-protein dinner, 20-minute dinner"
+  nutrition:
+    calories: 360
+    protein: 38
+    fat: 19
+    carbs: 9
+    fiber: 4
   ingredients:
     - name: "boneless skinless chicken thighs, hand-chopped into small pieces"
       amount: "1.25"

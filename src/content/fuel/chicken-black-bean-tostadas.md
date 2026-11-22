@@ -12,6 +12,9 @@ recipe:
   total_time: 0
   servings: "2"
   servings_unit: "people"
+  category: "Dinner"
+  cuisine: "Mexican"
+  keywords: "chicken tostadas, black bean tostadas, high-protein dinner, healthy Mexican recipe"
   ingredients:
     - name: "Chicken Breast"
       amount: "1"

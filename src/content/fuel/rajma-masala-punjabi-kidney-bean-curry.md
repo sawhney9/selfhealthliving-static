@@ -11,6 +11,15 @@ recipe:
   total_time: 75
   servings: "4"
   servings_unit: "bowls"
+  category: "Dinner"
+  cuisine: "Indian"
+  keywords: "rajma masala, kidney bean curry, Punjabi rajma, vegetarian meal prep"
+  nutrition:
+    calories: 300
+    protein: 15
+    fat: 11
+    carbs: 38
+    fiber: 13
   ingredients:
     - name: "Dried red kidney beans"
       amount: "1.5"

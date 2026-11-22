@@ -11,6 +11,15 @@ recipe:
   total_time: 30
   servings: "4"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "North African"
+  keywords: "chraime, spicy fish stew, one-pan fish, low-carb dinner"
+  nutrition:
+    calories: 310
+    protein: 34
+    fat: 17
+    carbs: 9
+    fiber: 2
   ingredients:
     - name: "Cod fillets (or grouper, halibut)"
       amount: "1.5"

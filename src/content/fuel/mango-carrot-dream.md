@@ -12,6 +12,8 @@ recipe:
   total_time: 5
   servings: "0"
   servings_unit: "None"
+  category: "Smoothie"
+  keywords: "mango smoothie, carrot smoothie, collagen smoothie"
   ingredients:
     - name: "mangoes"
       amount: "1/2"
@@ -46,6 +48,9 @@ recipe:
       unit: "cup"
       notes: "(Adjust based on thickness your desire)"
   instructions:
+    - "Add all of the ingredients to a blender, liquids first so the blades catch."
+    - "Blend on high for 45 to 60 seconds, until completely smooth. Add a splash more liquid if it is too thick to pour."
+    - "Pour into a glass and drink right away, while it is cold and the texture is at its best."
 ---
 
 <p><b>Health Benefits:</b></p>

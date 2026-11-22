@@ -177,7 +177,7 @@ const tool = isPost ? relatedTool(frontmatter) : null;
             <h3 class="font-display font-bold text-md text-slate-900 border-b border-black/8 pb-2 mb-4 uppercase tracking-wider">Instructions</h3>
             <ol class="space-y-6 pl-0 list-none!">
               {recipe.instructions && recipe.instructions.map((step, index) => (
-                <li class="flex gap-4 m-0">
+                <li id={`step-${index + 1}`} class="flex gap-4 m-0 scroll-mt-24">
                   <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-accent/10 text-green-accent flex items-center justify-center font-bold text-sm border border-green-accent/20">
                     {index + 1}
                   </div>

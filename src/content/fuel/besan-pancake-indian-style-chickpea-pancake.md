@@ -11,6 +11,9 @@ recipe:
   total_time: 18
   servings: "2"
   servings_unit: "servings"
+  category: "Breakfast"
+  cuisine: "Indian"
+  keywords: "besan chilla, chickpea flour pancake, gluten-free breakfast, vegetarian breakfast"
   ingredients:
     - name: "Chickpea Flour (Besan)"
       amount: "1"

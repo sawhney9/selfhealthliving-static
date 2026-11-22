@@ -11,6 +11,8 @@ recipe:
   total_time: 5
   servings: "2"
   servings_unit: "servings"
+  category: "Smoothie"
+  keywords: "post-workout smoothie, protein smoothie, berry smoothie"
   ingredients:
     - name: "Frozen Blueberries"
       amount: "1"

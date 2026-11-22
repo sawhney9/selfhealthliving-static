@@ -12,6 +12,9 @@ recipe:
   total_time: 0
   servings: "3"
   servings_unit: "people"
+  category: "Dinner"
+  cuisine: "Hawaiian"
+  keywords: "smoked salmon bowl, poke bowl, no-cook dinner, omega-3 dinner"
   ingredients:
     - name: "cooked sushi rice or short-grain rice"
       amount: "1"

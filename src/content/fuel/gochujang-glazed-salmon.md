@@ -11,6 +11,14 @@ recipe:
   total_time: 20
   servings: "4"
   servings_unit: "fillets"
+  category: "Dinner"
+  cuisine: "Korean"
+  keywords: "gochujang salmon, Korean glazed salmon, broiled salmon, 20-minute dinner"
+  nutrition:
+    calories: 380
+    protein: 34
+    fat: 22
+    carbs: 12
   ingredients:
     - name: "Salmon fillets, skin on or off"
       amount: "4"

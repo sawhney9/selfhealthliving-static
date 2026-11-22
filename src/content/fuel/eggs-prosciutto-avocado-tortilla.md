@@ -12,6 +12,8 @@ recipe:
   total_time: 0
   servings: "1"
   servings_unit: "Person"
+  category: "Breakfast"
+  keywords: "eggs and prosciutto, avocado breakfast, gluten-free breakfast, high-protein breakfast"
   ingredients:
     - name: "Almond Tortillas"
       amount: "2"

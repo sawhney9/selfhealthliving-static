@@ -12,6 +12,8 @@ recipe:
   total_time: 6
   servings: "2"
   servings_unit: "None"
+  category: "Smoothie"
+  keywords: "berry smoothie, protein smoothie, antioxidant smoothie"
   ingredients:
     - name: "Mixed berries"
       amount: "1"

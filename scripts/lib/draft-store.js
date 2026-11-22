@@ -26,6 +26,18 @@ export async function saveDraft(pillar, post, imagePath) {
   return token
 }
 
+// Search-facing recipe fields (category, cuisine, keywords, per-serving
+// nutrition). Each is optional so drafts saved before they existed still build.
+function recipeMeta(r) {
+  let out = ''
+  if (r.category) out += `\n  category: ${JSON.stringify(r.category)}`
+  if (r.cuisine) out += `\n  cuisine: ${JSON.stringify(r.cuisine)}`
+  if (r.keywords) out += `\n  keywords: ${JSON.stringify(r.keywords)}`
+  const n = r.nutrition && Object.entries(r.nutrition).filter(([, v]) => Number(v) > 0)
+  if (n?.length) out += '\n  nutrition:' + n.map(([k, v]) => `\n    ${k}: ${Number(v)}`).join('')
+  return out
+}
+
 export function buildMarkdown(pillar, post, imagePath) {
   const date = new Date().toISOString().split('T')[0]
   // The writer's one-sentence excerpt becomes the meta description; JSON quoting
@@ -60,7 +72,7 @@ ${descLine}recipe:
   cook_time: ${r.cook_time}
   total_time: ${r.total_time}
   servings: "${r.servings}"
-  servings_unit: "${r.servings_unit}"
+  servings_unit: "${r.servings_unit}"${recipeMeta(r)}
   ingredients:
 ${ingredients}
   instructions:

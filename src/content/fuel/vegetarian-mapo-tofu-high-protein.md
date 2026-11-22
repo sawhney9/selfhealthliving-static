@@ -11,6 +11,15 @@ recipe:
   total_time: 25
   servings: "4"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "Chinese"
+  keywords: "mapo tofu, vegetarian mapo tofu, Sichuan tofu, high-protein vegetarian"
+  nutrition:
+    calories: 250
+    protein: 18
+    fat: 15
+    carbs: 9
+    fiber: 3
   ingredients:
     - name: "soft or medium tofu, cut into 2cm cubes"
       amount: "450"

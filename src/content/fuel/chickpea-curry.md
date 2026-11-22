@@ -11,6 +11,9 @@ recipe:
   total_time: 0
   servings: "4"
   servings_unit: "People"
+  category: "Dinner"
+  cuisine: "Indian"
+  keywords: "chickpea curry, chole, vegan curry, high-protein vegan dinner"
   ingredients:
     - name: "dried chickpeas or 2 cans, drained and rinsed"
       amount: "1.5"

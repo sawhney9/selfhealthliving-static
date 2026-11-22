@@ -12,6 +12,8 @@ recipe:
   total_time: 0
   servings: "1"
   servings_unit: "person"
+  category: "Lunch"
+  keywords: "chicken caesar wrap, high-protein lunch, low-carb wrap"
   ingredients:
     - name: "boneless, skinless chicken breast"
       amount: "1"

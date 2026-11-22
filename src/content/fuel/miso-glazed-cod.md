@@ -12,6 +12,9 @@ recipe:
   total_time: 0
   servings: "0"
   servings_unit: "None"
+  category: "Dinner"
+  cuisine: "Japanese"
+  keywords: "miso glazed cod, miso cod, bok choy, high-protein fish dinner"
   ingredients:
     - name: "Cod Filets"
       amount: "2"

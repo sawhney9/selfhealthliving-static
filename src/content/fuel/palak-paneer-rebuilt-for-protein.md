@@ -11,6 +11,15 @@ recipe:
   total_time: 40
   servings: "4"
   servings_unit: "servings"
+  category: "Dinner"
+  cuisine: "Indian"
+  keywords: "palak paneer, spinach paneer curry, high-protein vegetarian, Punjabi curry"
+  nutrition:
+    calories: 320
+    protein: 24
+    fat: 20
+    carbs: 12
+    fiber: 6
   ingredients:
     - name: "Fresh spinach"
       amount: "400"

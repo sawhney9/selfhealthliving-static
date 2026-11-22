@@ -12,6 +12,8 @@ recipe:
   total_time: 0
   servings: "0"
   servings_unit: "None"
+  category: "Smoothie"
+  keywords: "gut health smoothie, probiotic smoothie, sauerkraut smoothie, protein smoothie"
   ingredients:
     - name: "sauerkraut"
       amount: "1/4"
@@ -50,6 +52,9 @@ recipe:
       unit: "cup"
       notes: "Add less or more based on how thick you want your smoothie to be"
   instructions:
+    - "Add all of the ingredients to a blender, liquids first so the blades catch."
+    - "Blend on high for 45 to 60 seconds, until completely smooth. Add a splash more liquid if it is too thick to pour."
+    - "Pour into a glass and drink right away, while it is cold and the texture is at its best."
 ---
 
 <p><strong><img class="alignnone size-medium wp-image-492" src="/images/uploads/rimas4real_a_smoothie_in_a_retro_glass_with_Sauerkraut_carrots__7ada5709-ffcf-491a-a87e-49d4b0d30357-300x300.png" alt="" width="300" height="300" /></strong></p>

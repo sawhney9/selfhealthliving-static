@@ -11,6 +11,13 @@ recipe:
   total_time: 5
   servings: "1"
   servings_unit: "serving"
+  category: "Breakfast"
+  keywords: "protein parfait, Greek yogurt breakfast, high-protein breakfast, no-cook breakfast"
+  nutrition:
+    protein: 25
+    fat: 14
+    carbs: 28
+    fiber: 8
   ingredients:
     - name: "Plain Full-Fat Greek Yogurt"
       amount: "1"
