@@ -28,12 +28,30 @@ export async function getExistingTopics() {
   return { train: trainTitles, fuel: fuelTitles }
 }
 
+// Each entry carries the post's real URL so the writer can link to it
+// instead of guessing a slug.
 async function extractTitles(pillar, files) {
   const titles = []
   for (const file of files.filter(f => f.endsWith('.md'))) {
     const raw = await readFile(join(CONTENT_ROOT, pillar, file), 'utf-8')
     const match = raw.match(/^title:\s*"(.+?)"/m)
-    if (match) titles.push(match[1])
+    const slug = raw.match(/^slug:\s*"(.+?)"/m)?.[1]
+    if (match) titles.push(slug ? `${match[1]} (/${pillar}/${slug}/)` : match[1])
   }
   return titles
+}
+
+const STATIC_URLS = ['/', '/train/', '/fuel/', '/signals/', '/app/', '/about/', '/support/']
+
+/** Every internal URL a generated post may link to. */
+export async function getPublishedUrls() {
+  const urls = new Set(STATIC_URLS)
+  for (const pillar of ['train', 'fuel', 'signals']) {
+    for (const file of (await listPosts(pillar)).filter(f => f.endsWith('.md'))) {
+      const raw = await readFile(join(CONTENT_ROOT, pillar, file), 'utf-8')
+      const slug = raw.match(/^slug:\s*"(.+?)"/m)?.[1]
+      if (slug) urls.add(`/${pillar}/${slug}/`)
+    }
+  }
+  return urls
 }

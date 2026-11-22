@@ -48,7 +48,7 @@ If you supplement, look at the EPA and DHA numbers on the label and add them up,
 
 Take it with a meal that contains fat, since these are fat-soluble and absorb far better alongside other fat than on an empty stomach. If your capsules taste fishy when you burp, they may be oxidizing. Keep them in the fridge and buy from a brand that reports oxidation values. Rancid fish oil is worse than none.
 
-If you care about metabolic risk more broadly, omega-3s fit alongside the fundamentals rather than replacing them, the same way a good [blood sugar strategy](/fuel/decoding-your-blood-sugar) does more heavy lifting than any single pill.
+If you care about metabolic risk more broadly, omega-3s fit alongside the fundamentals rather than replacing them, the same way a good [blood sugar strategy](/signals/decoding-blood-sugar/) does more heavy lifting than any single pill.
 
 ## Where the evidence genuinely thins out
 

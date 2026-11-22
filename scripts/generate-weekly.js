@@ -2,7 +2,7 @@
 // Run: npm run generate
 // Generates 1 train post + 1 fuel post, downloads stock images, emails them for review.
 
-import { getExistingTopics } from './lib/content-reader.js'
+import { getExistingTopics, getPublishedUrls } from './lib/content-reader.js'
 import { generateTrainPost, generateFuelPost, generateRootsPost, checkRootsSafety } from './lib/claude-writer.js'
 import { verifyCitations, summarize } from './lib/verify-citations.js'
 import { fetchStockImage } from './lib/pexels.js'
@@ -25,9 +25,24 @@ function checkEnv() {
   }
 }
 
+// The writer sometimes invents internal slugs, which ship as 404s. Unlink any
+// site-relative link that isn't a real published page, keeping its text.
+let knownUrls = new Set()
+function stripUnknownLinks(post) {
+  let removed = 0
+  post.content = post.content.replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, (all, text, href) => {
+    const path = href.split(/[?#]/)[0].replace(/\/?$/, '/')
+    if (knownUrls.has(path)) return all
+    removed++
+    return text
+  })
+  if (removed) console.log(`  Internal links: ${removed} unknown URL(s) unlinked`)
+}
+
 // Runs before the review email so the editor never sees a citation we haven't
 // resolved. Rewrites post.content in place: bad links become plain text.
 async function checkCitations(post) {
+  stripUnknownLinks(post)
   const { citations, ok, content } = await verifyCitations(post.content, post.title)
   post.content = content
 
@@ -84,6 +99,7 @@ async function run() {
 
   console.log('Reading existing content...')
   const existing = await getExistingTopics()
+  knownUrls = await getPublishedUrls()
   console.log(`  Train posts: ${existing.train.length}, Fuel posts: ${existing.fuel.length}`)
 
   if (mode === 'only') {

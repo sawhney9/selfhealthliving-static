@@ -28,14 +28,14 @@ Where the evidence is genuinely solid is as a marker. European consensus criteri
 
 Grip drops with age and differs sharply by sex, so a raw number means little without context. These are rough population averages for the dominant hand, measured with a handheld dynamometer. Use them as orientation, not a diagnosis.
 
-| Age | Men (kg) | Women (kg) |
-|-----|----------|------------|
-| 20-29 | 46 | 29 |
-| 30-39 | 45 | 28 |
-| 40-49 | 43 | 27 |
-| 50-59 | 40 | 25 |
-| 60-69 | 35 | 22 |
-| 70+ | 28 | 18 |
+| Age | Men | Women |
+|-----|-----|-------|
+| 20-29 | 46 kg (101 lb) | 29 kg (64 lb) |
+| 30-39 | 45 kg (99 lb) | 28 kg (62 lb) |
+| 40-49 | 43 kg (95 lb) | 27 kg (60 lb) |
+| 50-59 | 40 kg (88 lb) | 25 kg (55 lb) |
+| 60-69 | 35 kg (77 lb) | 22 kg (49 lb) |
+| 70+ | 28 kg (62 lb) | 18 kg (40 lb) |
 
 If you are a 55-year-old man pulling 30 kg, you are not at the clinical cutoff, but you are tracking a decade or two ahead of where you'd want to be. That is useful information you can act on now, while the gap is small.
 

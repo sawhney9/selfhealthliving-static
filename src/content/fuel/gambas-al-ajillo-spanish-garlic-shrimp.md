@@ -102,4 +102,4 @@ Honestly, this is a cook-and-eat dish, not a meal-prep one. Reheated shrimp turn
 
 Where the evidence runs out: none of this makes a single meal a health intervention. The PREDIMED and chili findings are about long-term patterns and large populations, not about one skillet of shrimp. What this dish earns is a place in the rotation, a fast high-protein dinner you will actually cook again, which is the only kind of healthy recipe that matters.
 
-If you like this speed-to-flavor ratio, the [Greek shrimp saganaki](/fuel/greek-shrimp-saganaki) works the same one-skillet muscle with a tomato-feta angle.
+If you like this speed-to-flavor ratio, the [Greek shrimp saganaki](/fuel/greek-shrimp-saganaki-one-skillet/) works the same one-skillet muscle with a tomato-feta angle.

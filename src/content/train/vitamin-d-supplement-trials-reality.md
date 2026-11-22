@@ -45,6 +45,6 @@ Test before you treat. A single 25(OH)D measurement costs little and settles the
 
 Resist the megadose instinct. Large infrequent boluses, the 50,000 IU monthly kind, have in some trials been associated with more falls, not fewer, which is the opposite of the point. Daily or weekly modest dosing tracks biology better than a flood.
 
-And remember that vitamin D never worked alone. It manages calcium, but muscle keeps you upright and catches you when you stumble, which no capsule can replace. The strongest fracture prevention in older adults is not a supplement at all, it is not falling in the first place, and that comes from loaded, progressive [strength training](/train/why-strength-training-after-40-isnt-optional). Pair the two if your blood level is low. Skip the pill and keep the barbell if it is not.
+And remember that vitamin D never worked alone. It manages calcium, but muscle keeps you upright and catches you when you stumble, which no capsule can replace. The strongest fracture prevention in older adults is not a supplement at all, it is not falling in the first place, and that comes from loaded, progressive [strength training](/train/strength-training-after-40/). Pair the two if your blood level is low. Skip the pill and keep the barbell if it is not.
 
 The honest edge of the evidence is this: we know vitamin D rescues the deficient, and we have failed, repeatedly, to show it upgrades the already-sufficient. That is a narrower claim than the one printed on the bottle, and it happens to be true. Treat your blood level, not the marketing.

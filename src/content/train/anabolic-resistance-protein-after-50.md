@@ -41,7 +41,7 @@ The official RDA of 0.8 grams per kilogram of body weight was set to prevent def
 | Adults 65+, healthy | 1.0 to 1.2 g/kg | 30 to 40 g |
 | Older adults, ill or rehabbing | up to 1.5 g/kg | 35 to 40 g |
 
-For a 75-kilogram person, 1.2 g/kg is 90 grams a day, which sounds like a lot until you break it down: three eggs and Greek yogurt at breakfast, a palm of chicken or fish at lunch, and a serving of meat, tofu, or lentils with dinner. Animal proteins and dairy carry more leucine per gram, so they hit the threshold with less volume. Plant eaters get there too, just with larger portions or by leaning on higher-leucine sources like soy, and it pairs nicely with the fiber most people are already missing (see [the fiber gap](/fuel/the-fiber-gap)).
+For a 75-kilogram person, 1.2 g/kg is 90 grams a day, which sounds like a lot until you break it down: three eggs and Greek yogurt at breakfast, a palm of chicken or fish at lunch, and a serving of meat, tofu, or lentils with dinner. Animal proteins and dairy carry more leucine per gram, so they hit the threshold with less volume. Plant eaters get there too, just with larger portions or by leaning on higher-leucine sources like soy, and it pairs nicely with the fiber most people are already missing (see [the fiber gap](/train/fiber-gap-longevity-nutrient/)).
 
 ## Where the evidence gets honest
 

@@ -30,7 +30,7 @@ What HRV genuinely is good at is short-term feedback. It moves fast, within a da
 
 Alcohol is the cleanest demonstration. Two glasses of wine and your overnight HRV often drops noticeably, sometimes by 20 to 40 percent, because ethanol suppresses vagal activity while your body metabolizes it. You feel it as a poor night even after eight hours in bed. The mechanism is straightforward autonomic suppression, and the wearable catches it whether or not you want it to.
 
-Sleep does the opposite. Deep, uninterrupted sleep is when parasympathetic tone runs highest, which is why HRV typically climbs through the night and why fragmented sleep flattens it. If you want the longer version of that story, see [/live/deep-sleep-brain-repair](/live/deep-sleep-brain-repair).
+Sleep does the opposite. Deep, uninterrupted sleep is when parasympathetic tone runs highest, which is why HRV typically climbs through the night and why fragmented sleep flattens it. If you want the longer version of that story, see [/live/deep-sleep-brain-repair](/train/deep-sleep-brain-repair-longevity/).
 
 Endurance training tends to raise resting HRV over weeks, consistent with the well-documented drop in resting heart rate that fit people develop. Slow breathing works acutely: breathing at roughly six breaths per minute drives the heart-rate swings into resonance with the baroreflex, and HRV shoots up while you do it. Whether daily HRV biofeedback produces lasting benefit is still an open question, but the acute effect is real and you can watch it happen on a live readout.
 

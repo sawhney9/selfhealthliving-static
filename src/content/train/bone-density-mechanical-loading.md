@@ -43,7 +43,7 @@ Women lose bone fastest in the five to seven years around menopause, when estrog
 
 Load your skeleton the way the trials loaded it, not the way a gym poster suggests. The ingredients are heavy compound lifts and impact.
 
-For the lifting side, that means progressive resistance training with real weight on the bar: squats, deadlifts, presses, rows, worked in a low-rep range that forces genuine effort. If you have never lifted or have a diagnosis, start under a coach who can load you safely, then let the weight climb over months. The stimulus is the heaviness, so light dumbbells for high reps will not get you there. This is the same work that preserves muscle, so it pays twice. If you are building a base, our guides to [training after 40](/train/why-strength-training-after-40-isnt-optional) and [HIIT after 40](/train/hiit-after-40) are a sane place to begin.
+For the lifting side, that means progressive resistance training with real weight on the bar: squats, deadlifts, presses, rows, worked in a low-rep range that forces genuine effort. If you have never lifted or have a diagnosis, start under a coach who can load you safely, then let the weight climb over months. The stimulus is the heaviness, so light dumbbells for high reps will not get you there. This is the same work that preserves muscle, so it pays twice. If you are building a base, our guides to [training after 40](/train/strength-training-after-40/) and [HIIT after 40](/train/hiit-workout-after-40/) are a sane place to begin.
 
 For impact, add loading your bones do not expect: hopping, skipping, jumping with a firm landing, stair bounding. A handful of hard foot-strikes, a few times a week, is enough to register as novel strain. Done daily and gently, it stops working.
 

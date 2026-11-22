@@ -22,7 +22,7 @@ The trouble comes when LDL-C and ApoB disagree, which happens more than you woul
 
 When the two numbers conflict, ApoB wins as a risk predictor. A meta-analysis comparing LDL-C, non-HDL-C, and ApoB found ApoB was the strongest of the three at predicting cardiovascular events [Circ Cardiovasc Qual Outcomes, 2011](https://pubmed.ncbi.nlm.nih.gov/21487090/). And in the INTERHEART study, which examined first heart attacks across 52 countries, the ratio of ApoB to ApoA1 was the single most powerful lipid marker of risk, beating standard cholesterol measures [Lancet, 2008](https://pubmed.ncbi.nlm.nih.gov/18640459/).
 
-This matters most for exactly the people who feel safe. Lean, active, normal LDL-C, but with creeping triglycerides and shrinking HDL. That pattern hides a high particle count, and it is the pattern a routine panel is worst at catching. If you are tracking your metabolic health with a [CGM](/track/normal-fasting-glucose-hidden-spikes) or watching fasting glucose, ApoB belongs on the same page.
+This matters most for exactly the people who feel safe. Lean, active, normal LDL-C, but with creeping triglycerides and shrinking HDL. That pattern hides a high particle count, and it is the pattern a routine panel is worst at catching. If you are tracking your metabolic health with a [CGM](/train/normal-fasting-glucose-hidden-spikes-cgm/) or watching fasting glucose, ApoB belongs on the same page.
 
 ## What the numbers look like
 
@@ -42,7 +42,7 @@ For context, an ApoB near 80 mg/dL corresponds loosely to an LDL-C around 100, b
 
 Ask for the test by name. It is a single blood draw, no fasting required, covered by most labs, and it costs a fraction of the fancier particle-imaging panels. If your doctor only ordered a standard lipid panel, ApoB is a reasonable add-on request, especially if your triglycerides run above 130 or you have any metabolic red flags.
 
-The levers that lower particle count are the ones you already know, and they work. Reducing saturated fat and refined carbohydrate lowers ApoB. Soluble fiber pulls it down by binding bile acids, another reason the [fiber gap](/fuel/the-fiber-gap) is worth closing. Losing visceral fat improves the small-dense-particle pattern that causes discordance in the first place. And if lifestyle is not enough, statins and other lipid-lowering drugs reduce ApoB directly, which is ultimately how they reduce heart attacks.
+The levers that lower particle count are the ones you already know, and they work. Reducing saturated fat and refined carbohydrate lowers ApoB. Soluble fiber pulls it down by binding bile acids, another reason the [fiber gap](/train/fiber-gap-longevity-nutrient/) is worth closing. Losing visceral fat improves the small-dense-particle pattern that causes discordance in the first place. And if lifestyle is not enough, statins and other lipid-lowering drugs reduce ApoB directly, which is ultimately how they reduce heart attacks.
 
 One honest caveat: your first ApoB is a starting line, not a verdict. Because atherosclerosis reflects cumulative exposure, a single reading above 120 does not doom you, and a single good one does not exempt you. The trend over years is what shapes your arteries.
 

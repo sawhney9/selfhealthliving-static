@@ -1,6 +1,7 @@
 ---
 import Layout from './Layout.astro';
 import { articleJsonLd, recipeJsonLd, breadcrumbJsonLd, pageTitle, absoluteUrl, stripToText } from '../lib/seo.js';
+import { relatedPosts, relatedTool } from '../lib/related.js';
 
 const { frontmatter, description } = Astro.props;
 const { title, date, featured_image, pillar, slug, recipe } = frontmatter;
@@ -43,6 +44,10 @@ const jsonLd = isPost
       ),
     ].filter(Boolean)
   : [];
+
+const allPosts = Object.values(import.meta.glob('../content/*/*.md', { eager: true }));
+const related = isPost ? relatedPosts(frontmatter, allPosts, 3) : [];
+const tool = isPost ? relatedTool(frontmatter) : null;
 ---
 
 <Layout
@@ -184,6 +189,35 @@ const jsonLd = isPost
           </div>
         </div>
       </div>
+    )}
+
+    {tool && (
+      <a href={tool.path} class="mt-12 flex items-center justify-between gap-4 rounded-2xl border border-green-accent/20 bg-green-accent/5 p-5 no-underline hover:border-green-accent/40 transition-colors">
+        <span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-green-accent mb-1">Free tool</span>
+          <span class="block font-display font-bold text-slate-900">Try the {tool.name}</span>
+        </span>
+        <span class="text-green-accent font-bold" aria-hidden="true">&rarr;</span>
+      </a>
+    )}
+
+    {related.length > 0 && (
+      <section class="mt-12" aria-labelledby="related-heading">
+        <h2 id="related-heading" class="font-display font-bold text-xl text-slate-900 mb-5">Related reading</h2>
+        <div class="grid gap-5 sm:grid-cols-3">
+          {related.map((post) => (
+            <a href={`/${post.pillar}/${post.slug}/`} class="group block rounded-2xl border border-black/8 bg-white overflow-hidden no-underline hover:shadow-md transition-shadow">
+              {post.featured_image && (
+                <img src={post.featured_image} alt="" loading="lazy" class="w-full h-32 object-cover" />
+              )}
+              <span class="block p-4">
+                <span class="block text-xs font-semibold uppercase tracking-wider text-green-accent mb-1">{post.pillar}</span>
+                <span class="block text-sm font-semibold text-slate-900 leading-snug group-hover:text-green-accent">{post.title}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
     )}
 
     <!-- Navigation back -->

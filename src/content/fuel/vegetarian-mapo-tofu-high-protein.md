@@ -106,7 +106,7 @@ The tofu is your protein backbone, and soy earns its place beyond the macros. A 
 
 **Chili.** Beyond the doubanjiang, a spoon of ground chili builds color and warmth. Regular chili eaters in a large Italian cohort had lower all-cause and cardiovascular mortality over eight years, independent of overall diet quality (J Am Coll Cardiol, 2019). Association, not proof, and the capsaicin mechanism is still being worked out. But it is a nice thing to know while your lips are buzzing.
 
-**Shiitake mushrooms.** They bring a meaty chew and their own glutamates, stacking savoriness on top of the fermented paste. The beta-glucans in mushroom cell walls are a fermentable fiber your gut bacteria feed on, which is the same reason a [fiber-forward gut](/fuel/fiber-fix-why-your-body-needs-this-secret-superfood-for-a-healthy-gut) matters. Dried shiitake, soaked, taste deeper than fresh, and the soaking liquid becomes your stock.
+**Shiitake mushrooms.** They bring a meaty chew and their own glutamates, stacking savoriness on top of the fermented paste. The beta-glucans in mushroom cell walls are a fermentable fiber your gut bacteria feed on, which is the same reason a [fiber-forward gut](/fuel/fiber-fix/) matters. Dried shiitake, soaked, taste deeper than fresh, and the soaking liquid becomes your stock.
 
 ## The numbing part is not optional
 

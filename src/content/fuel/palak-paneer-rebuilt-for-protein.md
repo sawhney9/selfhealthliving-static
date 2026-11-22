@@ -179,4 +179,4 @@ The old 0.8 g/kg figure is a floor to prevent deficiency, not a target for someo
 | Training for strength | 1.6 to 2.2 g | 35 to 40 g |
 | Adult over 65 | 1.2 to 1.5 g | 30 g+ (leucine matters more) |
 
-One serving of this gives you about 24 g. Serve it with a cup of Greek yogurt on the side or a small bowl of dal and you clear 35 g without touching meat. See [/fuel/protein-the-bodys-building-block](/fuel/protein-the-bodys-building-block) for why the per-meal distribution matters more than the daily total.
+One serving of this gives you about 24 g. Serve it with a cup of Greek yogurt on the side or a small bowl of dal and you clear 35 g without touching meat. See [/fuel/protein-the-bodys-building-block](/fuel/protein-power/) for why the per-meal distribution matters more than the daily total.

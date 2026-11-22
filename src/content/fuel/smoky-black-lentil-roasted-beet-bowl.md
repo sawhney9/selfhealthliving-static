@@ -94,7 +94,7 @@ This bowl was built for batch cooking. Cook the lentils and roast the beets toge
 
 Keep the tahini sauce in its own jar — it thickens cold, so loosen it with a splash of warm water before serving. Add the spinach fresh and the walnuts last to keep the texture.
 
-Variations: swap beets for roasted carrots if you want lower sugar, or add a soft-boiled egg or crumbled feta if you eat dairy and want to push protein past 30g. For a grain version, serve over farro or barley — pairs well with our [high-fiber breakfast approach](/fuel/high-fiber-breakfast).
+Variations: swap beets for roasted carrots if you want lower sugar, or add a soft-boiled egg or crumbled feta if you eat dairy and want to push protein past 30g. For a grain version, serve over farro or barley — pairs well with our [high-fiber breakfast approach](/fuel/greek-yogurt-protein-parfait/).
 
 ## The Honest Reality
 

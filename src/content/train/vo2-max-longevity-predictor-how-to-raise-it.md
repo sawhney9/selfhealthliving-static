@@ -40,9 +40,49 @@ A landmark trial by Benjamin Levine's group took sedentary middle-aged adults th
 
 For mitochondrial adaptation specifically, both Zone 2 base training and short high-intensity intervals drive PGC-1α signaling, the master regulator of mitochondrial biogenesis ([Bishop et al., J Physiol 2014](https://pubmed.ncbi.nlm.nih.gov/24665098/)). That's why the best plans use both. They're hitting two different switches.
 
+## How to Estimate Your VO2 Max Without a Lab
+
+A clinical VO2 max test requires a treadmill, a mask, and a sports medicine lab. But there are reliable estimates you can do yourself.
+
+**The Rockport Walking Test (Most Accessible)**
+Walk 1 mile as fast as possible on flat ground. Record your time and your heart rate immediately at the finish. Plug into this formula:
+
+> VO2 max ≈ 132.853 − (0.1692 × body weight in kg) − (0.3877 × age) + (6.315 × sex, where male = 1, female = 0) − (3.2649 × mile time in minutes) − (0.1565 × heart rate at finish)
+
+This gives you a rough estimate within about 5–10% of a lab test.
+
+**The Simpler Gauge: Stair Climb**
+Climb four flights of stairs (about 60 steps) at a brisk pace. If you arrive at the top without breathlessness and your heart rate recovers within 1–2 minutes, you have reasonable aerobic fitness for your age. If you are significantly winded or it takes 5+ minutes to recover, aerobic capacity is worth prioritizing immediately.
+
+**Wearable Estimates**
+Apple Watch, Garmin, Whoop, and most modern fitness wearables now estimate VO2 max from heart rate data. These are not perfectly accurate but they are directionally useful for tracking your trend over months of training. The trend matters more than the precise number.
+
+## VO2 Max Benchmarks by Age
+
+| Age | Poor | Average | Good | Excellent (Men) | Excellent (Women) |
+|---|---|---|---|---|---|
+| 40–49 | <33 | 33–39 | 40–47 | 48–53 | 40–45 |
+| 50–59 | <30 | 30–36 | 37–44 | 45–50 | 37–42 |
+| 60–69 | <26 | 26–32 | 33–40 | 41–46 | 33–38 |
+
+*(ml/kg/min — values approximate, sourced from ACSM guidelines)*
+
+If you are below "average" for your age, the research is clear: improving this number is likely the single highest-return investment you can make in your long-term health.
+
 ## How to Improve It
 
 The most effective approach combines two intensities most people neglect to balance: lots of easy aerobic volume plus a small dose of brutal intervals. Think of it as roughly 80% easy, 20% hard. The easy work builds the engine. The hard work raises the ceiling.
+
+### Zone 2 Training (The Foundation)
+
+Zone 2 is the aerobic intensity where you can maintain a conversation but it requires some effort — roughly 60–70% of your maximum heart rate. It is the intensity of a brisk walk, a relaxed jog, an easy bike ride. Done consistently for 45–60 minutes, 3–4 times per week, Zone 2 training:
+
+- Increases mitochondrial density in slow-twitch muscle fibers
+- Improves fat oxidation (your ability to burn fat as fuel)
+- Lowers resting heart rate over weeks
+- Builds the aerobic base that makes interval training more effective
+
+Most people who "don't like cardio" dislike it because they were never told about Zone 2. They defaulted to moderate intensity — not hard enough to build fitness, hard enough to be unpleasant. Zone 2 is genuinely sustainable. A 45-minute walk at a pace where you're slightly warm and breathing deeper than resting is Zone 2.
 
 ### The 4x4 Norwegian protocol
 
@@ -54,7 +94,7 @@ This is the best-studied VO2-max builder out there:
 - Repeat 4 times
 - 5-minute cool-down
 
-Do this once or twice a week. Fill the rest of your week with Zone 2, conversational-pace cardio where you can hold a full sentence. See our breakdown at [/train/zone-2-training-guide](/train/zone-2-training-guide).
+Do this once or twice a week. Fill the rest of your week with Zone 2, conversational-pace cardio where you can hold a full sentence. See the Zone 2 section above.
 
 ### A few things I've learned that make the intervals actually work
 

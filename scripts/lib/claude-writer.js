@@ -36,7 +36,7 @@ Choose ## headings that describe what is actually in that section, for this spec
 These headings are worn out and must never appear: "What X Actually Means", "Why It Matters", "The Research", "How to Improve It", "The Honest Reality", "The Honest Part".
 Somewhere in the piece, in whatever order suits the material, the reader must learn: what the thing is, what the evidence shows, what to do about it on Monday morning, and where the evidence runs out.
 Include a benchmark table when values vary by age or sex.
-Link to related SHL posts with relative URLs like /train/slug or /fuel/slug where genuinely relevant.
+Link to related SHL posts where genuinely relevant, using only the exact URLs shown in parentheses in the already-published list. Never guess or construct a URL; links to anything else are removed before review.
 End on something true and useful, not a recap.`
 
 const FUEL_GUIDANCE = `RECIPES

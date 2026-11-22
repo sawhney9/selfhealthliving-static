@@ -67,3 +67,9 @@
 /mindfulness /train/ 301
 /self-health-insights/ /about/ 301
 /self-health-insights /about/ 301
+
+# Merged duplicate posts (2026-11-22)
+/train/vo2max-longevity/ /train/vo2-max-longevity-predictor-how-to-raise-it/ 301
+/train/vo2max-longevity /train/vo2-max-longevity-predictor-how-to-raise-it/ 301
+/signals/grip-strength-predicts-death-better-than-blood-pressure/ /train/grip-strength-longevity-biomarker/ 301
+/signals/grip-strength-predicts-death-better-than-blood-pressure /train/grip-strength-longevity-biomarker/ 301

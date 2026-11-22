@@ -103,7 +103,7 @@ One serving of this delivers roughly 35 grams of protein, which is right in the 
 | Adults 40-64 | 30-40 g | 1.4-1.6 g/kg |
 | Adults 65+ | 35-40 g | 1.6-2.0 g/kg |
 
-Older adults need more per meal, not less, because aging muscle is less responsive to a given dose of protein. A single serving of saganaki covers a meal's worth for almost everyone at this table. If you want the mechanism behind those numbers, we went deeper in [our protein guide](/fuel/protein-the-bodys-building-block).
+Older adults need more per meal, not less, because aging muscle is less responsive to a given dose of protein. A single serving of saganaki covers a meal's worth for almost everyone at this table. If you want the mechanism behind those numbers, we went deeper in [our protein guide](/fuel/protein-power/).
 
 ## Approximate nutrition per serving
 

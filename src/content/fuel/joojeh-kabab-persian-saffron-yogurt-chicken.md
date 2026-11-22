@@ -103,7 +103,7 @@ The only thing standing between you and dinner is the marinade time. An hour is 
 
 Get your heat genuinely high. A broiler on its top setting, a grill, or a cast-iron pan ripping hot. The goal is color: browned, blistered edges where the sugars in the onion and the proteins on the surface caramelize. Pale chicken is a flavor failure even when it is cooked through. Pull the pieces at 165°F internal and let them rest five minutes so the juices redistribute.
 
-Serve with the Shirazi salad and, if you want to push it toward a smart-carb plate instead, add warm whole-grain flatbread or saffron rice. For a vegetable-forward side, a tray of charred zucchini or a simple herb plate works. See also [Greek Shrimp Saganaki](/fuel/greek-shrimp-saganaki) if you are building a Mediterranean rotation.
+Serve with the Shirazi salad and, if you want to push it toward a smart-carb plate instead, add warm whole-grain flatbread or saffron rice. For a vegetable-forward side, a tray of charred zucchini or a simple herb plate works. See also [Greek Shrimp Saganaki](/fuel/greek-shrimp-saganaki-one-skillet/) if you are building a Mediterranean rotation.
 
 ## Storage, reheating, and variations
 
