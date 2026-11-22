@@ -1,5 +1,6 @@
 ---
 title: "Smoked Salmon Power Bowl: Flavor meets Quick"
+description: "A no-cook smoked salmon poke-style bowl with avocado, cucumber, and spicy mayo over sushi rice. Omega-3-rich and weeknight easy."
 date: "2025-07-13"
 featured_image: "/images/food/a_thinly_sliced_smoked_salmon_avocado_bowl_with_some_a2f498a9_b5a6_4048_a259_65b7e966f119.png"
 pillar: "fuel"

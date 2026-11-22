@@ -35,6 +35,17 @@ function minutesToISO(min) {
   return Number.isFinite(n) && n > 0 ? `PT${n}M` : undefined;
 }
 
+/**
+ * "4 servings"-style yield, or undefined when the source data has no real
+ * count (older imports carry servings "0" and unit "None").
+ */
+function recipeYield(r) {
+  const n = Number.parseFloat(r.servings);
+  if (!Number.isFinite(n) || n <= 0) return undefined;
+  const unit = r.servings_unit && r.servings_unit !== 'None' ? r.servings_unit : 'servings';
+  return `${r.servings} ${unit}`.trim();
+}
+
 /** Recipe schema, or null when the post has no recipe. */
 export function recipeJsonLd(fm, { url, site, description } = {}) {
   const r = fm.recipe;
@@ -56,15 +67,13 @@ export function recipeJsonLd(fm, { url, site, description } = {}) {
     ...(prep && { prepTime: prep }),
     ...(cook && { cookTime: cook }),
     ...(total && { totalTime: total }),
-    ...(r.servings && {
-      recipeYield: `${r.servings} ${r.servings_unit || 'servings'}`.trim(),
-    }),
+    ...(recipeYield(r) && { recipeYield: recipeYield(r) }),
     ...(url && { mainEntityOfPage: url }),
   };
 
   if (Array.isArray(r.ingredients) && r.ingredients.length) {
     obj.recipeIngredient = r.ingredients.map((i) =>
-      [i.amount, i.unit, i.name].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim()
+      stripToText([i.amount, i.unit, i.name].filter(Boolean).join(' '), 0)
     );
   }
   if (Array.isArray(r.instructions) && r.instructions.length) {
@@ -97,4 +106,50 @@ export function articleJsonLd(fm, { url, site, description } = {}) {
     ...(description && { description }),
     ...(url && { mainEntityOfPage: url }),
   };
+}
+
+const SITE_NAME = 'Self Health Living';
+
+/** Organization + WebSite schema for the homepage (site name and logo in results). */
+export function siteJsonLd(site) {
+  const url = absoluteUrl('/', site);
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url,
+      logo: absoluteUrl('/images/brand/logo-actual.png', site),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: SITE_NAME,
+      url,
+    },
+  ];
+}
+
+/** BreadcrumbList from [{ name, path }] items, in order from the root. */
+export function breadcrumbJsonLd(items, site) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: absoluteUrl(item.path, site),
+    })),
+  };
+}
+
+/**
+ * "<title> | Self Health Living" when that fits in Google's ~60-character
+ * title width; long headlines go out bare so the words that matter aren't
+ * the ones truncated.
+ */
+export function pageTitle(title) {
+  const full = `${title} | ${SITE_NAME}`;
+  return full.length <= 60 ? full : title;
 }

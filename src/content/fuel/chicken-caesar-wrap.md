@@ -1,5 +1,6 @@
 ---
 title: "Healthy Quick Chicken Caesar Wrap"
+description: "A lean, low-carb chicken Caesar wrap with all the classic salad flavor. A high-protein lunch you can make in minutes between meetings or workouts."
 date: "2025-04-17"
 featured_image: "/images/food/ultra_realistic_chicken_caesar_wrap_cut_in_half_to_s_73c2f470_bdb3_4173_8051_609cf28d3f62.png"
 pillar: "fuel"

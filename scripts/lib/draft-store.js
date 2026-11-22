@@ -28,6 +28,9 @@ export async function saveDraft(pillar, post, imagePath) {
 
 export function buildMarkdown(pillar, post, imagePath) {
   const date = new Date().toISOString().split('T')[0]
+  // The writer's one-sentence excerpt becomes the meta description; JSON quoting
+  // is valid YAML and survives quotes and colons in the text.
+  const descLine = post.excerpt ? `description: ${JSON.stringify(post.excerpt.trim())}\n` : ''
 
   if (pillar === 'fuel' && post.recipe) {
     const r = post.recipe
@@ -51,7 +54,7 @@ date: "${date}"
 featured_image: "${imagePath}"
 pillar: "fuel"
 slug: "${post.slug}"
-recipe:
+${descLine}recipe:
   title: "${r.title}"
   prep_time: ${r.prep_time}
   cook_time: ${r.cook_time}
@@ -74,7 +77,7 @@ date: "${date}"
 featured_image: "${imagePath}"
 pillar: "${pillar}"
 slug: "${post.slug}"
----
+${descLine}---
 
 ${post.content}
 `

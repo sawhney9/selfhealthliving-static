@@ -1,5 +1,6 @@
 ---
 title: "Fiber Fix: Why Your Body Needs This Secret Superfood for a Healthy Gut"
+description: "Fiber is the common thread in every Blue Zone diet. Why most people eat half what they need, what it does for your gut and longevity, and how to get more."
 date: "2024-09-28"
 featured_image: "/images/uploads/fiber_rich_foods.png"
 pillar: "fuel"

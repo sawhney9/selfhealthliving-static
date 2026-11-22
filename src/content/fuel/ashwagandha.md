@@ -1,5 +1,6 @@
 ---
 title: "Ashwagandha: An Ancient Herb for Modern Stress"
+description: "Ashwagandha is an Ayurvedic adaptogen with clinical evidence for lowering stress and anxiety. What the research shows, how to dose it, and who should avoid it."
 date: "2024-09-30"
 featured_image: "/images/uploads/rimas4real_ashwagandha_sticks_on_a_wooden_log_with_a_bowl_with__627fe7f7-af10-45b7-9695-e03cdb4eca06.png"
 pillar: "fuel"

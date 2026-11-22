@@ -1,5 +1,6 @@
 ---
 title: "Easy Miso Glazed Cod – High Protein, Low Effort, Big Flavor"
+description: "Miso-glazed cod with bok choy and shiitake: a lean, high-protein dinner rich in B12 and selenium that's easy to make and full of umami."
 date: "2025-07-09"
 featured_image: "/images/food/a_delicious_miso_glazed_cod_with_a_side_of_shitake_m_f730776b_b0ef_4009_813b_4a829507cfab.png"
 pillar: "fuel"

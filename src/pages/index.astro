@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { siteJsonLd } from '../lib/seo.js';
 
 const signalsMap = import.meta.glob('../content/signals/*.md', { eager: true });
 const allSignals = Object.values(signalsMap);
@@ -16,6 +17,7 @@ const featuredPosts = featuredSlugs.map((slug) => bySlug[slug]).filter(Boolean);
 <Layout
   title="Self Health Living | Read Your Own Health Data"
   description="CGMs, wearables, lab panels, and AI — we translate your own health data into plain guidance, plus science-backed training and nutrition."
+  jsonLd={siteJsonLd(Astro.site)}
 >
   <!-- ══════════════════════════════════════
        HERO — mission-led, with a live "signal" card

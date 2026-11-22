@@ -1,5 +1,6 @@
 ---
 title: "Vitamin D: The Super Nutrient You Get for Free"
+description: "Vitamin D supports bones, immunity, mood, and muscle, and matters more as you age. The best ways to get it from sunlight, food, and D3 supplements."
 date: "2024-11-21"
 featured_image: "/images/uploads/rimas4real_a_image_of_a_vitamin_d_supplements_in_a_small_bowl_o_78ae6aca-abeb-4c68-a297-3d0c0208777d.png"
 pillar: "fuel"

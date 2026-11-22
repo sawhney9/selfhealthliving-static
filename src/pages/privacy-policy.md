@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/ArticleLayout.astro
 title: "Privacy Policy"
+description: "How Self Health Living and the SelfHealth app collect, use, and protect your data, including on-device processing, AI providers, and family profiles."
 date: "2026-06-06"
 pillar: "about"
 slug: "privacy-policy"

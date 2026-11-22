@@ -1,5 +1,6 @@
 ---
 title: "Savory Smoked Salmon Avocado Toast"
+description: "Smoked salmon avocado toast with arugula, tomato, and everything bagel seasoning. Omega-3s, healthy fats, and protein in a quick, savory breakfast."
 date: "2024-12-07"
 featured_image: "/images/uploads/rimas4real_a_salmon_avacado_toast_with_sourghdoubh_bread_plated_92885d06-2202-453b-9a15-fd8fb952b09e.png"
 pillar: "fuel"

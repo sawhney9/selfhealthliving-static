@@ -1,5 +1,6 @@
 ---
 title: "Berry Bean Protein Smoothie"
+description: "A high-protein berry smoothie with spinach, garbanzo beans, Greek yogurt, and flaxseed, packed with fiber and probiotics and ready in 3 minutes."
 date: "2024-11-10"
 featured_image: "/images/uploads/rimas4real_a_smoothie_with_the_following_ingredients_1_cup_mixe_9a16695d-d4f5-4780-b413-3f1002ada3f8.png"
 pillar: "fuel"
@@ -12,7 +13,7 @@ recipe:
   servings: "0"
   servings_unit: "None"
   ingredients:
-    - name: "<strong> M</strong>ixed berries"
+    - name: "Mixed berries"
       amount: "1"
       unit: "cup"
       notes: "(fresh or frozen)"
