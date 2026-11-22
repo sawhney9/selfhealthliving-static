@@ -74,7 +74,7 @@ slug: "why-we-built-selfhealth-app"
 
 
 <div style="max-width:420px;margin:2.5rem auto;">
-<iframe src="/embeds/selfhealth-app-story-demo.html" title="SelfHealth app story demo" loading="lazy" style="width:100%;height:860px;border:none;border-radius:24px;display:block;box-shadow:0 10px 30px rgba(0,0,0,0.12);"></iframe>
+<iframe src="/embeds/selfhealth-app-story-demo" title="SelfHealth app story demo" loading="lazy" style="width:100%;height:860px;border:none;border-radius:24px;display:block;box-shadow:0 10px 30px rgba(0,0,0,0.12);"></iframe>
 </div>
 
 

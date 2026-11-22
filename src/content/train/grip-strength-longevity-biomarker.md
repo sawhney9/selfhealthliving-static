@@ -49,7 +49,7 @@ Then train the thing grip is a proxy for, which is systemic strength, not just f
 - **Deadlifts and rows** without lifting straps, at least on your warm-up sets, so your hands do the work your back is doing.
 - **Dead hangs** from a pull-up bar. Just hang. Work up to 60 seconds. This is one of the few exercises that also decompresses the shoulders while it builds grip endurance.
 
-Grip responds to training quickly because much of early strength gain is neurological, your nervous system learning to recruit fibers it was ignoring. You will often see a measurable bump in weeks. If you are building a broader program, the same principles that raise grip raise everything else, and we cover the framework in [strength training after 40](/train/strength-training-after-40).
+Grip responds to training quickly because much of early strength gain is neurological, your nervous system learning to recruit fibers it was ignoring. You will often see a measurable bump in weeks. If you are building a broader program, the same principles that raise grip raise everything else, and we cover the framework in [strength training after 40](/train/strength-training-after-40/).
 
 ## Where this stops being useful
 

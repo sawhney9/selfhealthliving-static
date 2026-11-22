@@ -47,7 +47,7 @@ If you clear 1.2 m/s without trying, good. If you're closer to 0.8, that's not a
 
 ## Moving the number
 
-Walking speed has two main inputs you can train: leg power and aerobic capacity. Power is strength expressed quickly, and it fades earlier than raw strength does, which is why older adults can often still lift but can't rise from a chair without a rock forward. The fix is deliberately explosive strength work, standing up from a seat fast, loaded step-ups, hill walking, done with intent rather than grinding slow reps. See [/train/strength-training-after-40](/train/strength-training-after-40) for how to structure that.
+Walking speed has two main inputs you can train: leg power and aerobic capacity. Power is strength expressed quickly, and it fades earlier than raw strength does, which is why older adults can often still lift but can't rise from a chair without a rock forward. The fix is deliberately explosive strength work, standing up from a seat fast, loaded step-ups, hill walking, done with intent rather than grinding slow reps. See [/train/strength-training-after-40](/train/strength-training-after-40/) for how to structure that.
 
 The aerobic side responds to the same conditioning that raises [VO2 max](/train/vo2-max-longevity-predictor-how-to-raise-it/): some easy volume, some hard intervals. You don't need a lab. Walk hills. Carry something heavy for part of your route. Add a few 30-second surges where you push the pace until talking gets awkward, then ease off.
 

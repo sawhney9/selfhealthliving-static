@@ -61,7 +61,7 @@ const tool = isPost ? relatedTool(frontmatter) : null;
   <div class="py-12 px-6 md:px-12 max-w-4xl mx-auto w-full">
     <!-- Breadcrumb / Category -->
     <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-green-accent mb-4">
-      <a href={`/${pillar}`} class="hover:underline">{pillar}</a>
+      <a href={`/${pillar}/`} class="hover:underline">{pillar}</a>
       <span>&bull;</span>
       <span class="text-slate-400">article</span>
     </div>
@@ -222,7 +222,7 @@ const tool = isPost ? relatedTool(frontmatter) : null;
 
     <!-- Navigation back -->
     <div class="mt-12 pt-6 border-t border-black/8 flex justify-between items-center text-sm">
-      <a href={`/${pillar}`} class="text-green-accent hover:text-green-accent-hover hover:underline flex items-center gap-1 font-semibold">
+      <a href={`/${pillar}/`} class="text-green-accent hover:text-green-accent-hover hover:underline flex items-center gap-1 font-semibold">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>

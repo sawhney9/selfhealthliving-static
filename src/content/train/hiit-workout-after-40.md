@@ -79,4 +79,4 @@ HIIT and strength training should not be done on the same day — they compete f
 - **Wed/Sat:** Active recovery (walking, yoga, swimming)
 - **Sun:** Rest
 
-A high-protein meal or snack within an hour after HIIT accelerates muscle repair. See our [Protein guide](/fuel/protein-power) for the specifics on post-workout nutrition timing.
+A high-protein meal or snack within an hour after HIIT accelerates muscle repair. See our [Protein guide](/fuel/protein-power/) for the specifics on post-workout nutrition timing.

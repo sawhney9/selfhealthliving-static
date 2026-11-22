@@ -106,6 +106,6 @@ The glaze itself keeps for two weeks in the fridge and is the real make-ahead mo
 
 Want it hotter? Add a teaspoon of gochugaru to the glaze. Want it sweeter and stickier? A teaspoon of honey pushes the caramelization further, at the cost of a couple grams of carbs. If you can only find salmon with skin on, broil it skin-side down and the skin crisps into the best part.
 
-For the carb side of your week, this pairs naturally with the vegetable-forward thinking in a [smoked salmon power bowl](/fuel/smoked-salmon-power-bowl), or lean into more fish nights with an [easy miso-glazed cod](/fuel/miso-glazed-cod/) that runs on the same fast-broil logic.
+For the carb side of your week, this pairs naturally with the vegetable-forward thinking in a [smoked salmon power bowl](/fuel/smoked-salmon-power-bowl/), or lean into more fish nights with an [easy miso-glazed cod](/fuel/miso-glazed-cod/) that runs on the same fast-broil logic.
 
 One more thing the evidence does not yet settle: whether the specific fermented cultures in gochujang survive high-heat broiling in any meaningful amount. Probably not much. So cook this because it tastes like a restaurant plate you made in twenty minutes, and let the omega-3s and the olive oil do the quantifiable work.

@@ -28,7 +28,7 @@ You can turn the volume up on the signal, and you can repair the receiver. Both 
 
 Turning up the signal means eating more protein per sitting, not just more per day. Three meals of 35 grams beats a bagel breakfast, a light lunch, and a 60-gram protein dinner, even if the daily totals match. The lopsided version wastes most of its building material because two of three meals never cross the threshold. Spread it out. Anchor each meal with a real protein source.
 
-Repairing the receiver is what resistance training does. A single bout of lifting makes muscle dramatically more sensitive to amino acids for a day or more, which partly restores the youthful response. This is the part people miss. Protein without training in an older body is like turning up a radio with a broken antenna. Together they are far stronger than either alone, which is the whole argument for [strength training after 40](/train/strength-training-after-40).
+Repairing the receiver is what resistance training does. A single bout of lifting makes muscle dramatically more sensitive to amino acids for a day or more, which partly restores the youthful response. This is the part people miss. Protein without training in an older body is like turning up a radio with a broken antenna. Together they are far stronger than either alone, which is the whole argument for [strength training after 40](/train/strength-training-after-40/).
 
 ## How much, and from where
 

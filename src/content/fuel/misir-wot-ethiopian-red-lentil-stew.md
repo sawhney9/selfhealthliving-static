@@ -121,6 +121,6 @@ Misir wot keeps in the fridge for up to five days and genuinely tastes better af
 
 A few variations worth making. Stir a few big handfuls of spinach or kale in at the end for a gomen-style green lift. Add a diced carrot and potato with the lentils for a heartier one-pot meal. If you want more protein without changing the character of the dish, drop in a cup of cooked chickpeas for the last ten minutes. For a full Ethiopian plate, serve alongside a simple cabbage and carrot sauté and something creamy like the yogurt trick above.
 
-If you like this style of legume-forward cooking, it sits comfortably next to our [lentil and sweet potato soup](/fuel/lentil-sweet-potato-soup) and the [chickpea curry](/fuel/chickpea-curry/) in the rotation. Three pots, one shopping list, a week of lunches sorted.
+If you like this style of legume-forward cooking, it sits comfortably next to our [lentil and sweet potato soup](/fuel/lentil-sweet-potato-soup/) and the [chickpea curry](/fuel/chickpea-curry/) in the rotation. Three pots, one shopping list, a week of lunches sorted.
 
 Cook it once for dinner. Cook it twice because the leftovers are better than the dinner was.

@@ -44,7 +44,7 @@ If you eat two or three servings of oily fish a week, salmon, sardines, mackerel
 
 Retest in three to four months. That is one red-cell lifespan, long enough for the membrane to reflect your new intake. Adjust the dose to hit target rather than guessing.
 
-If you are managing cardiovascular risk more broadly, the index sits alongside the other levers worth pulling, including [strength training after 40](/train/strength-training-after-40) and the metabolic picture a [CGM reveals that bloodwork misses](/train/normal-fasting-glucose-hidden-spikes-cgm/).
+If you are managing cardiovascular risk more broadly, the index sits alongside the other levers worth pulling, including [strength training after 40](/train/strength-training-after-40/) and the metabolic picture a [CGM reveals that bloodwork misses](/train/normal-fasting-glucose-hidden-spikes-cgm/).
 
 ## Where the evidence thins out
 

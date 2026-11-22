@@ -46,7 +46,7 @@ You do not need a study protocol. Aim for a traditional dry or wet sauna in the 
 
 A few people should be cautious. If you have unstable angina, a recent heart attack, or severe aortic stenosis, clear it with a cardiologist first. Alcohol plus sauna is a genuinely bad combination, implicated in sudden deaths, so keep them separate. And blood pressure drops on standing after heat, so get up slowly.
 
-One underrated pairing: heat after training. The cardiovascular stimulus stacks reasonably with what you already build from [strength training](/train/strength-training-after-40) and interval work, and the two seem to work through overlapping and complementary pathways rather than competing.
+One underrated pairing: heat after training. The cardiovascular stimulus stacks reasonably with what you already build from [strength training](/train/strength-training-after-40/) and interval work, and the two seem to work through overlapping and complementary pathways rather than competing.
 
 ## Where the evidence thins out
 

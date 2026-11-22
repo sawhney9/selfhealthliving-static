@@ -40,7 +40,7 @@ There is also a cardiovascular dose. Light, frequent movement nudges heart rate 
 
 Stop staring at 10,000. Find your current daily average over a normal week, the real number, not your best day. Then add 1,000 to 2,000 and hold it there. That increment is where the mortality math is most generous, and it is small enough to actually keep.
 
-Two practical levers. First, break it into walks you would take anyway: a loop after each meal shaves glucose spikes and quietly accumulates steps without feeling like exercise. Second, do not let the step count replace resistance work. Walking protects your heart and metabolism, but it does almost nothing for the muscle and bone you lose with age. That job belongs to a barbell or a set of heavy carries. See [why strength training after 40 isn't optional](/train/strength-training-after-40) and, if you want to push your ceiling, [how to raise VO2 max](/train/vo2-max-longevity-predictor-how-to-raise-it/).
+Two practical levers. First, break it into walks you would take anyway: a loop after each meal shaves glucose spikes and quietly accumulates steps without feeling like exercise. Second, do not let the step count replace resistance work. Walking protects your heart and metabolism, but it does almost nothing for the muscle and bone you lose with age. That job belongs to a barbell or a set of heavy carries. See [why strength training after 40 isn't optional](/train/strength-training-after-40/) and, if you want to push your ceiling, [how to raise VO2 max](/train/vo2-max-longevity-predictor-how-to-raise-it/).
 
 ## Where the evidence runs thin
 
