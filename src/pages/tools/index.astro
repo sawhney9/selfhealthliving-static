@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { TOOLS } from '../../lib/tools.js';
+
+const groups = ['Bloodwork', 'Fitness'].map((name) => ({ name, tools: TOOLS.filter((t) => t.group === name) }));
+---
+
+<Layout
+  title="Health Calculators & Trackers | Self Health Living"
+  description="Free calculators for the biomarkers and fitness metrics worth tracking: HOMA-IR, triglyceride/HDL ratio, A1c, eGFR, non-HDL cholesterol, VO2 max, grip strength, and more."
+  currentPillar="tools"
+>
+  <section class="relative pt-20 pb-16 md:pt-28 md:pb-20 overflow-hidden aurora-hero bg-grid-pattern">
+    <div class="max-w-4xl mx-auto text-center px-6 relative z-10 flex flex-col items-center">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-green-accent/10 border border-green-accent/20 rounded-full text-xs font-bold text-green-accent uppercase tracking-wider mb-6" data-reveal="fade">
+        Data to Direction
+      </span>
+      <h1 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tighter leading-[1.1] mb-6" data-reveal="fade" data-reveal-delay="100">
+        Calculators Worth <span class="font-serif italic font-normal text-green-accent">Checking In On</span>
+      </h1>
+      <p class="font-sans text-slate-500 text-base sm:text-lg leading-relaxed max-w-2xl" data-reveal="fade" data-reveal-delay="200">
+        Not every health number is worth obsessing over. These are the few that are genuinely predictive, cheap to measure, and useful to re-check every few months. Enter a result, save it, and watch the trend build. Sign in with your SelfHealth account and your lab values show up in the app too.
+      </p>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <div class="py-16 px-6 md:px-12 max-w-6xl mx-auto w-full">
+    {groups.map((group) => (
+      <section class="mb-14">
+        <h2 class="font-display font-bold text-2xl text-slate-900 mb-6">{group.name}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {group.tools.map((tool) => (
+            <a
+              href={`/tools/${tool.slug}/`}
+              class="group flex flex-col glass-card p-6 transition-all duration-300 hover:-translate-y-1 transform"
+            >
+              <h3 class="font-display font-bold text-lg text-slate-900 leading-snug group-hover:text-green-accent transition-colors duration-200 mb-3">
+                {tool.title}
+              </h3>
+              <p class="text-sm text-slate-500 leading-relaxed flex-grow">
+                {tool.blurb}
+              </p>
+              <span class="text-xs font-semibold text-green-accent group-hover:underline flex items-center gap-1 mt-5">
+                Open Calculator
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <p class="text-xs text-slate-400 leading-relaxed mt-12 max-w-2xl">
+      These calculators are for informational purposes only and are not a substitute for professional medical advice, diagnosis, or treatment. Always talk to your doctor about your lab results and personal risk factors.
+    </p>
+  </div>
+</Layout>

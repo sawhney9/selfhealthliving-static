@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Set a New Password | Self Health Living" description="Set a new password for your SelfHealth account." noindex>
+  <div id="reset-root" class="py-16 px-6 max-w-md mx-auto w-full">
+    <div class="glass-card p-7 md:p-9">
+      <h1 class="font-display font-black text-3xl text-slate-900 tracking-tight mb-2">Set a new password</h1>
+      <p class="text-sm text-slate-500 mb-7">This changes your password in the SelfHealth app too.</p>
+
+      <p id="reset-msg" class="hidden text-sm rounded-lg px-3 py-2.5 mb-5" role="alert"></p>
+
+      <form id="reset-form" class="hidden flex-col gap-4">
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">New password</span>
+          <input name="password" type="password" required minlength="6" autocomplete="new-password" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Confirm password</span>
+          <input name="confirm" type="password" required minlength="6" autocomplete="new-password" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <button type="submit" class="w-full px-6 py-3 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover disabled:opacity-50 transition-all duration-300 cursor-pointer">
+          Save password
+        </button>
+      </form>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { watchSession, updatePassword, authMessage } from '../../lib/auth.js';
+
+  function init() {
+    const root = document.getElementById('reset-root');
+    if (!root) return;
+    const form = document.getElementById('reset-form') as HTMLFormElement;
+    const msg = document.getElementById('reset-msg')!;
+
+    function say(html: string, kind: 'error' | 'info' = 'error') {
+      msg.innerHTML = html;
+      msg.className = `text-sm rounded-lg px-3 py-2.5 mb-5 ${kind === 'error' ? 'bg-red-50 text-red-700' : 'bg-green-accent/10 text-slate-700'}`;
+    }
+
+    const stop = watchSession((session) => {
+      if (session) {
+        form.classList.remove('hidden');
+        form.classList.add('flex');
+        msg.classList.add('hidden');
+      } else {
+        form.classList.add('hidden');
+        say('This reset link has expired or was already used. <a href="/login/" class="font-semibold underline">Request a new one</a> from the sign-in page.');
+      }
+    });
+    document.addEventListener('astro:before-swap', stop, { once: true });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = new FormData(form);
+      if (f.get('password') !== f.get('confirm')) return say('The two passwords don’t match.');
+      const btn = form.querySelector('button')!;
+      btn.disabled = true;
+      try {
+        await updatePassword(String(f.get('password')));
+        form.classList.add('hidden');
+        say('Password updated. <a href="/account/" class="font-semibold underline">Go to My Health</a>', 'info');
+      } catch (err) {
+        say(authMessage(err).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]!));
+        btn.disabled = false;
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

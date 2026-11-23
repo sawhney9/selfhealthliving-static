@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AccountPanel from '../../components/AccountPanel.astro';
+import SaveReading from '../../components/SaveReading.astro';
+---
+
+<Layout
+  title="Non-HDL Cholesterol Calculator | Self Health Living"
+  description="Calculate non-HDL cholesterol from a standard lipid panel, a number the AHA considers a better cardiovascular risk predictor than LDL."
+  currentPillar="tools"
+>
+  <div class="py-14 px-6 md:px-12 max-w-3xl mx-auto w-full relative">
+    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-green-accent mb-4">
+      <a href="/tools/" class="hover:underline">Tools</a>
+      <span>&bull;</span>
+      <span class="text-slate-400">calculator</span>
+    </div>
+
+    <h1 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+      Non-HDL Cholesterol Calculator
+    </h1>
+    <p class="text-slate-500 text-base leading-relaxed mb-10 max-w-2xl">
+      Non-HDL cholesterol is just your total cholesterol minus your HDL — but it captures every artery-clogging particle in your blood, not just LDL. The American Heart Association now treats it as a better predictor of cardiovascular risk than LDL alone, and unlike LDL it doesn't need a fasting sample or a special formula.
+    </p>
+
+    <AccountPanel />
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <form id="calc-form" data-tool="non-hdl-cholesterol" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Total Cholesterol (mg/dL)</span>
+          <input type="number" step="any" min="0" required id="total" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">HDL Cholesterol (mg/dL)</span>
+          <input type="number" step="any" min="0" required id="hdl" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <div class="sm:col-span-2 flex flex-wrap gap-3 mt-2">
+          <button type="submit" class="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
+            Calculate
+          </button>
+        </div>
+      </form>
+
+      <div id="result" class="hidden mt-6 pt-6 border-t border-black/6"></div>
+      <SaveReading />
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-4">Your Trend</h2>
+      <div id="history"></div>
+    </div>
+
+    <p class="text-sm text-slate-500 mb-8">
+      Curious how this fits with the rest of your panel? Read
+      <a href="/train/decoding-blood-sugar/" class="text-green-accent font-semibold hover:underline">Decoding Your Blood Sugar</a>.
+    </p>
+
+    <p class="text-xs text-slate-400 leading-relaxed border-t border-black/6 pt-6">
+      <strong class="text-slate-500">Not medical advice.</strong> This calculator is for informational purposes only and isn't a substitute for professional medical advice, diagnosis, or treatment. Risk bands shown reflect general AHA/NCEP-style non-HDL categories, not a personal diagnosis. Always talk to your doctor about your lab results and personal risk factors.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  import { initTrend } from '../../lib/toolTrend.js';
+  import { toolBySlug } from '../../lib/tools.js';
+
+
+  function classify(nonHdl: number) {
+    if (nonHdl < 130) {
+      return { label: 'Optimal', color: 'text-green-accent', note: 'Within the optimal non-HDL range.' };
+    }
+    if (nonHdl < 160) {
+      return { label: 'Near Optimal', color: 'text-green-accent', note: 'Slightly above optimal — a good target range to stay near.' };
+    }
+    if (nonHdl < 190) {
+      return { label: 'Borderline High', color: 'text-amber-accent', note: 'Worth discussing with your doctor, especially alongside other risk factors.' };
+    }
+    if (nonHdl < 220) {
+      return { label: 'High', color: 'text-orange-500', note: 'Associated with meaningfully higher cardiovascular risk.' };
+    }
+    return { label: 'Very High', color: 'text-red-500', note: 'Worth a conversation with your doctor about next steps.' };
+  }
+
+  function init() {
+    const form = document.getElementById('calc-form') as HTMLFormElement | null;
+    if (form?.dataset.tool !== 'non-hdl-cholesterol') return;
+    const resultEl = document.getElementById('result');
+    if (!form || !resultEl) return;
+
+    const trend = initTrend(toolBySlug('non-hdl-cholesterol'));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const total = parseFloat((document.getElementById('total') as HTMLInputElement).value);
+      const hdl = parseFloat((document.getElementById('hdl') as HTMLInputElement).value);
+      if (!total || !hdl) return;
+
+      const nonHdl = total - hdl;
+      const { label, color, note } = classify(nonHdl);
+
+      resultEl.classList.remove('hidden');
+      resultEl.innerHTML = `
+        <p class="text-sm text-slate-500 mb-1">Your Non-HDL Cholesterol</p>
+        <p class="font-display font-black text-4xl text-slate-900 mb-2">${nonHdl.toFixed(0)} <span class="text-lg font-semibold text-slate-400">mg/dL</span> <span class="text-lg font-bold ${color}">${label}</span></p>
+        <p class="text-sm text-slate-500">${note}</p>
+      `;
+      trend.ready(nonHdl, {
+        inputs: { total, hdl },
+        labs: [
+          { test_name: 'Total Cholesterol', value: total, unit: 'mg/dL' },
+          { test_name: 'HDL', value: hdl, unit: 'mg/dL' },
+        ],
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

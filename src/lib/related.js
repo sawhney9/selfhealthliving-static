@@ -44,7 +44,10 @@ export function relatedPosts(current, allPosts, limit = 3) {
 const TOOLS = [
   { match: /vo2|cardio|aerobic|hiit/, path: '/tools/vo2-max-walk-test/', name: 'VO2 Max Calculator (Walk Test)' },
   { match: /grip/, path: '/tools/grip-strength-tracker/', name: 'Grip Strength Tracker' },
-  { match: /triglycerid|insulin|glucose|blood-sugar|cgm/, path: '/tools/triglyceride-hdl-ratio/', name: 'Triglyceride/HDL Ratio Calculator' },
+  { match: /homa|insulin/, path: '/tools/homa-ir/', name: 'HOMA-IR Calculator' },
+  { match: /a1c|glucose|blood-sugar|cgm/, path: '/tools/a1c-to-average-glucose/', name: 'A1c to Average Glucose Calculator' },
+  { match: /kidney|egfr|creatinine/, path: '/tools/egfr-calculator/', name: 'eGFR Calculator' },
+  { match: /triglycerid|metabolic/, path: '/tools/triglyceride-hdl-ratio/', name: 'Triglyceride/HDL Ratio Calculator' },
   { match: /cholesterol|lipid|omega|fish-oil|fiber/, path: '/tools/non-hdl-cholesterol/', name: 'Non-HDL Cholesterol Calculator' },
   { match: /waist|visceral|belly/, path: '/tools/waist-to-height-ratio/', name: 'Waist-to-Height Ratio Calculator' },
 ];

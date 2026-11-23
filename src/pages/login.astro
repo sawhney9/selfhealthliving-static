@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const apple = import.meta.env.PUBLIC_APPLE_WEB_SIGNIN === 'true';
+const input =
+  'w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-green-accent/40';
+const label = 'text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5';
+const primary =
+  'w-full px-6 py-3 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover disabled:opacity-50 transition-all duration-300 cursor-pointer';
+const provider =
+  'w-full flex items-center justify-center gap-3 px-6 py-3 rounded-full text-sm font-semibold border border-black/10 bg-white hover:bg-slate-50 text-slate-800 transition-all duration-200 cursor-pointer';
+---
+
+<Layout
+  title="Sign In | Self Health Living"
+  description="Sign in with your SelfHealth account to save calculator readings and see your bloodwork."
+  noindex
+>
+  <div id="login-root" class="py-16 px-6 max-w-md mx-auto w-full">
+    <div class="glass-card p-7 md:p-9">
+      <h1 id="login-title" class="font-display font-black text-3xl text-slate-900 tracking-tight mb-2">Sign in</h1>
+      <p id="login-sub" class="text-sm text-slate-500 mb-7">Use the same account as the SelfHealth app.</p>
+
+      <p id="login-msg" class="hidden text-sm rounded-lg px-3 py-2.5 mb-5" role="alert"></p>
+
+      <!-- Sign in / create account -->
+      <div data-mode="signin signup">
+        <div class="flex flex-col gap-3 mb-6">
+          <button type="button" data-provider="google" class={provider}>
+            <svg class="w-4 h-4" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+            Continue with Google
+          </button>
+          {apple && (
+            <button type="button" data-provider="apple" class={provider}>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.6c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.89 1.15 9.15.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.38-.92-2.4-3.64zM14.1 5.86c.63-.77 1.06-1.83.94-2.89-.91.04-2.01.61-2.66 1.37-.58.67-1.1 1.76-.96 2.8 1.02.08 2.05-.52 2.68-1.28z"/></svg>
+              Continue with Apple
+            </button>
+          )}
+        </div>
+        <div class="flex items-center gap-3 mb-6 text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <span class="flex-1 h-px bg-black/8"></span>or<span class="flex-1 h-px bg-black/8"></span>
+        </div>
+
+        <form id="password-form" class="flex flex-col gap-4">
+          <div class="hidden" data-mode="signup">
+            <label class="block">
+              <span class={label}>Name <span class="normal-case font-normal">(optional)</span></span>
+              <input name="name" type="text" autocomplete="name" class={input} />
+            </label>
+          </div>
+          <label class="block">
+            <span class={label}>Email</span>
+            <input name="email" type="email" required autocomplete="email" class={input} />
+          </label>
+          <label class="block">
+            <span class={label}>Password</span>
+            <input name="password" type="password" required minlength="6" autocomplete="current-password" class={input} />
+          </label>
+          <button type="submit" class={primary} data-submit-label>Sign in</button>
+        </form>
+
+        <div class="mt-5 flex justify-between text-sm">
+          <button type="button" data-goto="forgot" data-mode="signin" class="text-slate-500 hover:text-slate-900 cursor-pointer">Forgot password?</button>
+          <button type="button" data-goto="signup" data-mode="signin" class="font-semibold text-green-accent hover:underline cursor-pointer">Create an account</button>
+          <button type="button" data-goto="signin" data-mode="signup" class="hidden font-semibold text-green-accent hover:underline cursor-pointer">I already have an account</button>
+        </div>
+      </div>
+
+      <!-- Password reset -->
+      <form id="forgot-form" data-mode="forgot" class="hidden flex-col gap-4">
+        <label class="block">
+          <span class={label}>Email</span>
+          <input name="email" type="email" required autocomplete="email" class={input} />
+        </label>
+        <button type="submit" class={primary}>Send reset link</button>
+        <button type="button" data-goto="signin" class="text-sm text-slate-500 hover:text-slate-900 cursor-pointer">Back to sign in</button>
+      </form>
+
+      <!-- Second factor, for accounts with 2FA turned on in the app -->
+      <form id="mfa-form" data-mode="mfa" class="hidden flex-col gap-4">
+        <label class="block">
+          <span class={label}>6-digit code</span>
+          <input name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required class={`${input} tracking-[0.4em] text-center text-lg`} />
+        </label>
+        <button type="submit" class={primary}>Verify</button>
+        <button type="button" data-signout class="text-sm text-slate-500 hover:text-slate-900 cursor-pointer">Use a different account</button>
+      </form>
+    </div>
+
+    <p class="text-xs text-slate-400 text-center mt-6 leading-relaxed">
+      By continuing you agree to our <a href="/privacy-policy/" class="underline hover:text-slate-600">privacy policy</a>.
+      Your health data is private to your account.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  import {
+    watchSession,
+    safeNext,
+    signInWithPassword,
+    signUp,
+    signInWithProvider,
+    sendPasswordReset,
+    needsSecondFactor,
+    verifySecondFactor,
+    signOut,
+    authMessage,
+  } from '../lib/auth.js';
+
+  const TITLES: Record<string, [string, string]> = {
+    signin: ['Sign in', 'Use the same account as the SelfHealth app.'],
+    signup: ['Create your account', 'One account for the website and the SelfHealth app.'],
+    forgot: ['Reset your password', 'We’ll email you a link to set a new one.'],
+    mfa: ['Two-step verification', 'Enter the code from your authenticator app.'],
+  };
+
+  function init() {
+    const root = document.getElementById('login-root');
+    if (!root) return;
+
+    const params = new URLSearchParams(location.search);
+    const next = safeNext(params.get('next'));
+    const msg = document.getElementById('login-msg')!;
+    const passwordForm = document.getElementById('password-form') as HTMLFormElement;
+    let mode = 'signin';
+    let busy = false;
+
+    function say(text: string, kind: 'error' | 'info' = 'error') {
+      msg.textContent = text;
+      msg.className = `text-sm rounded-lg px-3 py-2.5 mb-5 ${kind === 'error' ? 'bg-red-50 text-red-700' : 'bg-green-accent/10 text-slate-700'}`;
+    }
+
+    function show(next: string) {
+      mode = next;
+      root!.querySelectorAll<HTMLElement>('[data-mode]').forEach((el) => {
+        const on = el.dataset.mode!.split(' ').includes(mode);
+        el.classList.toggle('hidden', !on);
+        if (el.tagName === 'FORM') el.classList.toggle('flex', on);
+      });
+      document.getElementById('login-title')!.textContent = TITLES[mode][0];
+      document.getElementById('login-sub')!.textContent = TITLES[mode][1];
+      root!.querySelector('[data-submit-label]')!.textContent = mode === 'signup' ? 'Create account' : 'Sign in';
+      (passwordForm.elements.namedItem('password') as HTMLInputElement).autocomplete =
+        mode === 'signup' ? 'new-password' : 'current-password';
+      msg.classList.add('hidden');
+    }
+
+    async function run(task: () => Promise<void>) {
+      if (busy) return;
+      busy = true;
+      root!.querySelectorAll('button').forEach((b) => (b.disabled = true));
+      try {
+        await task();
+      } catch (err) {
+        say(authMessage(err));
+      } finally {
+        busy = false;
+        root!.querySelectorAll('button').forEach((b) => (b.disabled = false));
+      }
+    }
+
+    const oauthError = params.get('error_description');
+    show('signin');
+    if (oauthError) say(oauthError);
+
+    const stop = watchSession(async (session) => {
+      if (!session) return;
+      if (await needsSecondFactor()) return show('mfa');
+      location.replace(next);
+    });
+    document.addEventListener('astro:before-swap', stop, { once: true });
+
+    root.querySelectorAll<HTMLElement>('[data-goto]').forEach((el) =>
+      el.addEventListener('click', () => show(el.dataset.goto!))
+    );
+
+    root.querySelectorAll<HTMLElement>('[data-provider]').forEach((el) =>
+      el.addEventListener('click', () => run(() => signInWithProvider(el.dataset.provider!, next)))
+    );
+
+    passwordForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const f = new FormData(passwordForm);
+      const email = String(f.get('email')).trim();
+      const password = String(f.get('password'));
+      run(async () => {
+        if (mode === 'signup') {
+          const ready = await signUp(email, password, String(f.get('name') || '').trim());
+          if (!ready) say('Check your email to confirm your account, then sign in.', 'info');
+        } else {
+          await signInWithPassword(email, password);
+        }
+      });
+    });
+
+    const forgotForm = document.getElementById('forgot-form') as HTMLFormElement;
+    forgotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = String(new FormData(forgotForm).get('email')).trim();
+      run(async () => {
+        await sendPasswordReset(email);
+        say('If there’s an account for that email, a reset link is on its way.', 'info');
+      });
+    });
+
+    const mfaForm = document.getElementById('mfa-form') as HTMLFormElement;
+    mfaForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const code = String(new FormData(mfaForm).get('code')).trim();
+      run(async () => {
+        await verifySecondFactor(code);
+        location.replace(next);
+      });
+    });
+
+    root.querySelector('[data-signout]')!.addEventListener('click', () =>
+      run(async () => {
+        await signOut();
+        show('signin');
+      })
+    );
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

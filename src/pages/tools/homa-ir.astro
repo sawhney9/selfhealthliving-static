@@ -1,0 +1,121 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AccountPanel from '../../components/AccountPanel.astro';
+import SaveReading from '../../components/SaveReading.astro';
+---
+
+<Layout
+  title="HOMA-IR Calculator (Insulin Resistance) | Self Health Living"
+  description="Calculate HOMA-IR from fasting glucose and fasting insulin to spot insulin resistance early, and track it over time."
+  currentPillar="tools"
+>
+  <div class="py-14 px-6 md:px-12 max-w-3xl mx-auto w-full relative">
+    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-green-accent mb-4">
+      <a href="/tools/" class="hover:underline">Tools</a>
+      <span>&bull;</span>
+      <span class="text-slate-400">calculator</span>
+    </div>
+
+    <h1 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+      HOMA-IR Calculator
+    </h1>
+    <p class="text-slate-500 text-base leading-relaxed mb-10 max-w-2xl">
+      Fasting glucose can look perfectly normal for years while your pancreas works overtime to keep it there. HOMA-IR multiplies fasting glucose by fasting insulin to show how hard that work is, so insulin resistance shows up long before glucose or A1c start to climb. Use values from the same fasting blood draw.
+    </p>
+
+    <AccountPanel />
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <form id="calc-form" data-tool="homa-ir" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Fasting glucose</span>
+          <div class="flex gap-2">
+            <input type="number" step="any" min="0" required id="glucose" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+            <select id="glucose-unit" class="rounded-lg border border-black/10 px-2 py-2.5 text-sm text-slate-700 bg-white">
+              <option value="mgdl">mg/dL</option>
+              <option value="mmol">mmol/L</option>
+            </select>
+          </div>
+        </label>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Fasting insulin (µIU/mL)</span>
+          <input type="number" step="any" min="0" required id="insulin" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <div class="sm:col-span-2 mt-2">
+          <button type="submit" class="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
+            Calculate
+          </button>
+        </div>
+      </form>
+
+      <div id="result" class="hidden mt-6 pt-6 border-t border-black/6"></div>
+      <SaveReading />
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-4">Your Trend</h2>
+      <div id="history"></div>
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8 text-sm text-slate-600 leading-relaxed">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-3">How it's calculated</h2>
+      <p class="mb-3">HOMA-IR = fasting glucose (mg/dL) × fasting insulin (µIU/mL) ÷ 405. With glucose in mmol/L, the divisor is 22.5.</p>
+      <p>Cutoffs vary by population and lab, so treat the bands below as a guide. Your own trend matters more than any single reading: under 1.0 suggests good insulin sensitivity, 1.0–1.9 is typical, 2.0–2.9 suggests early insulin resistance, and 3.0 or above suggests significant insulin resistance.</p>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed border-t border-black/6 pt-6">
+      <strong class="text-slate-500">Not medical advice.</strong> This calculator is for informational purposes only and isn't a substitute for professional medical advice, diagnosis, or treatment. HOMA-IR isn't a diagnostic test on its own. Always talk to your doctor about your lab results and personal risk factors.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  import { initTrend } from '../../lib/toolTrend.js';
+  import { toolBySlug } from '../../lib/tools.js';
+
+  function classify(homa: number) {
+    if (homa < 1) return { label: 'Insulin Sensitive', color: 'text-green-accent', note: 'Your body clears glucose with little insulin. This is the range to stay in.' };
+    if (homa < 2) return { label: 'Typical', color: 'text-green-accent', note: 'Within the typical range. Worth re-checking with your next fasting labs.' };
+    if (homa < 3) return { label: 'Early Insulin Resistance', color: 'text-amber-accent', note: 'Your pancreas is working harder than it should to hold glucose steady. Strength training, sleep, and fiber all move this number.' };
+    return { label: 'Significant Insulin Resistance', color: 'text-red-500', note: 'Worth discussing with your doctor, alongside A1c and your lipid panel.' };
+  }
+
+  function init() {
+    const form = document.getElementById('calc-form') as HTMLFormElement | null;
+    if (form?.dataset.tool !== 'homa-ir') return;
+    const resultEl = document.getElementById('result');
+    if (!form || !resultEl) return;
+
+    const trend = initTrend(toolBySlug('homa-ir'));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const raw = parseFloat((document.getElementById('glucose') as HTMLInputElement).value);
+      const insulin = parseFloat((document.getElementById('insulin') as HTMLInputElement).value);
+      const unit = (document.getElementById('glucose-unit') as HTMLSelectElement).value;
+      if (!raw || !insulin) return;
+
+      // The app stores glucose in mg/dL, so convert before calculating and saving.
+      const glucose = unit === 'mmol' ? Math.round(raw * 18.016) : raw;
+      const homa = (glucose * insulin) / 405;
+      const { label, color, note } = classify(homa);
+
+      resultEl.classList.remove('hidden');
+      resultEl.innerHTML = `
+        <p class="text-sm text-slate-500 mb-1">Your HOMA-IR</p>
+        <p class="font-display font-black text-4xl text-slate-900 mb-2">${homa.toFixed(2)} <span class="text-lg font-bold ${color}">${label}</span></p>
+        <p class="text-sm text-slate-500">${note}</p>
+      `;
+      trend.ready(homa, {
+        inputs: { glucose, insulin },
+        fasting: true,
+        labs: [
+          { test_name: 'Glucose', value: glucose, unit: 'mg/dL' },
+          { test_name: 'Fasting Insulin', value: insulin, unit: 'μIU/mL' },
+        ],
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

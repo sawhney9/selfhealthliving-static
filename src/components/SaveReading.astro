@@ -1,0 +1,16 @@
+---
+// Save row shown under a calculator result. toolTrend.js reveals and wires it.
+---
+
+<div id="save-row" class="hidden mt-6 pt-6 border-t border-black/6">
+  <div class="flex flex-wrap items-end gap-3">
+    <label class="block">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Date measured</span>
+      <input data-save-date type="date" class="rounded-lg border border-black/10 px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+    </label>
+    <button data-save-btn type="button" class="px-6 py-2.5 rounded-full text-sm font-bold text-green-accent border border-green-accent/30 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-green-accent/5 transition-all duration-300 cursor-pointer">
+      Save to My Trend
+    </button>
+  </div>
+  <p data-save-status class="text-sm text-slate-500 mt-3" aria-live="polite"></p>
+</div>

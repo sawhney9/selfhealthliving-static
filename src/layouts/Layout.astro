@@ -10,7 +10,8 @@ const {
   currentPillar = "",
   ogType = "website",
   image = "https://selfhealthliving.com/images/brand/og-image.jpg",
-  jsonLd = []
+  jsonLd = [],
+  noindex = false
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -31,6 +32,7 @@ const schemas = Array.isArray(jsonLd) ? jsonLd.filter(Boolean) : [jsonLd].filter
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light" />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />

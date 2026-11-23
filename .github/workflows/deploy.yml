@@ -29,6 +29,10 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+        env:
+          # Public Supabase project URL + anon key (RLS-protected), for sign-in and /account.
+          PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}
+          PUBLIC_SUPABASE_ANON_KEY: ${{ vars.PUBLIC_SUPABASE_ANON_KEY }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

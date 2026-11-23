@@ -1,0 +1,78 @@
+// The /tools calculators. `slug` is both the page path and the tool_entries.tool
+// value; `storageKey` is where signed-out readings live in localStorage.
+export const TOOLS = [
+  {
+    slug: 'triglyceride-hdl-ratio',
+    title: 'Triglyceride/HDL Ratio',
+    blurb: 'A proxy for insulin resistance calculated straight from a standard lipid panel. Often more actionable than LDL alone.',
+    unit: '',
+    digits: 2,
+    storageKey: 'shl_calc_tg_hdl_ratio',
+    group: 'Bloodwork',
+  },
+  {
+    slug: 'non-hdl-cholesterol',
+    title: 'Non-HDL Cholesterol',
+    blurb: "A better predictor of heart disease risk than LDL by most guidelines, and it doesn't require fasting.",
+    unit: 'mg/dL',
+    digits: 0,
+    storageKey: 'shl_calc_non_hdl',
+    group: 'Bloodwork',
+  },
+  {
+    slug: 'homa-ir',
+    title: 'HOMA-IR (Insulin Resistance)',
+    blurb: 'Combine fasting glucose and fasting insulin to see insulin resistance years before glucose or A1c move.',
+    unit: '',
+    digits: 2,
+    storageKey: 'shl_calc_homa_ir',
+    group: 'Bloodwork',
+  },
+  {
+    slug: 'a1c-to-average-glucose',
+    title: 'A1c to Average Glucose',
+    blurb: 'Turn your HbA1c into the average blood sugar it represents, in the same units your meter or CGM uses.',
+    unit: 'mg/dL',
+    digits: 0,
+    storageKey: 'shl_calc_eag',
+    group: 'Bloodwork',
+  },
+  {
+    slug: 'egfr-calculator',
+    title: 'eGFR (Kidney Function)',
+    blurb: 'Estimate kidney filtration from creatinine, age, and sex with the race-free CKD-EPI 2021 equation labs now use.',
+    unit: 'mL/min/1.73m²',
+    digits: 0,
+    storageKey: 'shl_calc_egfr',
+    group: 'Bloodwork',
+  },
+  {
+    slug: 'waist-to-height-ratio',
+    title: 'Waist-to-Height Ratio',
+    blurb: 'A tape-measure metric that tracks visceral fat and metabolic risk better than BMI, and is easy to re-check monthly.',
+    unit: '',
+    digits: 2,
+    storageKey: 'shl_calc_waist_height_ratio',
+    group: 'Fitness',
+  },
+  {
+    slug: 'vo2-max-walk-test',
+    title: 'VO2 Max Estimate (Walk Test)',
+    blurb: 'Estimate your cardiovascular fitness from a timed one-mile walk. One of the strongest predictors of longevity we have.',
+    unit: 'ml/kg/min',
+    digits: 1,
+    storageKey: 'shl_calc_vo2_max',
+    group: 'Fitness',
+  },
+  {
+    slug: 'grip-strength-tracker',
+    title: 'Grip Strength Tracker',
+    blurb: 'Compare your grip strength to typical ranges for your age and sex, and watch it over time as you train.',
+    unit: 'lbs',
+    digits: 1,
+    storageKey: 'shl_calc_grip_strength',
+    group: 'Fitness',
+  },
+];
+
+export const toolBySlug = (slug) => TOOLS.find((t) => t.slug === slug);

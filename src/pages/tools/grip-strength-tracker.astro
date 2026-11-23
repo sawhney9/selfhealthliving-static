@@ -1,0 +1,157 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AccountPanel from '../../components/AccountPanel.astro';
+import SaveReading from '../../components/SaveReading.astro';
+---
+
+<Layout
+  title="Grip Strength Tracker | Self Health Living"
+  description="Compare your grip strength to typical ranges for your age and sex, and track it over time — one of the strongest predictors of long-term health."
+  currentPillar="tools"
+>
+  <div class="py-14 px-6 md:px-12 max-w-3xl mx-auto w-full relative">
+    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-green-accent mb-4">
+      <a href="/tools/" class="hover:underline">Tools</a>
+      <span>&bull;</span>
+      <span class="text-slate-400">calculator</span>
+    </div>
+
+    <h1 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+      Grip Strength Tracker
+    </h1>
+    <p class="text-slate-500 text-base leading-relaxed mb-10 max-w-2xl">
+      In the PURE study of nearly 140,000 people across 17 countries, every 5 kg drop in grip strength came with a 16% higher risk of dying from any cause — grip strength outperformed systolic blood pressure as a predictor of cardiovascular death. It's a ten-second test with a cheap dynamometer, and it's one of the few biomarkers worth checking monthly.
+    </p>
+
+    <AccountPanel />
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <form id="calc-form" data-tool="grip-strength-tracker" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Age</span>
+          <input type="number" step="1" min="10" max="100" required id="age" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Grip Strength — Dominant Hand (lbs)</span>
+          <input type="number" step="any" min="0" required id="grip" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <div class="sm:col-span-2 block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Sex</span>
+          <div class="flex gap-2 max-w-xs">
+            <button type="button" data-sex="male" class="sex-btn px-4 py-2 rounded-lg text-sm font-semibold border border-green-accent bg-green-accent text-white cursor-pointer transition-all duration-300 flex-1">Male</button>
+            <button type="button" data-sex="female" class="sex-btn px-4 py-2 rounded-lg text-sm font-semibold border border-black/8 bg-white/70 text-slate-500 cursor-pointer transition-all duration-300 flex-1">Female</button>
+          </div>
+        </div>
+        <div class="sm:col-span-2 flex flex-wrap gap-3 mt-2">
+          <button type="submit" class="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
+            Calculate
+          </button>
+        </div>
+      </form>
+
+      <div id="result" class="hidden mt-6 pt-6 border-t border-black/6"></div>
+      <SaveReading />
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-4">Your Trend</h2>
+      <div id="history"></div>
+    </div>
+
+    <p class="text-sm text-slate-500 mb-8">
+      Full breakdown of the research and how to train it:
+      <a href="/train/grip-strength-longevity-biomarker/" class="text-green-accent font-semibold hover:underline">Grip Strength: The 30-Second Test That Outpredicts Blood Pressure</a>.
+    </p>
+
+    <p class="text-xs text-slate-400 leading-relaxed border-t border-black/6 pt-6">
+      <strong class="text-slate-500">Not medical advice.</strong> This calculator is for informational purposes only and isn't a substitute for professional medical advice, diagnosis, or treatment. The ranges shown are general population benchmarks, not a personal diagnosis.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  import { initTrend } from '../../lib/toolTrend.js';
+  import { toolBySlug } from '../../lib/tools.js';
+
+  let sex: 'male' | 'female' = 'male';
+
+  // lbs, matching /train/grip-strength-predicts-death-better-than-blood-pressure
+  const rangesBySex = {
+    male: [
+      { max: 29, low: 101, high: 119 },
+      { max: 39, low: 99, high: 117 },
+      { max: 49, low: 95, high: 112 },
+      { max: 59, low: 88, high: 106 },
+      { max: 69, low: 77, high: 95 },
+      { max: 200, low: 66, high: 84 },
+    ],
+    female: [
+      { max: 29, low: 62, high: 75 },
+      { max: 39, low: 60, high: 73 },
+      { max: 49, low: 57, high: 71 },
+      { max: 59, low: 53, high: 66 },
+      { max: 69, low: 46, high: 60 },
+      { max: 200, low: 40, high: 53 },
+    ],
+  };
+
+  const sarcopeniaRedLine = { male: 60, female: 35 };
+
+  function classify(grip: number, age: number, sexKey: 'male' | 'female') {
+    const table = rangesBySex[sexKey];
+    const bracket = table.find((b) => age <= b.max) || table[table.length - 1];
+    const redLine = sarcopeniaRedLine[sexKey];
+
+    if (grip < redLine) {
+      return { label: 'Below Sarcopenia Threshold', color: 'text-red-500', note: `Below the ${redLine} lb clinical red line for sarcopenia risk (European Working Group on Sarcopenia). Worth training and worth a conversation with your doctor.` };
+    }
+    if (grip < bracket.low) {
+      return { label: 'Below Typical Range', color: 'text-amber-accent', note: `Typical range for your age and sex is ${bracket.low}–${bracket.high} lbs.` };
+    }
+    if (grip <= bracket.high) {
+      return { label: 'Within Typical Range', color: 'text-green-accent', note: `Typical range for your age and sex is ${bracket.low}–${bracket.high} lbs.` };
+    }
+    return { label: 'Above Typical Range', color: 'text-green-accent', note: `Above the typical ${bracket.low}–${bracket.high} lb range for your age and sex — strong result.` };
+  }
+
+  function init() {
+    const form = document.getElementById('calc-form') as HTMLFormElement | null;
+    if (form?.dataset.tool !== 'grip-strength-tracker') return;
+    const resultEl = document.getElementById('result');
+    const sexBtns = document.querySelectorAll('.sex-btn');
+    if (!form || !resultEl) return;
+
+    const trend = initTrend(toolBySlug('grip-strength-tracker'));
+
+    sexBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        sex = (btn.getAttribute('data-sex') as 'male' | 'female') || 'male';
+        sexBtns.forEach((b) => {
+          const active = b === btn;
+          b.className = `sex-btn px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-300 flex-1 ${
+            active ? 'border border-green-accent bg-green-accent text-white' : 'border border-black/8 bg-white/70 text-slate-500'
+          }`;
+        });
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const age = parseFloat((document.getElementById('age') as HTMLInputElement).value);
+      const grip = parseFloat((document.getElementById('grip') as HTMLInputElement).value);
+      if (!age || !grip) return;
+
+      const { label, color, note } = classify(grip, age, sex);
+
+      resultEl.classList.remove('hidden');
+      resultEl.innerHTML = `
+        <p class="text-sm text-slate-500 mb-1">Your Grip Strength</p>
+        <p class="font-display font-black text-4xl text-slate-900 mb-2">${grip.toFixed(1)} <span class="text-lg font-semibold text-slate-400">lbs</span> <span class="text-lg font-bold ${color}">${label}</span></p>
+        <p class="text-sm text-slate-500">${note}</p>
+      `;
+      trend.ready(grip, { inputs: { age, sex } });
+    });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

@@ -1,5 +1,8 @@
 ---
 const { currentPillar } = Astro.props;
+// supabase-js keeps the session under this key; the header only checks that it
+// exists, so pages that don't need an account don't load the Supabase client.
+const authKey = `sb-${new URL(import.meta.env.PUBLIC_SUPABASE_URL).hostname.split('.')[0]}-auth-token`;
 ---
 
 <header class="w-full py-4 px-6 md:px-12 flex items-center justify-between border-b border-black/6 backdrop-blur-md sticky top-0 z-50 bg-[#F7FAF8]/85">
@@ -46,9 +49,23 @@ const { currentPillar } = Astro.props;
     >
       Fuel
     </a>
+    <a
+      href="/tools/"
+      class={`transition-colors duration-200 ${currentPillar === 'tools' ? 'text-green-accent font-bold' : 'text-slate-500 hover:text-slate-900'}`}
+    >
+      Tools
+    </a>
   </nav>
 
   <div class="flex items-center gap-4">
+    <a
+      href="/login/"
+      data-account-link
+      data-auth-key={authKey}
+      class="hidden sm:inline text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors duration-200"
+    >
+      Sign in
+    </a>
     <a
       href="https://apps.apple.com/app/id6760236670"
       target="_blank"
@@ -81,6 +98,8 @@ const { currentPillar } = Astro.props;
   <a href="/signals/" class="text-slate-700 hover:text-slate-950 transition-colors duration-200 mobile-nav-link">Signals</a>
   <a href="/train/" class="text-slate-700 hover:text-slate-950 transition-colors duration-200 mobile-nav-link">Train</a>
   <a href="/fuel/" class="text-slate-700 hover:text-slate-950 transition-colors duration-200 mobile-nav-link">Fuel</a>
+  <a href="/tools/" class="text-slate-700 hover:text-slate-950 transition-colors duration-200 mobile-nav-link">Tools</a>
+  <a href="/login/" data-account-link data-auth-key={authKey} class="text-slate-700 hover:text-slate-950 transition-colors duration-200 mobile-nav-link">Sign in</a>
   <a href="/support/" class="text-slate-500 hover:text-slate-700 transition-colors duration-200 mobile-nav-link text-lg">Support</a>
   <a
     href="https://apps.apple.com/app/id6760236670"
@@ -119,5 +138,17 @@ const { currentPillar } = Astro.props;
     }
   }
 
+  function initAccountLinks() {
+    document.querySelectorAll<HTMLAnchorElement>('[data-account-link]').forEach((link) => {
+      let signedIn = false;
+      try {
+        signedIn = Boolean(localStorage.getItem(link.dataset.authKey!));
+      } catch {}
+      link.href = signedIn ? '/account/' : `/login/?next=${encodeURIComponent(location.pathname)}`;
+      link.textContent = signedIn ? 'My Health' : 'Sign in';
+    });
+  }
+
   document.addEventListener('astro:page-load', initMobileMenu);
+  document.addEventListener('astro:page-load', initAccountLinks);
 </script>

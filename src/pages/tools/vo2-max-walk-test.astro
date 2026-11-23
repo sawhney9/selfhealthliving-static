@@ -1,0 +1,168 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AccountPanel from '../../components/AccountPanel.astro';
+import SaveReading from '../../components/SaveReading.astro';
+---
+
+<Layout
+  title="VO2 Max Calculator (Walk Test) | Self Health Living"
+  description="Estimate your VO2 max from a timed one-mile walk using the Rockport Fitness Walking Test — no treadmill or all-out effort required."
+  currentPillar="tools"
+>
+  <div class="py-14 px-6 md:px-12 max-w-3xl mx-auto w-full relative">
+    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-green-accent mb-4">
+      <a href="/tools/" class="hover:underline">Tools</a>
+      <span>&bull;</span>
+      <span class="text-slate-400">calculator</span>
+    </div>
+
+    <h1 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+      VO2 Max Estimate (Walk Test)
+    </h1>
+    <p class="text-slate-500 text-base leading-relaxed mb-6 max-w-2xl">
+      A 2018 JAMA study of over 120,000 patients found low cardiorespiratory fitness carried a higher mortality risk than smoking, diabetes, or high blood pressure. You don't need a lab or a maxed-out treadmill run to get a useful estimate — a brisk one-mile walk and a heart rate reading will do it.
+    </p>
+    <p class="text-slate-500 text-sm leading-relaxed mb-10 max-w-2xl">
+      <strong class="text-slate-700">How to test:</strong> warm up, then walk one mile as briskly as you can sustain. Note your total time and your heart rate immediately at the finish (a wrist monitor or quick manual pulse count works).
+    </p>
+
+    <AccountPanel />
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <form id="calc-form" data-tool="vo2-max-walk-test" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Age</span>
+          <input type="number" step="1" min="10" max="100" required id="age" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Weight (lbs)</span>
+          <input type="number" step="any" min="0" required id="weight" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <div class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Sex</span>
+          <div class="flex gap-2">
+            <button type="button" data-sex="male" class="sex-btn px-4 py-2 rounded-lg text-sm font-semibold border border-green-accent bg-green-accent text-white cursor-pointer transition-all duration-300 flex-1">Male</button>
+            <button type="button" data-sex="female" class="sex-btn px-4 py-2 rounded-lg text-sm font-semibold border border-black/8 bg-white/70 text-slate-500 cursor-pointer transition-all duration-300 flex-1">Female</button>
+          </div>
+        </div>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Heart Rate at Finish (bpm)</span>
+          <input type="number" step="1" min="0" required id="hr" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Walk Time — Minutes</span>
+          <input type="number" step="1" min="0" required id="time-min" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Walk Time — Seconds</span>
+          <input type="number" step="1" min="0" max="59" required id="time-sec" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <div class="sm:col-span-2 flex flex-wrap gap-3 mt-2">
+          <button type="submit" class="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
+            Calculate
+          </button>
+        </div>
+      </form>
+
+      <div id="result" class="hidden mt-6 pt-6 border-t border-black/6"></div>
+      <SaveReading />
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-4">Your Trend</h2>
+      <div id="history"></div>
+    </div>
+
+    <p class="text-sm text-slate-500 mb-8">
+      Read more on why this number matters more than almost anything else on your chart:
+      <a href="/train/vo2-max-longevity-predictor-how-to-raise-it/" class="text-green-accent font-semibold hover:underline">VO2 Max Is the Strongest Predictor of How Long You'll Live</a>.
+    </p>
+
+    <p class="text-xs text-slate-400 leading-relaxed border-t border-black/6 pt-6">
+      <strong class="text-slate-500">Not medical advice.</strong> This calculator uses the Rockport Fitness Walking Test formula (Kline et al., 1987) and is an estimate, not a lab-grade VO2 max test. Fitness classification bands are general population benchmarks that vary by source — the trend in your own number over time matters more than the exact label. Talk to your doctor before starting a new exercise test if you have underlying cardiovascular risk factors.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  import { initTrend } from '../../lib/toolTrend.js';
+  import { toolBySlug } from '../../lib/tools.js';
+
+  let sex: 'male' | 'female' = 'male';
+
+  const bandsBySex = {
+    male: [
+      { max: 29, ranges: [35, 42, 52] },
+      { max: 39, ranges: [31, 38, 48] },
+      { max: 49, ranges: [28, 35, 45] },
+      { max: 59, ranges: [25, 32, 42] },
+      { max: 200, ranges: [21, 28, 38] },
+    ],
+    female: [
+      { max: 29, ranges: [24, 31, 41] },
+      { max: 39, ranges: [20, 27, 36] },
+      { max: 49, ranges: [17, 24, 33] },
+      { max: 59, ranges: [15, 20, 29] },
+      { max: 200, ranges: [13, 17, 26] },
+    ],
+  };
+
+  function classify(vo2: number, age: number, sexKey: 'male' | 'female') {
+    const table = bandsBySex[sexKey];
+    const bracket = table.find((b) => age <= b.max) || table[table.length - 1];
+    const [poor, fair, good] = bracket.ranges;
+
+    if (vo2 < poor) return { label: 'Below Average', color: 'text-amber-accent' };
+    if (vo2 < fair) return { label: 'Fair', color: 'text-amber-accent' };
+    if (vo2 < good) return { label: 'Good', color: 'text-green-accent' };
+    return { label: 'Excellent', color: 'text-green-accent' };
+  }
+
+  function init() {
+    const form = document.getElementById('calc-form') as HTMLFormElement | null;
+    if (form?.dataset.tool !== 'vo2-max-walk-test') return;
+    const resultEl = document.getElementById('result');
+    const sexBtns = document.querySelectorAll('.sex-btn');
+    if (!form || !resultEl) return;
+
+    const trend = initTrend(toolBySlug('vo2-max-walk-test'));
+
+    sexBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        sex = (btn.getAttribute('data-sex') as 'male' | 'female') || 'male';
+        sexBtns.forEach((b) => {
+          const active = b === btn;
+          b.className = `sex-btn px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-300 flex-1 ${
+            active ? 'border border-green-accent bg-green-accent text-white' : 'border border-black/8 bg-white/70 text-slate-500'
+          }`;
+        });
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const age = parseFloat((document.getElementById('age') as HTMLInputElement).value);
+      const weight = parseFloat((document.getElementById('weight') as HTMLInputElement).value);
+      const hr = parseFloat((document.getElementById('hr') as HTMLInputElement).value);
+      const timeMin = parseFloat((document.getElementById('time-min') as HTMLInputElement).value) || 0;
+      const timeSec = parseFloat((document.getElementById('time-sec') as HTMLInputElement).value) || 0;
+      if (!age || !weight || !hr || (timeMin === 0 && timeSec === 0)) return;
+
+      const totalMinutes = timeMin + timeSec / 60;
+      const genderTerm = sex === 'male' ? 1 : 0;
+      const vo2 = 132.853 - 0.0769 * weight - 0.3877 * age + 6.315 * genderTerm - 3.2649 * totalMinutes - 0.1565 * hr;
+
+      const { label, color } = classify(vo2, age, sex);
+
+      resultEl.classList.remove('hidden');
+      resultEl.innerHTML = `
+        <p class="text-sm text-slate-500 mb-1">Your Estimated VO2 Max</p>
+        <p class="font-display font-black text-4xl text-slate-900 mb-2">${vo2.toFixed(1)} <span class="text-lg font-semibold text-slate-400">ml/kg/min</span> <span class="text-lg font-bold ${color}">${label}</span></p>
+        <p class="text-sm text-slate-500">Compared to others your age and sex. Re-test every few months — the direction matters more than the label.</p>
+      `;
+      trend.ready(vo2, { inputs: { age, sex, weight, hr, minutes: totalMinutes } });
+    });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

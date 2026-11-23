@@ -1,0 +1,25 @@
+---
+// Sign-in prompt above each calculator. toolTrend.js toggles the two states.
+---
+
+<div id="account-panel" class="border border-black/8 bg-white/60 rounded-xl p-4 mb-6">
+  <div data-signed-out>
+    <div class="flex items-center justify-between gap-3 flex-wrap">
+      <p class="text-sm text-slate-600">
+        Sign in to keep your readings in your account. It's the same login as the
+        <a href="/app/" data-astro-reload class="text-green-accent font-semibold hover:underline">SelfHealth app</a>.
+      </p>
+      <a data-login-link href="/login/" class="px-4 py-2 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300">
+        Sign in
+      </a>
+    </div>
+  </div>
+  <div data-signed-in class="hidden">
+    <div class="flex items-center justify-between gap-3 flex-wrap">
+      <p class="text-sm text-slate-600">
+        Saving to <span data-user-email class="font-semibold text-slate-900"></span>
+      </p>
+      <a href="/account/" class="text-sm font-semibold text-green-accent hover:underline">My Health →</a>
+    </div>
+  </div>
+</div>

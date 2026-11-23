@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AccountPanel from '../../components/AccountPanel.astro';
+import SaveReading from '../../components/SaveReading.astro';
+---
+
+<Layout
+  title="Waist-to-Height Ratio Calculator | Self Health Living"
+  description="Calculate your waist-to-height ratio, a simple tape-measure metric that tracks visceral fat and metabolic risk better than BMI."
+  currentPillar="tools"
+>
+  <div class="py-14 px-6 md:px-12 max-w-3xl mx-auto w-full relative">
+    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-green-accent mb-4">
+      <a href="/tools/" class="hover:underline">Tools</a>
+      <span>&bull;</span>
+      <span class="text-slate-400">calculator</span>
+    </div>
+
+    <h1 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+      Waist-to-Height Ratio Calculator
+    </h1>
+    <p class="text-slate-500 text-base leading-relaxed mb-10 max-w-2xl">
+      BMI can't tell the difference between muscle and visceral fat around your organs, which is the fat that actually drives metabolic risk. Waist-to-height ratio can: it's simple to measure with a tape measure, correlates more closely with visceral fat than BMI, and the target is easy to remember — keep your waist under half your height.
+    </p>
+
+    <AccountPanel />
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <form id="calc-form" data-tool="waist-to-height-ratio" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Waist Circumference</span>
+          <input type="number" step="any" min="0" required id="waist" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Height</span>
+          <input type="number" step="any" min="0" required id="height" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <p class="sm:col-span-2 text-xs text-slate-400 -mt-2">Measure both in the same unit (inches or centimeters) — the ratio itself is unitless.</p>
+        <div class="sm:col-span-2 flex flex-wrap gap-3 mt-2">
+          <button type="submit" class="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
+            Calculate
+          </button>
+        </div>
+      </form>
+
+      <div id="result" class="hidden mt-6 pt-6 border-t border-black/6"></div>
+      <SaveReading />
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-4">Your Trend</h2>
+      <div id="history"></div>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed border-t border-black/6 pt-6">
+      <strong class="text-slate-500">Not medical advice.</strong> This calculator is for informational purposes only and isn't a substitute for professional medical advice, diagnosis, or treatment. Risk bands shown are general population heuristics, not a personal diagnosis.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  import { initTrend } from '../../lib/toolTrend.js';
+  import { toolBySlug } from '../../lib/tools.js';
+
+  function classify(ratio: number) {
+    if (ratio < 0.5) {
+      return { label: 'Lower Risk', color: 'text-green-accent', note: 'Your waist is under half your height — the target most guidelines point to.' };
+    }
+    if (ratio <= 0.6) {
+      return { label: 'Increased Risk', color: 'text-amber-accent', note: 'Some evidence of increased metabolic risk — worth tracking as you adjust diet and activity.' };
+    }
+    return { label: 'High Risk', color: 'text-red-500', note: 'Associated with meaningfully higher metabolic and cardiovascular risk.' };
+  }
+
+  function init() {
+    const form = document.getElementById('calc-form') as HTMLFormElement | null;
+    if (form?.dataset.tool !== 'waist-to-height-ratio') return;
+    const resultEl = document.getElementById('result');
+    if (!form || !resultEl) return;
+
+    const trend = initTrend(toolBySlug('waist-to-height-ratio'));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const waist = parseFloat((document.getElementById('waist') as HTMLInputElement).value);
+      const height = parseFloat((document.getElementById('height') as HTMLInputElement).value);
+      if (!waist || !height) return;
+
+      const ratio = waist / height;
+      const { label, color, note } = classify(ratio);
+
+      resultEl.classList.remove('hidden');
+      resultEl.innerHTML = `
+        <p class="text-sm text-slate-500 mb-1">Your Waist-to-Height Ratio</p>
+        <p class="font-display font-black text-4xl text-slate-900 mb-2">${ratio.toFixed(2)} <span class="text-lg font-bold ${color}">${label}</span></p>
+        <p class="text-sm text-slate-500">${note}</p>
+      `;
+      trend.ready(ratio, { inputs: { waist, height } });
+    });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

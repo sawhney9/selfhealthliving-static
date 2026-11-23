@@ -1,0 +1,141 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AccountPanel from '../../components/AccountPanel.astro';
+import SaveReading from '../../components/SaveReading.astro';
+---
+
+<Layout
+  title="eGFR Calculator (CKD-EPI 2021) | Self Health Living"
+  description="Estimate kidney function (eGFR) from serum creatinine, age, and sex using the race-free CKD-EPI 2021 equation, and track it over time."
+  currentPillar="tools"
+>
+  <div class="py-14 px-6 md:px-12 max-w-3xl mx-auto w-full relative">
+    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-green-accent mb-4">
+      <a href="/tools/" class="hover:underline">Tools</a>
+      <span>&bull;</span>
+      <span class="text-slate-400">calculator</span>
+    </div>
+
+    <h1 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+      eGFR Calculator
+    </h1>
+    <p class="text-slate-500 text-base leading-relaxed mb-10 max-w-2xl">
+      Kidney function declines quietly. There are usually no symptoms until much of it is gone. eGFR estimates how much blood your kidneys filter each minute from the creatinine on a basic metabolic panel. A slow slide over several years is the pattern worth catching, so it pays to track.
+    </p>
+
+    <AccountPanel />
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <form id="calc-form" data-tool="egfr-calculator" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Serum creatinine (mg/dL)</span>
+          <input type="number" step="0.01" min="0.1" max="20" required id="creatinine" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Age</span>
+          <input type="number" step="1" min="18" max="120" required id="age" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <div class="sm:col-span-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Sex</span>
+          <div class="flex gap-2 max-w-xs">
+            <button type="button" data-sex="male" class="sex-btn px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-300 flex-1 border border-green-accent bg-green-accent text-white">Male</button>
+            <button type="button" data-sex="female" class="sex-btn px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-300 flex-1 border border-black/8 bg-white/70 text-slate-500">Female</button>
+          </div>
+        </div>
+        <div class="sm:col-span-2 mt-2">
+          <button type="submit" class="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
+            Calculate
+          </button>
+        </div>
+      </form>
+
+      <div id="result" class="hidden mt-6 pt-6 border-t border-black/6"></div>
+      <SaveReading />
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-4">Your Trend</h2>
+      <div id="history"></div>
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8 text-sm text-slate-600 leading-relaxed">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-3">How it's calculated</h2>
+      <p class="mb-3">This uses the 2021 CKD-EPI creatinine equation, the race-free version US labs now report: 142 × min(Scr/κ, 1)<sup>α</sup> × max(Scr/κ, 1)<sup>−1.200</sup> × 0.9938<sup>age</sup>, × 1.012 for females. κ is 0.7 for females and 0.9 for males. α is −0.241 for females and −0.302 for males.</p>
+      <p>Stages follow KDIGO: G1 is 90 or above, G2 is 60–89, G3a is 45–59, G3b is 30–44, G4 is 15–29, and G5 is below 15 mL/min/1.73m². A single low reading isn't chronic kidney disease, which needs reduced function for 3 months or more. Very muscular people, people with very low muscle mass, and high-protein or creatine users can see creatinine-based eGFR skewed. Cystatin C gives a cross-check.</p>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed border-t border-black/6 pt-6">
+      <strong class="text-slate-500">Not medical advice.</strong> This calculator is for informational purposes only and isn't a substitute for professional medical advice, diagnosis, or treatment. It's for adults 18 and over. Always talk to your doctor about your lab results.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  import { initTrend } from '../../lib/toolTrend.js';
+  import { toolBySlug } from '../../lib/tools.js';
+
+  let sex: 'male' | 'female' = 'male';
+
+  /** CKD-EPI 2021 creatinine equation (race-free). */
+  function egfr(scr: number, age: number, sexKey: 'male' | 'female') {
+    const female = sexKey === 'female';
+    const k = female ? 0.7 : 0.9;
+    const a = female ? -0.241 : -0.302;
+    return 142 * Math.min(scr / k, 1) ** a * Math.max(scr / k, 1) ** -1.2 * 0.9938 ** age * (female ? 1.012 : 1);
+  }
+
+  function classify(gfr: number) {
+    if (gfr >= 90) return { label: 'G1 · Normal', color: 'text-green-accent', note: 'Normal filtration. Keep tracking it with your yearly labs.' };
+    if (gfr >= 60) return { label: 'G2 · Mildly Decreased', color: 'text-green-accent', note: 'Common with age, and not kidney disease on its own unless there are other signs like protein in the urine.' };
+    if (gfr >= 45) return { label: 'G3a · Mild to Moderate', color: 'text-amber-accent', note: 'If it stays here for 3 months or more, that meets the definition of chronic kidney disease. Worth a conversation with your doctor.' };
+    if (gfr >= 30) return { label: 'G3b · Moderate to Severe', color: 'text-red-500', note: 'Talk to your doctor about this result.' };
+    if (gfr >= 15) return { label: 'G4 · Severe', color: 'text-red-500', note: 'Talk to your doctor promptly about this result.' };
+    return { label: 'G5 · Kidney Failure Range', color: 'text-red-500', note: 'Contact your doctor promptly about this result.' };
+  }
+
+  function init() {
+    const form = document.getElementById('calc-form') as HTMLFormElement | null;
+    if (form?.dataset.tool !== 'egfr-calculator') return;
+    const resultEl = document.getElementById('result');
+    const sexBtns = document.querySelectorAll('.sex-btn');
+    if (!form || !resultEl) return;
+
+    const trend = initTrend(toolBySlug('egfr-calculator'));
+
+    sexBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        sex = (btn.getAttribute('data-sex') as 'male' | 'female') || 'male';
+        sexBtns.forEach((b) => {
+          const active = b === btn;
+          b.className = `sex-btn px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-300 flex-1 ${
+            active ? 'border border-green-accent bg-green-accent text-white' : 'border border-black/8 bg-white/70 text-slate-500'
+          }`;
+        });
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const creatinine = parseFloat((document.getElementById('creatinine') as HTMLInputElement).value);
+      const age = parseFloat((document.getElementById('age') as HTMLInputElement).value);
+      if (!creatinine || !age) return;
+
+      const gfr = egfr(creatinine, age, sex);
+      const { label, color, note } = classify(gfr);
+
+      resultEl.classList.remove('hidden');
+      resultEl.innerHTML = `
+        <p class="text-sm text-slate-500 mb-1">Your Estimated GFR</p>
+        <p class="font-display font-black text-4xl text-slate-900 mb-2">${gfr.toFixed(0)} <span class="text-lg font-semibold text-slate-400">mL/min/1.73m²</span> <span class="text-lg font-bold ${color}">${label}</span></p>
+        <p class="text-sm text-slate-500">${note}</p>
+      `;
+      // Only the measured creatinine goes to lab_results; the estimate stays a website reading.
+      trend.ready(gfr, {
+        inputs: { creatinine, age, sex },
+        labs: [{ test_name: 'Creatinine', value: creatinine, unit: 'mg/dL' }],
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

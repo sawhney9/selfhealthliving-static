@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AccountPanel from '../../components/AccountPanel.astro';
+import SaveReading from '../../components/SaveReading.astro';
+---
+
+<Layout
+  title="A1c to Average Glucose Calculator | Self Health Living"
+  description="Convert your HbA1c into estimated average glucose (eAG) in mg/dL and mmol/L, and track your A1c over time."
+  currentPillar="tools"
+>
+  <div class="py-14 px-6 md:px-12 max-w-3xl mx-auto w-full relative">
+    <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-green-accent mb-4">
+      <a href="/tools/" class="hover:underline">Tools</a>
+      <span>&bull;</span>
+      <span class="text-slate-400">calculator</span>
+    </div>
+
+    <h1 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight mb-4">
+      A1c to Average Glucose
+    </h1>
+    <p class="text-slate-500 text-base leading-relaxed mb-10 max-w-2xl">
+      Your HbA1c reflects about three months of blood sugar, but a percentage is hard to picture. This converts it into the estimated average glucose it represents, in the same units your meter or CGM shows. That makes it easier to compare your lab result with what you see day to day.
+    </p>
+
+    <AccountPanel />
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <form id="calc-form" data-tool="a1c-to-average-glucose" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <label class="block">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">HbA1c (%)</span>
+          <input type="number" step="0.1" min="3" max="20" required id="a1c" class="w-full rounded-lg border border-black/10 px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-green-accent/40" />
+        </label>
+        <div class="sm:col-span-2 mt-2">
+          <button type="submit" class="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
+            Calculate
+          </button>
+        </div>
+      </form>
+
+      <div id="result" class="hidden mt-6 pt-6 border-t border-black/6"></div>
+      <SaveReading />
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-4">Your Trend</h2>
+      <div id="history"></div>
+    </div>
+
+    <div class="glass-card p-6 md:p-8 mb-8 text-sm text-slate-600 leading-relaxed">
+      <h2 class="font-display font-bold text-lg text-slate-900 mb-3">How it's calculated</h2>
+      <p class="mb-3">Estimated average glucose (mg/dL) = 28.7 × A1c − 46.7. This is the ADAG study equation the American Diabetes Association uses. Divide by 18 for mmol/L.</p>
+      <p>A1c bands follow ADA criteria: below 5.7% is normal, 5.7–6.4% is the prediabetes range, and 6.5% or above is the diabetes range. Anemia, recent blood loss, and some hemoglobin variants can make A1c read higher or lower than your true average.</p>
+    </div>
+
+    <p class="text-xs text-slate-400 leading-relaxed border-t border-black/6 pt-6">
+      <strong class="text-slate-500">Not medical advice.</strong> This calculator is for informational purposes only and isn't a substitute for professional medical advice, diagnosis, or treatment. Diabetes is diagnosed by a clinician, usually with repeat testing. Always talk to your doctor about your lab results.
+    </p>
+  </div>
+</Layout>
+
+<script>
+  import { initTrend } from '../../lib/toolTrend.js';
+  import { toolBySlug } from '../../lib/tools.js';
+
+  function classify(a1c: number) {
+    if (a1c < 5.7) return { label: 'Normal', color: 'text-green-accent', note: 'Below the 5.7% prediabetes threshold.' };
+    if (a1c < 6.5) return { label: 'Prediabetes Range', color: 'text-amber-accent', note: 'Between 5.7% and 6.4%. This is the window where lifestyle changes have the biggest payoff.' };
+    return { label: 'Diabetes Range', color: 'text-red-500', note: '6.5% or above. Talk to your doctor if this is new.' };
+  }
+
+  function init() {
+    const form = document.getElementById('calc-form') as HTMLFormElement | null;
+    if (form?.dataset.tool !== 'a1c-to-average-glucose') return;
+    const resultEl = document.getElementById('result');
+    if (!form || !resultEl) return;
+
+    const trend = initTrend(toolBySlug('a1c-to-average-glucose'));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const a1c = parseFloat((document.getElementById('a1c') as HTMLInputElement).value);
+      if (!a1c) return;
+
+      const eag = 28.7 * a1c - 46.7;
+      const { label, color, note } = classify(a1c);
+
+      resultEl.classList.remove('hidden');
+      resultEl.innerHTML = `
+        <p class="text-sm text-slate-500 mb-1">Estimated Average Glucose</p>
+        <p class="font-display font-black text-4xl text-slate-900 mb-1">${eag.toFixed(0)} <span class="text-lg font-semibold text-slate-400">mg/dL</span></p>
+        <p class="text-sm text-slate-500 mb-3">${(eag / 18.016).toFixed(1)} mmol/L</p>
+        <p class="text-sm"><span class="font-bold ${color}">A1c ${a1c.toFixed(1)}%: ${label}.</span> <span class="text-slate-500">${note}</span></p>
+      `;
+      trend.ready(eag, {
+        inputs: { a1c },
+        labs: [{ test_name: 'HbA1c', value: a1c, unit: '%' }],
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>

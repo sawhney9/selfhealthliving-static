@@ -1,0 +1,368 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { MARKERS } from '../../lib/markers.js';
+
+const categories = [...new Set(MARKERS.map((m) => m.category))];
+const input =
+  'rounded-lg border border-black/10 px-3 py-2 text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-green-accent/40';
+---
+
+<Layout
+  title="My Health | Self Health Living"
+  description="Your bloodwork and saved calculator readings, synced with the SelfHealth app."
+  noindex
+>
+  <div id="account-root" class="py-14 px-6 md:px-12 max-w-5xl mx-auto w-full">
+    <div id="account-loading" class="text-slate-400 text-sm py-24 text-center">Loading your health data…</div>
+
+    <div id="account-body" class="hidden">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider text-green-accent mb-2">My Health</p>
+          <h1 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight">
+            Hi, <span id="account-name"></span>
+          </h1>
+          <p class="text-sm text-slate-500 mt-2">Synced with your SelfHealth app account.</p>
+        </div>
+        <button id="signout-btn" type="button" class="text-sm font-semibold text-slate-400 hover:text-red-500 transition-colors cursor-pointer">Sign out</button>
+      </div>
+
+      <!-- Bloodwork -->
+      <section class="mb-14">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h2 class="font-display font-bold text-2xl text-slate-900">Bloodwork</h2>
+          <button id="add-toggle" type="button" class="px-5 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
+            + Add lab results
+          </button>
+        </div>
+
+        <form id="add-form" class="hidden glass-card p-6 mb-6">
+          <div class="flex flex-wrap items-end gap-5 mb-5">
+            <label class="block">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Test date</span>
+              <input id="add-date" type="date" required class={input} />
+            </label>
+            <label class="flex items-center gap-2 text-sm text-slate-600 pb-2">
+              <input id="add-fasting" type="checkbox" class="w-4 h-4 accent-green-600" /> Fasting draw
+            </label>
+          </div>
+          <div id="add-rows" class="flex flex-col gap-3 mb-4"></div>
+          <template id="add-row-tpl">
+            <div class="add-row flex flex-wrap items-center gap-3">
+              <select class={`${input} flex-1 min-w-[220px]`} data-marker required>
+                <option value="">Choose a marker…</option>
+                {categories.map((c) => (
+                  <optgroup label={c}>
+                    {MARKERS.filter((m) => m.category === c).map((m) => (
+                      <option value={m.name} data-unit={m.unit}>{m.fullName === m.name ? m.name : `${m.name} (${m.fullName})`}</option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+              <input type="number" step="any" required placeholder="Value" data-value class={`${input} w-32`} />
+              <span data-unit class="text-sm text-slate-500 w-20"></span>
+              <button type="button" data-remove class="text-xs font-semibold text-slate-400 hover:text-red-500 cursor-pointer">Remove</button>
+            </div>
+          </template>
+          <div class="flex flex-wrap items-center gap-4">
+            <button id="add-row-btn" type="button" class="text-sm font-semibold text-green-accent hover:underline cursor-pointer">+ Another marker</button>
+            <span class="flex-1"></span>
+            <button type="button" id="add-cancel" class="text-sm text-slate-500 hover:text-slate-900 cursor-pointer">Cancel</button>
+            <button type="submit" class="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover disabled:opacity-50 transition-all duration-300 cursor-pointer">Save results</button>
+          </div>
+          <p id="add-status" class="text-sm text-slate-500 mt-3" aria-live="polite"></p>
+          <p class="text-xs text-slate-400 mt-3">Values use the units shown, which match the SelfHealth app. Results you add here appear in the app's Bloodwork screen too.</p>
+        </form>
+
+        <div id="lab-summary" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"></div>
+        <div id="lab-groups" class="flex flex-col gap-8"></div>
+      </section>
+
+      <!-- Calculator readings -->
+      <section class="mb-14">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h2 class="font-display font-bold text-2xl text-slate-900">Tracker readings</h2>
+          <a href="/tools/" class="text-sm font-semibold text-green-accent hover:underline">All calculators →</a>
+        </div>
+        <div id="tool-cards" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </section>
+
+      <!-- Account -->
+      <section class="glass-card p-6 text-sm text-slate-600 leading-relaxed">
+        <h2 class="font-display font-bold text-lg text-slate-900 mb-3">Account</h2>
+        <p class="mb-2">Signed in as <span id="account-email" class="font-semibold text-slate-900"></span>.</p>
+        <p class="mb-2"><a href="/account/reset/" class="font-semibold text-green-accent hover:underline">Change password</a></p>
+        <p class="text-slate-500">To delete your account and all of its data, open the SelfHealth app and go to Settings → Delete Account.</p>
+      </section>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { watchSession, needsSecondFactor, loginUrl, signOut } from '../../lib/auth.js';
+  import { fetchLabResults, addLabResults, deleteLabResult, fetchToolEntries } from '../../lib/healthData.js';
+  import { findMarker, markerStatus, barPosition, formatMarkerValue, STATUS, MARKERS } from '../../lib/markers.js';
+  import { TOOLS } from '../../lib/tools.js';
+
+  type Lab = { id: string; test_name: string; value: number; unit: string; date: string; fasting: boolean | null; reference_range: string | null };
+
+  const esc = (s: unknown) =>
+    String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  const fmtDate = (iso: string) => new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  const normUnit = (u: string) => String(u || '').toLowerCase().replace(/μ/g, 'µ').replace(/\s/g, '');
+  const TONE: Record<string, string> = {
+    green: 'bg-green-accent/10 text-green-accent',
+    amber: 'bg-amber-100 text-amber-700',
+    red: 'bg-red-50 text-red-600',
+  };
+  const today = () => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  };
+
+  function sparkline(values: number[]) {
+    if (values.length < 2) return '';
+    const w = 120, h = 32, pad = 3;
+    const min = Math.min(...values);
+    const range = Math.max(...values) - min || 1;
+    const pts = values
+      .map((v, i) => `${(pad + (i / (values.length - 1)) * (w - pad * 2)).toFixed(1)},${(h - pad - ((v - min) / range) * (h - pad * 2)).toFixed(1)}`)
+      .join(' ');
+    return `<svg viewBox="0 0 ${w} ${h}" class="w-28 h-8" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="#00A36C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>`;
+  }
+
+  function rangeBar(marker: any, value: number) {
+    const p = barPosition(marker, value);
+    return `<div class="relative h-2 rounded-full bg-slate-200 w-full max-w-[220px]" aria-hidden="true">
+      <div class="absolute inset-y-0 rounded-full bg-green-accent/40" style="left:${p.optimalLow * 100}%;width:${Math.max(2, (p.optimalHigh - p.optimalLow) * 100)}%"></div>
+      <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-slate-900 border-2 border-white shadow" style="left:${p.value * 100}%"></div>
+    </div>`;
+  }
+
+  function init() {
+    const root = document.getElementById('account-root');
+    if (!root) return;
+
+    let labs: Lab[] = [];
+    let loadedFor: string | null = null;
+
+    async function loadAll() {
+      const [labRows, toolRows] = await Promise.all([fetchLabResults(), fetchToolEntries()]);
+      labs = labRows as Lab[];
+      renderLabs();
+      renderTools(toolRows);
+    }
+
+    function renderLabs() {
+      const byName = new Map<string, Lab[]>();
+      for (const r of labs) {
+        const key = findMarker(r.test_name)?.name || r.test_name;
+        if (!byName.has(key)) byName.set(key, []);
+        byName.get(key)!.push(r);
+      }
+
+      const summary = document.getElementById('lab-summary')!;
+      const groupsEl = document.getElementById('lab-groups')!;
+      if (!byName.size) {
+        summary.innerHTML = '';
+        groupsEl.innerHTML = `<div class="glass-card p-8 text-center text-slate-500">
+          <p class="mb-2 font-semibold text-slate-700">No lab results yet.</p>
+          <p class="text-sm">Add results from your latest blood test above, or upload a lab report in the SelfHealth app and it will show up here.</p>
+        </div>`;
+        return;
+      }
+
+      let optimal = 0, flagged = 0;
+      const rows: Record<string, string[]> = {};
+      for (const [name, results] of byName) {
+        const marker = findMarker(name);
+        const latest = results[results.length - 1];
+        const sameUnit = marker && normUnit(latest.unit) === normUnit(marker.unit);
+        const status = sameUnit ? markerStatus(marker, Number(latest.value)) : null;
+        if (status === 'optimal') optimal++;
+        else if (status) flagged++;
+        const group = marker?.category || 'Other';
+        const pill = status
+          ? `<span class="text-xs font-bold px-2 py-0.5 rounded-full ${TONE[STATUS[status].tone]}">${STATUS[status].label}</span>`
+          : '';
+        const history = results
+          .slice()
+          .reverse()
+          .map(
+            (r) => `<tr class="border-b border-black/6 last:border-0">
+              <td class="py-1.5 pr-4 text-slate-500">${fmtDate(r.date)}${r.fasting ? ' · fasting' : ''}</td>
+              <td class="py-1.5 pr-4 font-semibold text-slate-900">${esc(formatMarkerValue(r.value))} ${esc(r.unit)}</td>
+              <td class="py-1.5 pr-4 text-slate-400">${r.reference_range ? `Lab range ${esc(r.reference_range)}` : ''}</td>
+              <td class="py-1.5 text-right"><button type="button" data-del="${esc(r.id)}" class="text-xs font-semibold text-slate-400 hover:text-red-500 cursor-pointer">Delete</button></td>
+            </tr>`
+          )
+          .join('');
+        (rows[group] ||= []).push(`<details class="glass-card p-0 overflow-hidden group/marker">
+          <summary class="list-none cursor-pointer p-4 md:p-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <div class="min-w-[160px] flex-1">
+              <p class="font-semibold text-slate-900">${esc(name)}</p>
+              <p class="text-xs text-slate-400">${esc(marker?.fullName && marker.fullName !== name ? marker.fullName : fmtDate(latest.date))}</p>
+            </div>
+            <div class="w-32">
+              <p class="font-display font-bold text-xl text-slate-900">${esc(formatMarkerValue(latest.value))} <span class="text-xs font-semibold text-slate-400">${esc(latest.unit)}</span></p>
+              ${pill}
+            </div>
+            <div class="hidden sm:block flex-1 min-w-[160px]">${sameUnit && marker.range ? rangeBar(marker, Number(latest.value)) : ''}</div>
+            <div class="hidden md:block">${sparkline(results.map((r) => Number(r.value)))}</div>
+          </summary>
+          <div class="px-4 md:px-5 pb-5 border-t border-black/6 pt-4 text-sm">
+            ${marker?.about ? `<p class="text-slate-600 leading-relaxed mb-3">${esc(marker.about)}</p>` : ''}
+            ${marker?.range && sameUnit ? `<p class="text-xs text-slate-500 mb-4">Optimal range: ${marker.range.optimalLow}–${marker.range.optimalHigh} ${esc(marker.unit)}</p>` : ''}
+            <table class="w-full"><tbody>${history}</tbody></table>
+          </div>
+        </details>`);
+      }
+
+      const last = labs.reduce((a, b) => (new Date(a.date) > new Date(b.date) ? a : b));
+      const stat = (label: string, value: string | number, tone = 'text-slate-900') =>
+        `<div class="glass-card p-4"><p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">${label}</p><p class="font-display font-black text-2xl ${tone}">${value}</p></div>`;
+      summary.innerHTML =
+        stat('Markers', byName.size) +
+        stat('Optimal', optimal, 'text-green-accent') +
+        stat('Outside optimal', flagged, flagged ? 'text-amber-600' : 'text-slate-900') +
+        stat('Last test', fmtDate(last.date));
+
+      const order = [...new Set(MARKERS.map((m) => m.category)), 'Other'];
+      groupsEl.innerHTML = order
+        .filter((g) => rows[g])
+        .map((g) => `<div><h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">${esc(g)}</h3><div class="flex flex-col gap-3">${rows[g].join('')}</div></div>`)
+        .join('');
+
+      groupsEl.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((btn) =>
+        btn.addEventListener('click', async (e) => {
+          e.preventDefault();
+          if (!btn.dataset.armed) {
+            btn.dataset.armed = '1';
+            btn.textContent = 'Confirm delete';
+            btn.classList.add('text-red-500');
+            return;
+          }
+          btn.disabled = true;
+          try {
+            await deleteLabResult(btn.dataset.del!);
+            labs = labs.filter((l) => l.id !== btn.dataset.del);
+            renderLabs();
+          } catch {
+            btn.textContent = 'Couldn’t delete';
+          }
+        })
+      );
+    }
+
+    function renderTools(rows: any[]) {
+      const el = document.getElementById('tool-cards')!;
+      const cards = TOOLS.map((tool) => {
+        const entries = rows.filter((r) => r.tool === tool.slug);
+        if (!entries.length) return '';
+        const latest = entries[entries.length - 1];
+        return `<a href="/tools/${tool.slug}/" class="glass-card p-5 flex items-center justify-between gap-4 hover:-translate-y-0.5 transition-all duration-300">
+          <div>
+            <p class="font-semibold text-slate-900">${esc(tool.title)}</p>
+            <p class="font-display font-bold text-xl text-slate-900">${Number(latest.value).toFixed(tool.digits)} <span class="text-xs font-semibold text-slate-400">${esc(tool.unit)}</span></p>
+            <p class="text-xs text-slate-400">${fmtDate(latest.recorded_at)} · ${entries.length} reading${entries.length === 1 ? '' : 's'}</p>
+          </div>
+          ${sparkline(entries.map((e) => Number(e.value)))}
+        </a>`;
+      }).join('');
+      el.innerHTML =
+        cards ||
+        `<div class="glass-card p-8 text-center text-slate-500 md:col-span-2">
+          <p class="mb-2 font-semibold text-slate-700">No tracker readings yet.</p>
+          <p class="text-sm">Use any <a href="/tools/" class="text-green-accent font-semibold hover:underline">calculator</a> and save the result to start a trend.</p>
+        </div>`;
+    }
+
+    // Add lab results form
+    const form = document.getElementById('add-form') as HTMLFormElement;
+    const rowsEl = document.getElementById('add-rows')!;
+    const tpl = document.getElementById('add-row-tpl') as HTMLTemplateElement;
+    const statusEl = document.getElementById('add-status')!;
+
+    function addRow() {
+      const row = tpl.content.firstElementChild!.cloneNode(true) as HTMLElement;
+      const select = row.querySelector('select')!;
+      select.addEventListener('change', () => {
+        row.querySelector('[data-unit]')!.textContent = select.selectedOptions[0]?.dataset.unit || '';
+      });
+      row.querySelector('[data-remove]')!.addEventListener('click', () => {
+        if (rowsEl.children.length > 1) row.remove();
+      });
+      rowsEl.appendChild(row);
+    }
+
+    function openForm(open: boolean) {
+      form.classList.toggle('hidden', !open);
+      if (open && !rowsEl.children.length) addRow();
+      if (open) {
+        const date = document.getElementById('add-date') as HTMLInputElement;
+        date.value ||= today();
+        date.max = today();
+      }
+    }
+
+    document.getElementById('add-toggle')!.addEventListener('click', () => openForm(form.classList.contains('hidden')));
+    document.getElementById('add-cancel')!.addEventListener('click', () => openForm(false));
+    document.getElementById('add-row-btn')!.addEventListener('click', addRow);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const entries = [...rowsEl.querySelectorAll('.add-row')].map((row) => {
+        const select = row.querySelector('select')!;
+        return {
+          test_name: select.value,
+          value: parseFloat((row.querySelector('[data-value]') as HTMLInputElement).value),
+          unit: select.selectedOptions[0]?.dataset.unit || '',
+        };
+      });
+      if (entries.some((x) => !x.test_name || !Number.isFinite(x.value))) return;
+      const submit = form.querySelector('button[type=submit]') as HTMLButtonElement;
+      submit.disabled = true;
+      statusEl.textContent = 'Saving…';
+      try {
+        await addLabResults(entries, {
+          day: (document.getElementById('add-date') as HTMLInputElement).value,
+          fasting: (document.getElementById('add-fasting') as HTMLInputElement).checked || null,
+        });
+        rowsEl.innerHTML = '';
+        statusEl.textContent = '';
+        openForm(false);
+        labs = (await fetchLabResults()) as Lab[];
+        renderLabs();
+      } catch {
+        statusEl.textContent = 'Couldn’t save. Check your connection and try again.';
+      } finally {
+        submit.disabled = false;
+      }
+    });
+
+    document.getElementById('signout-btn')!.addEventListener('click', async () => {
+      await signOut();
+      location.replace('/');
+    });
+
+    const stop = watchSession(async (session) => {
+      if (!session) return location.replace(loginUrl('/account/'));
+      if (await needsSecondFactor()) return location.replace(loginUrl('/account/'));
+      if (loadedFor === session.user.id) return;
+      loadedFor = session.user.id;
+      const meta = session.user.user_metadata || {};
+      document.getElementById('account-name')!.textContent = (meta.full_name || meta.name || '').split(' ')[0] || 'there';
+      document.getElementById('account-email')!.textContent = session.user.email || '';
+      try {
+        await loadAll();
+      } catch {
+        document.getElementById('lab-groups')!.innerHTML = '<p class="text-sm text-red-500">Couldn’t load your data. Refresh to try again.</p>';
+      }
+      document.getElementById('account-loading')!.classList.add('hidden');
+      document.getElementById('account-body')!.classList.remove('hidden');
+    });
+    document.addEventListener('astro:before-swap', stop, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', init);
+</script>
