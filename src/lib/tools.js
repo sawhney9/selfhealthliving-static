@@ -1,5 +1,6 @@
 // The /tools calculators. `slug` is both the page path and the tool_entries.tool
 // value; `storageKey` is where signed-out readings live in localStorage.
+// `band` is the zone to aim for on the chart; `better` is which way is good.
 export const TOOLS = [
   {
     slug: 'triglyceride-hdl-ratio',
@@ -9,6 +10,8 @@ export const TOOLS = [
     digits: 2,
     storageKey: 'shl_calc_tg_hdl_ratio',
     group: 'Bloodwork',
+    better: 'lower',
+    band: { high: 2 },
   },
   {
     slug: 'non-hdl-cholesterol',
@@ -18,6 +21,8 @@ export const TOOLS = [
     digits: 0,
     storageKey: 'shl_calc_non_hdl',
     group: 'Bloodwork',
+    better: 'lower',
+    band: { high: 130 },
   },
   {
     slug: 'homa-ir',
@@ -27,6 +32,8 @@ export const TOOLS = [
     digits: 2,
     storageKey: 'shl_calc_homa_ir',
     group: 'Bloodwork',
+    better: 'lower',
+    band: { high: 2 },
   },
   {
     slug: 'a1c-to-average-glucose',
@@ -36,6 +43,9 @@ export const TOOLS = [
     digits: 0,
     storageKey: 'shl_calc_eag',
     group: 'Bloodwork',
+    better: 'lower',
+    // eAG for an A1c of 5.7%, the prediabetes threshold
+    band: { high: 117 },
   },
   {
     slug: 'egfr-calculator',
@@ -45,6 +55,8 @@ export const TOOLS = [
     digits: 0,
     storageKey: 'shl_calc_egfr',
     group: 'Bloodwork',
+    better: 'higher',
+    band: { low: 90 },
   },
   {
     slug: 'waist-to-height-ratio',
@@ -54,6 +66,8 @@ export const TOOLS = [
     digits: 2,
     storageKey: 'shl_calc_waist_height_ratio',
     group: 'Fitness',
+    better: 'lower',
+    band: { high: 0.5 },
   },
   {
     slug: 'vo2-max-walk-test',
@@ -63,6 +77,8 @@ export const TOOLS = [
     digits: 1,
     storageKey: 'shl_calc_vo2_max',
     group: 'Fitness',
+    better: 'higher',
+    // Healthy ranges depend on age and sex, so no fixed zone; goals still work.
   },
   {
     slug: 'grip-strength-tracker',
@@ -72,6 +88,7 @@ export const TOOLS = [
     digits: 1,
     storageKey: 'shl_calc_grip_strength',
     group: 'Fitness',
+    better: 'higher',
   },
 ];
 

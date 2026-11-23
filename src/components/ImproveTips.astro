@@ -1,0 +1,12 @@
+---
+// "How to improve it" block for a calculator page, from guidance.js.
+import { guidanceFor } from '../lib/guidance.js';
+import { guidanceHtml } from '../lib/guidanceView.js';
+import { articleTitles } from '../lib/articles.js';
+
+const { tool } = Astro.props;
+const g = guidanceFor(`tool:${tool}`);
+const html = g ? guidanceHtml(g, articleTitles(g.read), { heading: g.direction === 'lower' ? 'How to lower it' : 'How to raise it' }) : '';
+---
+
+{html && <div class="mb-8" set:html={html} />}

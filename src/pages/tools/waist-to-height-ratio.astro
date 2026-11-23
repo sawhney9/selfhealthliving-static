@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import AccountPanel from '../../components/AccountPanel.astro';
 import SaveReading from '../../components/SaveReading.astro';
+import ImproveTips from '../../components/ImproveTips.astro';
 ---
 
 <Layout
@@ -51,6 +52,8 @@ import SaveReading from '../../components/SaveReading.astro';
       <h2 class="font-display font-bold text-lg text-slate-900 mb-4">Your Trend</h2>
       <div id="history"></div>
     </div>
+
+    <ImproveTips tool="waist-to-height-ratio" />
 
     <p class="text-xs text-slate-400 leading-relaxed border-t border-black/6 pt-6">
       <strong class="text-slate-500">Not medical advice.</strong> This calculator is for informational purposes only and isn't a substitute for professional medical advice, diagnosis, or treatment. Risk bands shown are general population heuristics, not a personal diagnosis.

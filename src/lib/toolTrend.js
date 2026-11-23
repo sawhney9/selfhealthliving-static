@@ -3,7 +3,9 @@
 // lab_results so the SelfHealth app sees them); signed out they stay in this
 // browser's localStorage, and can be moved into the account after sign-in.
 import { watchSession, loginUrl } from './auth.js';
-import { addToolEntries, addLabResults, fetchToolEntries, deleteToolEntry, dateToTimestamp } from './healthData.js';
+import { addToolEntries, addLabResults, fetchToolEntries, deleteToolEntry, dateToTimestamp, fetchGoals } from './healthData.js';
+import { trendChart, trendSummary } from './trendChart.js';
+import { mountGoalEditor } from './goalEditor.js';
 
 function loadLocal(key) {
   try {
@@ -27,27 +29,11 @@ const todayInput = () => {
 
 const fmtDate = (iso) => new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
-function sparkline(values) {
-  const w = 320, h = 60, pad = 6;
-  const min = Math.min(...values);
-  const range = Math.max(...values) - min || 1;
-  const points = values
-    .map((v, i) => {
-      const x = values.length === 1 ? w / 2 : pad + (i / (values.length - 1)) * (w - pad * 2);
-      const y = h - pad - ((v - min) / range) * (h - pad * 2);
-      return `${x.toFixed(1)},${y.toFixed(1)}`;
-    })
-    .join(' ');
-  return `<svg viewBox="0 0 ${w} ${h}" class="w-full h-16" preserveAspectRatio="none" aria-hidden="true">
-    <polyline points="${points}" fill="none" stroke="#00A36C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" />
-  </svg>`;
-}
-
 /**
  * Wire up a calculator page. Expects #account-panel, #save-row, #history in the page.
  * Call the returned `ready(value, { inputs, labs, fasting })` after each calculation.
  */
-export function initTrend({ slug: tool, storageKey, unit = '', digits = 1 }) {
+export function initTrend({ slug: tool, storageKey, unit = '', digits = 1, band = null, better = 'lower' }) {
   const panel = document.getElementById('account-panel');
   const saveRow = document.getElementById('save-row');
   const historyEl = document.getElementById('history');
@@ -62,6 +48,16 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1 }) {
   const fmt = (v) => `${Number(v).toFixed(digits)}${unit ? ` ${unit}` : ''}`;
   let session = null;
   let pending = null;
+  let goal = null;
+
+  // Goal control sits above the history; only shown when signed in.
+  const goalEl = document.createElement('div');
+  goalEl.className = 'mb-4 hidden';
+  historyEl.before(goalEl);
+  const suggestion = () => ({
+    direction: better === 'higher' ? 'at_least' : 'at_most',
+    target: better === 'higher' ? band?.low ?? '' : band?.high ?? '',
+  });
 
   function renderPanel() {
     if (!panel) return;
@@ -87,8 +83,9 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1 }) {
         </tr>`
       )
       .join('');
-    const chart = entries.length > 1 ? `<div class="mb-4">${sparkline(entries.map((e) => Number(e.value)))}</div>` : '';
-    historyEl.innerHTML = `${chart}
+    const opts = { points: entries, band, goal, unit, digits };
+    historyEl.innerHTML = `<div class="mb-2">${trendChart(opts)}</div>
+      <p class="text-sm text-slate-600 mb-4">${trendSummary(opts)}</p>
       <table class="w-full text-sm"><tbody>${rows}</tbody></table>`;
     historyEl.querySelectorAll('[data-del]').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -104,6 +101,8 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1 }) {
   async function renderHistory() {
     const local = loadLocal(storageKey);
     if (!session) {
+      goal = null;
+      goalEl.classList.add('hidden');
       renderRows(local, {
         onDelete: (entry) => {
           storeLocal(storageKey, local.filter((e) => e !== entry));
@@ -114,7 +113,20 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1 }) {
     }
     historyEl.innerHTML = '<p class="text-sm text-slate-400">Loading your readings…</p>';
     try {
-      const rows = await fetchToolEntries(tool);
+      const [rows, goals] = await Promise.all([fetchToolEntries(tool), fetchGoals()]);
+      goal = goals[`tool:${tool}`] || null;
+      mountGoalEditor(goalEl, {
+        metric: `tool:${tool}`,
+        goal,
+        suggestion: suggestion(),
+        unit,
+        digits,
+        onChange: (g) => {
+          goal = g;
+          renderHistory();
+        },
+      });
+      goalEl.classList.remove('hidden');
       renderRows(
         rows.map((r) => ({ id: r.id, date: r.recorded_at, value: r.value })),
         {

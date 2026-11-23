@@ -1,10 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { MARKERS } from '../../lib/markers.js';
+import { GUIDANCE_PATHS } from '../../lib/guidance.js';
+import { articleTitles } from '../../lib/articles.js';
 
 const categories = [...new Set(MARKERS.map((m) => m.category))];
+const titles = JSON.stringify(articleTitles(GUIDANCE_PATHS));
 const input =
   'rounded-lg border border-black/10 px-3 py-2 text-sm text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-green-accent/40';
+const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) => m.category === c) }));
 ---
 
 <Layout
@@ -12,7 +16,7 @@ const input =
   description="Your bloodwork and saved calculator readings, synced with the SelfHealth app."
   noindex
 >
-  <div id="account-root" class="py-14 px-6 md:px-12 max-w-5xl mx-auto w-full">
+  <div id="account-root" data-titles={titles} class="py-14 px-6 md:px-12 max-w-5xl mx-auto w-full">
     <div id="account-loading" class="text-slate-400 text-sm py-24 text-center">Loading your health data…</div>
 
     <div id="account-body" class="hidden">
@@ -31,11 +35,55 @@ const input =
       <section class="mb-14">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
           <h2 class="font-display font-bold text-2xl text-slate-900">Bloodwork</h2>
-          <button id="add-toggle" type="button" class="px-5 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
-            + Add lab results
-          </button>
+          <div class="flex flex-wrap gap-2">
+            <label class="px-5 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover transition-all duration-300 cursor-pointer">
+              Upload lab report (PDF)
+              <input id="pdf-input" type="file" accept="application/pdf" class="sr-only" />
+            </label>
+            <button id="add-toggle" type="button" class="px-5 py-2.5 rounded-full text-sm font-bold text-green-accent border border-green-accent/30 hover:bg-green-accent/5 transition-all duration-300 cursor-pointer">
+              + Enter by hand
+            </button>
+          </div>
         </div>
 
+        <!-- PDF import: status, then a review list before anything is saved -->
+        <div id="import-panel" class="hidden glass-card p-6 mb-6">
+          <div id="import-status" class="text-sm text-slate-600" aria-live="polite"></div>
+          <form id="import-form" class="hidden">
+            <div class="flex flex-wrap items-end justify-between gap-4 mb-4">
+              <div>
+                <p class="font-display font-bold text-lg text-slate-900">Review what we found</p>
+                <p class="text-sm text-slate-500">Uncheck anything that looks wrong, or fix a value before saving. Amber rows are worth a second look.</p>
+              </div>
+              <label class="block">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1.5">Test date</span>
+                <input id="import-date" type="date" required class={input} />
+              </label>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="text-left text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-black/8">
+                    <th class="py-2 pr-3 w-8"><input id="import-all" type="checkbox" checked class="w-4 h-4 accent-green-600" aria-label="Select all" /></th>
+                    <th class="py-2 pr-3">Marker</th>
+                    <th class="py-2 pr-3">Value</th>
+                    <th class="py-2 pr-3">Unit</th>
+                    <th class="py-2 pr-3">Lab range</th>
+                    <th class="py-2"></th>
+                  </tr>
+                </thead>
+                <tbody id="import-rows"></tbody>
+              </table>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 mt-5">
+              <p class="text-xs text-slate-400 flex-1 min-w-[220px]">The report is read by the same AI service the SelfHealth app uses (Google Gemini). It isn't stored. Only the values you save are kept in your account.</p>
+              <button type="button" id="import-cancel" class="text-sm text-slate-500 hover:text-slate-900 cursor-pointer">Cancel</button>
+              <button type="submit" id="import-save" class="px-6 py-2.5 rounded-full text-sm font-bold text-white bg-green-accent hover:bg-green-accent-hover disabled:opacity-50 transition-all duration-300 cursor-pointer">Save results</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Manual entry -->
         <form id="add-form" class="hidden glass-card p-6 mb-6">
           <div class="flex flex-wrap items-end gap-5 mb-5">
             <label class="block">
@@ -51,9 +99,9 @@ const input =
             <div class="add-row flex flex-wrap items-center gap-3">
               <select class={`${input} flex-1 min-w-[220px]`} data-marker required>
                 <option value="">Choose a marker…</option>
-                {categories.map((c) => (
+                {markerOptions.map(({ c, markers }) => (
                   <optgroup label={c}>
-                    {MARKERS.filter((m) => m.category === c).map((m) => (
+                    {markers.map((m) => (
                       <option value={m.name} data-unit={m.unit}>{m.fullName === m.name ? m.name : `${m.name} (${m.fullName})`}</option>
                     ))}
                   </optgroup>
@@ -74,7 +122,8 @@ const input =
           <p class="text-xs text-slate-400 mt-3">Values use the units shown, which match the SelfHealth app. Results you add here appear in the app's Bloodwork screen too.</p>
         </form>
 
-        <div id="lab-summary" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"></div>
+        <div id="lab-summary" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4"></div>
+        <p id="lab-hint" class="hidden text-sm text-slate-500 mb-6">Tap a marker to see its trend, set a goal, and get ideas for moving it.</p>
         <div id="lab-groups" class="flex flex-col gap-8"></div>
       </section>
 
@@ -100,24 +149,41 @@ const input =
 
 <script>
   import { watchSession, needsSecondFactor, loginUrl, signOut } from '../../lib/auth.js';
-  import { fetchLabResults, addLabResults, deleteLabResult, fetchToolEntries } from '../../lib/healthData.js';
+  import {
+    fetchLabResults,
+    addLabResults,
+    deleteLabResult,
+    fetchToolEntries,
+    fetchGoals,
+    extractLabsFromPdf,
+    referenceRangeText,
+  } from '../../lib/healthData.js';
   import { findMarker, markerStatus, barPosition, formatMarkerValue, STATUS, MARKERS } from '../../lib/markers.js';
   import { TOOLS } from '../../lib/tools.js';
+  import { trendChart, trendSummary, meetsGoal } from '../../lib/trendChart.js';
+  import { guidanceFor } from '../../lib/guidance.js';
+  import { guidanceHtml } from '../../lib/guidanceView.js';
+  import { mountGoalEditor } from '../../lib/goalEditor.js';
 
   type Lab = { id: string; test_name: string; value: number; unit: string; date: string; fasting: boolean | null; reference_range: string | null };
+  type Goal = { target: number; direction: 'at_most' | 'at_least' };
+
+  const MAX_PDF_BYTES = 10 * 1024 * 1024;
 
   const esc = (s: unknown) =>
     String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
   const fmtDate = (iso: string) => new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  const dayKey = (iso: string) => {
+    const d = new Date(iso);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  };
+  const today = () => dayKey(new Date().toISOString());
   const normUnit = (u: string) => String(u || '').toLowerCase().replace(/μ/g, 'µ').replace(/\s/g, '');
+  const digitsFor = (values: number[]) => (values.some((v) => Math.abs(v) < 10 && v % 1 !== 0) ? 2 : values.some((v) => v % 1 !== 0) ? 1 : 0);
   const TONE: Record<string, string> = {
     green: 'bg-green-accent/10 text-green-accent',
     amber: 'bg-amber-100 text-amber-700',
     red: 'bg-red-50 text-red-600',
-  };
-  const today = () => {
-    const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   };
 
   function sparkline(values: number[]) {
@@ -139,82 +205,104 @@ const input =
     </div>`;
   }
 
+  /** The optimal zone as a chart band; a zero floor isn't drawn as a lower edge. */
+  function markerBand(marker: any) {
+    const r = marker?.range;
+    if (!r) return null;
+    return { low: r.optimalLow > 0 ? r.optimalLow : null, high: r.optimalHigh };
+  }
+
+  function goalSuggestion(name: string, marker: any, status: string | null): Goal | undefined {
+    const r = marker?.range;
+    if (!r) return undefined;
+    const atMost: Goal = { target: r.optimalHigh, direction: 'at_most' };
+    const atLeast: Goal = { target: r.optimalLow, direction: 'at_least' };
+    if (status === 'high' || status === 'criticalHigh') return atMost;
+    if (status === 'low' || status === 'criticalLow') return atLeast;
+    // In range: guard the side that matters for this marker.
+    return guidanceFor(name, null)?.direction === 'raise' && r.optimalLow > 0 ? atLeast : atMost;
+  }
+
   function init() {
     const root = document.getElementById('account-root');
     if (!root) return;
+    const titles = JSON.parse(root.dataset.titles || '{}');
 
     let labs: Lab[] = [];
+    let goals: Record<string, Goal> = {};
+    let toolRows: any[] = [];
     let loadedFor: string | null = null;
 
     async function loadAll() {
-      const [labRows, toolRows] = await Promise.all([fetchLabResults(), fetchToolEntries()]);
-      labs = labRows as Lab[];
+      [labs, toolRows, goals] = (await Promise.all([fetchLabResults(), fetchToolEntries(), fetchGoals()])) as any;
       renderLabs();
-      renderTools(toolRows);
+      renderTools();
     }
 
-    function renderLabs() {
+    function grouped() {
       const byName = new Map<string, Lab[]>();
       for (const r of labs) {
         const key = findMarker(r.test_name)?.name || r.test_name;
         if (!byName.has(key)) byName.set(key, []);
         byName.get(key)!.push(r);
       }
+      return byName;
+    }
 
+    // ---------- Bloodwork list ----------
+    function renderLabs() {
+      const byName = grouped();
       const summary = document.getElementById('lab-summary')!;
       const groupsEl = document.getElementById('lab-groups')!;
+      document.getElementById('lab-hint')!.classList.toggle('hidden', !byName.size);
       if (!byName.size) {
         summary.innerHTML = '';
         groupsEl.innerHTML = `<div class="glass-card p-8 text-center text-slate-500">
           <p class="mb-2 font-semibold text-slate-700">No lab results yet.</p>
-          <p class="text-sm">Add results from your latest blood test above, or upload a lab report in the SelfHealth app and it will show up here.</p>
+          <p class="text-sm">Upload a lab report PDF above, type results in by hand, or import them in the SelfHealth app. They'll show up here.</p>
         </div>`;
         return;
       }
 
-      let optimal = 0, flagged = 0;
+      // Remember which markers are open so a re-render doesn't collapse them.
+      const open = new Set([...groupsEl.querySelectorAll<HTMLDetailsElement>('details[open]')].map((d) => d.dataset.name));
+
+      let optimal = 0, flagged = 0, onGoal = 0, withGoal = 0;
       const rows: Record<string, string[]> = {};
+      const names: string[] = [];
       for (const [name, results] of byName) {
         const marker = findMarker(name);
         const latest = results[results.length - 1];
-        const sameUnit = marker && normUnit(latest.unit) === normUnit(marker.unit);
+        const sameUnit = Boolean(marker) && normUnit(latest.unit) === normUnit(marker!.unit);
         const status = sameUnit ? markerStatus(marker, Number(latest.value)) : null;
         if (status === 'optimal') optimal++;
         else if (status) flagged++;
+        const goal = goals[name];
+        if (goal) {
+          withGoal++;
+          if (meetsGoal(goal, Number(latest.value))) onGoal++;
+        }
         const group = marker?.category || 'Other';
-        const pill = status
-          ? `<span class="text-xs font-bold px-2 py-0.5 rounded-full ${TONE[STATUS[status].tone]}">${STATUS[status].label}</span>`
+        const pill = status ? `<span class="text-xs font-bold px-2 py-0.5 rounded-full ${TONE[STATUS[status].tone]}">${STATUS[status].label}</span>` : '';
+        const goalChip = goal
+          ? `<span class="text-xs font-semibold ${meetsGoal(goal, Number(latest.value)) ? 'text-green-accent' : 'text-indigo-600'}">Goal ${goal.direction === 'at_most' ? '≤' : '≥'} ${esc(formatMarkerValue(goal.target))}${meetsGoal(goal, Number(latest.value)) ? ' ✓' : ''}</span>`
           : '';
-        const history = results
-          .slice()
-          .reverse()
-          .map(
-            (r) => `<tr class="border-b border-black/6 last:border-0">
-              <td class="py-1.5 pr-4 text-slate-500">${fmtDate(r.date)}${r.fasting ? ' · fasting' : ''}</td>
-              <td class="py-1.5 pr-4 font-semibold text-slate-900">${esc(formatMarkerValue(r.value))} ${esc(r.unit)}</td>
-              <td class="py-1.5 pr-4 text-slate-400">${r.reference_range ? `Lab range ${esc(r.reference_range)}` : ''}</td>
-              <td class="py-1.5 text-right"><button type="button" data-del="${esc(r.id)}" class="text-xs font-semibold text-slate-400 hover:text-red-500 cursor-pointer">Delete</button></td>
-            </tr>`
-          )
-          .join('');
-        (rows[group] ||= []).push(`<details class="glass-card p-0 overflow-hidden group/marker">
+        const idx = names.push(name) - 1;
+        (rows[group] ||= []).push(`<details data-name="${esc(name)}" data-idx="${idx}" class="glass-card p-0 overflow-hidden"${open.has(name) ? ' open' : ''}>
           <summary class="list-none cursor-pointer p-4 md:p-5 flex flex-wrap items-center gap-x-6 gap-y-3">
             <div class="min-w-[160px] flex-1">
               <p class="font-semibold text-slate-900">${esc(name)}</p>
               <p class="text-xs text-slate-400">${esc(marker?.fullName && marker.fullName !== name ? marker.fullName : fmtDate(latest.date))}</p>
             </div>
-            <div class="w-32">
+            <div class="w-36">
               <p class="font-display font-bold text-xl text-slate-900">${esc(formatMarkerValue(latest.value))} <span class="text-xs font-semibold text-slate-400">${esc(latest.unit)}</span></p>
-              ${pill}
+              <div class="flex flex-wrap items-center gap-2">${pill}${goalChip}</div>
             </div>
-            <div class="hidden sm:block flex-1 min-w-[160px]">${sameUnit && marker.range ? rangeBar(marker, Number(latest.value)) : ''}</div>
+            <div class="hidden sm:block flex-1 min-w-[160px]">${sameUnit && marker!.range ? rangeBar(marker, Number(latest.value)) : ''}</div>
             <div class="hidden md:block">${sparkline(results.map((r) => Number(r.value)))}</div>
+            <span class="text-slate-400 text-sm" aria-hidden="true">▾</span>
           </summary>
-          <div class="px-4 md:px-5 pb-5 border-t border-black/6 pt-4 text-sm">
-            ${marker?.about ? `<p class="text-slate-600 leading-relaxed mb-3">${esc(marker.about)}</p>` : ''}
-            ${marker?.range && sameUnit ? `<p class="text-xs text-slate-500 mb-4">Optimal range: ${marker.range.optimalLow}–${marker.range.optimalHigh} ${esc(marker.unit)}</p>` : ''}
-            <table class="w-full"><tbody>${history}</tbody></table>
-          </div>
+          <div data-body class="px-4 md:px-5 pb-5 border-t border-black/6 pt-4"></div>
         </details>`);
       }
 
@@ -224,7 +312,7 @@ const input =
       summary.innerHTML =
         stat('Markers', byName.size) +
         stat('Optimal', optimal, 'text-green-accent') +
-        stat('Outside optimal', flagged, flagged ? 'text-amber-600' : 'text-slate-900') +
+        (withGoal ? stat('Goals met', `${onGoal}/${withGoal}`, 'text-indigo-600') : stat('Outside optimal', flagged, flagged ? 'text-amber-600' : 'text-slate-900')) +
         stat('Last test', fmtDate(last.date));
 
       const order = [...new Set(MARKERS.map((m) => m.category)), 'Other'];
@@ -233,9 +321,70 @@ const input =
         .map((g) => `<div><h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">${esc(g)}</h3><div class="flex flex-col gap-3">${rows[g].join('')}</div></div>`)
         .join('');
 
-      groupsEl.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((btn) =>
-        btn.addEventListener('click', async (e) => {
-          e.preventDefault();
+      groupsEl.querySelectorAll<HTMLDetailsElement>('details').forEach((d) => {
+        const name = names[Number(d.dataset.idx)];
+        const fill = () => renderMarkerBody(d, name, byName.get(name)!);
+        if (d.open) fill();
+        d.addEventListener('toggle', () => d.open && !d.dataset.filled && fill());
+      });
+    }
+
+    // Detail view for one marker: chart, goal, tips, history.
+    function renderMarkerBody(d: HTMLDetailsElement, name: string, results: Lab[]) {
+      d.dataset.filled = '1';
+      const body = d.querySelector<HTMLElement>('[data-body]')!;
+      const marker = findMarker(name);
+      const latest = results[results.length - 1];
+      const sameUnit = Boolean(marker) && normUnit(latest.unit) === normUnit(marker!.unit);
+      const status = sameUnit ? markerStatus(marker, Number(latest.value)) : null;
+      const values = results.map((r) => Number(r.value));
+      const unit = latest.unit;
+      const digits = digitsFor(values);
+      const band = sameUnit ? markerBand(marker) : null;
+      const goal = goals[name] || null;
+      const points = results.map((r) => ({ date: r.date, value: Number(r.value) }));
+      const position = status === 'high' || status === 'criticalHigh' ? 'high' : status === 'low' || status === 'criticalLow' ? 'low' : null;
+      const g = guidanceFor(name, position);
+
+      const history = results
+        .slice()
+        .reverse()
+        .map(
+          (r) => `<tr class="border-b border-black/6 last:border-0">
+            <td class="py-1.5 pr-4 text-slate-500 whitespace-nowrap">${fmtDate(r.date)}${r.fasting ? ' · fasting' : ''}</td>
+            <td class="py-1.5 pr-4 font-semibold text-slate-900 whitespace-nowrap">${esc(formatMarkerValue(r.value))} ${esc(r.unit)}</td>
+            <td class="py-1.5 pr-4 text-slate-400 w-full">${r.reference_range ? `Lab range ${esc(r.reference_range)}` : ''}</td>
+            <td class="py-1.5 text-right"><button type="button" data-del="${esc(r.id)}" class="text-xs font-semibold text-slate-400 hover:text-red-500 cursor-pointer whitespace-nowrap">Delete</button></td>
+          </tr>`
+        )
+        .join('');
+
+      body.innerHTML = `
+        ${marker?.about ? `<p class="text-sm text-slate-600 leading-relaxed mb-4">${esc(marker.about)}</p>` : ''}
+        <div class="mb-1">${trendChart({ points, band, goal, unit, digits })}</div>
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <p class="text-sm text-slate-600">${esc(trendSummary({ points, band, goal, unit, digits }))}
+            ${band ? `<span class="text-slate-400">Optimal: ${band.low != null ? `${formatMarkerValue(band.low)}–` : '≤ '}${formatMarkerValue(band.high)} ${esc(unit)}</span>` : ''}</p>
+          <div data-goal></div>
+        </div>
+        ${g ? `<div class="mb-5">${guidanceHtml(g, titles)}</div>` : ''}
+        <table class="w-full text-sm"><tbody>${history}</tbody></table>`;
+
+      mountGoalEditor(body.querySelector('[data-goal]')!, {
+        metric: name,
+        goal,
+        suggestion: goalSuggestion(name, marker, status),
+        unit,
+        digits,
+        onChange: (next) => {
+          if (next) goals[name] = next as Goal;
+          else delete goals[name];
+          renderLabs();
+        },
+      });
+
+      body.querySelectorAll<HTMLButtonElement>('[data-del]').forEach((btn) =>
+        btn.addEventListener('click', async () => {
           if (!btn.dataset.armed) {
             btn.dataset.armed = '1';
             btn.textContent = 'Confirm delete';
@@ -254,19 +403,22 @@ const input =
       );
     }
 
-    function renderTools(rows: any[]) {
+    // ---------- Tracker readings ----------
+    function renderTools() {
       const el = document.getElementById('tool-cards')!;
       const cards = TOOLS.map((tool) => {
-        const entries = rows.filter((r) => r.tool === tool.slug);
+        const entries = toolRows.filter((r) => r.tool === tool.slug);
         if (!entries.length) return '';
-        const latest = entries[entries.length - 1];
-        return `<a href="/tools/${tool.slug}/" class="glass-card p-5 flex items-center justify-between gap-4 hover:-translate-y-0.5 transition-all duration-300">
-          <div>
+        const points = entries.map((e) => ({ date: e.recorded_at, value: Number(e.value) }));
+        const goal = goals[`tool:${tool.slug}`] || null;
+        const opts = { points, band: tool.band || null, goal, unit: tool.unit, digits: tool.digits };
+        return `<a href="/tools/${tool.slug}/" class="glass-card p-5 flex flex-col gap-2 hover:-translate-y-0.5 transition-all duration-300">
+          <div class="flex items-baseline justify-between gap-3">
             <p class="font-semibold text-slate-900">${esc(tool.title)}</p>
-            <p class="font-display font-bold text-xl text-slate-900">${Number(latest.value).toFixed(tool.digits)} <span class="text-xs font-semibold text-slate-400">${esc(tool.unit)}</span></p>
-            <p class="text-xs text-slate-400">${fmtDate(latest.recorded_at)} · ${entries.length} reading${entries.length === 1 ? '' : 's'}</p>
+            <p class="text-xs text-slate-400">${entries.length} reading${entries.length === 1 ? '' : 's'}</p>
           </div>
-          ${sparkline(entries.map((e) => Number(e.value)))}
+          ${trendChart(opts)}
+          <p class="text-xs text-slate-500">${esc(trendSummary(opts))}</p>
         </a>`;
       }).join('');
       el.innerHTML =
@@ -277,7 +429,124 @@ const input =
         </div>`;
     }
 
-    // Add lab results form
+    // ---------- PDF import ----------
+    const pdfInput = document.getElementById('pdf-input') as HTMLInputElement;
+    const importPanel = document.getElementById('import-panel')!;
+    const importStatus = document.getElementById('import-status')!;
+    const importForm = document.getElementById('import-form') as HTMLFormElement;
+    const importRows = document.getElementById('import-rows')!;
+    const importDate = document.getElementById('import-date') as HTMLInputElement;
+    let found: any[] = [];
+
+    function closeImport() {
+      importPanel.classList.add('hidden');
+      importForm.classList.add('hidden');
+      importRows.innerHTML = '';
+      found = [];
+      pdfInput.value = '';
+    }
+
+    pdfInput.addEventListener('change', async () => {
+      const file = pdfInput.files?.[0];
+      if (!file) return;
+      document.getElementById('add-form')!.classList.add('hidden');
+      importPanel.classList.remove('hidden');
+      importForm.classList.add('hidden');
+      if (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) {
+        importStatus.textContent = 'That file isn’t a PDF. Choose the PDF your lab or patient portal gave you.';
+        return;
+      }
+      if (file.size > MAX_PDF_BYTES) {
+        importStatus.textContent = 'That PDF is over 10 MB. Try downloading a smaller version from your patient portal.';
+        return;
+      }
+      importStatus.innerHTML = `<span class="inline-flex items-center gap-2"><span class="w-4 h-4 rounded-full border-2 border-green-accent border-t-transparent animate-spin"></span>Reading ${esc(file.name)}… this usually takes 20–60 seconds.</span>`;
+      try {
+        found = (await extractLabsFromPdf(file)).filter((m: any) => m && m.marker && Number.isFinite(Number(m.value)));
+      } catch (err: any) {
+        importStatus.textContent = err.message;
+        pdfInput.value = '';
+        return;
+      }
+      if (!found.length) {
+        importStatus.textContent = 'We couldn’t find any lab values in that PDF. If it’s a scan or photo, try the SelfHealth app’s camera import, or enter the values by hand.';
+        pdfInput.value = '';
+        return;
+      }
+
+      // Default the test date to the date most results were collected.
+      const dates = found.map((m) => m.collectionDate).filter(Boolean);
+      const common = dates.sort((a, b) => dates.filter((x) => x === b).length - dates.filter((x) => x === a).length)[0];
+      importDate.value = common && /^\d{4}-\d{2}-\d{2}$/.test(common) ? common : today();
+      importDate.max = today();
+
+      importRows.innerHTML = found
+        .map((m, i) => {
+          const known = findMarker(m.marker);
+          const name = known?.name || m.marker;
+          const dup = labs.some((l) => (findMarker(l.test_name)?.name || l.test_name) === name && dayKey(l.date) === importDate.value && Number(l.value) === Number(m.value));
+          const shaky = m.confidence !== 'high' || m.reviewSuggested;
+          const checked = !dup && m.confidence !== 'low';
+          const note = dup
+            ? '<span class="text-xs text-slate-400">Already saved</span>'
+            : m.confidence === 'low'
+              ? '<span class="text-xs font-semibold text-red-600">Low confidence</span>'
+              : shaky
+                ? '<span class="text-xs font-semibold text-amber-700">Check this</span>'
+                : '';
+          return `<tr class="border-b border-black/6 last:border-0 ${shaky && !dup ? 'bg-amber-50/60' : ''}" data-i="${i}">
+            <td class="py-2 pr-3"><input type="checkbox" data-pick class="w-4 h-4 accent-green-600"${checked ? ' checked' : ''} aria-label="Save ${esc(name)}" /></td>
+            <td class="py-2 pr-3 font-semibold text-slate-900">${esc(name)}${known ? '' : ' <span class="text-xs font-normal text-slate-400">(custom)</span>'}</td>
+            <td class="py-2 pr-3"><input type="number" step="any" data-val value="${esc(m.value)}" class="w-24 rounded-md border border-black/10 px-2 py-1 text-sm" /></td>
+            <td class="py-2 pr-3 text-slate-500">${esc(m.unit)}</td>
+            <td class="py-2 pr-3 text-slate-400">${esc(referenceRangeText(m.refLow, m.refHigh) || '')}</td>
+            <td class="py-2">${note}</td>
+          </tr>`;
+        })
+        .join('');
+      const n = found.length;
+      importStatus.textContent = `Found ${n} result${n === 1 ? '' : 's'}.`;
+      importForm.classList.remove('hidden');
+    });
+
+    document.getElementById('import-all')!.addEventListener('change', (e) => {
+      const on = (e.target as HTMLInputElement).checked;
+      importRows.querySelectorAll<HTMLInputElement>('[data-pick]').forEach((c) => (c.checked = on));
+    });
+    document.getElementById('import-cancel')!.addEventListener('click', closeImport);
+
+    importForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const entries = [...importRows.querySelectorAll<HTMLTableRowElement>('tr')]
+        .filter((tr) => tr.querySelector<HTMLInputElement>('[data-pick]')!.checked)
+        .map((tr) => {
+          const m = found[Number(tr.dataset.i)];
+          return {
+            test_name: findMarker(m.marker)?.name || m.marker,
+            value: parseFloat(tr.querySelector<HTMLInputElement>('[data-val]')!.value),
+            unit: m.unit,
+            reference_range: referenceRangeText(m.refLow, m.refHigh),
+          };
+        })
+        .filter((x) => Number.isFinite(x.value));
+      if (!entries.length) return;
+      const save = document.getElementById('import-save') as HTMLButtonElement;
+      save.disabled = true;
+      try {
+        await addLabResults(entries, { day: importDate.value });
+        closeImport();
+        labs = (await fetchLabResults()) as Lab[];
+        renderLabs();
+        importPanel.classList.remove('hidden');
+        importStatus.textContent = `Saved ${entries.length} result${entries.length === 1 ? '' : 's'}. They're in the SelfHealth app too.`;
+      } catch {
+        importStatus.textContent = 'Couldn’t save. Check your connection and try again.';
+      } finally {
+        save.disabled = false;
+      }
+    });
+
+    // ---------- Manual entry ----------
     const form = document.getElementById('add-form') as HTMLFormElement;
     const rowsEl = document.getElementById('add-rows')!;
     const tpl = document.getElementById('add-row-tpl') as HTMLTemplateElement;
@@ -295,10 +564,11 @@ const input =
       rowsEl.appendChild(row);
     }
 
-    function openForm(open: boolean) {
-      form.classList.toggle('hidden', !open);
-      if (open && !rowsEl.children.length) addRow();
-      if (open) {
+    function openForm(isOpen: boolean) {
+      form.classList.toggle('hidden', !isOpen);
+      if (isOpen) {
+        closeImport();
+        if (!rowsEl.children.length) addRow();
         const date = document.getElementById('add-date') as HTMLInputElement;
         date.value ||= today();
         date.max = today();

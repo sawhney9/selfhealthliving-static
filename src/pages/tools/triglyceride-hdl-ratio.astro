@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import AccountPanel from '../../components/AccountPanel.astro';
 import SaveReading from '../../components/SaveReading.astro';
+import ImproveTips from '../../components/ImproveTips.astro';
 ---
 
 <Layout
@@ -50,6 +51,8 @@ import SaveReading from '../../components/SaveReading.astro';
       <h2 class="font-display font-bold text-lg text-slate-900 mb-4">Your Trend</h2>
       <div id="history"></div>
     </div>
+
+    <ImproveTips tool="triglyceride-hdl-ratio" />
 
     <p class="text-sm text-slate-500 mb-8">
       Want the full picture on what these numbers mean together? Read
