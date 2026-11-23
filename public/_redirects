@@ -63,6 +63,9 @@
 /breakfast /fuel/ 301
 /recipes-2/ /fuel/ 301
 /recipes-2 /fuel/ 301
+/recipes/ /fuel/ 301
+/recipes /fuel/ 301
+/recipes/* /fuel/ 301
 /mindfulness/ /train/ 301
 /mindfulness /train/ 301
 /self-health-insights/ /about/ 301
@@ -111,3 +114,8 @@
 /fuel/the-fiber-gap /train/fiber-gap-longevity-nutrient/ 301
 /test/lpa-inherited-heart-risk/ /train/lpa-inherited-heart-risk-never-tested/ 301
 /test/lpa-inherited-heart-risk /train/lpa-inherited-heart-risk-never-tested/ 301
+/take-your-health-in-your-hands/ /about/ 301
+/take-your-health-in-your-hands /about/ 301
+/feed/ / 301
+/feed / 301
+/author/* /about/ 301
