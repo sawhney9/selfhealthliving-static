@@ -84,9 +84,11 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1, band 
       )
       .join('');
     const opts = { points: entries, band, goal, unit, digits };
-    historyEl.innerHTML = `<div class="mb-2">${trendChart(opts)}</div>
+    historyEl.innerHTML = `<div class="rounded-xl border border-black/6 bg-white p-3 mb-3">${trendChart(opts)}</div>
       <p class="text-sm text-slate-600 mb-4">${trendSummary(opts)}</p>
-      <table class="w-full text-sm"><tbody>${rows}</tbody></table>`;
+      <details${entries.length <= 3 ? ' open' : ''}><summary class="list-none cursor-pointer text-sm font-semibold text-slate-500 hover:text-slate-900">All readings (${entries.length}) ▾</summary>
+        <table class="w-full text-sm mt-2"><tbody>${rows}</tbody></table>
+      </details>`;
     historyEl.querySelectorAll('[data-del]').forEach((btn) => {
       btn.addEventListener('click', () => {
         // Two-step so a stray tap doesn't lose a reading.

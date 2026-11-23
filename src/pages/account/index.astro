@@ -179,14 +179,16 @@ const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) =>
   };
   const today = () => dayKey(new Date().toISOString());
   const normUnit = (u: string) => String(u || '').toLowerCase().replace(/μ/g, 'µ').replace(/\s/g, '');
-  const digitsFor = (values: number[]) => (values.some((v) => Math.abs(v) < 10 && v % 1 !== 0) ? 2 : values.some((v) => v % 1 !== 0) ? 1 : 0);
+  // Decimal places the lab reported (at most 2), so HbA1c reads 5.7, not 5.70.
+  const digitsFor = (values: number[]) =>
+    Math.min(2, Math.max(0, ...values.map((v) => (String(Number(v)).split('.')[1] || '').length)));
   const TONE: Record<string, string> = {
     green: 'bg-green-accent/10 text-green-accent',
     amber: 'bg-amber-100 text-amber-700',
     red: 'bg-red-50 text-red-600',
   };
 
-  function sparkline(values: number[]) {
+  function sparkline(values: number[], color = '#00A36C') {
     if (values.length < 2) return '';
     const w = 120, h = 32, pad = 3;
     const min = Math.min(...values);
@@ -194,7 +196,7 @@ const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) =>
     const pts = values
       .map((v, i) => `${(pad + (i / (values.length - 1)) * (w - pad * 2)).toFixed(1)},${(h - pad - ((v - min) / range) * (h - pad * 2)).toFixed(1)}`)
       .join(' ');
-    return `<svg viewBox="0 0 ${w} ${h}" class="w-28 h-8" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="#00A36C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>`;
+    return `<svg viewBox="0 0 ${w} ${h}" class="w-28 h-8" preserveAspectRatio="none" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>`;
   }
 
   function rangeBar(marker: any, value: number) {
@@ -299,7 +301,7 @@ const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) =>
               <div class="flex flex-wrap items-center gap-2">${pill}${goalChip}</div>
             </div>
             <div class="hidden sm:block flex-1 min-w-[160px]">${sameUnit && marker!.range ? rangeBar(marker, Number(latest.value)) : ''}</div>
-            <div class="hidden md:block">${sparkline(results.map((r) => Number(r.value)))}</div>
+            <div class="hidden md:block">${sparkline(results.map((r) => Number(r.value)), !status || status === 'optimal' ? '#00A36C' : '#D97706')}</div>
             <span class="text-slate-400 text-sm" aria-hidden="true">▾</span>
           </summary>
           <div data-body class="px-4 md:px-5 pb-5 border-t border-black/6 pt-4"></div>
@@ -359,16 +361,29 @@ const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) =>
         )
         .join('');
 
+      const pill = status ? `<span class="text-xs font-bold px-2 py-0.5 rounded-full ${TONE[STATUS[status].tone]}">${STATUS[status].label}</span>` : '';
+      const optimalText = band
+        ? `${band.low != null ? `${formatMarkerValue(band.low)}–${formatMarkerValue(band.high)}` : `≤ ${formatMarkerValue(band.high)}`} ${esc(unit)}`
+        : '';
       body.innerHTML = `
-        ${marker?.about ? `<p class="text-sm text-slate-600 leading-relaxed mb-4">${esc(marker.about)}</p>` : ''}
-        <div class="mb-1">${trendChart({ points, band, goal, unit, digits })}</div>
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-          <p class="text-sm text-slate-600">${esc(trendSummary({ points, band, goal, unit, digits }))}
-            ${band ? `<span class="text-slate-400">Optimal: ${band.low != null ? `${formatMarkerValue(band.low)}–` : '≤ '}${formatMarkerValue(band.high)} ${esc(unit)}</span>` : ''}</p>
-          <div data-goal></div>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-5 items-start mb-4">
+          <div class="md:col-span-3 rounded-xl border border-black/6 bg-white p-3">${trendChart({ points, band, goal, unit, digits })}</div>
+          <div class="md:col-span-2 flex flex-col gap-3">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Latest · ${fmtDate(latest.date)}</p>
+              <p class="font-display font-black text-3xl text-slate-900">${esc(formatMarkerValue(latest.value))} <span class="text-sm font-semibold text-slate-400">${esc(unit)}</span></p>
+              <div class="mt-1">${pill}</div>
+            </div>
+            ${optimalText ? `<p class="text-sm text-slate-600"><span class="text-slate-400">Optimal range</span><br /><span class="font-semibold text-slate-900">${optimalText}</span></p>` : ''}
+            <p class="text-sm text-slate-600">${esc(trendSummary({ points, band, goal, unit, digits }))}</p>
+            <div data-goal></div>
+          </div>
         </div>
-        ${g ? `<div class="mb-5">${guidanceHtml(g, titles)}</div>` : ''}
-        <table class="w-full text-sm"><tbody>${history}</tbody></table>`;
+        ${marker?.about ? `<p class="text-sm text-slate-500 leading-relaxed mb-4">${esc(marker.about)}</p>` : ''}
+        ${g ? `<details class="group/tips mb-3"><summary class="list-none cursor-pointer inline-flex items-center gap-1.5 text-sm font-semibold text-green-accent hover:underline">${g.direction === 'lower' ? 'How to bring it down' : 'How to bring it up'} <span class="transition-transform group-open/tips:rotate-180">▾</span></summary><div class="mt-3">${guidanceHtml(g, titles)}</div></details>` : ''}
+        <details class="group/hist"><summary class="list-none cursor-pointer inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-slate-900">All results (${results.length}) <span class="transition-transform group-open/hist:rotate-180">▾</span></summary>
+          <table class="w-full text-sm mt-2"><tbody>${history}</tbody></table>
+        </details>`;
 
       mountGoalEditor(body.querySelector('[data-goal]')!, {
         metric: name,
@@ -417,7 +432,7 @@ const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) =>
             <p class="font-semibold text-slate-900">${esc(tool.title)}</p>
             <p class="text-xs text-slate-400">${entries.length} reading${entries.length === 1 ? '' : 's'}</p>
           </div>
-          ${trendChart(opts)}
+          <div class="rounded-lg bg-white border border-black/6 p-2">${trendChart(opts)}</div>
           <p class="text-xs text-slate-500">${esc(trendSummary(opts))}</p>
         </a>`;
       }).join('');
