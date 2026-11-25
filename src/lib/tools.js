@@ -45,7 +45,7 @@ export const TOOLS = [
     group: 'Bloodwork',
     better: 'lower',
     // eAG for an A1c of 5.7%, the prediabetes threshold
-    band: { high: 117 },
+    band: { high: 114 }, // A1c 5.6%; prediabetes starts at 5.7% (117 mg/dL)
   },
   {
     slug: 'egfr-calculator',

@@ -3,7 +3,17 @@
 // lab_results so the SelfHealth app sees them); signed out they stay in this
 // browser's localStorage, and can be moved into the account after sign-in.
 import { watchSession, loginUrl } from './auth.js';
-import { addToolEntries, addLabResults, fetchToolEntries, deleteToolEntry, dateToTimestamp, fetchGoals } from './healthData.js';
+import {
+  addToolEntries,
+  addLabResults,
+  fetchToolEntries,
+  deleteToolEntry,
+  dateToTimestamp,
+  fetchGoals,
+  fetchLabResults,
+  fetchHealthMetrics,
+} from './healthData.js';
+import { AUTO, labsByDay, readingsFromLabs, readingsFromMetrics, latestFill, dayKey } from './autoReadings.js';
 import { trendChart, trendSummary } from './trendChart.js';
 import { mountGoalEditor } from './goalEditor.js';
 
@@ -49,6 +59,12 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1, band 
   let session = null;
   let pending = null;
   let goal = null;
+  let prefilled = null; // inputs filled in from the person's labs, so they aren't re-saved
+  const auto = AUTO[tool];
+  const form = document.getElementById('calc-form');
+  const fillNote = document.createElement('p');
+  fillNote.className = 'hidden text-sm text-slate-600 mb-5 rounded-lg bg-green-accent/5 border border-green-accent/15 px-4 py-2.5';
+  form?.before(fillNote);
 
   // Goal control sits above the history; only shown when signed in.
   const goalEl = document.createElement('div');
@@ -78,8 +94,9 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1, band 
       .map(
         (e, i) => `<tr class="border-b border-black/6 last:border-0">
           <td class="py-2 pr-6 text-slate-500 whitespace-nowrap">${fmtDate(e.date)}</td>
-          <td class="py-2 w-full font-semibold text-slate-900">${fmt(e.value)}</td>
-          <td class="py-2 text-right whitespace-nowrap"><button type="button" data-del="${entries.length - 1 - i}" class="text-xs font-semibold text-slate-400 hover:text-red-500 cursor-pointer">Delete</button></td>
+          <td class="py-2 pr-4 font-semibold text-slate-900 whitespace-nowrap">${fmt(e.value)}</td>
+          <td class="py-2 w-full text-xs text-slate-400">${e.source ? (e.source === 'labs' ? 'From your labs' : `From ${e.source}`) : ''}</td>
+          <td class="py-2 text-right whitespace-nowrap">${e.source ? '' : `<button type="button" data-del="${entries.length - 1 - i}" class="text-xs font-semibold text-slate-400 hover:text-red-500 cursor-pointer">Delete</button>`}</td>
         </tr>`
       )
       .join('');
@@ -115,7 +132,21 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1, band 
     }
     historyEl.innerHTML = '<p class="text-sm text-slate-400">Loading your readings…</p>';
     try {
-      const [rows, goals] = await Promise.all([fetchToolEntries(tool), fetchGoals()]);
+      const [rows, goals, labs, metrics] = await Promise.all([
+        fetchToolEntries(tool),
+        fetchGoals(),
+        auto?.need || auto?.fill ? fetchLabResults().catch(() => []) : [],
+        auto?.metric ? fetchHealthMetrics(auto.metric).catch(() => []) : [],
+      ]);
+      const days = labsByDay(labs);
+      // Saved readings win; account data fills in the days without one.
+      const saved = rows.map((r) => ({ id: r.id, date: r.recorded_at, value: r.value }));
+      const savedDays = new Set(saved.map((e) => dayKey(e.date)));
+      const derived = [...readingsFromLabs(tool, days), ...readingsFromMetrics(tool, metrics)].filter(
+        (p) => !savedDays.has(dayKey(p.date))
+      );
+      const entries = [...saved, ...derived].sort((a, b) => new Date(a.date) - new Date(b.date));
+      prefillFromLabs(days);
       goal = goals[`tool:${tool}`] || null;
       mountGoalEditor(goalEl, {
         metric: `tool:${tool}`,
@@ -129,19 +160,42 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1, band 
         },
       });
       goalEl.classList.remove('hidden');
-      renderRows(
-        rows.map((r) => ({ id: r.id, date: r.recorded_at, value: r.value })),
-        {
+      renderRows(entries, {
           onDelete: async (entry) => {
             await deleteToolEntry(entry.id);
             renderHistory();
           },
-        }
-      );
+        });
+      if (derived.length) {
+        const note = document.createElement('p');
+        note.className = 'text-xs text-slate-400 mt-3';
+        note.textContent =
+          auto?.metric
+            ? `Includes ${derived.length} reading${derived.length === 1 ? '' : 's'} from Apple Health, synced by the SelfHealth app.`
+            : `Includes ${derived.length} reading${derived.length === 1 ? '' : 's'} worked out from lab results in your account.`;
+        historyEl.appendChild(note);
+      }
       if (local.length) offerImport(local);
     } catch {
       historyEl.innerHTML = '<p class="text-sm text-red-500">Couldn’t load your readings. Refresh to try again.</p>';
     }
+  }
+
+  // Fill the form from the latest labs (once, and only if it's still empty),
+  // and run the calculation when every input is covered.
+  function prefillFromLabs(days) {
+    if (!form || prefilled || !auto?.fill) return;
+    const fill = latestFill(tool, days);
+    if (!fill) return;
+    const fields = Object.keys(fill.inputs).map((id) => document.getElementById(id));
+    if (fields.some((el) => !el || el.value)) return;
+    fields.forEach((el) => (el.value = String(fill.inputs[el.id])));
+    prefilled = fill.inputs;
+    fillNote.textContent = fill.autoRun
+      ? `Filled in from your labs on ${fmtDate(fill.date)}. Change any value to try a different result.`
+      : `Creatinine filled in from your labs on ${fmtDate(fill.date)}. Add your age and sex to calculate.`;
+    fillNote.classList.remove('hidden');
+    if (fill.autoRun) form.requestSubmit();
   }
 
   function offerImport(local) {
@@ -199,6 +253,12 @@ export function initTrend({ slug: tool, storageKey, unit = '', digits = 1, band 
 
   return {
     ready(value, { inputs = {}, labs = [], fasting = null } = {}) {
+      // The pre-filled lab values are already in the trend; don't offer to save them again.
+      if (prefilled && Object.entries(prefilled).every(([k, v]) => Number(inputs[k]) === Number(v))) {
+        pending = null;
+        saveRow.classList.add('hidden');
+        return;
+      }
       pending = { value, inputs, labs, fasting };
       saveRow.classList.remove('hidden');
       saveBtn.disabled = false;

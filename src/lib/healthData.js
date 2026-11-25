@@ -134,3 +134,16 @@ export function referenceRangeText(low, high) {
   if (low != null) return `>${low}`;
   return null;
 }
+
+/** The app's Apple Health readings of one type (e.g. 'vo2_max'), oldest first. */
+export async function fetchHealthMetrics(metricType) {
+  const { data, error } = await supabase
+    .from('health_metrics')
+    .select('value, unit, recorded_at')
+    .eq('user_id', await userId())
+    .eq('metric_type', metricType)
+    .order('recorded_at', { ascending: true })
+    .limit(2000);
+  if (error) throw error;
+  return data;
+}
