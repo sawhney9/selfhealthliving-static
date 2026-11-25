@@ -1,5 +1,5 @@
-// "Ask AI about this result": a picker (Claude / ChatGPT / Perplexity, or copy
-// the question) plus a button that opens the chosen assistant in a new tab with
+// "Ask AI about this result": a picker (Claude / ChatGPT / Gemini / Perplexity,
+// or copy the question) plus a button that opens the chosen assistant in a new tab with
 // the question filled in. The choice is remembered as the default on this
 // device. Nothing is sent anywhere by us; the question only travels in the link
 // the person chooses to open, and it never includes their name or email.
@@ -7,6 +7,8 @@
 const TARGETS = {
   claude: { label: 'Claude', url: (q) => `https://claude.ai/new?q=${encodeURIComponent(q)}` },
   chatgpt: { label: 'ChatGPT', url: (q) => `https://chatgpt.com/?q=${encodeURIComponent(q)}` },
+  // Gemini has no prefill link, so its question is copied for pasting.
+  gemini: { label: 'Gemini', url: () => 'https://gemini.google.com/app', paste: true },
   perplexity: { label: 'Perplexity', url: (q) => `https://www.perplexity.ai/search?q=${encodeURIComponent(q)}` },
   copy: { label: 'Copy question' },
 };
@@ -56,6 +58,17 @@ export function bindAskAI(root, getPrompt) {
       sync();
     });
     go.addEventListener('click', async (e) => {
+      const t = TARGETS[pick.value];
+      if (t.paste) {
+        // Copy, then let the link open Gemini.
+        try {
+          await navigator.clipboard.writeText(getPrompt());
+          status.textContent = 'Question copied. Paste it into Gemini (⌘V or Ctrl+V).';
+        } catch {
+          status.textContent = 'Your browser blocked copying. Choose Copy question instead.';
+        }
+        return;
+      }
       if (pick.value !== 'copy') return; // the link opens the assistant
       e.preventDefault();
       try {

@@ -1,0 +1,15 @@
+---
+// In-page promo card (My Health, calculators); hidden unless the promo is live.
+import { PROMO } from '../lib/promo.js';
+---
+
+<div data-promo-card class="hidden rounded-xl bg-slate-900 text-white p-5 mb-6">
+  <div class="flex items-center justify-between gap-4 flex-wrap">
+    <div class="max-w-xl">
+      <p class="text-xs font-bold uppercase tracking-wider text-green-300 mb-1">Black Friday · ends Dec 1</p>
+      <p class="font-display font-bold text-lg mb-1">50% off SelfHealth Pro, annual plan</p>
+      <p class="text-sm text-slate-300 leading-relaxed">{PROMO.body}</p>
+    </div>
+    <a href={PROMO.href} target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full text-sm font-bold text-slate-900 bg-white hover:bg-green-100 transition-colors whitespace-nowrap">{PROMO.cta} ↗</a>
+  </div>
+</div>

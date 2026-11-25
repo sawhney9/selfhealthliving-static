@@ -1,0 +1,19 @@
+---
+// Site-wide promo strip above the header; hidden unless the promo is live.
+import { PROMO } from '../lib/promo.js';
+---
+
+<div data-promo-bar class="hidden w-full bg-slate-900 text-white">
+  <div class="max-w-6xl mx-auto px-4 py-2 flex items-center justify-center gap-3 text-sm">
+    <p class="text-center">
+      <span class="font-bold">{PROMO.headline}</span>
+      <a href={PROMO.href} target="_blank" rel="noopener" class="ml-2 font-semibold text-green-300 underline underline-offset-2 hover:text-white whitespace-nowrap">{PROMO.cta} →</a>
+    </p>
+    <button type="button" data-promo-close aria-label="Dismiss" class="shrink-0 w-6 h-6 rounded-full text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer">×</button>
+  </div>
+</div>
+
+<script>
+  import { showPromo } from '../lib/promo.client.js';
+  document.addEventListener('astro:page-load', showPromo);
+</script>

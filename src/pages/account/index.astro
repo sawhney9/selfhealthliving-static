@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import PromoCard from '../../components/PromoCard.astro';
 import { MARKERS } from '../../lib/markers.js';
 import { GUIDANCE_PATHS } from '../../lib/guidance.js';
 import { articleTitles } from '../../lib/articles.js';
@@ -30,6 +31,8 @@ const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) =>
         </div>
         <button id="signout-btn" type="button" class="text-sm font-semibold text-slate-400 hover:text-red-500 transition-colors cursor-pointer">Sign out</button>
       </div>
+
+      <PromoCard />
 
       <!-- Bloodwork -->
       <section class="mb-14">
