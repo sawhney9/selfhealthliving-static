@@ -71,9 +71,12 @@ export function trendChart({ points, band = null, goal = null, unit = '', digits
   const clampY = (v) => Math.min(Math.max(y(v), PAD.top), PAD.top + plotH);
 
   const parts = [];
+  // Right-gutter zone labels are placed last so they can step around the
+  // goal label instead of printing on top of it.
+  const zoneLabels = [];
   const zoneLabel = (text, y1, y2, color) => {
     if (y2 - y1 < 14) return;
-    parts.push(`<text x="${right + 10}" y="${(y1 + y2) / 2 + 3.5}" font-size="11" font-weight="600" letter-spacing="0.06em" fill="${color}">${text}</text>`);
+    zoneLabels.push({ text, y1, y2, color });
   };
 
   // Zones
@@ -105,6 +108,17 @@ export function trendChart({ points, band = null, goal = null, unit = '', digits
     const gy = clampY(goal.target);
     parts.push(`<line x1="${PAD.left}" x2="${right}" y1="${gy}" y2="${gy}" stroke="${INDIGO}" stroke-width="1.25" stroke-dasharray="4 4" />`);
     parts.push(`<text x="${right + 10}" y="${gy + 3.5}" font-size="11" font-weight="700" fill="${INDIGO}">GOAL</text>`);
+  }
+
+  const goalY = goal ? clampY(goal.target) : null;
+  for (const z of zoneLabels) {
+    let cy = (z.y1 + z.y2) / 2;
+    if (goalY != null && Math.abs(cy - goalY) < 14) {
+      // Slide to whichever end of the zone is farther from the goal label.
+      cy = goalY - z.y1 > z.y2 - goalY ? Math.max(z.y1 + 7, goalY - 14) : Math.min(z.y2 - 7, goalY + 14);
+      if (Math.abs(cy - goalY) < 13 || cy < z.y1 + 6 || cy > z.y2 - 6) continue;
+    }
+    parts.push(`<text x="${right + 10}" y="${cy + 3.5}" font-size="11" font-weight="600" letter-spacing="0.06em" fill="${z.color}">${z.text}</text>`);
   }
 
   // Connecting line, kept quiet so the dots carry the story

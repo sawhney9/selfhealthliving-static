@@ -164,6 +164,8 @@ const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) =>
   import { guidanceFor } from '../../lib/guidance.js';
   import { guidanceHtml } from '../../lib/guidanceView.js';
   import { mountGoalEditor } from '../../lib/goalEditor.js';
+  import { meaningFor } from '../../lib/meanings.js';
+  import { askAIHtml, bindAskAI, AI_NOTE } from '../../lib/askAI.js';
 
   type Lab = { id: string; test_name: string; value: number; unit: string; date: string; fasting: boolean | null; reference_range: string | null };
   type Goal = { target: number; direction: 'at_most' | 'at_least' };
@@ -347,6 +349,7 @@ const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) =>
       const points = results.map((r) => ({ date: r.date, value: Number(r.value) }));
       const position = status === 'high' || status === 'criticalHigh' ? 'high' : status === 'low' || status === 'criticalLow' ? 'low' : null;
       const g = guidanceFor(name, position);
+      const meaning = meaningFor(name, position);
 
       const history = results
         .slice()
@@ -380,10 +383,28 @@ const markerOptions = categories.map((c) => ({ c, markers: MARKERS.filter((m) =>
           </div>
         </div>
         ${marker?.about ? `<p class="text-sm text-slate-500 leading-relaxed mb-4">${esc(marker.about)}</p>` : ''}
+        ${meaning ? `<div class="rounded-xl bg-amber-50/60 border border-amber-200/60 p-4 mb-4">
+          <p class="text-sm font-bold text-slate-900 mb-1">What a ${position === 'high' ? 'high' : 'low'} result can mean</p>
+          <p class="text-sm text-slate-600 leading-relaxed">${esc(meaning.text)}</p>
+          <p class="text-xs text-slate-500 mt-2">One result slightly out of range is common. Look at the trend, and talk to your doctor about what it means for you.${meaning.sources.map((s) => ` <a href="${esc(s.href)}" target="_blank" rel="noopener" class="underline decoration-slate-300 hover:text-slate-900">${esc(s.label)} ↗</a>`).join('')}</p>
+        </div>` : ''}
+        <div class="mb-4">${askAIHtml()}</div>
         ${g ? `<details class="group/tips mb-3"><summary class="list-none cursor-pointer inline-flex items-center gap-1.5 text-sm font-semibold text-green-accent hover:underline">${g.direction === 'lower' ? 'How to bring it down' : 'How to bring it up'} <span class="transition-transform group-open/tips:rotate-180">▾</span></summary><div class="mt-3">${guidanceHtml(g, titles)}</div></details>` : ''}
         <details class="group/hist"><summary class="list-none cursor-pointer inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-slate-900">All results (${results.length}) <span class="transition-transform group-open/hist:rotate-180">▾</span></summary>
           <table class="w-full text-sm mt-2"><tbody>${history}</tbody></table>
         </details>`;
+
+      bindAskAI(body, () => {
+        const fmtR = (r: Lab) => `${formatMarkerValue(r.value)} ${r.unit} on ${fmtDate(r.date)}${r.reference_range ? ` (lab reference range ${r.reference_range})` : ''}`;
+        const earlier = results.slice(0, -1).slice(-4).reverse().map(fmtR);
+        return [
+          `I'm looking at my blood test results. My ${marker?.fullName || name} was ${fmtR(latest)}.`,
+          earlier.length ? `Earlier results: ${earlier.join('; ')}.` : '',
+          optimalText ? `The optimal range my tracker uses is ${optimalText}${status ? `, which puts me at "${STATUS[status].label}"` : ''}.` : '',
+          `What does this mean, and what could explain ${results.length > 1 ? 'the result and the trend' : 'it'}?`,
+          AI_NOTE,
+        ].filter(Boolean).join(' ');
+      });
 
       mountGoalEditor(body.querySelector('[data-goal]')!, {
         metric: name,
